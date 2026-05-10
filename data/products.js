@@ -1,518 +1,225 @@
-const products = [
-  {
-    id: "short-sleeve-01",
-    name: "20수 230g 튜블러 티셔츠",
-    code: "TS-001",
-    category: "Short Sleeve",
-    fit: "Relaxed Fit",
-    fabric: "Cotton 100%",
-    weight: "230g",
-    tags: ["Relaxed Fit", "Heavy Weight", "Tubular"],
-    description: "탄탄한 중량감과 자연스러운 실루엣을 갖춘 기본 반팔 티셔츠입니다.",
-    thumbnail: "images/products/short-sleeve-01-main.jpg",
-    images: ["images/products/short-sleeve-01-main.jpg", "images/products/short-sleeve-01-detail.jpg", "images/models/model-01.jpg"],
-    colors: [
-      { nameKr: "화이트", nameEn: "White", hex: "#F7F4EE", image: "images/products/short-sleeve-01-white.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-01-black.jpg" },
-      { nameKr: "멜란지", nameEn: "Melange", hex: "#B9B9B5", image: "images/products/short-sleeve-01-melange.jpg" }
+const colorLibrary = {
+  white: { nameKr: "화이트", nameCn: "白色", nameEn: "White", hex: "#F7F4EE" },
+  offWhite: { nameKr: "오프화이트", nameCn: "米白", nameEn: "Off White", hex: "#F1EDE3" },
+  melange: { nameKr: "멜란지", nameCn: "麻灰", nameEn: "Melange", hex: "#B9B9B5" },
+  deepMelange: { nameKr: "딥멜란지", nameCn: "深麻灰", nameEn: "Deep Melange", hex: "#777872" },
+  black: { nameKr: "블랙", nameCn: "黑色", nameEn: "Black", hex: "#111111" },
+  ivory: { nameKr: "아이보리", nameCn: "象牙白", nameEn: "Ivory", hex: "#EFE8D8" },
+  beige: { nameKr: "베이지", nameCn: "米色", nameEn: "Beige", hex: "#D8C7A9" },
+  lightCamel: { nameKr: "라이트카멜", nameCn: "浅驼", nameEn: "Light Camel", hex: "#CBA77F" },
+  oatmeal: { nameKr: "오트밀", nameCn: "燕麦色", nameEn: "Oatmeal", hex: "#D9D0C1" },
+  sand: { nameKr: "샌드", nameCn: "沙色", nameEn: "Sand", hex: "#C8B99D" },
+  brown: { nameKr: "브라운", nameCn: "深棕", nameEn: "Brown", hex: "#6B5545" },
+  ashTone: { nameKr: "어스톤", nameCn: "大地色", nameEn: "Earth Tone", hex: "#9E9A8E" },
+  lightGreen: { nameKr: "라이트그린", nameCn: "浅绿", nameEn: "Light Green", hex: "#C9CEB4" },
+  avocado: { nameKr: "아보카도", nameCn: "牛油果绿", nameEn: "Avocado", hex: "#8FDB78" },
+  oliveGreen: { nameKr: "올리브그린", nameCn: "橄榄绿", nameEn: "Olive Green", hex: "#5F6753" },
+  darkGreen: { nameKr: "다크그린", nameCn: "深墨绿", nameEn: "Dark Green", hex: "#154B3D" },
+  forestGreen: { nameKr: "포레스트그린", nameCn: "森林绿", nameEn: "Forest Green", hex: "#146F72" },
+  khaki: { nameKr: "카키", nameCn: "卡其", nameEn: "Khaki", hex: "#77745F" },
+  mint: { nameKr: "민트", nameCn: "薄荷绿", nameEn: "Mint", hex: "#BFD1C5" },
+  peacockBlue: { nameKr: "아쿠아", nameCn: "水鸭色", nameEn: "Aqua", hex: "#007C98" },
+  emerald: { nameKr: "에메랄드", nameCn: "翠绿色", nameEn: "Emerald", hex: "#00B8A9" },
+  tiffany: { nameKr: "티파니", nameCn: "蒂芬妮绿", nameEn: "Tiffany", hex: "#00C6D1" },
+  aquaBlue: { nameKr: "아쿠아블루", nameCn: "水蓝", nameEn: "Aqua Blue", hex: "#79E2E8" },
+  skyBlue: { nameKr: "스카이블루", nameCn: "天空蓝", nameEn: "Sky Blue", hex: "#C4DDEC" },
+  navyBlue: { nameKr: "네이비블루", nameCn: "海军蓝", nameEn: "Navy Blue", hex: "#007AC2" },
+  royalBlue: { nameKr: "로얄블루", nameCn: "宝蓝", nameEn: "Royal Blue", hex: "#004AA6" },
+  darkNavy: { nameKr: "다크네이비", nameCn: "藏蓝", nameEn: "Dark Navy", hex: "#172A43" },
+  blueGray: { nameKr: "블루그레이", nameCn: "蓝灰", nameEn: "Blue Gray", hex: "#7F929C" },
+  lavender: { nameKr: "라벤더", nameCn: "薰衣草紫", nameEn: "Lavender", hex: "#C9C4E4" },
+  grayPurple: { nameKr: "그레이퍼플", nameCn: "灰紫色", nameEn: "Gray Purple", hex: "#91859E" },
+  violet: { nameKr: "바이올렛", nameCn: "紫罗兰", nameEn: "Violet", hex: "#584B73" },
+  purple: { nameKr: "퍼플", nameCn: "紫色", nameEn: "Purple", hex: "#714ED8" },
+  pink: { nameKr: "핑크", nameCn: "粉色", nameEn: "Pink", hex: "#F7A7B8" },
+  hotPink: { nameKr: "로즈레드", nameCn: "玫红", nameEn: "Rose Red", hex: "#FF3E9D" },
+  babyPink: { nameKr: "베이비핑크", nameCn: "浅粉", nameEn: "Baby Pink", hex: "#E8C9C8" },
+  red: { nameKr: "레드", nameCn: "大红", nameEn: "Red", hex: "#E6002D" },
+  mapleRed: { nameKr: "메이플레드", nameCn: "枫叶红", nameEn: "Maple Red", hex: "#6E1026" },
+  anglaRed: { nameKr: "앙고라레드", nameCn: "安哥拉红", nameEn: "Angora Red", hex: "#A71925" },
+  orange: { nameKr: "오렌지", nameCn: "橙色", nameEn: "Orange", hex: "#FF671E" },
+  mellowOrange: { nameKr: "멜로오렌지", nameCn: "蜜瓜橙", nameEn: "Mellow Orange", hex: "#FF9E72" },
+  gingerYellow: { nameKr: "진저옐로우", nameCn: "姜黄", nameEn: "Ginger Yellow", hex: "#D97E2E" },
+  eggYellow: { nameKr: "에그옐로우", nameCn: "蛋黄", nameEn: "Egg Yellow", hex: "#EEB22C" },
+  creamYellow: { nameKr: "크림옐로우", nameCn: "奶油黄", nameEn: "Cream Yellow", hex: "#EFE59A" },
+  gray: { nameKr: "그레이", nameCn: "灰色", nameEn: "Gray", hex: "#9B9A95" },
+  darkGray: { nameKr: "다크그레이", nameCn: "深灰", nameEn: "Dark Gray", hex: "#494C50" },
+  charcoal: { nameKr: "차콜", nameCn: "炭灰", nameEn: "Charcoal", hex: "#3C3B37" },
+  washedGray: { nameKr: "워시드그레이", nameCn: "水洗灰", nameEn: "Washed Gray", hex: "#777873" },
+  washedBlue: { nameKr: "워시드블루", nameCn: "水洗蓝", nameEn: "Washed Blue", hex: "#5E7182" },
+  washedKhaki: { nameKr: "워시드카키", nameCn: "水洗卡其", nameEn: "Washed Khaki", hex: "#77705F" },
+  dustyPink: { nameKr: "더스티핑크", nameCn: "灰粉", nameEn: "Dusty Pink", hex: "#C98694" },
+  apricot: { nameKr: "살구", nameCn: "杏色", nameEn: "Apricot", hex: "#F3B28D" }
+};
+
+const colorSets = {
+  fullTee: ["white", "melange", "peacockBlue", "beige", "lightCamel", "ashTone", "lightGreen", "avocado", "tiffany", "emerald", "lavender", "grayPurple", "violet", "pink", "skyBlue", "aquaBlue", "anglaRed", "gingerYellow", "eggYellow", "hotPink", "mellowOrange", "mapleRed", "red", "orange", "purple", "navyBlue", "royalBlue", "brown", "forestGreen", "oliveGreen", "darkGreen", "deepMelange", "darkNavy", "darkGray", "black"],
+  basic: ["white", "melange", "black"],
+  neutral: ["white", "ivory", "melange", "gray", "charcoal", "black"],
+  vintage: ["washedGray", "washedBlue", "washedKhaki", "charcoal", "black"],
+  women: ["white", "babyPink", "dustyPink", "gray", "black"],
+  long: ["white", "ivory", "melange", "beige", "khaki", "darkGreen", "darkNavy", "black"],
+  sweat: ["oatmeal", "melange", "gray", "khaki", "darkNavy", "black"],
+  hoodie: ["ivory", "brown", "khaki", "gray", "hotPink", "black"],
+  pants: ["melange", "gray", "charcoal", "black"]
+};
+
+const sizeTemplates = {
+  topS5: {
+    sizeFields: [
+      { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+      { key: "chest", label: "가슴", labelCn: "胸围", labelEn: "Chest" },
+      { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" },
+      { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
+      { key: "sleeve", label: "소매", labelCn: "袖长", labelEn: "Sleeve" },
+      { key: "height", label: "추천 키", labelCn: "推荐身高", labelEn: "Height" },
+      { key: "weight", label: "추천 몸무게", labelCn: "推荐体重", labelEn: "Weight" }
     ],
-    sizes: [{ size: "M", shoulder: "48", chest: "53", sleeve: "22", length: "70" }, { size: "L", shoulder: "50", chest: "55", sleeve: "23", length: "72" }, { size: "XL", shoulder: "52", chest: "57", sleeve: "24", length: "74" }],
-    detailImages: ["images/products/short-sleeve-01-detail.jpg", "images/fabric/cotton-230g.jpg"],
-    details: [{ title: "Fabric", text: "부드럽고 탄탄한 면 소재를 사용했습니다." }, { title: "Fit", text: "몸에 과하게 달라붙지 않는 여유 있는 실루엣입니다." }, { title: "Sewing", text: "기본 봉제와 넥라인 마감의 안정감을 고려했습니다." }]
+    sizes: [
+      { size: "S", chest: "47", length: "65", shoulder: "43", sleeve: "19", height: "160-165cm", weight: "45-55kg" },
+      { size: "M", chest: "50", length: "67", shoulder: "47", sleeve: "20", height: "165-170cm", weight: "55-65kg" },
+      { size: "L", chest: "53", length: "70", shoulder: "50", sleeve: "21", height: "170-175cm", weight: "65-80kg" },
+      { size: "XL", chest: "56", length: "73", shoulder: "53", sleeve: "22", height: "175-180cm", weight: "80-90kg" },
+      { size: "2XL", chest: "59", length: "75", shoulder: "56", sleeve: "23", height: "180-185cm", weight: "90-100kg" },
+      { size: "3XL", chest: "62", length: "77.5", shoulder: "59", sleeve: "24", height: "185-190cm", weight: "100-110kg" },
+      { size: "4XL", chest: "65", length: "80.5", shoulder: "62", sleeve: "25", height: "190-200cm", weight: "110-120kg" },
+      { size: "5XL", chest: "68", length: "83", shoulder: "65", sleeve: "26", height: "200-210cm", weight: "120-130kg" }
+    ]
   },
-  {
-    id: "short-sleeve-02",
-    name: "16수 헤비 코튼 티셔츠",
-    code: "TS-002",
-    category: "Short Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 100%",
-    weight: "260g",
-    tags: ["Regular Fit", "Heavy Weight"],
-    description: "두께감 있는 원단으로 단품 착용에 적합한 헤비 코튼 반팔입니다.",
-    thumbnail: "images/products/short-sleeve-02-main.jpg",
-    images: ["images/products/short-sleeve-02-main.jpg", "images/products/short-sleeve-02-detail.jpg", "images/models/model-02.jpg"],
-    colors: [
-      { nameKr: "크림", nameEn: "Cream", hex: "#EFE8D8", image: "images/products/short-sleeve-02-cream.jpg" },
-      { nameKr: "차콜", nameEn: "Charcoal", hex: "#3C3B37", image: "images/products/short-sleeve-02-charcoal.jpg" },
-      { nameKr: "네이비", nameEn: "Navy", hex: "#202938", image: "images/products/short-sleeve-02-navy.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-02-black.jpg" }
+  slimWomen: {
+    sizeFields: [
+      { key: "size", label: "사이즈", labelCn: "尺码", labelEn: "Size" },
+      { key: "chest", label: "가슴", labelCn: "胸围", labelEn: "Chest" },
+      { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" },
+      { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
+      { key: "sleeve", label: "소매", labelCn: "袖长", labelEn: "Sleeve" }
     ],
-    sizes: [{ size: "S", shoulder: "45", chest: "50", sleeve: "21", length: "68" }, { size: "M", shoulder: "47", chest: "52", sleeve: "22", length: "70" }, { size: "L", shoulder: "49", chest: "54", sleeve: "23", length: "72" }, { size: "XL", shoulder: "51", chest: "56", sleeve: "24", length: "74" }],
-    detailImages: ["images/products/short-sleeve-02-detail.jpg", "images/fabric/heavy-cotton.jpg"],
-    details: [{ title: "Fabric", text: "조직감이 안정적인 16수 코튼 원단입니다." }, { title: "Fit", text: "가장 기본적인 정핏에 가까운 실루엣입니다." }, { title: "Use", text: "브랜드 기본 라인과 단체 납품에 활용하기 좋습니다." }]
+    sizes: [
+      { size: "S", chest: "38", length: "52", shoulder: "34", sleeve: "15" },
+      { size: "M", chest: "40", length: "54", shoulder: "36", sleeve: "16" },
+      { size: "L", chest: "42", length: "56", shoulder: "38", sleeve: "17" }
+    ]
   },
-  {
-    id: "short-sleeve-03",
-    name: "24수 소프트 데일리 티셔츠",
-    code: "TS-003",
-    category: "Short Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 95% Rayon 5%",
-    weight: "180g",
-    tags: ["Regular Fit"],
-    description: "가볍고 부드러운 터치감으로 데일리 착용에 적합한 반팔 티셔츠입니다.",
-    thumbnail: "images/products/short-sleeve-03-main.jpg",
-    images: ["images/products/short-sleeve-03-main.jpg", "images/products/short-sleeve-03-detail.jpg", "images/models/model-03.jpg"],
-    colors: [
-      { nameKr: "화이트", nameEn: "White", hex: "#F8F6EF", image: "images/products/short-sleeve-03-white.jpg" },
-      { nameKr: "라이트그레이", nameEn: "Light Gray", hex: "#D8D8D4", image: "images/products/short-sleeve-03-light-gray.jpg" },
-      { nameKr: "스카이", nameEn: "Sky", hex: "#B8C9D8", image: "images/products/short-sleeve-03-sky.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-03-black.jpg" }
+  pants: {
+    sizeFields: [
+      { key: "size", label: "사이즈", labelCn: "尺码", labelEn: "Size" },
+      { key: "waist", label: "허리", labelCn: "腰围", labelEn: "Waist" },
+      { key: "hip", label: "엉덩이", labelCn: "臀围", labelEn: "Hip" },
+      { key: "rise", label: "밑위", labelCn: "前档", labelEn: "Rise" },
+      { key: "thigh", label: "허벅지", labelCn: "大腿围", labelEn: "Thigh" },
+      { key: "length", label: "총장", labelCn: "裤长", labelEn: "Length" }
     ],
-    sizes: [{ size: "M", shoulder: "46", chest: "51", sleeve: "20", length: "68" }, { size: "L", shoulder: "48", chest: "53", sleeve: "21", length: "70" }, { size: "XL", shoulder: "50", chest: "55", sleeve: "22", length: "72" }],
-    detailImages: ["images/products/short-sleeve-03-detail.jpg", "images/fabric/soft-cotton.jpg"],
-    details: [{ title: "Fabric", text: "레이온 혼방으로 차분한 촉감을 더했습니다." }, { title: "Fit", text: "일상적인 착용에 편한 기본 핏입니다." }, { title: "Color", text: "기본 컬러와 부드러운 시즌 컬러 구성이 가능합니다." }]
-  },
-  {
-    id: "short-sleeve-04",
-    name: "오버사이즈 드롭숄더 티셔츠",
-    code: "TS-004",
-    category: "Short Sleeve",
-    fit: "Oversized Fit",
-    fabric: "Cotton 100%",
-    weight: "240g",
-    tags: ["Oversized Fit", "Heavy Weight"],
-    description: "넓은 어깨와 여유로운 품으로 스트리트 무드에 적합한 오버핏 반팔입니다.",
-    thumbnail: "images/products/short-sleeve-04-main.jpg",
-    images: ["images/products/short-sleeve-04-main.jpg", "images/products/short-sleeve-04-detail.jpg", "images/models/model-04.jpg"],
-    colors: [
-      { nameKr: "오트밀", nameEn: "Oatmeal", hex: "#D9D0C1", image: "images/products/short-sleeve-04-oatmeal.jpg" },
-      { nameKr: "카키", nameEn: "Khaki", hex: "#77745F", image: "images/products/short-sleeve-04-khaki.jpg" },
-      { nameKr: "그레이", nameEn: "Gray", hex: "#9B9A95", image: "images/products/short-sleeve-04-gray.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-04-black.jpg" },
-      { nameKr: "브라운", nameEn: "Brown", hex: "#6B5545", image: "images/products/short-sleeve-04-brown.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "56", chest: "60", sleeve: "24", length: "72" }, { size: "L", shoulder: "58", chest: "63", sleeve: "25", length: "75" }, { size: "XL", shoulder: "60", chest: "66", sleeve: "26", length: "78" }],
-    detailImages: ["images/products/short-sleeve-04-detail.jpg", "images/fabric/dense-cotton.jpg"],
-    details: [{ title: "Silhouette", text: "드롭숄더 구조로 자연스럽게 떨어지는 라인을 만듭니다." }, { title: "Fabric", text: "밀도감 있는 코튼 원단을 사용했습니다." }, { title: "Finish", text: "넥라인과 소매단의 변형을 줄이는 마감을 고려했습니다." }]
-  },
-  {
-    id: "short-sleeve-05",
-    name: "컴팩트 레귤러 티셔츠",
-    code: "TS-005",
-    category: "Short Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 100%",
-    weight: "200g",
-    tags: ["Regular Fit"],
-    description: "군더더기 없는 실루엣으로 다양한 브랜드 라벨링에 적합한 기본 반팔입니다.",
-    thumbnail: "images/products/short-sleeve-05-main.jpg",
-    images: ["images/products/short-sleeve-05-main.jpg", "images/products/short-sleeve-05-detail.jpg", "images/models/model-05.jpg"],
-    colors: [
-      { nameKr: "화이트", nameEn: "White", hex: "#F7F4EE", image: "images/products/short-sleeve-05-white.jpg" },
-      { nameKr: "그레이", nameEn: "Gray", hex: "#A9A9A4", image: "images/products/short-sleeve-05-gray.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-05-black.jpg" }
-    ],
-    sizes: [{ size: "S", shoulder: "43", chest: "49", sleeve: "20", length: "66" }, { size: "M", shoulder: "45", chest: "51", sleeve: "21", length: "68" }, { size: "L", shoulder: "47", chest: "53", sleeve: "22", length: "70" }, { size: "XL", shoulder: "49", chest: "55", sleeve: "23", length: "72" }],
-    detailImages: ["images/products/short-sleeve-05-detail.jpg", "images/fabric/cotton-basic.jpg"],
-    details: [{ title: "Fit", text: "과하지 않은 기본 실루엣입니다." }, { title: "Fabric", text: "일정한 두께와 표면감을 가진 코튼 원단입니다." }, { title: "Supply", text: "기본 컬러 중심의 안정적인 공급에 적합합니다." }]
-  },
-  {
-    id: "short-sleeve-06",
-    name: "피그먼트 워싱 티셔츠",
-    code: "TS-006",
-    category: "Short Sleeve",
-    fit: "Relaxed Fit",
-    fabric: "Cotton 100%",
-    weight: "220g",
-    tags: ["Relaxed Fit"],
-    description: "은은한 워싱감으로 캐주얼 브랜드 라인에 어울리는 반팔 티셔츠입니다.",
-    thumbnail: "images/products/short-sleeve-06-main.jpg",
-    images: ["images/products/short-sleeve-06-main.jpg", "images/products/short-sleeve-06-detail.jpg", "images/models/model-06.jpg"],
-    colors: [
-      { nameKr: "워시드그레이", nameEn: "Washed Gray", hex: "#777873", image: "images/products/short-sleeve-06-washed-gray.jpg" },
-      { nameKr: "워시드블루", nameEn: "Washed Blue", hex: "#5E7182", image: "images/products/short-sleeve-06-washed-blue.jpg" },
-      { nameKr: "워시드카키", nameEn: "Washed Khaki", hex: "#77705F", image: "images/products/short-sleeve-06-washed-khaki.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "50", chest: "55", sleeve: "22", length: "70" }, { size: "L", shoulder: "52", chest: "57", sleeve: "23", length: "72" }, { size: "XL", shoulder: "54", chest: "59", sleeve: "24", length: "74" }],
-    detailImages: ["images/products/short-sleeve-06-detail.jpg", "images/fabric/pigment.jpg"],
-    details: [{ title: "Washing", text: "피그먼트 워싱 특유의 자연스러운 색감을 표현합니다." }, { title: "Fit", text: "편하게 입을 수 있는 여유 있는 품입니다." }, { title: "Notice", text: "워싱 제품은 컬러별 미세한 편차가 있을 수 있습니다." }]
-  },
-  {
-    id: "short-sleeve-07",
-    name: "슬럽 코튼 티셔츠",
-    code: "TS-007",
-    category: "Short Sleeve",
-    fit: "Relaxed Fit",
-    fabric: "Slub Cotton 100%",
-    weight: "190g",
-    tags: ["Relaxed Fit"],
-    description: "자연스러운 슬럽 조직으로 표면감이 살아 있는 반팔 티셔츠입니다.",
-    thumbnail: "images/products/short-sleeve-07-main.jpg",
-    images: ["images/products/short-sleeve-07-main.jpg", "images/products/short-sleeve-07-detail.jpg", "images/models/model-07.jpg"],
-    colors: [
-      { nameKr: "아이보리", nameEn: "Ivory", hex: "#EFE9DC", image: "images/products/short-sleeve-07-ivory.jpg" },
-      { nameKr: "베이지", nameEn: "Beige", hex: "#C9B9A0", image: "images/products/short-sleeve-07-beige.jpg" },
-      { nameKr: "먹색", nameEn: "Ink Gray", hex: "#4B4A46", image: "images/products/short-sleeve-07-ink-gray.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "49", chest: "54", sleeve: "21", length: "69" }, { size: "L", shoulder: "51", chest: "56", sleeve: "22", length: "71" }, { size: "XL", shoulder: "53", chest: "58", sleeve: "23", length: "73" }],
-    detailImages: ["images/products/short-sleeve-07-detail.jpg", "images/fabric/slub-cotton.jpg"],
-    details: [{ title: "Texture", text: "슬럽 원사의 자연스러운 결이 특징입니다." }, { title: "Mood", text: "차분한 캐주얼 브랜드 분위기에 잘 어울립니다." }, { title: "Fit", text: "몸선을 과하게 드러내지 않는 여유 있는 핏입니다." }]
-  },
-  {
-    id: "short-sleeve-08",
-    name: "모크넥 반팔 티셔츠",
-    code: "TS-008",
-    category: "Short Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 92% Span 8%",
-    weight: "210g",
-    tags: ["Regular Fit"],
-    description: "살짝 올라오는 목선으로 단정한 인상을 주는 모크넥 반팔입니다.",
-    thumbnail: "images/products/short-sleeve-08-main.jpg",
-    images: ["images/products/short-sleeve-08-main.jpg", "images/products/short-sleeve-08-detail.jpg", "images/models/model-08.jpg"],
-    colors: [
-      { nameKr: "오프화이트", nameEn: "Off White", hex: "#F0EDE5", image: "images/products/short-sleeve-08-off-white.jpg" },
-      { nameKr: "그레이지", nameEn: "Greige", hex: "#B8AFA2", image: "images/products/short-sleeve-08-greige.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-08-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "44", chest: "50", sleeve: "21", length: "67" }, { size: "L", shoulder: "46", chest: "52", sleeve: "22", length: "69" }, { size: "XL", shoulder: "48", chest: "54", sleeve: "23", length: "71" }],
-    detailImages: ["images/products/short-sleeve-08-detail.jpg", "images/fabric/span-cotton.jpg"],
-    details: [{ title: "Neck", text: "낮은 모크넥으로 단정한 첫인상을 만듭니다." }, { title: "Fabric", text: "스판 혼방으로 착용감이 부드럽습니다." }, { title: "Styling", text: "이너와 단품 모두 활용 가능합니다." }]
-  },
-  {
-    id: "short-sleeve-09",
-    name: "쿨 터치 반팔 티셔츠",
-    code: "TS-009",
-    category: "Short Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 70% Polyester 30%",
-    weight: "170g",
-    tags: ["Regular Fit"],
-    description: "가볍고 산뜻한 터치감으로 여름 시즌 공급에 적합한 반팔입니다.",
-    thumbnail: "images/products/short-sleeve-09-main.jpg",
-    images: ["images/products/short-sleeve-09-main.jpg", "images/products/short-sleeve-09-detail.jpg", "images/models/model-09.jpg"],
-    colors: [
-      { nameKr: "화이트", nameEn: "White", hex: "#F7F4EE", image: "images/products/short-sleeve-09-white.jpg" },
-      { nameKr: "민트", nameEn: "Mint", hex: "#BFD1C5", image: "images/products/short-sleeve-09-mint.jpg" },
-      { nameKr: "블루그레이", nameEn: "Blue Gray", hex: "#8999A3", image: "images/products/short-sleeve-09-blue-gray.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-09-black.jpg" }
-    ],
-    sizes: [{ size: "S", shoulder: "42", chest: "48", sleeve: "19", length: "65" }, { size: "M", shoulder: "44", chest: "50", sleeve: "20", length: "67" }, { size: "L", shoulder: "46", chest: "52", sleeve: "21", length: "69" }, { size: "XL", shoulder: "48", chest: "54", sleeve: "22", length: "71" }],
-    detailImages: ["images/products/short-sleeve-09-detail.jpg", "images/fabric/cool-touch.jpg"],
-    details: [{ title: "Season", text: "여름 시즌에 적합한 가벼운 중량입니다." }, { title: "Touch", text: "산뜻하고 부드러운 표면감을 목표로 했습니다." }, { title: "Fit", text: "기본 정핏으로 다양한 체형에 대응합니다." }]
-  },
-  {
-    id: "short-sleeve-10",
-    name: "링거 배색 티셔츠",
-    code: "TS-010",
-    category: "Short Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 100%",
-    weight: "200g",
-    tags: ["Regular Fit"],
-    description: "넥과 소매 배색으로 간결한 포인트를 주는 반팔 티셔츠입니다.",
-    thumbnail: "images/products/short-sleeve-10-main.jpg",
-    images: ["images/products/short-sleeve-10-main.jpg", "images/products/short-sleeve-10-detail.jpg", "images/models/model-10.jpg"],
-    colors: [
-      { nameKr: "화이트블랙", nameEn: "White Black", hex: "#F7F4EE", image: "images/products/short-sleeve-10-white-black.jpg" },
-      { nameKr: "크림네이비", nameEn: "Cream Navy", hex: "#EDE4D3", image: "images/products/short-sleeve-10-cream-navy.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "45", chest: "51", sleeve: "21", length: "68" }, { size: "L", shoulder: "47", chest: "53", sleeve: "22", length: "70" }, { size: "XL", shoulder: "49", chest: "55", sleeve: "23", length: "72" }],
-    detailImages: ["images/products/short-sleeve-10-detail.jpg", "images/fabric/ringer-neck.jpg"],
-    details: [{ title: "Design", text: "넥과 소매단의 배색으로 기본 티셔츠에 포인트를 더했습니다." }, { title: "Fabric", text: "안정적인 코튼 원단을 사용했습니다." }, { title: "Line", text: "캐주얼 라인과 굿즈 제작에 활용하기 좋습니다." }]
-  },
-  {
-    id: "short-sleeve-11",
-    name: "와이드넥 코튼 티셔츠",
-    code: "TS-011",
-    category: "Short Sleeve",
-    fit: "Relaxed Fit",
-    fabric: "Cotton 100%",
-    weight: "195g",
-    tags: ["Relaxed Fit"],
-    description: "목선이 답답하지 않은 와이드넥 구조의 편안한 반팔 티셔츠입니다.",
-    thumbnail: "images/products/short-sleeve-11-main.jpg",
-    images: ["images/products/short-sleeve-11-main.jpg", "images/products/short-sleeve-11-detail.jpg", "images/models/model-11.jpg"],
-    colors: [
-      { nameKr: "아이보리", nameEn: "Ivory", hex: "#F0E9DA", image: "images/products/short-sleeve-11-ivory.jpg" },
-      { nameKr: "샌드", nameEn: "Sand", hex: "#C8B99D", image: "images/products/short-sleeve-11-sand.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-11-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "48", chest: "54", sleeve: "20", length: "67" }, { size: "L", shoulder: "50", chest: "56", sleeve: "21", length: "69" }, { size: "XL", shoulder: "52", chest: "58", sleeve: "22", length: "71" }],
-    detailImages: ["images/products/short-sleeve-11-detail.jpg", "images/fabric/wide-neck.jpg"],
-    details: [{ title: "Neck", text: "여유 있는 목선으로 편안한 착용감을 줍니다." }, { title: "Fit", text: "몸에서 자연스럽게 떨어지는 릴랙스 핏입니다." }, { title: "Mood", text: "내추럴한 무드의 브랜드 라인에 적합합니다." }]
-  },
-  {
-    id: "short-sleeve-12",
-    name: "세미 크롭 티셔츠",
-    code: "TS-012",
-    category: "Short Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 96% Span 4%",
-    weight: "185g",
-    tags: ["Regular Fit"],
-    description: "짧은 기장과 안정적인 텐션으로 여성 라인에 적합한 세미 크롭 반팔입니다.",
-    thumbnail: "images/products/short-sleeve-12-main.jpg",
-    images: ["images/products/short-sleeve-12-main.jpg", "images/products/short-sleeve-12-detail.jpg", "images/models/model-12.jpg"],
-    colors: [
-      { nameKr: "화이트", nameEn: "White", hex: "#F7F4EE", image: "images/products/short-sleeve-12-white.jpg" },
-      { nameKr: "베이비핑크", nameEn: "Baby Pink", hex: "#E8C9C8", image: "images/products/short-sleeve-12-baby-pink.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-12-black.jpg" }
-    ],
-    sizes: [{ size: "S", shoulder: "36", chest: "42", sleeve: "17", length: "50" }, { size: "M", shoulder: "38", chest: "44", sleeve: "18", length: "52" }, { size: "L", shoulder: "40", chest: "46", sleeve: "19", length: "54" }],
-    detailImages: ["images/products/short-sleeve-12-detail.jpg", "images/fabric/crop-span.jpg"],
-    details: [{ title: "Length", text: "세미 크롭 기장으로 하이웨이스트 하의와 잘 어울립니다." }, { title: "Fabric", text: "스판 혼방으로 활동성을 높였습니다." }, { title: "Fit", text: "몸에 자연스럽게 맞는 정돈된 핏입니다." }]
-  },
-  {
-    id: "short-sleeve-13",
-    name: "포켓 포인트 티셔츠",
-    code: "TS-013",
-    category: "Short Sleeve",
-    fit: "Relaxed Fit",
-    fabric: "Cotton 100%",
-    weight: "215g",
-    tags: ["Relaxed Fit"],
-    description: "가슴 포켓 디테일로 실용적인 포인트를 더한 기본 반팔입니다.",
-    thumbnail: "images/products/short-sleeve-13-main.jpg",
-    images: ["images/products/short-sleeve-13-main.jpg", "images/products/short-sleeve-13-detail.jpg", "images/models/model-13.jpg"],
-    colors: [
-      { nameKr: "오프화이트", nameEn: "Off White", hex: "#F0EDE5", image: "images/products/short-sleeve-13-off-white.jpg" },
-      { nameKr: "그린", nameEn: "Green", hex: "#6D7A61", image: "images/products/short-sleeve-13-green.jpg" },
-      { nameKr: "네이비", nameEn: "Navy", hex: "#222A38", image: "images/products/short-sleeve-13-navy.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-13-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "49", chest: "54", sleeve: "22", length: "70" }, { size: "L", shoulder: "51", chest: "56", sleeve: "23", length: "72" }, { size: "XL", shoulder: "53", chest: "58", sleeve: "24", length: "74" }],
-    detailImages: ["images/products/short-sleeve-13-detail.jpg", "images/fabric/pocket-detail.jpg"],
-    details: [{ title: "Detail", text: "가슴 포켓으로 기본형에 실용적인 포인트를 줍니다." }, { title: "Fabric", text: "중간 두께의 코튼 원단을 사용했습니다." }, { title: "Fit", text: "편안한 품과 안정적인 기장입니다." }]
-  },
-  {
-    id: "short-sleeve-14",
-    name: "프리미엄 실켓 티셔츠",
-    code: "TS-014",
-    category: "Short Sleeve",
-    fit: "Regular Fit",
-    fabric: "Silket Cotton 100%",
-    weight: "205g",
-    tags: ["Regular Fit"],
-    description: "은은한 광택과 매끄러운 표면감으로 고급스러운 인상을 주는 실켓 반팔입니다.",
-    thumbnail: "images/products/short-sleeve-14-main.jpg",
-    images: ["images/products/short-sleeve-14-main.jpg", "images/products/short-sleeve-14-detail.jpg", "images/models/model-14.jpg"],
-    colors: [
-      { nameKr: "화이트", nameEn: "White", hex: "#F8F6EF", image: "images/products/short-sleeve-14-white.jpg" },
-      { nameKr: "그레이지", nameEn: "Greige", hex: "#B9B0A3", image: "images/products/short-sleeve-14-greige.jpg" },
-      { nameKr: "브라운", nameEn: "Brown", hex: "#6B5545", image: "images/products/short-sleeve-14-brown.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-14-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "45", chest: "51", sleeve: "21", length: "68" }, { size: "L", shoulder: "47", chest: "53", sleeve: "22", length: "70" }, { size: "XL", shoulder: "49", chest: "55", sleeve: "23", length: "72" }],
-    detailImages: ["images/products/short-sleeve-14-detail.jpg", "images/fabric/silket-cotton.jpg"],
-    details: [{ title: "Surface", text: "실켓 가공으로 매끄러운 표면감을 표현합니다." }, { title: "Mood", text: "미니멀하고 고급스러운 라인에 적합합니다." }, { title: "Fit", text: "단정한 레귤러 핏입니다." }]
-  },
-  {
-    id: "short-sleeve-15",
-    name: "USA 코튼 박스 티셔츠",
-    code: "TS-015",
-    category: "Short Sleeve",
-    fit: "Oversized Fit",
-    fabric: "USA Cotton 100%",
-    weight: "250g",
-    tags: ["Oversized Fit", "Heavy Weight"],
-    description: "탄탄한 USA 코튼 원단과 박시한 실루엣을 가진 반팔 티셔츠입니다.",
-    thumbnail: "images/products/short-sleeve-15-main.jpg",
-    images: ["images/products/short-sleeve-15-main.jpg", "images/products/short-sleeve-15-detail.jpg", "images/models/model-15.jpg"],
-    colors: [
-      { nameKr: "내추럴", nameEn: "Natural", hex: "#E7DDC8", image: "images/products/short-sleeve-15-natural.jpg" },
-      { nameKr: "스틸그레이", nameEn: "Steel Gray", hex: "#747A7D", image: "images/products/short-sleeve-15-steel-gray.jpg" },
-      { nameKr: "딥네이비", nameEn: "Deep Navy", hex: "#182132", image: "images/products/short-sleeve-15-deep-navy.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/short-sleeve-15-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "57", chest: "61", sleeve: "24", length: "72" }, { size: "L", shoulder: "59", chest: "64", sleeve: "25", length: "75" }, { size: "XL", shoulder: "61", chest: "67", sleeve: "26", length: "78" }],
-    detailImages: ["images/products/short-sleeve-15-detail.jpg", "images/fabric/usa-cotton.jpg"],
-    details: [{ title: "Fabric", text: "탄탄한 USA 코튼 소재감이 특징입니다." }, { title: "Fit", text: "넉넉한 박스 실루엣으로 편안합니다." }, { title: "Weight", text: "중량감 있는 기본 티셔츠 라인에 적합합니다." }]
-  },
-  {
-    id: "sleeveless-01",
-    name: "립 조직 베이직 나시",
-    code: "SL-001",
-    category: "Sleeveless",
-    fit: "Regular Fit",
-    fabric: "Cotton 95% Span 5%",
-    weight: "180g",
-    tags: ["Regular Fit"],
-    description: "탄력 있는 립 조직으로 단품과 이너 모두 활용 가능한 베이직 나시입니다.",
-    thumbnail: "images/products/sleeveless-01-main.jpg",
-    images: ["images/products/sleeveless-01-main.jpg", "images/products/sleeveless-01-detail.jpg", "images/models/model-16.jpg"],
-    colors: [
-      { nameKr: "화이트", nameEn: "White", hex: "#F7F4EE", image: "images/products/sleeveless-01-white.jpg" },
-      { nameKr: "멜란지", nameEn: "Melange", hex: "#B9B9B5", image: "images/products/sleeveless-01-melange.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/sleeveless-01-black.jpg" }
-    ],
-    sizes: [{ size: "S", shoulder: "28", chest: "38", sleeve: "-", length: "58" }, { size: "M", shoulder: "30", chest: "40", sleeve: "-", length: "60" }, { size: "L", shoulder: "32", chest: "42", sleeve: "-", length: "62" }],
-    detailImages: ["images/products/sleeveless-01-detail.jpg", "images/fabric/rib-cotton.jpg"],
-    details: [{ title: "Fabric", text: "탄성이 있는 립 조직으로 안정적인 착용감을 줍니다." }, { title: "Use", text: "단품과 이너웨어 모두 활용 가능합니다." }, { title: "Fit", text: "몸에 자연스럽게 맞는 레귤러 핏입니다." }]
-  },
-  {
-    id: "sleeveless-02",
-    name: "와이드 암홀 슬리브리스",
-    code: "SL-002",
-    category: "Sleeveless",
-    fit: "Relaxed Fit",
-    fabric: "Cotton 100%",
-    weight: "210g",
-    tags: ["Relaxed Fit"],
-    description: "넓은 암홀과 여유로운 품으로 여름 시즌 캐주얼 라인에 적합한 슬리브리스입니다.",
-    thumbnail: "images/products/sleeveless-02-main.jpg",
-    images: ["images/products/sleeveless-02-main.jpg", "images/products/sleeveless-02-detail.jpg", "images/models/model-17.jpg"],
-    colors: [
-      { nameKr: "아이보리", nameEn: "Ivory", hex: "#EFE9DC", image: "images/products/sleeveless-02-ivory.jpg" },
-      { nameKr: "카키", nameEn: "Khaki", hex: "#77745F", image: "images/products/sleeveless-02-khaki.jpg" },
-      { nameKr: "차콜", nameEn: "Charcoal", hex: "#3C3B37", image: "images/products/sleeveless-02-charcoal.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/sleeveless-02-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "38", chest: "53", sleeve: "-", length: "69" }, { size: "L", shoulder: "40", chest: "55", sleeve: "-", length: "71" }, { size: "XL", shoulder: "42", chest: "57", sleeve: "-", length: "73" }],
-    detailImages: ["images/products/sleeveless-02-detail.jpg", "images/fabric/armhole.jpg"],
-    details: [{ title: "Armhole", text: "넓은 암홀로 여유로운 여름 실루엣을 만듭니다." }, { title: "Fabric", text: "중간 두께의 코튼 원단을 사용했습니다." }, { title: "Fit", text: "몸에 붙지 않는 릴랙스 핏입니다." }]
-  },
-  {
-    id: "long-sleeve-01",
-    name: "20수 베이직 긴팔 티셔츠",
-    code: "LS-001",
-    category: "Long Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 100%",
-    weight: "210g",
-    tags: ["Regular Fit"],
-    description: "계절 사이에 활용하기 좋은 기본 긴팔 티셔츠입니다.",
-    thumbnail: "images/products/long-sleeve-01-main.jpg",
-    images: ["images/products/long-sleeve-01-main.jpg", "images/products/long-sleeve-01-detail.jpg", "images/models/model-18.jpg"],
-    colors: [
-      { nameKr: "화이트", nameEn: "White", hex: "#F7F4EE", image: "images/products/long-sleeve-01-white.jpg" },
-      { nameKr: "그레이", nameEn: "Gray", hex: "#A9A9A4", image: "images/products/long-sleeve-01-gray.jpg" },
-      { nameKr: "네이비", nameEn: "Navy", hex: "#202938", image: "images/products/long-sleeve-01-navy.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/long-sleeve-01-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "46", chest: "52", sleeve: "61", length: "69" }, { size: "L", shoulder: "48", chest: "54", sleeve: "62", length: "71" }, { size: "XL", shoulder: "50", chest: "56", sleeve: "63", length: "73" }],
-    detailImages: ["images/products/long-sleeve-01-detail.jpg", "images/fabric/cotton-long.jpg"],
-    details: [{ title: "Season", text: "봄과 가을 시즌에 안정적으로 공급하기 좋은 중량입니다." }, { title: "Fit", text: "기본적인 레귤러 핏입니다." }, { title: "Fabric", text: "균일한 표면감의 코튼 원단입니다." }]
-  },
-  {
-    id: "long-sleeve-02",
-    name: "헤비웨이트 롱슬리브",
-    code: "LS-002",
-    category: "Long Sleeve",
-    fit: "Relaxed Fit",
-    fabric: "Cotton 100%",
-    weight: "260g",
-    tags: ["Relaxed Fit", "Heavy Weight"],
-    description: "묵직한 원단감과 여유로운 실루엣으로 단품 착용에 적합한 긴팔입니다.",
-    thumbnail: "images/products/long-sleeve-02-main.jpg",
-    images: ["images/products/long-sleeve-02-main.jpg", "images/products/long-sleeve-02-detail.jpg", "images/models/model-19.jpg"],
-    colors: [
-      { nameKr: "오트밀", nameEn: "Oatmeal", hex: "#D9D0C1", image: "images/products/long-sleeve-02-oatmeal.jpg" },
-      { nameKr: "그린", nameEn: "Green", hex: "#6D7A61", image: "images/products/long-sleeve-02-green.jpg" },
-      { nameKr: "차콜", nameEn: "Charcoal", hex: "#3C3B37", image: "images/products/long-sleeve-02-charcoal.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/long-sleeve-02-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "52", chest: "58", sleeve: "60", length: "72" }, { size: "L", shoulder: "54", chest: "60", sleeve: "61", length: "74" }, { size: "XL", shoulder: "56", chest: "62", sleeve: "62", length: "76" }],
-    detailImages: ["images/products/long-sleeve-02-detail.jpg", "images/fabric/heavy-long.jpg"],
-    details: [{ title: "Weight", text: "탄탄한 고중량 원단으로 형태감이 좋습니다." }, { title: "Fit", text: "릴랙스 핏으로 편안하게 착용됩니다." }, { title: "Use", text: "단품 착용과 브랜드 베이직 라인에 적합합니다." }]
-  },
-  {
-    id: "long-sleeve-03",
-    name: "스트라이프 긴팔 티셔츠",
-    code: "LS-003",
-    category: "Long Sleeve",
-    fit: "Regular Fit",
-    fabric: "Cotton 100%",
-    weight: "200g",
-    tags: ["Regular Fit"],
-    description: "잔잔한 스트라이프 패턴으로 시즌 라인에 포인트를 줄 수 있는 긴팔입니다.",
-    thumbnail: "images/products/long-sleeve-03-main.jpg",
-    images: ["images/products/long-sleeve-03-main.jpg", "images/products/long-sleeve-03-detail.jpg", "images/models/model-20.jpg"],
-    colors: [
-      { nameKr: "아이보리네이비", nameEn: "Ivory Navy", hex: "#EFE9DC", image: "images/products/long-sleeve-03-ivory-navy.jpg" },
-      { nameKr: "그레이블랙", nameEn: "Gray Black", hex: "#A9A9A4", image: "images/products/long-sleeve-03-gray-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "46", chest: "52", sleeve: "60", length: "68" }, { size: "L", shoulder: "48", chest: "54", sleeve: "61", length: "70" }, { size: "XL", shoulder: "50", chest: "56", sleeve: "62", length: "72" }],
-    detailImages: ["images/products/long-sleeve-03-detail.jpg", "images/fabric/stripe-cotton.jpg"],
-    details: [{ title: "Pattern", text: "과하지 않은 스트라이프 패턴을 적용했습니다." }, { title: "Fabric", text: "부드러운 코튼 원단으로 편안합니다." }, { title: "Fit", text: "기본 레귤러 핏으로 활용도가 높습니다." }]
-  },
-  {
-    id: "long-sleeve-04",
-    name: "오버핏 커프스 롱슬리브",
-    code: "LS-004",
-    category: "Long Sleeve",
-    fit: "Oversized Fit",
-    fabric: "Cotton 100%",
-    weight: "240g",
-    tags: ["Oversized Fit", "Heavy Weight"],
-    description: "넉넉한 품과 안정적인 커프스 마감으로 캐주얼한 분위기를 만드는 긴팔입니다.",
-    thumbnail: "images/products/long-sleeve-04-main.jpg",
-    images: ["images/products/long-sleeve-04-main.jpg", "images/products/long-sleeve-04-detail.jpg", "images/models/model-21.jpg"],
-    colors: [
-      { nameKr: "크림", nameEn: "Cream", hex: "#EFE8D8", image: "images/products/long-sleeve-04-cream.jpg" },
-      { nameKr: "브라운", nameEn: "Brown", hex: "#6B5545", image: "images/products/long-sleeve-04-brown.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/long-sleeve-04-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "58", chest: "62", sleeve: "58", length: "72" }, { size: "L", shoulder: "60", chest: "65", sleeve: "59", length: "75" }, { size: "XL", shoulder: "62", chest: "68", sleeve: "60", length: "78" }],
-    detailImages: ["images/products/long-sleeve-04-detail.jpg", "images/fabric/cuffs.jpg"],
-    details: [{ title: "Cuffs", text: "소매 커프스가 실루엣을 안정적으로 잡아줍니다." }, { title: "Fit", text: "오버사이즈 실루엣으로 여유가 큽니다." }, { title: "Fabric", text: "탄탄한 코튼 소재로 제작됩니다." }]
-  },
-  {
-    id: "long-sleeve-05",
-    name: "소프트 텐셀 긴팔 티셔츠",
-    code: "LS-005",
-    category: "Long Sleeve",
-    fit: "Relaxed Fit",
-    fabric: "Cotton 70% Tencel 30%",
-    weight: "175g",
-    tags: ["Relaxed Fit"],
-    description: "부드러운 텐셀 혼방으로 자연스러운 드레이프가 있는 긴팔 티셔츠입니다.",
-    thumbnail: "images/products/long-sleeve-05-main.jpg",
-    images: ["images/products/long-sleeve-05-main.jpg", "images/products/long-sleeve-05-detail.jpg", "images/models/model-22.jpg"],
-    colors: [
-      { nameKr: "오프화이트", nameEn: "Off White", hex: "#F0EDE5", image: "images/products/long-sleeve-05-off-white.jpg" },
-      { nameKr: "라이트그레이", nameEn: "Light Gray", hex: "#D8D8D4", image: "images/products/long-sleeve-05-light-gray.jpg" },
-      { nameKr: "스톤", nameEn: "Stone", hex: "#B8B2A6", image: "images/products/long-sleeve-05-stone.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/long-sleeve-05-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "49", chest: "55", sleeve: "60", length: "70" }, { size: "L", shoulder: "51", chest: "57", sleeve: "61", length: "72" }, { size: "XL", shoulder: "53", chest: "59", sleeve: "62", length: "74" }],
-    detailImages: ["images/products/long-sleeve-05-detail.jpg", "images/fabric/tencel-cotton.jpg"],
-    details: [{ title: "Touch", text: "텐셀 혼방으로 부드러운 터치감을 제공합니다." }, { title: "Drape", text: "자연스럽게 흐르는 실루엣이 특징입니다." }, { title: "Fit", text: "여유 있지만 과하지 않은 릴랙스 핏입니다." }]
-  },
-  {
-    id: "pants-01",
-    name: "코튼 와이드 이지 팬츠",
-    code: "PT-001",
-    category: "Pants",
-    fit: "Relaxed Fit",
-    fabric: "Cotton 100%",
-    weight: "280g",
-    tags: ["Relaxed Fit", "Heavy Weight"],
-    description: "허리 밴딩과 와이드 실루엣으로 편안한 착용감을 주는 이지 팬츠입니다.",
-    thumbnail: "images/products/pants-01-main.jpg",
-    images: ["images/products/pants-01-main.jpg", "images/products/pants-01-detail.jpg", "images/models/model-23.jpg"],
-    colors: [
-      { nameKr: "베이지", nameEn: "Beige", hex: "#C9B9A0", image: "images/products/pants-01-beige.jpg" },
-      { nameKr: "카키", nameEn: "Khaki", hex: "#77745F", image: "images/products/pants-01-khaki.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/pants-01-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "-", chest: "34", sleeve: "-", length: "100" }, { size: "L", shoulder: "-", chest: "36", sleeve: "-", length: "102" }, { size: "XL", shoulder: "-", chest: "38", sleeve: "-", length: "104" }],
-    detailImages: ["images/products/pants-01-detail.jpg", "images/fabric/cotton-twill.jpg"],
-    details: [{ title: "Waist", text: "허리 밴딩으로 편안한 착용감을 제공합니다." }, { title: "Fit", text: "여유로운 와이드 실루엣입니다." }, { title: "Fabric", text: "탄탄한 코튼 트윌 계열 원단입니다." }]
-  },
-  {
-    id: "pants-02",
-    name: "라이트 나일론 조거 팬츠",
-    code: "PT-002",
-    category: "Pants",
-    fit: "Regular Fit",
-    fabric: "Nylon 92% Span 8%",
-    weight: "160g",
-    tags: ["Regular Fit"],
-    description: "가벼운 나일론 스판 소재로 활동성과 실용성을 갖춘 조거 팬츠입니다.",
-    thumbnail: "images/products/pants-02-main.jpg",
-    images: ["images/products/pants-02-main.jpg", "images/products/pants-02-detail.jpg", "images/models/model-24.jpg"],
-    colors: [
-      { nameKr: "라이트그레이", nameEn: "Light Gray", hex: "#D8D8D4", image: "images/products/pants-02-light-gray.jpg" },
-      { nameKr: "딥카키", nameEn: "Deep Khaki", hex: "#505442", image: "images/products/pants-02-deep-khaki.jpg" },
-      { nameKr: "블랙", nameEn: "Black", hex: "#111111", image: "images/products/pants-02-black.jpg" }
-    ],
-    sizes: [{ size: "M", shoulder: "-", chest: "33", sleeve: "-", length: "98" }, { size: "L", shoulder: "-", chest: "35", sleeve: "-", length: "100" }, { size: "XL", shoulder: "-", chest: "37", sleeve: "-", length: "102" }],
-    detailImages: ["images/products/pants-02-detail.jpg", "images/fabric/nylon-span.jpg"],
-    details: [{ title: "Fabric", text: "가볍고 탄성 있는 나일론 스판 소재입니다." }, { title: "Fit", text: "조거 실루엣이지만 과하게 슬림하지 않습니다." }, { title: "Use", text: "액티브 캐주얼 라인에 적합합니다." }]
+    sizes: [
+      { size: "M", waist: "34", hip: "52", rise: "31", thigh: "31", length: "100" },
+      { size: "L", waist: "36", hip: "55", rise: "32", thigh: "32", length: "102" },
+      { size: "XL", waist: "38", hip: "58", rise: "33", thigh: "33", length: "104" },
+      { size: "2XL", waist: "40", hip: "61", rise: "34", thigh: "34", length: "106" }
+    ]
   }
+};
+
+const catalogItems = [
+  ["010A1", "20수 230G 헤비웨이트 세미 드롭숄더 티셔츠", "重磅微落肩版T恤", "20s 230G Heavyweight Semi Drop Shoulder T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 3, ["Heavy Weight", "Tubular"]],
+  ["7001-SS", "24수 180G 코마 면 티셔츠", "24支180G精梳棉T恤", "24s 180G Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "neutral", 4, []],
+  ["03XA5", "16수 250G 세미 와이드 트렌디 티셔츠", "16支250G半宽松潮流T恤", "16s 250G Semi Wide Trend T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "250G", "topS5", "neutral", 5, ["Heavy Weight"]],
+  ["T210", "210G 실크 코튼 반팔 티셔츠", "210G丝光棉短袖T恤", "210G Silket Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Silket Cotton 100%", "210G", "topS5", "fullTee", 6, []],
+  ["03000", "13수 300G 순면 오버사이즈 루즈핏 티셔츠", "13支300G纯棉宽松T恤", "13s 300G Cotton Oversized T-Shirt", "Short Sleeve", "Oversized Fit", "Cotton 100%", "300G", "topS5", "neutral", 7, ["Heavy Weight"]],
+  ["23012", "20수 230G 빈티지 워싱 티셔츠", "20支230G复古水洗T恤", "20s 230G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "vintage", 8, []],
+  ["27012", "16수 270G 빈티지 워싱 티셔츠", "16支270G复古水洗T恤", "16s 270G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "270G", "topS5", "vintage", 9, ["Heavy Weight"]],
+  ["S2000", "210G 순면 여성 크롭 티셔츠", "210G纯棉女款短版T恤", "210G Cotton Women's Crop T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "210G", "slimWomen", "women", 10, []],
+  ["08VS30", "20수 230G 순면 민소매 나시", "20支230G纯棉背心", "20s 230G Cotton Sleeveless", "Sleeveless", "Regular Fit", "Cotton 100%", "230G", "slimWomen", "basic", 11, []],
+  ["2403", "240G 여성 워싱 나시", "240G女款水洗背心", "240G Women's Washed Sleeveless", "Sleeveless", "Regular Fit", "Cotton 95% Span 5%", "240G", "slimWomen", "women", 12, []],
+  ["2406", "200G 여성 크롭 티셔츠", "200G女款短版T恤", "200G Women's Crop T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "slimWomen", "women", 13, []],
+  ["2405", "240G 여성 워싱 티셔츠", "240G女款水洗T恤", "240G Women's Washed T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "240G", "slimWomen", "women", 14, []],
+  ["2408", "200G 여성 슬림핏 티셔츠", "200G女款修身T恤", "200G Women's Slim Fit T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "slimWomen", "women", 15, []],
+  ["3053", "60수 250G 반팔 티셔츠", "60支250G短袖T恤", "60s 250G T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 63% Polyester 29% Span 8%", "250G", "topS5", "neutral", 16, []],
+  ["7001-KIDS", "24수 180G 코마 면 키즈 티셔츠", "24支180G儿童精梳棉T恤", "24s 180G Kids Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "fullTee", 17, []],
+  ["T160", "190G 코튼 터치 반팔 티셔츠", "190G棉感短袖T恤", "190G Cotton Touch T-Shirt", "Short Sleeve", "Regular Fit", "Cotton Blend", "190G", "topS5", "basic", 18, []],
+  ["Q2000", "21수 200G 산뜻한 컬러 티셔츠", "21支200G清爽色彩T恤", "21s 200G Fresh Color T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "200G", "topS5", "fullTee", 19, []],
+  ["HP004", "220G 베이직 나시", "220G基础背心", "220G Basic Sleeveless", "Sleeveless", "Regular Fit", "Cotton 95% Span 5%", "220G", "slimWomen", "women", 20, []],
+  ["7001-LS", "24수 180G 코마 면 긴팔 티셔츠", "24支180G精梳棉长袖T恤", "24s 180G Combed Cotton Long Sleeve", "Long Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "basic", 21, []],
+  ["QXK2521", "21수 230G 순면 긴팔 티셔츠", "21支230G纯棉长袖T恤", "21s 230G Cotton Long Sleeve", "Long Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 22, []],
+  ["06OLK", "21수 230G 립 소매 긴팔 티셔츠", "21支230G罗纹袖长袖T恤", "21s 230G Rib Cuff Long Sleeve", "Long Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "long", 23, []],
+  ["Q2450", "16수 260G 어깨라인 루즈핏 순면 긴팔 티셔츠", "16支260G肩线宽松纯棉长袖", "16s 260G Shoulder Line Relaxed Cotton Long Sleeve", "Long Sleeve", "Oversized Fit", "Cotton 100%", "260G", "topS5", "long", 24, ["Heavy Weight"]],
+  ["0E2700", "270G 순면 크루넥 맨투맨", "270G纯棉圆领卫衣", "270G Cotton Crewneck Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "270G", "topS5", "sweat", 25, ["Heavy Weight"]],
+  ["YL2800", "280G 맨투맨", "280G卫衣", "280G Sweatshirt", "Sweatshirt", "Regular Fit", "Cotton 90% Span 10%", "280G", "topS5", "sweat", 26, []],
+  ["YL3200", "320G 맨투맨", "320G卫衣", "320G Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "topS5", "fullTee", 27, ["Heavy Weight"]],
+  ["LM2800", "280G 맨투맨", "280G卫衣", "280G Sweatshirt", "Sweatshirt", "Regular Fit", "Cotton 90% Span 10%", "280G", "topS5", "sweat", 28, []],
+  ["LM3200", "320G 맨투맨", "320G卫衣", "320G Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "topS5", "fullTee", 29, ["Heavy Weight"]],
+  ["QXX5200", "480G 후드티", "480G连帽卫衣", "480G Hoodie", "Hoodie", "Oversized Fit", "Cotton 87% Span 13%", "480G", "topS5", "hoodie", 30, ["Heavy Weight"]],
+  ["A23014", "230G 워싱 긴팔 티셔츠", "230G水洗长袖T恤", "230G Washed Long Sleeve", "Sweatshirt", "Regular Fit", "Cotton 100%", "230G", "topS5", "vintage", 31, []],
+  ["3505", "350G 워싱 맨투맨", "350G水洗卫衣", "350G Washed Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "350G", "topS5", "hoodie", 32, ["Heavy Weight"]],
+  ["3508", "350G 워싱 후드티", "350G水洗连帽卫衣", "350G Washed Hoodie", "Hoodie", "Relaxed Fit", "Cotton 100%", "350G", "topS5", "hoodie", 33, ["Heavy Weight"]],
+  ["CK280", "280G 스웨트팬츠", "280G卫裤", "280G Sweatpants", "Pants", "Regular Fit", "Cotton 65% Polyester 35%", "280G", "pants", "pants", 34, []],
+  ["LK3401", "340G 기모 조거팬츠", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "pants", "pants", 35, ["Heavy Weight"]]
 ];
 
+function slugifyCode(code) {
+  return code.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function getImageSlots(slug, code, name) {
+  const base = `images/products/${slug}`;
+  return {
+    main: `${base}/${slug}-front.jpg`,
+    front: `${base}/${slug}-front.jpg`,
+    back: `${base}/${slug}-back.jpg`,
+    model: [`${base}/${slug}-model-01.jpg`, `${base}/${slug}-model-02.jpg`],
+    detail: [`${base}/${slug}-detail-01.jpg`, `${base}/${slug}-detail-02.jpg`],
+    fabric: [`${base}/${slug}-fabric-01.jpg`],
+    colorChart: `${base}/${slug}-color-chart.jpg`,
+    guide: `${code} ${name} 이미지는 ${base}/ 폴더에 앞면, 뒷면, 모델컷, 확대컷, 재질컷, 컬러별 이미지로 넣어주세요.`
+  };
+}
+
+const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, fabric, weight, sizeKey, colorSetKey, pdfPage, tags]) => {
+  const id = slugifyCode(code);
+  const slots = getImageSlots(id, code, name);
+  const colors = colorSets[colorSetKey].map((key) => ({
+    key,
+    ...colorLibrary[key],
+    image: `images/products/${id}/colors/${id}-${key}.jpg`
+  }));
+
+  return {
+    id,
+    code,
+    name,
+    nameCn,
+    nameEn,
+    category,
+    fit,
+    fabric,
+    weight,
+    tags,
+    pdfPage,
+    description: `${code} 제품은 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 원단 재질컷, 색상표를 함께 보여주는 상세 페이지 구성이 적합합니다.`,
+    thumbnail: slots.main,
+    images: [slots.front, slots.back, ...slots.model, ...slots.detail, ...slots.fabric],
+    imageSlots: slots,
+    colors,
+    sizeFields: sizeTemplates[sizeKey].sizeFields,
+    sizes: sizeTemplates[sizeKey].sizes,
+    details: [
+      { title: "Catalog Source", text: `PDF 카탈로그 ${pdfPage}페이지 기준 제품입니다.` },
+      { title: "Image Plan", text: "앞면, 뒷면, 상세 확대, 원단 재질, 모델 착용컷을 분리해서 등록하는 구조입니다." },
+      { title: "Color Language", text: "색상명은 한국어, 중국어, 영어를 함께 노출하도록 구성했습니다." }
+    ]
+  };
+});
+
 window.products = products;
+window.catalogSummary = {
+  companyName: "(주)티월드코리아",
+  tel: "010-3585-4450",
+  address: "경기도 구리시 갈매순환로166번길 46, 금강펜테리움 IX센터 8층 08-081호",
+  sourcePdf: "티월드코리아 카탈로그 26.05.07",
+  categories: [
+    { name: "Short Sleeve", count: products.filter((product) => product.category === "Short Sleeve").length },
+    { name: "Sleeveless", count: products.filter((product) => product.category === "Sleeveless").length },
+    { name: "Long Sleeve", count: products.filter((product) => product.category === "Long Sleeve").length },
+    { name: "Sweatshirt", count: products.filter((product) => product.category === "Sweatshirt").length },
+    { name: "Hoodie", count: products.filter((product) => product.category === "Hoodie").length },
+    { name: "Pants", count: products.filter((product) => product.category === "Pants").length }
+  ]
+};
