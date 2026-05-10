@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOOKBOOK | BLANK STUDIO</title>
+  <meta name="description" content="기본 의류의 착용 분위기를 확인할 수 있는 모델 착용컷 중심의 룩북 페이지입니다.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="lookbook">
+  <header class="site-header" data-header>
+    <a class="brand" href="index.html" aria-label="홈으로 이동">BLANK STUDIO</a>
+    <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
+    <nav class="site-nav" data-nav>
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="products.html">PRODUCTS</a>
+      <a href="lookbook.html">LOOKBOOK</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero compact fade-up">
+      <p class="eyebrow">LOOKBOOK</p>
+      <h1>MODEL FIT ARCHIVE</h1>
+      <p>판매 화면보다 제품의 분위기와 실루엣을 차분하게 보여주는 이미지북입니다.</p>
+    </section>
+
+    <section class="section fade-up">
+      <div class="lookbook-grid" data-lookbook-grid>
+        <button class="lookbook-item image-frame tall" type="button" data-full="images/lookbook/lookbook-01.jpg" data-label="Lookbook 01"><img src="images/lookbook/lookbook-01.jpg" alt="룩북 모델 착용컷 1"></button>
+        <button class="lookbook-item image-frame wide" type="button" data-full="images/lookbook/lookbook-02.jpg" data-label="Lookbook 02"><img src="images/lookbook/lookbook-02.jpg" alt="룩북 모델 착용컷 2"></button>
+        <button class="lookbook-item image-frame tall" type="button" data-full="images/lookbook/lookbook-03.jpg" data-label="Lookbook 03"><img src="images/lookbook/lookbook-03.jpg" alt="룩북 모델 착용컷 3"></button>
+        <button class="lookbook-item image-frame" type="button" data-full="images/lookbook/lookbook-04.jpg" data-label="Lookbook 04"><img src="images/lookbook/lookbook-04.jpg" alt="룩북 모델 착용컷 4"></button>
+        <button class="lookbook-item image-frame tall" type="button" data-full="images/models/model-01.jpg" data-label="Model 01"><img src="images/models/model-01.jpg" alt="모델 착용컷 1"></button>
+        <button class="lookbook-item image-frame" type="button" data-full="images/models/model-02.jpg" data-label="Model 02"><img src="images/models/model-02.jpg" alt="모델 착용컷 2"></button>
+        <button class="lookbook-item image-frame wide" type="button" data-full="images/lookbook/lookbook-05.jpg" data-label="Lookbook 05"><img src="images/lookbook/lookbook-05.jpg" alt="룩북 모델 착용컷 5"></button>
+        <button class="lookbook-item image-frame tall" type="button" data-full="images/lookbook/lookbook-06.jpg" data-label="Lookbook 06"><img src="images/lookbook/lookbook-06.jpg" alt="룩북 모델 착용컷 6"></button>
+        <button class="lookbook-item image-frame" type="button" data-full="images/lookbook/lookbook-07.jpg" data-label="Lookbook 07"><img src="images/lookbook/lookbook-07.jpg" alt="룩북 모델 착용컷 7"></button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" data-modal aria-hidden="true" role="dialog" aria-label="룩북 이미지 크게 보기">
+    <button class="modal-close" type="button" data-modal-close aria-label="이미지 닫기">Close</button>
+    <div class="modal-body image-frame" data-label="Lookbook Image">
+      <img src="" alt="선택한 룩북 이미지" data-modal-image>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div><strong>BLANK STUDIO</strong><p>모델 착용컷과 제품 실루엣 아카이브</p></div>
+    <div><a href="products.html">PRODUCTS</a><a href="contact.html">CONTACT</a></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
