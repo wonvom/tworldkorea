@@ -119,7 +119,7 @@ const sizeTemplates = {
 };
 
 const catalogItems = [
-  ["010A1", "20수 230G 헤비웨이트 세미 드롭숄더 티셔츠", "重磅微落肩版T恤", "20s 230G Heavyweight Semi Drop Shoulder T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 3, ["Heavy Weight", "Tubular"]],
+  ["01OA1", "20수 230G 헤비웨이트 세미 드롭숄더 티셔츠", "重磅微落肩版T恤", "20s 230G Heavyweight Semi Drop Shoulder T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 3, ["Heavy Weight", "Tubular"]],
   ["7001-SS", "24수 180G 코마 면 티셔츠", "24支180G精梳棉T恤", "24s 180G Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "neutral", 4, []],
   ["03XA5", "16수 250G 세미 와이드 트렌디 티셔츠", "16支250G半宽松潮流T恤", "16s 250G Semi Wide Trend T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "250G", "topS5", "neutral", 5, ["Heavy Weight"]],
   ["T210", "210G 실크 코튼 반팔 티셔츠", "210G丝光棉短袖T恤", "210G Silket Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Silket Cotton 100%", "210G", "topS5", "fullTee", 6, []],
@@ -172,9 +172,102 @@ function getImageSlots(slug, code, name) {
   };
 }
 
+const productImageOverrides = {
+  "01oa1": {
+    thumbnail: "images/products/01OA1/01OA1_image_01.png",
+    images: [
+      "images/products/01OA1/01OA1_image_01.png",
+      "images/products/01OA1/01OA1_white_01.jpg"
+    ],
+    imageSlots: {
+      main: "images/products/01OA1/01OA1_image_01.png",
+      front: "images/products/01OA1/01OA1_image_01.png",
+      back: "images/products/01OA1/01OA1_white_01.jpg",
+      model: ["images/products/01OA1/01OA1_image_01.png"],
+      detail: ["images/products/01OA1/01OA1_white_01.jpg"],
+      fabric: [],
+      colorChart: "images/products/01OA1/01OA1_white_01.jpg"
+    }
+  },
+  "08vs30": {
+    thumbnail: "images/products/08VS30/08VS30_image_01.jpg",
+    images: [
+      "images/products/08VS30/08VS30_image_01.jpg",
+      "images/products/08VS30/08VS30_white_01.jpg"
+    ],
+    imageSlots: {
+      main: "images/products/08VS30/08VS30_image_01.jpg",
+      front: "images/products/08VS30/08VS30_image_01.jpg",
+      back: "images/products/08VS30/08VS30_white_01.jpg",
+      model: [],
+      detail: ["images/products/08VS30/08VS30_white_01.jpg"],
+      fabric: [],
+      colorChart: "images/products/08VS30/08VS30_white_01.jpg"
+    }
+  },
+  "06olk": {
+    thumbnail: "images/products/06OLK/06OLK_image_02.jpg",
+    images: [
+      "images/products/06OLK/06OLK_image_02.jpg",
+      "images/products/06OLK/06OLK_image_01.jpg",
+      "images/products/06OLK/06OLK_white_01.jpg"
+    ],
+    imageSlots: {
+      main: "images/products/06OLK/06OLK_image_02.jpg",
+      front: "images/products/06OLK/06OLK_image_02.jpg",
+      back: "images/products/06OLK/06OLK_image_01.jpg",
+      model: [],
+      detail: ["images/products/06OLK/06OLK_white_01.jpg"],
+      fabric: [],
+      colorChart: "images/products/06OLK/06OLK_white_01.jpg"
+    }
+  },
+  "0e2700": {
+    thumbnail: "images/products/OE2700/OE2700_image_01.png",
+    images: ["images/products/OE2700/OE2700_image_01.png"],
+    imageSlots: {
+      main: "images/products/OE2700/OE2700_image_01.png",
+      front: "images/products/OE2700/OE2700_image_01.png",
+      back: "images/products/OE2700/OE2700_image_01.png",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/OE2700/OE2700_image_01.png"
+    }
+  },
+  "qxx5200": {
+    thumbnail: "images/products/QXX5200/QXX5200_image_01.png",
+    images: ["images/products/QXX5200/QXX5200_image_01.png"],
+    imageSlots: {
+      main: "images/products/QXX5200/QXX5200_image_01.png",
+      front: "images/products/QXX5200/QXX5200_image_01.png",
+      back: "images/products/QXX5200/QXX5200_image_01.png",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/QXX5200/QXX5200_image_01.png"
+    }
+  },
+  "lk3401": {
+    thumbnail: "images/products/LK3401/LK3401_image_01.png",
+    images: ["images/products/LK3401/LK3401_image_01.png"],
+    imageSlots: {
+      main: "images/products/LK3401/LK3401_image_01.png",
+      front: "images/products/LK3401/LK3401_image_01.png",
+      back: "images/products/LK3401/LK3401_image_01.png",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/LK3401/LK3401_image_01.png"
+    }
+  }
+};
+
 const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, fabric, weight, sizeKey, colorSetKey, pdfPage, tags]) => {
   const id = slugifyCode(code);
   const slots = getImageSlots(id, code, name);
+  const override = productImageOverrides[id];
+  const imageSlots = override ? { ...slots, ...override.imageSlots } : slots;
   const colors = colorSets[colorSetKey].map((key) => ({
     key,
     ...colorLibrary[key],
@@ -194,9 +287,9 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
     tags,
     pdfPage,
     description: `${code} 제품은 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 원단 재질컷, 색상표를 함께 보여주는 상세 페이지 구성이 적합합니다.`,
-    thumbnail: slots.main,
-    images: [slots.front, slots.back, ...slots.model, ...slots.detail, ...slots.fabric],
-    imageSlots: slots,
+    thumbnail: override?.thumbnail || slots.main,
+    images: override?.images || [slots.front, slots.back, ...slots.model, ...slots.detail, ...slots.fabric],
+    imageSlots,
     colors,
     sizeFields: sizeTemplates[sizeKey].sizeFields,
     sizes: sizeTemplates[sizeKey].sizes,

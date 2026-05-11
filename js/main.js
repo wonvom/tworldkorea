@@ -7,7 +7,7 @@
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const categoryLabels = {
     "Short Sleeve": { kr: "반팔", en: "Short Sleeve" },
-    "Sleeveless": { kr: "나시", en: "Sleeveless" },
+    "Sleeveless": { kr: "민소매", en: "Sleeveless" },
     "Long Sleeve": { kr: "긴팔", en: "Long Sleeve" },
     "Sweatshirt": { kr: "맨투맨", en: "Sweatshirt" },
     "Hoodie": { kr: "후드", en: "Hoodie" },
@@ -100,7 +100,7 @@
   function renderFeaturedProducts() {
     const mount = qs("[data-featured-products]");
     if (!mount || productData.length === 0) return;
-    const featuredIds = ["010a1", "7001-ss", "03xa5", "08vs30", "qxk2521", "ck280"];
+    const featuredIds = ["01oa1", "08vs30", "06olk", "0e2700", "qxx5200", "lk3401"];
     const featured = featuredIds.map((id) => productData.find((product) => product.id === id)).filter(Boolean);
     mount.innerHTML = featured.map(productCard).join("");
     initImageFallbacks(mount);

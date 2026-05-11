@@ -40,20 +40,20 @@ images/products/제품id/
 예시:
 
 ```text
-images/products/010a1/010a1-front.jpg
-images/products/010a1/010a1-back.jpg
-images/products/010a1/010a1-model-01.jpg
-images/products/010a1/010a1-detail-01.jpg
-images/products/010a1/010a1-fabric-01.jpg
-images/products/010a1/colors/010a1-white.jpg
-images/products/010a1/colors/010a1-black.jpg
+images/products/01OA1/01OA1_image_01.png
+images/products/01OA1/01OA1_white_01.jpg
+images/products/01OA1/01OA1_model_01.jpg
+images/products/01OA1/01OA1_detail_01.jpg
+images/products/01OA1/01OA1_fabric_01.jpg
+images/products/01OA1/colors/01OA1_white.jpg
+images/products/01OA1/colors/01OA1_black.jpg
 ```
 
 ## Product IDs
 
 상세 페이지와 이미지 폴더는 아래 ID를 사용합니다.
 
-- `010a1` 010A1 20수 230G 헤비웨이트 세미 드롭숄더 티셔츠
+- `01oa1` 01OA1 20수 230G 헤비웨이트 세미 드롭숄더 티셔츠
 - `7001-ss` 7001 24수 180G 코마 면 티셔츠
 - `03xa5` 03XA5 16수 250G 세미 와이드 트렌디 티셔츠
 - `t210` T210 210G 실크 코튼 반팔 티셔츠
