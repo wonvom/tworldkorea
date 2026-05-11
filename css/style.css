@@ -367,20 +367,6 @@ p {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.05));
 }
 
-.category-card .image-frame {
-  background: var(--ivory);
-}
-
-.category-card img {
-  object-fit: contain;
-  padding: clamp(18px, 4vw, 54px);
-  background: var(--ivory);
-}
-
-.category-card .image-frame::before {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.02) 48%);
-}
-
 .category-card > div:last-child {
   position: relative;
   z-index: 2;
