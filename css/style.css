@@ -872,40 +872,74 @@ p {
   border-color: var(--black);
 }
 
-.map-placeholder {
-  min-height: 340px;
-  display: grid;
-  place-content: center;
-  gap: 8px;
-  background: var(--light-gray);
-  border: 1px solid var(--line);
-  text-align: center;
-}
-
-.map-placeholder p {
-  margin: 0;
-  color: var(--black);
-  font-size: 24px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
 .lookbook-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-flow: dense;
   gap: 12px;
 }
 
 .lookbook-item {
-  min-height: 360px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
   border: 0;
   padding: 0;
   cursor: zoom-in;
 }
 
-.lookbook-item.wide {
-  grid-column: span 2;
+.lookbook-word {
+  min-height: 0;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(22px, 3vw, 34px);
+  background: var(--ivory);
+  border: 1px solid var(--line);
+}
+
+.lookbook-word.dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.lookbook-word span {
+  max-width: 10ch;
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+}
+
+.lookbook-word p {
+  margin: 0;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.map-panel {
+  display: grid;
+  gap: 22px;
+}
+
+.map-frame {
+  min-height: 420px;
+  border: 1px solid var(--line);
+  background: var(--light-gray);
+  overflow: hidden;
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 420px;
+  display: block;
+  border: 0;
+}
+
+.map-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .modal {
@@ -1161,9 +1195,12 @@ p {
   }
 
   .lookbook-item,
-  .lookbook-item.wide {
+  .lookbook-word {
     grid-column: auto;
-    min-height: 420px;
+  }
+
+  .map-actions .btn {
+    width: 100%;
   }
 
   .site-footer {
