@@ -402,8 +402,15 @@ p {
 }
 
 .product-card .image-frame {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   margin-bottom: 18px;
+  background: var(--ivory);
+}
+
+.product-card .image-frame img {
+  object-fit: contain;
+  padding: clamp(14px, 2.4vw, 34px);
+  background: var(--ivory);
 }
 
 .product-card h3 {
