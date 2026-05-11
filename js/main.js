@@ -100,7 +100,7 @@
   function renderFeaturedProducts() {
     const mount = qs("[data-featured-products]");
     if (!mount || productData.length === 0) return;
-    const featuredIds = ["01oa1", "08vs30", "06olk", "0e2700", "qxx5200", "lk3401"];
+    const featuredIds = ["01oa1", "t210", "03xa5", "o3000", "7001", "23012"];
     const featured = featuredIds.map((id) => productData.find((product) => product.id === id)).filter(Boolean);
     mount.innerHTML = featured.map(productCard).join("");
     initImageFallbacks(mount);
