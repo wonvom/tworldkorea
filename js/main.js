@@ -81,7 +81,7 @@
     const label = categoryLabel(product.category);
     return `
       <article class="product-card image-card">
-        <a class="image-frame" href="product-detail.html?id=${product.id}" data-label="${product.code} Front Image">
+        <a class="image-frame" href="product-detail.html?id=${encodeURIComponent(product.id)}" data-label="${product.code} Front Image">
           <img src="${product.thumbnail}" alt="${product.name} 대표 이미지">
         </a>
         <p class="product-code">${product.code}</p>
@@ -92,7 +92,7 @@
           <span>${product.fabric}</span>
           <span>${product.weight} ${product.colors.length} Colors</span>
         </div>
-        <a class="card-link" href="product-detail.html?id=${product.id}">View Detail</a>
+        <a class="card-link" href="product-detail.html?id=${encodeURIComponent(product.id)}">View Detail</a>
       </article>
     `;
   }
@@ -203,12 +203,22 @@
     `;
   }
 
+  function normalizeProductId(value) {
+    const aliases = {
+      "010a1": "01oa1"
+    };
+    const normalized = String(value || "").trim().toLowerCase();
+    return aliases[normalized] || normalized;
+  }
+
   function renderProductDetail() {
     const mount = qs("[data-product-detail]");
     if (!mount) return;
 
-    const id = new URLSearchParams(location.search).get("id");
-    const product = productData.find((item) => item.id === id) || productData[0];
+    const id = normalizeProductId(new URLSearchParams(location.search).get("id"));
+    const product = productData.find((item) => (
+      normalizeProductId(item.id) === id || normalizeProductId(item.code) === id
+    ));
 
     if (!product) {
       mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html">Back to Products</a></div>`;
