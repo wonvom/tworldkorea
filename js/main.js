@@ -5,6 +5,18 @@
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+  const categoryLabels = {
+    "Short Sleeve": { kr: "반팔", en: "Short Sleeve" },
+    "Sleeveless": { kr: "나시", en: "Sleeveless" },
+    "Long Sleeve": { kr: "긴팔", en: "Long Sleeve" },
+    "Sweatshirt": { kr: "맨투맨", en: "Sweatshirt" },
+    "Hoodie": { kr: "후드", en: "Hoodie" },
+    "Pants": { kr: "팬츠", en: "Pants" }
+  };
+
+  function categoryLabel(category) {
+    return categoryLabels[category] || { kr: category, en: category };
+  }
 
   function initHeader() {
     const header = qs("[data-header]");
@@ -66,6 +78,7 @@
   }
 
   function productCard(product) {
+    const label = categoryLabel(product.category);
     return `
       <article class="product-card image-card">
         <a class="image-frame" href="product-detail.html?id=${product.id}" data-label="${product.code} Front Image">
@@ -74,7 +87,7 @@
         <p class="product-code">${product.code}</p>
         <h3>${product.name}</h3>
         <div class="product-meta">
-          <span>${product.category}</span>
+          <span>${label.kr} <small>${label.en}</small></span>
           <span>${product.fit}</span>
           <span>${product.fabric}</span>
           <span>${product.weight} ${product.colors.length} Colors</span>
@@ -236,7 +249,7 @@
           <p class="product-subtitle">${product.nameCn}<br>${product.nameEn}</p>
           <p>${product.description}</p>
           <dl class="summary-list">
-            <div><dt>Category</dt><dd>${product.category}</dd></div>
+            <div><dt>Category</dt><dd>${categoryLabel(product.category).kr} ${categoryLabel(product.category).en}</dd></div>
             <div><dt>Fit</dt><dd>${product.fit}</dd></div>
             <div><dt>Fabric</dt><dd>${product.fabric}</dd></div>
             <div><dt>Weight</dt><dd>${product.weight}</dd></div>

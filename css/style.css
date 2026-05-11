@@ -431,6 +431,11 @@ p {
   display: block;
 }
 
+.product-meta small {
+  color: #aaa7a0;
+  font-size: 11px;
+}
+
 .card-link {
   margin-top: auto;
   align-self: flex-start;
