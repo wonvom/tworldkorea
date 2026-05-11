@@ -79,9 +79,10 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260511-detail-link`;
     return `
       <article class="product-card image-card">
-        <a class="image-frame" href="product-detail.html?id=${encodeURIComponent(product.id)}" data-label="${product.code} Front Image">
+        <a class="image-frame" href="${detailHref}" data-label="${product.code} Front Image">
           <img src="${product.thumbnail}" alt="${product.name} 대표 이미지">
         </a>
         <p class="product-code">${product.code}</p>
@@ -92,7 +93,7 @@
           <span>${product.fabric}</span>
           <span>${product.weight} ${product.colors.length} Colors</span>
         </div>
-        <a class="card-link" href="product-detail.html?id=${encodeURIComponent(product.id)}">View Detail</a>
+        <a class="card-link" href="${detailHref}">View Detail</a>
       </article>
     `;
   }
