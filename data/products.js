@@ -175,18 +175,15 @@ function getImageSlots(slug, code, name) {
 const productImageOverrides = {
   "01oa1": {
     thumbnail: "images/products/01OA1/01OA1_white_01.jpg",
-    images: [
-      "images/products/01OA1/01OA1_white_01.jpg",
-      "images/products/01OA1/01OA1_image_01.png"
-    ],
+    images: ["images/products/01OA1/01OA1_white_01.jpg"],
     imageSlots: {
       main: "images/products/01OA1/01OA1_white_01.jpg",
       front: "images/products/01OA1/01OA1_white_01.jpg",
-      back: "images/products/01OA1/01OA1_image_01.png",
-      model: ["images/products/01OA1/01OA1_image_01.png"],
-      detail: ["images/products/01OA1/01OA1_white_01.jpg"],
+      back: "images/products/01OA1/01OA1_white_01.jpg",
+      model: [],
+      detail: [],
       fabric: [],
-      colorChart: "images/products/01OA1/01OA1_image_01.png"
+      colorChart: "images/products/01OA1/01OA1_white_01.jpg"
     }
   },
   "t210": {

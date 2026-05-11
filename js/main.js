@@ -79,7 +79,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260511-detail-link`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260511-01oa1-reset`;
     return `
       <article class="product-card image-card">
         <a class="image-frame" href="${detailHref}" data-label="${product.code} Front Image">
