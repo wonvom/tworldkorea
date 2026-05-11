@@ -231,6 +231,7 @@
     const modelImages = slots.model || [];
     const detailImages = slots.detail || [];
     const fabricImages = slots.fabric || [];
+    const colorChart = slots.colorChart || "";
     const slotImages = [
       { label: "Front Image", image: slots.front || product.thumbnail, alt: `${product.name} 앞면 이미지` },
       { label: "Back Image", image: slots.back || product.thumbnail, alt: `${product.name} 뒷면 이미지` },
@@ -324,17 +325,23 @@
           </table>
         </div>
         <h2 class="subsection-title">COLOR IMAGES</h2>
-        <div class="color-image-grid">
-          ${product.colors.map((color) => `
-            <article class="color-image">
-              <div class="image-frame" data-label="${color.nameKr} ${color.nameEn}">
-                <img src="${color.image}" alt="${product.name} ${color.nameKr} 컬러 이미지">
-              </div>
-              <h3>${color.nameKr}</h3>
-              <p>${color.nameCn}<br>${color.nameEn}</p>
-            </article>
-          `).join("")}
-        </div>
+        ${colorChart ? `
+          <div class="detail-chart image-frame wide" data-label="Color Chart">
+            <img src="${colorChart}" alt="${product.name} 컬러 차트 이미지">
+          </div>
+        ` : `
+          <div class="color-image-grid">
+            ${product.colors.map((color) => `
+              <article class="color-image">
+                <div class="image-frame" data-label="${color.nameKr} ${color.nameEn}">
+                  <img src="${color.image}" alt="${product.name} ${color.nameKr} 컬러 이미지">
+                </div>
+                <h3>${color.nameKr}</h3>
+                <p>${color.nameCn}<br>${color.nameEn}</p>
+              </article>
+            `).join("")}
+          </div>
+        `}
       </section>
 
       <section class="detail-section">

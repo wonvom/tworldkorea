@@ -186,7 +186,7 @@ const productImageOverrides = {
       model: ["images/products/01OA1/01OA1_image_01.png"],
       detail: ["images/products/01OA1/01OA1_white_01.jpg"],
       fabric: [],
-      colorChart: "images/products/01OA1/01OA1_white_01.jpg"
+      colorChart: "images/products/01OA1/01OA1_image_01.png"
     }
   },
   "t210": {
