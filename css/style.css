@@ -148,17 +148,6 @@ img {
   padding: 12px clamp(12px, 2vw, 24px) 0;
 }
 
-.hero-section::after {
-  content: "";
-  position: absolute;
-  inset: 12px clamp(12px, 2vw, 24px) 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.24) 38%, rgba(0, 0, 0, 0) 70%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0) 48%);
-}
-
 .hero-media,
 .hero-side {
   min-height: 640px;
@@ -174,17 +163,16 @@ img {
   bottom: clamp(34px, 7vw, 92px);
   z-index: 2;
   max-width: 520px;
+  padding: clamp(18px, 2.4vw, 32px);
+  background: rgba(0, 0, 0, 0.58);
   color: var(--white);
-  text-shadow: 0 14px 34px rgba(0, 0, 0, 0.48);
+  text-shadow: none;
+  backdrop-filter: blur(10px);
 }
 
 .hero-copy .eyebrow,
 .hero-copy > p:not(.eyebrow) {
-  display: inline-block;
-  padding: 5px 8px;
-  background: rgba(0, 0, 0, 0.34);
-  color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-copy h1 {
@@ -1088,13 +1076,6 @@ p {
 
   .hero-section {
     padding: 8px;
-  }
-
-  .hero-section::after {
-    inset: 8px;
-    background:
-      linear-gradient(0deg, rgba(0, 0, 0, 0.64) 0%, rgba(0, 0, 0, 0.28) 45%, rgba(0, 0, 0, 0.02) 78%),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0) 70%);
   }
 
   .hero-media {
