@@ -3370,7 +3370,7 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
   const excelColorRows = productColorData[productColorAliases[code] || code];
   const colorImageFolder = productColorImageFolders[code] || code;
   const colors = excelColorRows ? excelColorRows.map((color, index) => {
-    const colorNumber = String(index + 1).padStart(2, "0");
+    const colorNumber = String(color.code || "").split("-").pop() || String(index + 1).padStart(2, "0");
     return {
       ...color,
       nameJa: color.nameJa || getColorNameJa(color),
