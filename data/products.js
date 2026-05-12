@@ -400,9 +400,9 @@ const productColorData = {
     {
       "code": "01OA1-33",
       "key": "01oa1-33",
-      "nameKr": "네이비",
+      "nameKr": "다크네이비",
       "nameCn": "藏蓝",
-      "nameEn": "Navy",
+      "nameEn": "Dark Navy",
       "hex": "#123B74",
       "rgb": "18, 59, 116",
       "pantone": "540 C 부근"
@@ -2956,6 +2956,35 @@ const productColorImageFolders = {
   "0E2700": "OE2700"
 };
 
+function toCamelColorName(name) {
+  const words = String(name || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  return words.map((word, index) => (
+    index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
+  )).join("");
+}
+
+function colorImageFallbacks(folder, code, color) {
+  const base = `images/products/${folder}`;
+  const colorBase = `${base}/colors`;
+  const camelName = toCamelColorName(color.nameEn);
+  const names = [camelName];
+
+  if (camelName.includes("Gray")) names.push(camelName.replace(/Gray/g, "Grey"));
+  if (camelName === "royalBlue") names.push("loyalBlue");
+
+  return [...new Set(names.filter(Boolean))].flatMap((name) => [
+    `${colorBase}/${folder}-${name}.jpg`,
+    `${base}/${folder}-${name}.jpg`,
+    `${colorBase}/${code}-${name}.jpg`,
+    `${base}/${code}-${name}.jpg`
+  ]);
+}
+
 const sizeTemplates = {
   topS5: {
     sizeFields: [
@@ -3238,13 +3267,15 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
     const colorNumber = String(index + 1).padStart(2, "0");
     return {
       ...color,
-      image: `images/products/${colorImageFolder}/colors/${colorImageFolder}-${colorNumber}.jpg`
+      image: `images/products/${colorImageFolder}/colors/${colorImageFolder}-${colorNumber}.jpg`,
+      fallbackImages: colorImageFallbacks(colorImageFolder, code, color)
     };
   }) : colorSets[colorSetKey].map((key) => ({
     key,
     code: `${code}-${key}`,
     ...colorLibrary[key],
-    image: `images/products/${code}/colors/${code}-${key}.jpg`
+    image: `images/products/${code}/colors/${code}-${key}.jpg`,
+    fallbackImages: [`images/products/${code}/${code}-${key}.jpg`]
   }));
 
   return {
