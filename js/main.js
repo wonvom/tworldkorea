@@ -79,9 +79,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = product.code === "01OA1"
-      ? "product-01oa1.html?v=20260512-visible"
-      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-visible`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-colorchips`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -223,12 +221,12 @@
       normalizeProductId(item.id) === id || normalizeProductId(item.code) === id
     ));
 
+    mount.classList.add("is-visible");
+
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-visible">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-colorchips">Back to Products</a></div>`;
       return;
     }
-
-    mount.classList.add("is-visible");
     document.title = `${product.name} | T-WORLD KOREA`;
     const related = productData.filter((item) => item.category === product.category && item.id !== product.id).slice(0, 3);
     const slots = product.imageSlots || {};
@@ -300,7 +298,7 @@
         ${sizeTable(product)}
       </section>
 
-      <section class="detail-section">
+      <section class="detail-section" id="color-names">
         <p class="eyebrow">COLOR VARIATIONS</p>
         <h2>COLOR NAMES</h2>
         <div class="color-name-table-wrap">
@@ -308,19 +306,23 @@
             <thead>
               <tr>
                 <th>Chip</th>
+                <th>Color Code</th>
                 <th>한국어</th>
                 <th>中文</th>
                 <th>English</th>
+                <th>HEX</th>
                 <th>Image Path</th>
               </tr>
             </thead>
             <tbody>
               ${product.colors.map((color) => `
                 <tr>
-                  <td><span class="swatch" style="background:${color.hex}"></span></td>
+                  <td><span class="color-table-chip" style="background:${color.hex}" title="${color.nameKr} ${color.nameCn} ${color.nameEn}"></span></td>
+                  <td>${color.code || ""}</td>
                   <td>${color.nameKr}</td>
                   <td>${color.nameCn}</td>
                   <td>${color.nameEn}</td>
+                  <td>${color.hex}</td>
                   <td>${color.image}</td>
                 </tr>
               `).join("")}
