@@ -3194,7 +3194,7 @@ function getImageSlots(slug, code, name) {
     detail: [`${base}/${code}-detail-01.jpg`, `${base}/${code}-detail-02.jpg`, `${base}/${code}-detail-03.jpg`, `${base}/${code}-detail-04.jpg`, `${base}/${code}-detail-05.jpg`],
     fabric: [],
     colorChart: `${base}/${code}-color-chart.jpg`,
-    guide: `${code} ${name} 이미지는 ${base}/ 폴더에 앞면, 뒷면, 모델컷, 확대컷, 재질컷, 컬러별 이미지로 넣어주세요.`
+    guide: `${code} ${name} 앞면, 뒷면, 확대컷, 컬러별 이미지입니다.`
   };
 }
 
@@ -3398,7 +3398,7 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
     weight,
     tags,
     pdfPage,
-    description: `${code} 제품은 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 원단 재질컷, 색상표를 함께 보여주는 상세 페이지 구성이 적합합니다.`,
+    description: `${code} 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.`,
     thumbnail: override?.thumbnail || slots.main,
     images: override?.images || [slots.front, slots.back, ...slots.model, ...slots.detail, ...slots.fabric],
     imageSlots,
@@ -3407,8 +3407,8 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
     sizes: sizeTemplates[sizeKey].sizes,
     details: [
       { title: "Catalog Source", text: `PDF 카탈로그 ${pdfPage}페이지 기준 제품입니다.` },
-      { title: "Image Plan", text: "앞면, 뒷면, 상세 확대, 원단 재질, 모델 착용컷을 분리해서 등록하는 구조입니다." },
-      { title: "Color Language", text: "색상명은 한국어, 중국어, 영어를 함께 노출하도록 구성했습니다." }
+      { title: "Image Plan", text: "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다." },
+      { title: "Color Language", text: "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다." }
     ]
   };
 });
@@ -3417,7 +3417,7 @@ window.products = products;
 window.catalogSummary = {
   companyName: "(주)티월드코리아",
   tel: "010-3585-4450",
-  address: "경기도 구리시 갈매순환로166번길 46, 금강펜테리움 IX센터 8층 08-081호",
+  address: "경기도 구리시 갈매순환로166번길 46, 금강펜테리움 IX센터 B코어 8층 08-081호",
   sourcePdf: "티월드코리아 카탈로그 26.05.07",
   categories: [
     { name: "Short Sleeve", count: products.filter((product) => product.category === "Short Sleeve").length },
