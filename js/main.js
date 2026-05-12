@@ -80,10 +80,10 @@
   function productCard(product) {
     const label = categoryLabel(product.category);
     const detailHref = product.code === "01OA1"
-      ? "product-01oa1.html?v=20260511-01oa1-static"
-      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260511-01oa1-static`;
+      ? "product-01oa1.html?v=20260512-mobile-colors"
+      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-mobile-colors`;
     return `
-      <article class="product-card image-card">
+      <article class="product-card image-card" data-detail-href="${detailHref}" role="link" tabindex="0">
         <a class="image-frame" href="${detailHref}" data-label="${product.code} Front Image">
           <img src="${product.thumbnail}" alt="${product.name} 대표 이미지">
         </a>
@@ -107,6 +107,7 @@
     const featured = featuredIds.map((id) => productData.find((product) => product.id === id)).filter(Boolean);
     mount.innerHTML = featured.map(productCard).join("");
     initImageFallbacks(mount);
+    initProductCardLinks(mount);
   }
 
   function renderProductsPage() {
@@ -143,6 +144,7 @@
       syncButtons(categoryButtons, categoryFilter);
       syncButtons(typeButtons, typeFilter);
       initImageFallbacks(grid);
+      initProductCardLinks(grid);
     }
 
     categoryButtons.forEach((button) => {
@@ -374,6 +376,27 @@
     });
 
     initImageFallbacks(mount);
+    initProductCardLinks(mount);
+  }
+
+  function initProductCardLinks(root = document) {
+    qsa("[data-detail-href]", root).forEach((card) => {
+      if (card.dataset.cardLinkBound) return;
+      card.dataset.cardLinkBound = "true";
+      const go = () => {
+        window.location.href = card.dataset.detailHref;
+      };
+      card.addEventListener("click", (event) => {
+        if (event.target.closest("a")) return;
+        go();
+      });
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          go();
+        }
+      });
+    });
   }
 
   function initLookbookModal() {
