@@ -2,6 +2,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
+  const navVersion = "20260512-navfix";
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -80,12 +81,12 @@
   function productCard(product) {
     const label = categoryLabel(product.category);
     const detailHref = product.code === "01OA1"
-      ? "product-01oa1.html?v=20260512-image-paths"
-      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-image-paths`;
+      ? "product-01oa1.html?v=20260512-navfix"
+      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-navfix`;
     return `
       <article class="product-card image-card" data-detail-href="${detailHref}" role="link" tabindex="0">
         <a class="image-frame" href="${detailHref}" data-label="${product.code} Front Image">
-          <img src="${product.thumbnail}" alt="${product.name} 대표 이미지">
+          <img src="${product.thumbnail}" alt="${product.name} 대표 이미지" loading="lazy">
         </a>
         <p class="product-code">${product.code}</p>
         <h3>${product.name}</h3>
@@ -162,6 +163,24 @@
     });
 
     render();
+  }
+
+  function initInternalNavigation() {
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a[href]");
+      if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+
+      const rawHref = link.getAttribute("href");
+      if (!rawHref || rawHref.startsWith("#") || rawHref.startsWith("mailto:") || rawHref.startsWith("tel:")) return;
+
+      const url = new URL(rawHref, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (!url.pathname.endsWith(".html") && url.pathname !== "/" && url.pathname !== "") return;
+
+      url.searchParams.set("v", navVersion);
+      event.preventDefault();
+      window.location.href = `${url.pathname}${url.search}${url.hash}`;
+    });
   }
 
   function colorSwatches(product) {
@@ -253,7 +272,7 @@
           <div class="gallery-thumbs">
             ${slotImages.map((slot) => `
               <button class="gallery-thumb image-frame" type="button" data-image="${slot.image}" data-label="${slot.label}">
-                <img src="${slot.image}" alt="${slot.alt}">
+                <img src="${slot.image}" alt="${slot.alt}" loading="lazy">
               </button>
             `).join("")}
           </div>
@@ -333,7 +352,7 @@
           ${product.colors.map((color) => `
             <article class="color-image">
               <div class="image-frame" data-label="${color.nameKr} ${color.nameEn}">
-                <img src="${color.image}" alt="${product.name} ${color.nameKr} 컬러 이미지">
+                <img src="${color.image}" alt="${product.name} ${color.nameKr} 컬러 이미지" loading="lazy">
               </div>
               <h3>${color.nameKr}</h3>
               <p>${color.nameCn}<br>${color.nameEn}</p>
@@ -348,7 +367,7 @@
         <div class="color-image-grid">
           ${[...detailImages, ...fabricImages].map((image, index) => `
             <div class="image-frame wide" data-label="Detail ${index + 1}">
-              <img src="${image}" alt="${product.name} 원단 봉제 디테일 ${index + 1}">
+              <img src="${image}" alt="${product.name} 원단 봉제 디테일 ${index + 1}" loading="lazy">
             </div>
           `).join("")}
         </div>
@@ -438,6 +457,7 @@
   }
 
   initHeader();
+  initInternalNavigation();
   initFade();
   initImageFallbacks();
   renderFeaturedProducts();
