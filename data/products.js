@@ -3096,8 +3096,8 @@ function getImageSlots(slug, code, name) {
     front: `${base}/${code}-front.jpg`,
     back: `${base}/${code}-back.jpg`,
     model: [`${base}/${code}-model-01.jpg`, `${base}/${code}-model-02.jpg`],
-    detail: [`${base}/${code}-detail-01.jpg`, `${base}/${code}-detail-02.jpg`, `${base}/${code}-detail-03.jpg`, `${base}/${code}-detail-04.jpg`],
-    fabric: [`${base}/${code}-fabric-01.jpg`],
+    detail: [`${base}/${code}-detail-01.jpg`, `${base}/${code}-detail-02.jpg`, `${base}/${code}-detail-03.jpg`, `${base}/${code}-detail-04.jpg`, `${base}/${code}-detail-05.jpg`],
+    fabric: [],
     colorChart: `${base}/${code}-color-chart.jpg`,
     guide: `${code} ${name} 이미지는 ${base}/ 폴더에 앞면, 뒷면, 모델컷, 확대컷, 재질컷, 컬러별 이미지로 넣어주세요.`
   };
@@ -3116,9 +3116,10 @@ const productImageOverrides = {
         "images/products/01OA1/01OA1-detail-01.jpg",
         "images/products/01OA1/01OA1-detail-02.jpg",
         "images/products/01OA1/01OA1-detail-03.jpg",
-        "images/products/01OA1/01OA1-detail-04.jpg"
+        "images/products/01OA1/01OA1-detail-04.jpg",
+        "images/products/01OA1/01OA1-detail-05.jpg"
       ],
-      fabric: ["images/products/01OA1/01OA1-fabric-01.jpg"],
+      fabric: [],
       colorChart: ""
     }
   },
@@ -3269,7 +3270,7 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
   imageSlots = {
     ...imageSlots,
     detail: imageSlots.detail && imageSlots.detail.length ? imageSlots.detail : slots.detail,
-    fabric: imageSlots.fabric && imageSlots.fabric.length ? imageSlots.fabric : slots.fabric
+    fabric: imageSlots.fabric && imageSlots.fabric.length ? imageSlots.fabric : []
   };
   const excelColorRows = productColorData[productColorAliases[code] || code];
   const colorImageFolder = productColorImageFolders[code] || code;

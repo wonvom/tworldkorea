@@ -619,6 +619,7 @@ p {
 
 .detail-main-image {
   aspect-ratio: 4 / 5;
+  background: var(--white);
 }
 
 .gallery-thumbs {
@@ -632,6 +633,14 @@ p {
   border: 0;
   padding: 0;
   cursor: pointer;
+  background: var(--white);
+}
+
+.detail-main-image img,
+.gallery-thumb img,
+.placement-card .image-frame img {
+  object-fit: contain;
+  background: var(--white);
 }
 
 .detail-summary {
