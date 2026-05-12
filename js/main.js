@@ -61,7 +61,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.14 });
+    }, { threshold: 0.01, rootMargin: "0px 0px -8% 0px" });
 
     targets.forEach((target) => observer.observe(target));
   }
@@ -80,8 +80,8 @@
   function productCard(product) {
     const label = categoryLabel(product.category);
     const detailHref = product.code === "01OA1"
-      ? "product-01oa1.html?v=20260512-direct-links"
-      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-direct-links`;
+      ? "product-01oa1.html?v=20260512-visible"
+      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-visible`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -224,10 +224,11 @@
     ));
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-direct-links">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-visible">Back to Products</a></div>`;
       return;
     }
 
+    mount.classList.add("is-visible");
     document.title = `${product.name} | T-WORLD KOREA`;
     const related = productData.filter((item) => item.category === product.category && item.id !== product.id).slice(0, 3);
     const slots = product.imageSlots || {};
