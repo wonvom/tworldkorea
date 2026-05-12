@@ -2,7 +2,6 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const navVersion = "20260512-navfix";
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -26,7 +25,7 @@
     const current = location.pathname.split("/").pop() || "index.html";
 
     qsa(".site-nav a").forEach((link) => {
-      const href = link.getAttribute("href");
+      const href = new URL(link.getAttribute("href"), window.location.href).pathname.split("/").pop();
       if (href === current) link.classList.add("is-active");
     });
 
@@ -81,13 +80,13 @@
   function productCard(product) {
     const label = categoryLabel(product.category);
     const detailHref = product.code === "01OA1"
-      ? "product-01oa1.html?v=20260512-navfix"
-      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-navfix`;
+      ? "product-01oa1.html?v=20260512-direct-links"
+      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-direct-links`;
     return `
-      <article class="product-card image-card" data-detail-href="${detailHref}" role="link" tabindex="0">
-        <a class="image-frame" href="${detailHref}" data-label="${product.code} Front Image">
+      <a class="product-card image-card" href="${detailHref}">
+        <span class="image-frame" data-label="${product.code} Front Image">
           <img src="${product.thumbnail}" alt="${product.name} 대표 이미지" loading="lazy">
-        </a>
+        </span>
         <p class="product-code">${product.code}</p>
         <h3>${product.name}</h3>
         <div class="product-meta">
@@ -96,8 +95,8 @@
           <span>${product.fabric}</span>
           <span>${product.weight} ${product.colors.length} Colors</span>
         </div>
-        <a class="card-link" href="${detailHref}">View Detail</a>
-      </article>
+        <span class="card-link">View Detail</span>
+      </a>
     `;
   }
 
@@ -108,7 +107,6 @@
     const featured = featuredIds.map((id) => productData.find((product) => product.id === id)).filter(Boolean);
     mount.innerHTML = featured.map(productCard).join("");
     initImageFallbacks(mount);
-    initProductCardLinks(mount);
   }
 
   function renderProductsPage() {
@@ -145,7 +143,6 @@
       syncButtons(categoryButtons, categoryFilter);
       syncButtons(typeButtons, typeFilter);
       initImageFallbacks(grid);
-      initProductCardLinks(grid);
     }
 
     categoryButtons.forEach((button) => {
@@ -163,24 +160,6 @@
     });
 
     render();
-  }
-
-  function initInternalNavigation() {
-    document.addEventListener("click", (event) => {
-      const link = event.target.closest("a[href]");
-      if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
-
-      const rawHref = link.getAttribute("href");
-      if (!rawHref || rawHref.startsWith("#") || rawHref.startsWith("mailto:") || rawHref.startsWith("tel:")) return;
-
-      const url = new URL(rawHref, window.location.href);
-      if (url.origin !== window.location.origin) return;
-      if (!url.pathname.endsWith(".html") && url.pathname !== "/" && url.pathname !== "") return;
-
-      url.searchParams.set("v", navVersion);
-      event.preventDefault();
-      window.location.href = `${url.pathname}${url.search}${url.hash}`;
-    });
   }
 
   function colorSwatches(product) {
@@ -245,7 +224,7 @@
     ));
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-direct-links">Back to Products</a></div>`;
       return;
     }
 
@@ -388,27 +367,6 @@
     });
 
     initImageFallbacks(mount);
-    initProductCardLinks(mount);
-  }
-
-  function initProductCardLinks(root = document) {
-    qsa("[data-detail-href]", root).forEach((card) => {
-      if (card.dataset.cardLinkBound) return;
-      card.dataset.cardLinkBound = "true";
-      const go = () => {
-        window.location.href = card.dataset.detailHref;
-      };
-      card.addEventListener("click", (event) => {
-        if (event.target.closest("a")) return;
-        go();
-      });
-      card.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          go();
-        }
-      });
-    });
   }
 
   function initLookbookModal() {
@@ -457,7 +415,6 @@
   }
 
   initHeader();
-  initInternalNavigation();
   initFade();
   initImageFallbacks();
   renderFeaturedProducts();
