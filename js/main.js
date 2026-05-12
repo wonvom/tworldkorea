@@ -80,8 +80,8 @@
   function productCard(product) {
     const label = categoryLabel(product.category);
     const detailHref = product.code === "01OA1"
-      ? "product-01oa1.html?v=20260512-mobile-colors"
-      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-mobile-colors`;
+      ? "product-01oa1.html?v=20260512-t210-colors"
+      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-t210-colors`;
     return `
       <article class="product-card image-card" data-detail-href="${detailHref}" role="link" tabindex="0">
         <a class="image-frame" href="${detailHref}" data-label="${product.code} Front Image">

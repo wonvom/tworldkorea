@@ -1,5 +1,15 @@
 const colorLibrary = {
   white: { nameKr: "화이트", nameCn: "白色", nameEn: "White", hex: "#F7F4EE" },
+  iceWhite: { nameKr: "아이스 화이트", nameCn: "雅典白", nameEn: "Ice White", hex: "#F8F8F4" },
+  bechaBeige: { nameKr: "백차 베이지", nameCn: "白茶色", nameEn: "Becha Beige", hex: "#D7C2B4" },
+  camelBrown: { nameKr: "카멜 브라운", nameCn: "鹿角棕", nameEn: "Camel Brown", hex: "#A8794F" },
+  oilGreen: { nameKr: "유채 그린", nameCn: "油菜绿", nameEn: "Oil Green", hex: "#81D927" },
+  bambooGreen: { nameKr: "대나무 그린", nameCn: "青竹绿", nameEn: "Bamboo Green", hex: "#008B74" },
+  blossomPink: { nameKr: "벚꽃 핑크", nameCn: "樱花粉", nameEn: "Blossom Pink", hex: "#F47A9C" },
+  vividRed: { nameKr: "선명한 레드", nameCn: "报春红", nameEn: "Vivid Red", hex: "#F00321" },
+  navy: { nameKr: "네이비", nameCn: "藏青色", nameEn: "Navy", hex: "#172B48" },
+  grayGreen: { nameKr: "그레이 그린", nameCn: "灰绿色", nameEn: "Gray Green", hex: "#B7C1B7" },
+  classicBlack: { nameKr: "클래식 블랙", nameCn: "经典黑", nameEn: "Classic Black", hex: "#111111" },
   offWhite: { nameKr: "오프화이트", nameCn: "米白", nameEn: "Off White", hex: "#F1EDE3" },
   melange: { nameKr: "멜란지", nameCn: "麻灰", nameEn: "Melange", hex: "#B9B9B5" },
   deepMelange: { nameKr: "딥멜란지", nameCn: "深麻灰", nameEn: "Deep Melange", hex: "#777872" },
@@ -54,6 +64,7 @@ const colorLibrary = {
 
 const colorSets = {
   fullTee: ["white", "melange", "peacockBlue", "beige", "lightCamel", "ashTone", "lightGreen", "avocado", "tiffany", "emerald", "lavender", "grayPurple", "violet", "pink", "skyBlue", "aquaBlue", "anglaRed", "gingerYellow", "eggYellow", "hotPink", "mellowOrange", "mapleRed", "red", "orange", "purple", "navyBlue", "royalBlue", "brown", "forestGreen", "oliveGreen", "darkGreen", "deepMelange", "darkNavy", "darkGray", "black"],
+  t210: ["iceWhite", "bechaBeige", "camelBrown", "oilGreen", "bambooGreen", "blossomPink", "vividRed", "navy", "grayGreen", "darkGray", "classicBlack"],
   basic: ["white", "melange", "black"],
   neutral: ["white", "ivory", "melange", "gray", "charcoal", "black"],
   vintage: ["washedGray", "washedBlue", "washedKhaki", "charcoal", "black"],
@@ -122,7 +133,7 @@ const catalogItems = [
   ["01OA1", "20수 230G 헤비웨이트 세미 드롭숄더 티셔츠", "重磅微落肩版T恤", "20s 230G Heavyweight Semi Drop Shoulder T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 3, ["Heavy Weight", "Tubular"]],
   ["7001", "24수 180G 코마 면 티셔츠", "24支180G精梳棉T恤", "24s 180G Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "neutral", 4, []],
   ["03XA5", "16수 250G 세미 와이드 트렌디 티셔츠", "16支250G半宽松潮流T恤", "16s 250G Semi Wide Trend T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "250G", "topS5", "neutral", 5, ["Heavy Weight"]],
-  ["T210", "210G 실크 코튼 반팔 티셔츠", "210G丝光棉短袖T恤", "210G Silket Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Silket Cotton 100%", "210G", "topS5", "fullTee", 6, []],
+  ["T210", "210G 아이스 실크 코튼 반팔 티셔츠", "冰丝棉短袖T恤", "210G Ice Silk Cotton Blend T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 40% Rayon 40% Polyester 20%", "210G", "topS5", "t210", 6, []],
   ["O3000", "13수 300G 순면 오버사이즈 루즈핏 티셔츠", "13支300G纯棉宽松T恤", "13s 300G Cotton Oversized T-Shirt", "Short Sleeve", "Oversized Fit", "Cotton 100%", "300G", "topS5", "neutral", 7, ["Heavy Weight"]],
   ["23012", "20수 230G 빈티지 워싱 티셔츠", "20支230G复古水洗T恤", "20s 230G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "vintage", 8, []],
   ["27012", "16수 270G 빈티지 워싱 티셔츠", "16支270G复古水洗T恤", "16s 270G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "270G", "topS5", "vintage", 9, ["Heavy Weight"]],
