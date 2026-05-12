@@ -89,7 +89,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-frontpaths`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-jacolors`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -234,7 +234,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-frontpaths">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-jacolors">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -318,20 +318,20 @@
                 <th>한국어</th>
                 <th>中文</th>
                 <th>English</th>
+                <th>일본어</th>
                 <th>HEX</th>
-                <th>Image Path</th>
               </tr>
             </thead>
             <tbody>
               ${product.colors.map((color) => `
                 <tr>
-                  <td><span class="color-table-chip" style="background:${color.hex}" title="${color.nameKr} ${color.nameCn} ${color.nameEn}"></span></td>
+                  <td><span class="color-table-chip" style="background:${color.hex}" title="${color.nameKr} ${color.nameCn} ${color.nameEn} ${color.nameJa || ""}"></span></td>
                   <td>${color.code || ""}</td>
                   <td>${color.nameKr}</td>
                   <td>${color.nameCn}</td>
                   <td>${color.nameEn}</td>
+                  <td>${color.nameJa || ""}</td>
                   <td>${color.hex}</td>
-                  <td>${color.image}</td>
                 </tr>
               `).join("")}
             </tbody>

@@ -2966,6 +2966,101 @@ const productColorImageFolders = {
   "0E2700": "OE2700"
 };
 
+const colorJapaneseNames = {
+  "Angola Red": "アンゴラレッド",
+  "Antler Brown": "アントラーブラウン",
+  "Aqua": "アクア",
+  "Aqua Blue": "アクアブルー",
+  "Athens White": "アテネホワイト",
+  "Avocado Green": "アボカドグリーン",
+  "Balenciaga Blue": "バレンシアガブルー",
+  "Bamboo Green": "バンブーグリーン",
+  "Beige": "ベージュ",
+  "Birch Beige": "バーチベージュ",
+  "Black": "ブラック",
+  "Blossom Pink": "ブロッサムピンク",
+  "Blue": "ブルー",
+  "Blue Gray": "ブルーグレー",
+  "Brick Red": "ブリックレッド",
+  "Brown": "ブラウン",
+  "Brown Gray": "ブラウングレー",
+  "Burgundy": "バーガンディ",
+  "Canola Green": "カノーラグリーン",
+  "Caramel": "キャラメル",
+  "Charcoal Brown": "チャコールブラウン",
+  "Cherry Blossom Pink": "チェリーブロッサムピンク",
+  "Classic Black": "クラシックブラック",
+  "Coffee": "コーヒー",
+  "Coral": "コーラル",
+  "Dark Brown": "ダークブラウン",
+  "Dark Gray": "ダークグレー",
+  "Dark Green": "ダークグリーン",
+  "Dark Navy": "ダークネイビー",
+  "Deep Melange": "ディープメランジ",
+  "Deep Purple": "ディープパープル",
+  "Dragon Fruit": "ドラゴンフルーツ",
+  "Earth Tone": "アーストーン",
+  "Egg Yellow": "エッグイエロー",
+  "Emerald Green": "エメラルドグリーン",
+  "Forest Green": "フォレストグリーン",
+  "Ginger Yellow": "ジンジャーイエロー",
+  "Grass Green": "グラスグリーン",
+  "Gray": "グレー",
+  "Gray Green": "グレーグリーン",
+  "Gray Purple": "グレーパープル",
+  "Indigo Blue": "インディゴブルー",
+  "Ivory": "アイボリー",
+  "Khaki": "カーキ",
+  "Khaki Brown": "カーキブラウン",
+  "Khaki Green": "カーキグリーン",
+  "Lake Blue": "レイクブルー",
+  "Lavender": "ラベンダー",
+  "Lemon Yellow": "レモンイエロー",
+  "Light Camel": "ライトキャメル",
+  "Light Gray": "ライトグレー",
+  "Light Green": "ライトグリーン",
+  "Light Purple": "ライトパープル",
+  "Light Yellow": "ライトイエロー",
+  "Linen Beige": "リネンベージュ",
+  "Maple Red": "メープルレッド",
+  "Melange": "メランジ",
+  "Melon Orange": "メロンオレンジ",
+  "Military Green": "ミリタリーグリーン",
+  "Mint": "ミント",
+  "Mint Gray": "ミントグレー",
+  "Mint Green": "ミントグリーン",
+  "Mustard": "マスタード",
+  "Navy": "ネイビー",
+  "Navy Blue": "ネイビーブルー",
+  "Off White": "オフホワイト",
+  "Olive Green": "オリーブグリーン",
+  "Orange": "オレンジ",
+  "Papaya Orange": "パパイヤオレンジ",
+  "Peacock Blue": "ピーコックブルー",
+  "Pink": "ピンク",
+  "Purple": "パープル",
+  "Red": "レッド",
+  "Rose Pink": "ローズピンク",
+  "Rose Red": "ローズレッド",
+  "Royal Blue": "ロイヤルブルー",
+  "Sand Gray": "サンドグレー",
+  "Seagull Gray": "シーガルグレー",
+  "Sky Blue": "スカイブルー",
+  "Smog Blue": "スモッグブルー",
+  "Smoky Beige": "スモーキーベージュ",
+  "Tiffany": "ティファニーグリーン",
+  "Vintage Blue": "ヴィンテージブルー",
+  "Washed Black": "ウォッシュドブラック",
+  "Washed Grey": "ウォッシュドグレー",
+  "White": "ホワイト",
+  "White Tea Beige": "ホワイトティーベージュ",
+  "Wine": "ワイン"
+};
+
+function getColorNameJa(color) {
+  return colorJapaneseNames[color.nameEn] || color.nameEn || color.nameKr || "";
+}
+
 function toCamelColorName(name) {
   const words = String(name || "")
     .toLowerCase()
@@ -3278,6 +3373,7 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
     const colorNumber = String(index + 1).padStart(2, "0");
     return {
       ...color,
+      nameJa: color.nameJa || getColorNameJa(color),
       image: `images/products/${colorImageFolder}/colors/${colorImageFolder}-${colorNumber}.jpg`,
       fallbackImages: colorImageFallbacks(colorImageFolder, code, color)
     };
@@ -3285,6 +3381,7 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
     key,
     code: `${code}-${key}`,
     ...colorLibrary[key],
+    nameJa: getColorNameJa(colorLibrary[key]),
     image: `images/products/${code}/colors/${code}-${key}.jpg`,
     fallbackImages: [`images/products/${code}/${code}-${key}.jpg`]
   }));
