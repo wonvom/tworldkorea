@@ -400,7 +400,7 @@ const productColorData = {
     {
       "code": "01OA1-33",
       "key": "01oa1-33",
-      "nameKr": "다크네이비",
+      "nameKr": "다크 네이비",
       "nameCn": "藏蓝",
       "nameEn": "Dark Navy",
       "hex": "#123B74",
@@ -850,9 +850,9 @@ const productColorData = {
     {
       "code": "23012-08",
       "key": "23012-08",
-      "nameKr": "커피",
+      "nameKr": "브라운",
       "nameCn": "咖啡色",
-      "nameEn": "Coffee",
+      "nameEn": "Brown",
       "hex": "#916D61",
       "rgb": "145, 109, 97",
       "pantone": "7615 C 부근"
