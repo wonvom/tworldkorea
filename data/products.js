@@ -170,15 +170,15 @@ function slugifyCode(code) {
 }
 
 function getImageSlots(slug, code, name) {
-  const base = `images/products/${slug}`;
+  const base = `images/products/${code}`;
   return {
-    main: `${base}/${slug}-front.jpg`,
-    front: `${base}/${slug}-front.jpg`,
-    back: `${base}/${slug}-back.jpg`,
-    model: [`${base}/${slug}-model-01.jpg`, `${base}/${slug}-model-02.jpg`],
-    detail: [`${base}/${slug}-detail-01.jpg`, `${base}/${slug}-detail-02.jpg`],
-    fabric: [`${base}/${slug}-fabric-01.jpg`],
-    colorChart: `${base}/${slug}-color-chart.jpg`,
+    main: `${base}/${code}-front.jpg`,
+    front: `${base}/${code}-front.jpg`,
+    back: `${base}/${code}-back.jpg`,
+    model: [`${base}/${code}-model-01.jpg`, `${base}/${code}-model-02.jpg`],
+    detail: [`${base}/${code}-detail-01.jpg`, `${base}/${code}-detail-02.jpg`, `${base}/${code}-detail-03.jpg`, `${base}/${code}-detail-04.jpg`],
+    fabric: [`${base}/${code}-fabric-01.jpg`],
+    colorChart: `${base}/${code}-color-chart.jpg`,
     guide: `${code} ${name} 이미지는 ${base}/ 폴더에 앞면, 뒷면, 모델컷, 확대컷, 재질컷, 컬러별 이미지로 넣어주세요.`
   };
 }
@@ -192,9 +192,14 @@ const productImageOverrides = {
       front: "images/products/01OA1/01OA1_white_01.jpg",
       back: "images/products/01OA1/01OA1_white_01.jpg",
       model: [],
-      detail: [],
-      fabric: [],
-      colorChart: "images/products/01OA1/01OA1_white_01.jpg"
+      detail: [
+        "images/products/01OA1/01OA1-detail-01.jpg",
+        "images/products/01OA1/01OA1-detail-02.jpg",
+        "images/products/01OA1/01OA1-detail-03.jpg",
+        "images/products/01OA1/01OA1-detail-04.jpg"
+      ],
+      fabric: ["images/products/01OA1/01OA1-fabric-01.jpg"],
+      colorChart: ""
     }
   },
   "t210": {
@@ -340,11 +345,16 @@ const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, f
   const id = slugifyCode(code);
   const slots = getImageSlots(id, code, name);
   const override = productImageOverrides[id];
-  const imageSlots = override ? { ...slots, ...override.imageSlots } : slots;
+  let imageSlots = override ? { ...slots, ...override.imageSlots } : slots;
+  imageSlots = {
+    ...imageSlots,
+    detail: imageSlots.detail && imageSlots.detail.length ? imageSlots.detail : slots.detail,
+    fabric: imageSlots.fabric && imageSlots.fabric.length ? imageSlots.fabric : slots.fabric
+  };
   const colors = colorSets[colorSetKey].map((key) => ({
     key,
     ...colorLibrary[key],
-    image: `images/products/${id}/colors/${id}-${key}.jpg`
+    image: `images/products/${code}/colors/${code}-${key}.jpg`
   }));
 
   return {

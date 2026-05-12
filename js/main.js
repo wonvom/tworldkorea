@@ -80,8 +80,8 @@
   function productCard(product) {
     const label = categoryLabel(product.category);
     const detailHref = product.code === "01OA1"
-      ? "product-01oa1.html?v=20260512-t210-colors"
-      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-t210-colors`;
+      ? "product-01oa1.html?v=20260512-image-paths"
+      : `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-image-paths`;
     return `
       <article class="product-card image-card" data-detail-href="${detailHref}" role="link" tabindex="0">
         <a class="image-frame" href="${detailHref}" data-label="${product.code} Front Image">
@@ -220,7 +220,7 @@
     const mount = qs("[data-product-detail]");
     if (!mount) return;
 
-    const id = normalizeProductId(new URLSearchParams(location.search).get("id"));
+    const id = normalizeProductId(new URLSearchParams(location.search).get("id") || mount.dataset.productId);
     const product = productData.find((item) => (
       normalizeProductId(item.id) === id || normalizeProductId(item.code) === id
     ));
@@ -236,7 +236,6 @@
     const modelImages = slots.model || [];
     const detailImages = slots.detail || [];
     const fabricImages = slots.fabric || [];
-    const colorChart = slots.colorChart || "";
     const slotImages = [
       { label: "Front Image", image: slots.front || product.thumbnail, alt: `${product.name} 앞면 이미지` },
       { label: "Back Image", image: slots.back || product.thumbnail, alt: `${product.name} 뒷면 이미지` },
@@ -330,23 +329,17 @@
           </table>
         </div>
         <h2 class="subsection-title">COLOR IMAGES</h2>
-        ${colorChart ? `
-          <div class="detail-chart image-frame wide" data-label="Color Chart">
-            <img src="${colorChart}" alt="${product.name} 컬러 차트 이미지">
-          </div>
-        ` : `
-          <div class="color-image-grid">
-            ${product.colors.map((color) => `
-              <article class="color-image">
-                <div class="image-frame" data-label="${color.nameKr} ${color.nameEn}">
-                  <img src="${color.image}" alt="${product.name} ${color.nameKr} 컬러 이미지">
-                </div>
-                <h3>${color.nameKr}</h3>
-                <p>${color.nameCn}<br>${color.nameEn}</p>
-              </article>
-            `).join("")}
-          </div>
-        `}
+        <div class="color-image-grid">
+          ${product.colors.map((color) => `
+            <article class="color-image">
+              <div class="image-frame" data-label="${color.nameKr} ${color.nameEn}">
+                <img src="${color.image}" alt="${product.name} ${color.nameKr} 컬러 이미지">
+              </div>
+              <h3>${color.nameKr}</h3>
+              <p>${color.nameCn}<br>${color.nameEn}</p>
+            </article>
+          `).join("")}
+        </div>
       </section>
 
       <section class="detail-section">
