@@ -3105,12 +3105,12 @@ function getImageSlots(slug, code, name) {
 
 const productImageOverrides = {
   "01oa1": {
-    thumbnail: "images/products/01OA1/01OA1_white_01.jpg",
-    images: ["images/products/01OA1/01OA1_white_01.jpg"],
+    thumbnail: "images/products/01OA1/01OA1-front.jpg",
+    images: ["images/products/01OA1/01OA1-front.jpg"],
     imageSlots: {
-      main: "images/products/01OA1/01OA1_white_01.jpg",
-      front: "images/products/01OA1/01OA1_white_01.jpg",
-      back: "images/products/01OA1/01OA1_white_01.jpg",
+      main: "images/products/01OA1/01OA1-front.jpg",
+      front: "images/products/01OA1/01OA1-front.jpg",
+      back: "images/products/01OA1/01OA1-back.jpg",
       model: [],
       detail: [
         "images/products/01OA1/01OA1-detail-01.jpg",
@@ -3124,68 +3124,68 @@ const productImageOverrides = {
     }
   },
   "t210": {
-    thumbnail: "images/products/T210/T210_white_01.jpg",
-    images: ["images/products/T210/T210_white_01.jpg"],
+    thumbnail: "images/products/T210/T210-front.jpg",
+    images: ["images/products/T210/T210-front.jpg"],
     imageSlots: {
-      main: "images/products/T210/T210_white_01.jpg",
-      front: "images/products/T210/T210_white_01.jpg",
-      back: "images/products/T210/T210_white_01.jpg",
+      main: "images/products/T210/T210-front.jpg",
+      front: "images/products/T210/T210-front.jpg",
+      back: "images/products/T210/T210-back.jpg",
       model: [],
       detail: [],
       fabric: [],
-      colorChart: "images/products/T210/T210_white_01.jpg"
+      colorChart: "images/products/T210/T210-front.jpg"
     }
   },
   "03xa5": {
-    thumbnail: "images/products/03XA5/03XA5_white_01.jpg",
-    images: ["images/products/03XA5/03XA5_white_01.jpg"],
+    thumbnail: "images/products/03XA5/03XA5-front.jpg",
+    images: ["images/products/03XA5/03XA5-front.jpg"],
     imageSlots: {
-      main: "images/products/03XA5/03XA5_white_01.jpg",
-      front: "images/products/03XA5/03XA5_white_01.jpg",
-      back: "images/products/03XA5/03XA5_white_01.jpg",
+      main: "images/products/03XA5/03XA5-front.jpg",
+      front: "images/products/03XA5/03XA5-front.jpg",
+      back: "images/products/03XA5/03XA5-back.jpg",
       model: [],
       detail: [],
       fabric: [],
-      colorChart: "images/products/03XA5/03XA5_white_01.jpg"
+      colorChart: "images/products/03XA5/03XA5-front.jpg"
     }
   },
   "o3000": {
-    thumbnail: "images/products/O3000/O3000_white_01.jpg",
-    images: ["images/products/O3000/O3000_white_01.jpg"],
+    thumbnail: "images/products/O3000/O3000-front.jpg",
+    images: ["images/products/O3000/O3000-front.jpg"],
     imageSlots: {
-      main: "images/products/O3000/O3000_white_01.jpg",
-      front: "images/products/O3000/O3000_white_01.jpg",
-      back: "images/products/O3000/O3000_white_01.jpg",
+      main: "images/products/O3000/O3000-front.jpg",
+      front: "images/products/O3000/O3000-front.jpg",
+      back: "images/products/O3000/O3000-back.jpg",
       model: [],
       detail: [],
       fabric: [],
-      colorChart: "images/products/O3000/O3000_white_01.jpg"
+      colorChart: "images/products/O3000/O3000-front.jpg"
     }
   },
   "7001": {
-    thumbnail: "images/products/7001/7001_white_01.jpg",
-    images: ["images/products/7001/7001_white_01.jpg"],
+    thumbnail: "images/products/7001/7001-front.jpg",
+    images: ["images/products/7001/7001-front.jpg"],
     imageSlots: {
-      main: "images/products/7001/7001_white_01.jpg",
-      front: "images/products/7001/7001_white_01.jpg",
-      back: "images/products/7001/7001_white_01.jpg",
+      main: "images/products/7001/7001-front.jpg",
+      front: "images/products/7001/7001-front.jpg",
+      back: "images/products/7001/7001-back.jpg",
       model: [],
       detail: [],
       fabric: [],
-      colorChart: "images/products/7001/7001_white_01.jpg"
+      colorChart: "images/products/7001/7001-front.jpg"
     }
   },
   "23012": {
-    thumbnail: "images/products/23012/23012_white_01.jpg",
-    images: ["images/products/23012/23012_white_01.jpg"],
+    thumbnail: "images/products/23012/23012-front.jpg",
+    images: ["images/products/23012/23012-front.jpg"],
     imageSlots: {
-      main: "images/products/23012/23012_white_01.jpg",
-      front: "images/products/23012/23012_white_01.jpg",
-      back: "images/products/23012/23012_white_01.jpg",
+      main: "images/products/23012/23012-front.jpg",
+      front: "images/products/23012/23012-front.jpg",
+      back: "images/products/23012/23012-back.jpg",
       model: [],
       detail: [],
       fabric: [],
-      colorChart: "images/products/23012/23012_white_01.jpg"
+      colorChart: "images/products/23012/23012-front.jpg"
     }
   },
   "08vs30": {
