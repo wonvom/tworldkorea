@@ -67,26 +67,29 @@
   }
 
   function initImageFallbacks(root = document) {
+    function useFallback(img) {
+      const fallbacks = (img.dataset.fallbackSrc || "").split("|").filter(Boolean);
+      const next = fallbacks.find((src) => src !== img.getAttribute("src"));
+      if (next) {
+        img.dataset.fallbackSrc = fallbacks.filter((src) => src !== next).join("|");
+        img.src = next;
+        return;
+      }
+      const frame = img.closest(".image-frame");
+      if (frame) frame.classList.add("is-missing");
+    }
+
     qsa(".image-frame img", root).forEach((img) => {
       if (img.dataset.fallbackBound) return;
       img.dataset.fallbackBound = "true";
-      img.addEventListener("error", () => {
-        const fallbacks = (img.dataset.fallbackSrc || "").split("|").filter(Boolean);
-        const next = fallbacks.find((src) => src !== img.getAttribute("src"));
-        if (next) {
-          img.dataset.fallbackSrc = fallbacks.filter((src) => src !== next).join("|");
-          img.src = next;
-          return;
-        }
-        const frame = img.closest(".image-frame");
-        if (frame) frame.classList.add("is-missing");
-      });
+      img.addEventListener("error", () => useFallback(img));
+      if (img.complete && img.naturalWidth === 0) useFallback(img);
     });
   }
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-colorfallback`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260512-colorfallback2`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -231,7 +234,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-colorfallback">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260512-colorfallback2">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
