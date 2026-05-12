@@ -646,6 +646,16 @@ const productColorData = {
     {
       "code": "T210-04",
       "key": "t210-04",
+      "nameKr": "백차 베이지",
+      "nameCn": "白茶色",
+      "nameEn": "White Tea Beige",
+      "hex": "#BCAA9F",
+      "rgb": "188, 170, 159",
+      "pantone": "PANTONE 7528 C 추정"
+    },
+    {
+      "code": "T210-05",
+      "key": "t210-05",
       "nameKr": "유채 그린",
       "nameCn": "油菜绿",
       "nameEn": "Canola Green",
@@ -654,8 +664,8 @@ const productColorData = {
       "pantone": "375 C 부근"
     },
     {
-      "code": "T210-05",
-      "key": "t210-05",
+      "code": "T210-06",
+      "key": "t210-06",
       "nameKr": "벚꽃 핑크",
       "nameCn": "樱花粉",
       "nameEn": "Cherry Blossom Pink",
@@ -664,8 +674,8 @@ const productColorData = {
       "pantone": "1905 C 부근"
     },
     {
-      "code": "T210-06",
-      "key": "t210-06",
+      "code": "T210-07",
+      "key": "t210-07",
       "nameKr": "카멜 브라운",
       "nameCn": "鹿角棕",
       "nameEn": "Antler Brown",
@@ -674,8 +684,8 @@ const productColorData = {
       "pantone": "729 C 부근"
     },
     {
-      "code": "T210-07",
-      "key": "t210-07",
+      "code": "T210-08",
+      "key": "t210-08",
       "nameKr": "레드",
       "nameCn": "报春红",
       "nameEn": "Red",
@@ -684,8 +694,8 @@ const productColorData = {
       "pantone": "185 C 부근"
     },
     {
-      "code": "T210-08",
-      "key": "t210-08",
+      "code": "T210-09",
+      "key": "t210-09",
       "nameKr": "대나무 그린",
       "nameCn": "青竹绿",
       "nameEn": "Bamboo Green",
@@ -694,8 +704,8 @@ const productColorData = {
       "pantone": "3278 C 부근"
     },
     {
-      "code": "T210-09",
-      "key": "t210-09",
+      "code": "T210-10",
+      "key": "t210-10",
       "nameKr": "다크 그레이",
       "nameCn": "深灰色",
       "nameEn": "Dark Gray",
@@ -704,8 +714,8 @@ const productColorData = {
       "pantone": "Cool Gray 10 C 부근"
     },
     {
-      "code": "T210-10",
-      "key": "t210-10",
+      "code": "T210-11",
+      "key": "t210-11",
       "nameKr": "네이비",
       "nameCn": "藏青色",
       "nameEn": "Navy",
