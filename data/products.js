@@ -942,9 +942,9 @@ const productColorData = {
     {
       "code": "27012-06",
       "key": "27012-06",
-      "nameKr": "커피",
+      "nameKr": "브라운",
       "nameCn": "咖啡色",
-      "nameEn": "Coffee",
+      "nameEn": "Brown",
       "hex": "#A67857",
       "rgb": "166, 120, 87",
       "pantone": "729 C 부근"
@@ -3281,6 +3281,19 @@ const productImageOverrides = {
       detail: [],
       fabric: [],
       colorChart: "images/products/23012/23012-front.jpg"
+    }
+  },
+  "27012": {
+    thumbnail: "images/products/27012/27012-front.jpg",
+    images: ["images/products/27012/27012-front.jpg"],
+    imageSlots: {
+      main: "images/products/27012/27012-front.jpg",
+      front: "images/products/27012/27012-front.jpg",
+      back: "images/products/27012/27012-back.jpg",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/27012/27012-front.jpg"
     }
   },
   "08vs30": {
