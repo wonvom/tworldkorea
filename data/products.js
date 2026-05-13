@@ -3190,8 +3190,8 @@ function getImageSlots(slug, code, name) {
     main: `${base}/${code}-front.jpg`,
     front: `${base}/${code}-front.jpg`,
     back: `${base}/${code}-back.jpg`,
-    model: [`${base}/${code}-model-01.jpg`, `${base}/${code}-model-02.jpg`],
-    detail: [`${base}/${code}-detail-01.jpg`, `${base}/${code}-detail-02.jpg`, `${base}/${code}-detail-03.jpg`, `${base}/${code}-detail-04.jpg`, `${base}/${code}-detail-05.jpg`],
+    model: [],
+    detail: [],
     fabric: [],
     colorChart: `${base}/${code}-color-chart.jpg`,
     guide: `${code} ${name} 앞면, 뒷면, 확대컷, 컬러별 이미지입니다.`
@@ -3226,7 +3226,13 @@ const productImageOverrides = {
       front: "images/products/T210/T210-front.jpg",
       back: "images/products/T210/T210-back.jpg",
       model: [],
-      detail: [],
+      detail: [
+        "images/products/T210/T210-detail-01.jpg",
+        "images/products/T210/T210-detail-02.jpg",
+        "images/products/T210/T210-detail-03.jpg",
+        "images/products/T210/T210-detail-04.jpg",
+        "images/products/T210/T210-detail-05.jpg"
+      ],
       fabric: [],
       colorChart: "images/products/T210/T210-front.jpg"
     }
@@ -3239,7 +3245,13 @@ const productImageOverrides = {
       front: "images/products/03XA5/03XA5-front.jpg",
       back: "images/products/03XA5/03XA5-back.jpg",
       model: [],
-      detail: [],
+      detail: [
+        "images/products/03XA5/03XA5-detail-01.jpg",
+        "images/products/03XA5/03XA5-detail-02.jpg",
+        "images/products/03XA5/03XA5-detail-03.jpg",
+        "images/products/03XA5/03XA5-detail-04.jpg",
+        "images/products/03XA5/03XA5-detail-05.jpg"
+      ],
       fabric: [],
       colorChart: "images/products/03XA5/03XA5-front.jpg"
     }
@@ -3252,7 +3264,13 @@ const productImageOverrides = {
       front: "images/products/O3000/O3000-front.jpg",
       back: "images/products/O3000/O3000-back.jpg",
       model: [],
-      detail: [],
+      detail: [
+        "images/products/O3000/O3000-detail-01.jpg",
+        "images/products/O3000/O3000-detail-02.jpg",
+        "images/products/O3000/O3000-detail-03.jpg",
+        "images/products/O3000/O3000-detail-04.jpg",
+        "images/products/O3000/O3000-detail-05.jpg"
+      ],
       fabric: [],
       colorChart: "images/products/O3000/O3000-front.jpg"
     }
@@ -3265,7 +3283,13 @@ const productImageOverrides = {
       front: "images/products/7001/7001-front.jpg",
       back: "images/products/7001/7001-back.jpg",
       model: [],
-      detail: [],
+      detail: [
+        "images/products/7001/7001-detail-01.jpg",
+        "images/products/7001/7001-detail-02.jpg",
+        "images/products/7001/7001-detail-03.jpg",
+        "images/products/7001/7001-detail-04.jpg",
+        "images/products/7001/7001-detail-05.jpg"
+      ],
       fabric: [],
       colorChart: "images/products/7001/7001-front.jpg"
     }
@@ -3278,7 +3302,13 @@ const productImageOverrides = {
       front: "images/products/23012/23012-front.jpg",
       back: "images/products/23012/23012-back.jpg",
       model: [],
-      detail: [],
+      detail: [
+        "images/products/23012/23012-detail-01.jpg",
+        "images/products/23012/23012-detail-02.jpg",
+        "images/products/23012/23012-detail-03.jpg",
+        "images/products/23012/23012-detail-04.jpg",
+        "images/products/23012/23012-detail-05.jpg"
+      ],
       fabric: [],
       colorChart: "images/products/23012/23012-front.jpg"
     }
@@ -3291,9 +3321,31 @@ const productImageOverrides = {
       front: "images/products/27012/27012-front.jpg",
       back: "images/products/27012/27012-back.jpg",
       model: [],
-      detail: [],
+      detail: [
+        "images/products/27012/27012-detail-01.jpg",
+        "images/products/27012/27012-detail-02.jpg",
+        "images/products/27012/27012-detail-03.jpg",
+        "images/products/27012/27012-detail-04.jpg",
+        "images/products/27012/27012-detail-05.jpg"
+      ],
       fabric: [],
       colorChart: "images/products/27012/27012-front.jpg"
+    }
+  },
+  "s2000": {
+    thumbnail: "images/products/S2000/S2000-model-01.jpg",
+    images: ["images/products/S2000/S2000-model-01.jpg"],
+    imageSlots: {
+      main: "images/products/S2000/S2000-model-01.jpg",
+      front: "",
+      back: "",
+      model: [
+        "images/products/S2000/S2000-model-01.jpg",
+        "images/products/S2000/S2000-model-02.jpg"
+      ],
+      detail: ["images/products/S2000/S2000-detail-01.jpg"],
+      fabric: [],
+      colorChart: ""
     }
   },
   "08vs30": {

@@ -76,6 +76,15 @@
         return;
       }
       const frame = img.closest(".image-frame");
+      const removable = img.closest(".gallery-thumb, .color-image, .placement-card");
+      if (removable) {
+        removable.hidden = true;
+        return;
+      }
+      if (frame && frame.parentElement && frame.parentElement.classList.contains("color-image-grid")) {
+        frame.hidden = true;
+        return;
+      }
       if (frame) frame.classList.add("is-missing");
     }
 
@@ -89,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260513-27012`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260513-assets`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -234,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260513-27012">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260513-assets">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -243,17 +252,17 @@
     const modelImages = slots.model || [];
     const detailImages = slots.detail || [];
     const slotImages = [
-      { label: "Front Image", image: slots.front || product.thumbnail, alt: `${product.name} 앞면 이미지` },
-      { label: "Back Image", image: slots.back || product.thumbnail, alt: `${product.name} 뒷면 이미지` },
+      { label: "Front Image", image: slots.front, alt: `${product.name} 앞면 이미지` },
+      { label: "Back Image", image: slots.back, alt: `${product.name} 뒷면 이미지` },
       ...modelImages.map((image, index) => ({ label: `Model Fit ${index + 1}`, image, alt: `${product.name} 모델 착용 이미지 ${index + 1}` })),
       ...detailImages.map((image, index) => ({ label: `Detail Close Up ${index + 1}`, image, alt: `${product.name} 확대 디테일 이미지 ${index + 1}` }))
-    ];
+    ].filter((slot) => slot.image);
 
     mount.innerHTML = `
       <div class="detail-grid">
         <div class="detail-gallery">
           <div class="detail-main-image image-frame" data-label="${product.code} Front Image">
-            <img src="${product.images[0]}" alt="${product.name} 대표 이미지" data-main-product-image>
+            <img src="${product.images[0] || product.thumbnail}" alt="${product.name} 대표 이미지" data-main-product-image>
           </div>
           <div class="gallery-thumbs">
             ${slotImages.map((slot) => `
@@ -351,17 +360,19 @@
         </div>
       </section>
 
-      <section class="detail-section">
-        <p class="eyebrow">DETAIL CLOSE UP</p>
-        <h2>DETAIL IMAGES</h2>
-        <div class="color-image-grid">
-          ${detailImages.map((image, index) => `
-            <div class="image-frame wide" data-label="Detail ${index + 1}">
-              <img src="${image}" alt="${product.name} 원단 봉제 디테일 ${index + 1}" loading="lazy">
-            </div>
-          `).join("")}
-        </div>
-      </section>
+      ${detailImages.length ? `
+        <section class="detail-section">
+          <p class="eyebrow">DETAIL CLOSE UP</p>
+          <h2>DETAIL IMAGES</h2>
+          <div class="color-image-grid">
+            ${detailImages.map((image, index) => `
+              <div class="image-frame wide" data-label="Detail ${index + 1}">
+                <img src="${image}" alt="${product.name} 원단 봉제 디테일 ${index + 1}" loading="lazy">
+              </div>
+            `).join("")}
+          </div>
+        </section>
+      ` : ""}
 
       <section class="detail-section">
         <p class="eyebrow">RELATED PRODUCTS</p>
