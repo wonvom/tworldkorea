@@ -2963,6 +2963,7 @@ const productColorAliases = {
 };
 
 const productColorImageFolders = {
+  "7001-KIDS": "7001-kids",
   "0E2700": "OE2700"
 };
 
@@ -3180,6 +3181,8 @@ const catalogItems = [
   ["LK3401", "340G 기모 조거팬츠", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "pants", "pants", 35, ["Heavy Weight"]]
 ];
 
+const hiddenProductCodes = new Set(["3053"]);
+
 function slugifyCode(code) {
   return code.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
@@ -3333,11 +3336,11 @@ const productImageOverrides = {
     }
   },
   "s2000": {
-    thumbnail: "images/products/S2000/S2000-model-01.jpg",
-    images: ["images/products/S2000/S2000-model-01.jpg"],
+    thumbnail: "images/products/S2000/S2000-front.jpg",
+    images: ["images/products/S2000/S2000-front.jpg"],
     imageSlots: {
-      main: "images/products/S2000/S2000-model-01.jpg",
-      front: "",
+      main: "images/products/S2000/S2000-front.jpg",
+      front: "images/products/S2000/S2000-front.jpg",
       back: "",
       model: [
         "images/products/S2000/S2000-model-01.jpg",
@@ -3349,19 +3352,102 @@ const productImageOverrides = {
     }
   },
   "08vs30": {
-    thumbnail: "images/products/08VS30/08VS30_image_01.jpg",
-    images: [
-      "images/products/08VS30/08VS30_image_01.jpg",
-      "images/products/08VS30/08VS30_white_01.jpg"
-    ],
+    thumbnail: "images/products/08VS30/08VS30-front.jpg",
+    images: ["images/products/08VS30/08VS30-front.jpg"],
     imageSlots: {
-      main: "images/products/08VS30/08VS30_image_01.jpg",
-      front: "images/products/08VS30/08VS30_image_01.jpg",
-      back: "images/products/08VS30/08VS30_white_01.jpg",
+      main: "images/products/08VS30/08VS30-front.jpg",
+      front: "images/products/08VS30/08VS30-front.jpg",
+      back: "images/products/08VS30/08VS30-back.jpg",
       model: [],
-      detail: ["images/products/08VS30/08VS30_white_01.jpg"],
+      detail: [
+        "images/products/08VS30/08VS30-detail-01.JPG",
+        "images/products/08VS30/08VS30-detail-02.JPG",
+        "images/products/08VS30/08VS30-detail-03.JPG",
+        "images/products/08VS30/08VS30-detail-04.JPG",
+        "images/products/08VS30/08VS30-detail-05.JPG"
+      ],
       fabric: [],
-      colorChart: "images/products/08VS30/08VS30_white_01.jpg"
+      colorChart: "images/products/08VS30/08VS30-front.jpg"
+    }
+  },
+  "2403": {
+    thumbnail: "images/products/2403/2403-front.jpg",
+    images: ["images/products/2403/2403-front.jpg"],
+    imageSlots: {
+      main: "images/products/2403/2403-front.jpg",
+      front: "images/products/2403/2403-front.jpg",
+      back: "",
+      model: [],
+      detail: [
+        "images/products/2403/2403-detail-01.jpg",
+        "images/products/2403/2403-detail-02.jpg",
+        "images/products/2403/2403-detail-03.jpg",
+        "images/products/2403/2403-detail-04.jpg",
+        "images/products/2403/2403-detail-05.jpg"
+      ],
+      fabric: [],
+      colorChart: ""
+    }
+  },
+  "2405": {
+    thumbnail: "images/products/2405/2405-front.jpg",
+    images: ["images/products/2405/2405-front.jpg"],
+    imageSlots: {
+      main: "images/products/2405/2405-front.jpg",
+      front: "images/products/2405/2405-front.jpg",
+      back: "",
+      model: [
+        "images/products/2405/2405-model-01.jpg",
+        "images/products/2405/2405-model-02.jpg"
+      ],
+      detail: ["images/products/2405/2405-detail-01.jpg"],
+      fabric: [],
+      colorChart: ""
+    }
+  },
+  "2406": {
+    thumbnail: "images/products/2406/2406-front.jpg",
+    images: ["images/products/2406/2406-front.jpg"],
+    imageSlots: {
+      main: "images/products/2406/2406-front.jpg",
+      front: "images/products/2406/2406-front.jpg",
+      back: "",
+      model: [
+        "images/products/2406/2406-model-01.jpg",
+        "images/products/2406/24060-model-02.jpg"
+      ],
+      detail: [],
+      fabric: [],
+      colorChart: ""
+    }
+  },
+  "2408": {
+    thumbnail: "images/products/2408/2408-front.jpg",
+    images: ["images/products/2408/2408-front.jpg"],
+    imageSlots: {
+      main: "images/products/2408/2408-front.jpg",
+      front: "images/products/2408/2408-front.jpg",
+      back: "",
+      model: [
+        "images/products/2408/2408-model-01.jpg",
+        "images/products/2408/2408-model-02.jpg"
+      ],
+      detail: ["images/products/2408/2408-detail-01.jpg"],
+      fabric: [],
+      colorChart: ""
+    }
+  },
+  "7001-kids": {
+    thumbnail: "images/products/7001-kids/colors/7001-kids-01.jpg",
+    images: ["images/products/7001-kids/colors/7001-kids-01.jpg"],
+    imageSlots: {
+      main: "images/products/7001-kids/colors/7001-kids-01.jpg",
+      front: "",
+      back: "",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: ""
     }
   },
   "06olk": {
@@ -3422,7 +3508,7 @@ const productImageOverrides = {
   }
 };
 
-const products = catalogItems.map(([code, name, nameCn, nameEn, category, fit, fabric, weight, sizeKey, colorSetKey, pdfPage, tags]) => {
+const products = catalogItems.filter(([code]) => !hiddenProductCodes.has(code)).map(([code, name, nameCn, nameEn, category, fit, fabric, weight, sizeKey, colorSetKey, pdfPage, tags]) => {
   const id = slugifyCode(code);
   const slots = getImageSlots(id, code, name);
   const override = productImageOverrides[id];
