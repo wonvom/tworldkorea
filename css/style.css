@@ -406,6 +406,7 @@ p {
   aspect-ratio: 1 / 1;
   margin-bottom: 18px;
   background: var(--white);
+  border: 1px solid rgba(9, 9, 9, 0.08);
 }
 
 .product-card .image-frame img {
