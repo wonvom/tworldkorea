@@ -2181,8 +2181,8 @@ const productColorData = {
       "nameKr": "그래스 그린",
       "nameCn": "草绿色",
       "nameEn": "Grass Green",
-      "hex": "#00A99A",
-      "rgb": "0, 169, 154",
+      "hex": "#078ab0",
+      "rgb": "7, 138, 176",
       "pantone": "3265 C 부근"
     },
     {
@@ -3589,6 +3589,22 @@ const productImageOverrides = {
       ],
       fabric: [],
       colorChart: "images/products/Q2450/Q2450-front.jpg"
+    }
+  },
+  "yl2800": {
+    thumbnail: "images/products/YL2800/YL2800-front.jpg",
+    images: ["images/products/YL2800/YL2800-front.jpg"],
+    imageSlots: {
+      main: "images/products/YL2800/YL2800-front.jpg",
+      front: "images/products/YL2800/YL2800-front.jpg",
+      back: "images/products/YL2800/YL2800-back.jpg",
+      model: [],
+      detail: [
+        "images/products/YL2800/YL2800-detail-01.jpg",
+        "images/products/YL2800/YL2800-detail-02.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/YL2800/YL2800-front.jpg"
     }
   },
   "qxx5200": {
