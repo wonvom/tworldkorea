@@ -2969,8 +2969,7 @@ const productColorImageFolders = {
 
 const productColorImageAvailability = {
   "LM2800": new Set(["LM2800-01"]),
-  "LM3200": new Set(["LM3200-05"]),
-  "LK3401": new Set()
+  "LM3200": new Set(["LM3200-05"])
 };
 
 const colorJapaneseNames = {
@@ -3709,6 +3708,42 @@ const productImageOverrides = {
       colorChart: "images/products/3505/3505-front.jpg"
     }
   },
+  "3508": {
+    thumbnail: "images/products/3508/3508-front.jpg",
+    images: ["images/products/3508/3508-front.jpg"],
+    imageSlots: {
+      main: "images/products/3508/3508-front.jpg",
+      front: "images/products/3508/3508-front.jpg",
+      back: "",
+      model: [
+        "images/products/3508/3508-model-01.jpg",
+        "images/products/3508/3508-model-02.jpg"
+      ],
+      detail: [
+        "images/products/3508/3508-detail-01.jpg",
+        "images/products/3508/3508-detail-02.jpg",
+        "images/products/3508/3508-detail-03.jpg",
+        "images/products/3508/3508-detail-04.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/3508/3508-front.jpg"
+    }
+  },
+  "ck280": {
+    thumbnail: "images/products/CK280/CK280-front.jpg",
+    images: ["images/products/CK280/CK280-front.jpg"],
+    imageSlots: {
+      main: "images/products/CK280/CK280-front.jpg",
+      front: "images/products/CK280/CK280-front.jpg",
+      back: "",
+      model: [],
+      detail: [
+        "images/products/CK280/CK280-detail-01.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/CK280/CK280-front.jpg"
+    }
+  },
   "qxx5200": {
     thumbnail: "images/products/QXX5200/QXX5200-front.jpg",
     images: ["images/products/QXX5200/QXX5200-front.jpg"],
@@ -3728,16 +3763,21 @@ const productImageOverrides = {
     }
   },
   "lk3401": {
-    thumbnail: "images/products/LK3401/LK3401_image_01.png",
-    images: ["images/products/LK3401/LK3401_image_01.png"],
+    thumbnail: "images/products/LK3401/LK3401-front.jpg",
+    images: ["images/products/LK3401/LK3401-front.jpg"],
     imageSlots: {
-      main: "images/products/LK3401/LK3401_image_01.png",
-      front: "images/products/LK3401/LK3401_image_01.png",
-      back: "images/products/LK3401/LK3401_image_01.png",
+      main: "images/products/LK3401/LK3401-front.jpg",
+      front: "images/products/LK3401/LK3401-front.jpg",
+      back: "",
       model: [],
-      detail: [],
+      detail: [
+        "images/products/LK3401/LK3401-detail-01.jpg",
+        "images/products/LK3401/LK3401-detail-02.jpg",
+        "images/products/LK3401/LK3401-detail-03.jpg",
+        "images/products/LK3401/LK3401-detail-04.jpg"
+      ],
       fabric: [],
-      colorChart: "images/products/LK3401/LK3401_image_01.png"
+      colorChart: "images/products/LK3401/LK3401-front.jpg"
     }
   }
 };
