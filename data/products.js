@@ -3171,8 +3171,8 @@ const catalogItems = [
   ["0E2700", "270G 순면 크루넥 맨투맨", "270G纯棉圆领卫衣", "270G Cotton Crewneck Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "270G", "topS5", "sweat", 25, ["Heavy Weight"]],
   ["YL2800", "280G 맨투맨", "280G卫衣", "280G Sweatshirt", "Sweatshirt", "Regular Fit", "Cotton 90% Span 10%", "280G", "topS5", "sweat", 26, []],
   ["YL3200", "320G 맨투맨", "320G卫衣", "320G Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "topS5", "fullTee", 27, ["Heavy Weight"]],
-  ["LM2800", "280G 맨투맨", "280G卫衣", "280G Sweatshirt", "Sweatshirt", "Regular Fit", "Cotton 90% Span 10%", "280G", "topS5", "sweat", 28, []],
-  ["LM3200", "320G 맨투맨", "320G卫衣", "320G Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "topS5", "fullTee", 29, ["Heavy Weight"]],
+  ["LM2800", "280G 후드티", "280G连帽卫衣", "280G Hoodie", "Hoodie", "Regular Fit", "Cotton 90% Span 10%", "280G", "topS5", "sweat", 28, []],
+  ["LM3200", "320G 후드티", "320G连帽卫衣", "320G Hoodie", "Hoodie", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "topS5", "fullTee", 29, ["Heavy Weight"]],
   ["QXX5200", "480G 후드티", "480G连帽卫衣", "480G Hoodie", "Hoodie", "Oversized Fit", "Cotton 87% Span 13%", "480G", "topS5", "hoodie", 30, ["Heavy Weight"]],
   ["A23014", "230G 워싱 긴팔 티셔츠", "230G水洗长袖T恤", "230G Washed Long Sleeve", "Sweatshirt", "Regular Fit", "Cotton 100%", "230G", "topS5", "vintage", 31, []],
   ["3505", "350G 워싱 맨투맨", "350G水洗卫衣", "350G Washed Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "350G", "topS5", "hoodie", 32, ["Heavy Weight"]],
@@ -3605,6 +3605,28 @@ const productImageOverrides = {
       ],
       fabric: [],
       colorChart: "images/products/YL2800/YL2800-front.jpg"
+    }
+  },
+  "yl3200": {
+    thumbnail: "images/products/YL3200/YL3200-front.jpg",
+    images: ["images/products/YL3200/YL3200-front.jpg"],
+    imageSlots: {
+      main: "images/products/YL3200/YL3200-front.jpg",
+      front: "images/products/YL3200/YL3200-front.jpg",
+      back: "",
+      model: [
+        "images/products/YL3200/YL3200-model-01.jpg",
+        "images/products/YL3200/YL3200-model-02.jpg"
+      ],
+      detail: [
+        "images/products/YL3200/YL3200-detail-01.jpg",
+        "images/products/YL3200/YL3200-detail-02.jpg",
+        "images/products/YL3200/YL3200-detail-03.jpg",
+        "images/products/YL3200/YL3200-detail-04.jpg",
+        "images/products/YL3200/YL3200-detail-05.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/YL3200/YL3200-front.jpg"
     }
   },
   "qxx5200": {
