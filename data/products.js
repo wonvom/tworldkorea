@@ -2967,6 +2967,12 @@ const productColorImageFolders = {
   "0E2700": "OE2700"
 };
 
+const productColorImageAvailability = {
+  "LM2800": new Set(["LM2800-01"]),
+  "LM3200": new Set(["LM3200-05"]),
+  "LK3401": new Set()
+};
+
 const colorJapaneseNames = {
   "Angola Red": "アンゴラレッド",
   "Antler Brown": "アントラーブラウン",
@@ -3181,7 +3187,7 @@ const catalogItems = [
   ["LK3401", "340G 기모 조거팬츠", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "pants", "pants", 35, ["Heavy Weight"]]
 ];
 
-const hiddenProductCodes = new Set(["3053", "T160", "7001-LS"]);
+const hiddenProductCodes = new Set(["3053", "T160", "7001-LS", "3508", "CK280"]);
 
 function slugifyCode(code) {
   return code.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -3629,17 +3635,96 @@ const productImageOverrides = {
       colorChart: "images/products/YL3200/YL3200-front.jpg"
     }
   },
-  "qxx5200": {
-    thumbnail: "images/products/QXX5200/QXX5200_image_01.png",
-    images: ["images/products/QXX5200/QXX5200_image_01.png"],
+  "lm2800": {
+    thumbnail: "images/products/LM2800/LM2800-front.jpg",
+    images: ["images/products/LM2800/LM2800-front.jpg"],
     imageSlots: {
-      main: "images/products/QXX5200/QXX5200_image_01.png",
-      front: "images/products/QXX5200/QXX5200_image_01.png",
-      back: "images/products/QXX5200/QXX5200_image_01.png",
+      main: "images/products/LM2800/LM2800-front.jpg",
+      front: "images/products/LM2800/LM2800-front.jpg",
+      back: "",
+      model: [
+        "images/products/LM2800/LM2800-model-01.jpg",
+        "images/products/LM2800/LM2800-model-02.jpg"
+      ],
+      detail: [
+        "images/products/LM2800/LM2800-detail-01.jpg",
+        "images/products/LM2800/LM2800-detail-02.jpg",
+        "images/products/LM2800/LM2800-detail-03.jpg",
+        "images/products/LM2800/LM2800-detail-04.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/LM2800/LM2800-front.jpg"
+    }
+  },
+  "lm3200": {
+    thumbnail: "images/products/LM3200/colors/LM3200-05.jpg",
+    images: ["images/products/LM3200/colors/LM3200-05.jpg"],
+    imageSlots: {
+      main: "images/products/LM3200/colors/LM3200-05.jpg",
+      front: "images/products/LM3200/colors/LM3200-05.jpg",
+      back: "",
       model: [],
       detail: [],
       fabric: [],
-      colorChart: "images/products/QXX5200/QXX5200_image_01.png"
+      colorChart: ""
+    }
+  },
+  "a23014": {
+    thumbnail: "images/products/A23014/A23014-front.jpg",
+    images: ["images/products/A23014/A23014-front.jpg"],
+    imageSlots: {
+      main: "images/products/A23014/A23014-front.jpg",
+      front: "images/products/A23014/A23014-front.jpg",
+      back: "images/products/A23014/A23014-back.jpg",
+      model: [],
+      detail: [
+        "images/products/A23014/A23014-detail-01.jpg",
+        "images/products/A23014/A23014-detail-02.jpg",
+        "images/products/A23014/A23014-detail-03.jpg",
+        "images/products/A23014/A23014-detail-04.jpg",
+        "images/products/A23014/A23014-detail-05.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/A23014/A23014-front.jpg"
+    }
+  },
+  "3505": {
+    thumbnail: "images/products/3505/3505-front.jpg",
+    images: ["images/products/3505/3505-front.jpg"],
+    imageSlots: {
+      main: "images/products/3505/3505-front.jpg",
+      front: "images/products/3505/3505-front.jpg",
+      back: "images/products/3505/3505-back.jpg",
+      model: [
+        "images/products/3505/3505-model-01.jpg",
+        "images/products/3505/3505-model-02.jpg"
+      ],
+      detail: [
+        "images/products/3505/3505-detail-01.jpg",
+        "images/products/3505/3505-detail-02.jpg",
+        "images/products/3505/3505-detail-03.jpg",
+        "images/products/3505/3505-detail-04.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/3505/3505-front.jpg"
+    }
+  },
+  "qxx5200": {
+    thumbnail: "images/products/QXX5200/QXX5200-front.jpg",
+    images: ["images/products/QXX5200/QXX5200-front.jpg"],
+    imageSlots: {
+      main: "images/products/QXX5200/QXX5200-front.jpg",
+      front: "images/products/QXX5200/QXX5200-front.jpg",
+      back: "",
+      model: [],
+      detail: [
+        "images/products/QXX5200/QXX5200-detail-01.jpg",
+        "images/products/QXX5200/QXX5200-detail-02.jpg",
+        "images/products/QXX5200/QXX5200-detail-03.jpg",
+        "images/products/QXX5200/QXX5200-detail-04.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/QXX5200/QXX5200-front.jpg"
     }
   },
   "lk3401": {
@@ -3669,7 +3754,7 @@ const products = catalogItems.filter(([code]) => !hiddenProductCodes.has(code)).
   };
   const excelColorRows = productColorData[productColorAliases[code] || code];
   const colorImageFolder = productColorImageFolders[code] || code;
-  const colors = excelColorRows ? excelColorRows.map((color, index) => {
+  let colors = excelColorRows ? excelColorRows.map((color, index) => {
     const colorNumber = String(color.code || "").split("-").pop() || String(index + 1).padStart(2, "0");
     return {
       ...color,
@@ -3685,6 +3770,14 @@ const products = catalogItems.filter(([code]) => !hiddenProductCodes.has(code)).
     image: `images/products/${code}/colors/${code}-${key}.jpg`,
     fallbackImages: [`images/products/${code}/${code}-${key}.jpg`]
   }));
+  const visibleColorImages = productColorImageAvailability[code];
+  if (visibleColorImages) {
+    colors = colors.map((color) => (
+      visibleColorImages.has(color.code)
+        ? color
+        : { ...color, image: "", fallbackImages: [] }
+    ));
+  }
 
   return {
     id,

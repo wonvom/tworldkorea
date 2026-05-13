@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260513-hoodie-fix`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260513-batch3`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260513-hoodie-fix">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260513-batch3">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -348,7 +348,7 @@
         </div>
         <h2 class="subsection-title">COLOR IMAGES</h2>
         <div class="color-image-grid">
-          ${product.colors.map((color) => `
+          ${product.colors.filter((color) => color.image).map((color) => `
             <article class="color-image">
               <div class="image-frame" data-label="${color.nameKr} ${color.nameEn}">
                 <img src="${color.image}" alt="${product.name} ${color.nameKr} 컬러 이미지" loading="lazy" data-fallback-src="${(color.fallbackImages || []).join("|")}">
