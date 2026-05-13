@@ -3438,46 +3438,157 @@ const productImageOverrides = {
     }
   },
   "7001-kids": {
-    thumbnail: "images/products/7001-kids/colors/7001-kids-01.jpg",
-    images: ["images/products/7001-kids/colors/7001-kids-01.jpg"],
+    thumbnail: "images/products/7001-kids/7001-kids-front.jpg",
+    images: ["images/products/7001-kids/7001-kids-front.jpg"],
     imageSlots: {
-      main: "images/products/7001-kids/colors/7001-kids-01.jpg",
-      front: "",
-      back: "",
-      model: [],
-      detail: [],
+      main: "images/products/7001-kids/7001-kids-front.jpg",
+      front: "images/products/7001-kids/7001-kids-front.jpg",
+      back: "images/products/7001-kids/7001-kids-back.jpg",
+      model: [
+        "images/products/7001-kids/7001-kids-model-01.jpg",
+        "images/products/7001-kids/7001-kids-model-02.jpg",
+        "images/products/7001-kids/7001-kids-model-03.jpg",
+        "images/products/7001-kids/7001-kids-model-04.jpg"
+      ],
+      detail: [
+        "images/products/7001-kids/7001-kids-detail-01.jpg",
+        "images/products/7001-kids/7001-kids-detail-02.jpg",
+        "images/products/7001-kids/7001-kids-detail-03.jpg",
+        "images/products/7001-kids/7001-kids-detail-04.jpg",
+        "images/products/7001-kids/7001-kids-detail-05.jpg"
+      ],
       fabric: [],
       colorChart: ""
     }
   },
   "06olk": {
-    thumbnail: "images/products/06OLK/06OLK_image_02.jpg",
-    images: [
-      "images/products/06OLK/06OLK_image_02.jpg",
-      "images/products/06OLK/06OLK_image_01.jpg",
-      "images/products/06OLK/06OLK_white_01.jpg"
-    ],
+    thumbnail: "images/products/06OLK/06OLK-front.jpg",
+    images: ["images/products/06OLK/06OLK-front.jpg"],
     imageSlots: {
-      main: "images/products/06OLK/06OLK_image_02.jpg",
-      front: "images/products/06OLK/06OLK_image_02.jpg",
-      back: "images/products/06OLK/06OLK_image_01.jpg",
+      main: "images/products/06OLK/06OLK-front.jpg",
+      front: "images/products/06OLK/06OLK-front.jpg",
+      back: "images/products/06OLK/06OLK-back.jpg",
       model: [],
-      detail: ["images/products/06OLK/06OLK_white_01.jpg"],
+      detail: [
+        "images/products/06OLK/06OLK-detail-01.JPG",
+        "images/products/06OLK/06OLK-detail-02.JPG",
+        "images/products/06OLK/06OLK-detail-03.JPG",
+        "images/products/06OLK/06OLK-detail-04.JPG",
+        "images/products/06OLK/06OLK-detail-05.JPG"
+      ],
       fabric: [],
-      colorChart: "images/products/06OLK/06OLK_white_01.jpg"
+      colorChart: "images/products/06OLK/06OLK-front.jpg"
     }
   },
   "0e2700": {
-    thumbnail: "images/products/OE2700/OE2700_image_01.png",
-    images: ["images/products/OE2700/OE2700_image_01.png"],
+    thumbnail: "images/products/OE2700/OE2700-front.jpg",
+    images: ["images/products/OE2700/OE2700-front.jpg"],
     imageSlots: {
-      main: "images/products/OE2700/OE2700_image_01.png",
-      front: "images/products/OE2700/OE2700_image_01.png",
-      back: "images/products/OE2700/OE2700_image_01.png",
-      model: [],
-      detail: [],
+      main: "images/products/OE2700/OE2700-front.jpg",
+      front: "images/products/OE2700/OE2700-front.jpg",
+      back: "images/products/OE2700/OE2700-back.jpg",
+      model: [
+        "images/products/OE2700/OE2700-model-01.jpg",
+        "images/products/OE2700/OE2700-model-02.jpg"
+      ],
+      detail: [
+        "images/products/OE2700/OE2700-detail-01.jpg",
+        "images/products/OE2700/OE2700-detail-02.jpg",
+        "images/products/OE2700/OE2700-detail-03.jpg",
+        "images/products/OE2700/OE2700-detail-04.jpg",
+        "images/products/OE2700/OE2700-detail-05.jpg"
+      ],
       fabric: [],
-      colorChart: "images/products/OE2700/OE2700_image_01.png"
+      colorChart: "images/products/OE2700/OE2700-front.jpg"
+    }
+  },
+  "hp004": {
+    thumbnail: "images/products/HP004/HP004-front.jpg",
+    images: ["images/products/HP004/HP004-front.jpg"],
+    imageSlots: {
+      main: "images/products/HP004/HP004-front.jpg",
+      front: "images/products/HP004/HP004-front.jpg",
+      back: "images/products/HP004/HP004-back.jpg",
+      model: [
+        "images/products/HP004/HP004-model-01.jpg",
+        "images/products/HP004/HP004-model-02.jpg",
+        "images/products/HP004/HP004-model-03.jpg"
+      ],
+      detail: [
+        "images/products/HP004/HP004-detail-01.jpg",
+        "images/products/HP004/HP004-detail-02.jpg",
+        "images/products/HP004/HP004-detail-03.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/HP004/HP004-front.jpg"
+    }
+  },
+  "q2000": {
+    thumbnail: "images/products/Q2000/Q2000-front.jpg",
+    images: ["images/products/Q2000/Q2000-front.jpg"],
+    imageSlots: {
+      main: "images/products/Q2000/Q2000-front.jpg",
+      front: "images/products/Q2000/Q2000-front.jpg",
+      back: "images/products/Q2000/Q2000-back.jpg",
+      model: [
+        "images/products/Q2000/Q2000-model-01.jpg",
+        "images/products/Q2000/Q2000-model-02.jpg"
+      ],
+      detail: [
+        "images/products/Q2000/Q2000-detail-01.jpg",
+        "images/products/Q2000/Q2000-detail-02.jpg",
+        "images/products/Q2000/Q2000-detail-03.jpg",
+        "images/products/Q2000/Q2000-detail-04.jpg",
+        "images/products/Q2000/Q2000-detail-05.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/Q2000/Q2000-front.jpg"
+    }
+  },
+  "qxk2521": {
+    thumbnail: "images/products/QXK2521/QXK2521-frong.jpg",
+    images: ["images/products/QXK2521/QXK2521-frong.jpg"],
+    imageSlots: {
+      main: "images/products/QXK2521/QXK2521-frong.jpg",
+      front: "images/products/QXK2521/QXK2521-frong.jpg",
+      back: "",
+      model: [
+        "images/products/QXK2521/QXK2521-model-01.jpg",
+        "images/products/QXK2521/QXK2521-model-02.jpg",
+        "images/products/QXK2521/QXK2521-model-03.jpg",
+        "images/products/QXK2521/QXK2521-model-04.jpg"
+      ],
+      detail: [
+        "images/products/QXK2521/QXK2521-detail-01.jpg",
+        "images/products/QXK2521/QXK2521-detail-02.jpg",
+        "images/products/QXK2521/QXK2521-detail-03.jpg",
+        "images/products/QXK2521/QXK2521-detail-04.jpg",
+        "images/products/QXK2521/QXK2521-detail-05.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/QXK2521/QXK2521-frong.jpg"
+    }
+  },
+  "q2450": {
+    thumbnail: "images/products/Q2450/Q2450-front.jpg",
+    images: ["images/products/Q2450/Q2450-front.jpg"],
+    imageSlots: {
+      main: "images/products/Q2450/Q2450-front.jpg",
+      front: "images/products/Q2450/Q2450-front.jpg",
+      back: "images/products/Q2450/Q2450-back.jpg",
+      model: [
+        "images/products/Q2450/Q2450-model-01.jpg",
+        "images/products/Q2450/Q2450-model-02.jpg"
+      ],
+      detail: [
+        "images/products/Q2450/Q2450-detail-01.jpg",
+        "images/products/Q2450/Q2450-detail-02.jpg",
+        "images/products/Q2450/Q2450-detail-03.jpg",
+        "images/products/Q2450/Q2450-detail-04.jpg",
+        "images/products/Q2450/Q2450-detail-05.jpg"
+      ],
+      fabric: [],
+      colorChart: "images/products/Q2450/Q2450-front.jpg"
     }
   },
   "qxx5200": {
