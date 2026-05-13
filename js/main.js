@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260513-batch3`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260513-show-work-items`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260513-batch3">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260513-show-work-items">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
