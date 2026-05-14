@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-contact-mailto`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-contact-template`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-contact-mailto">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-contact-template">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -287,7 +287,7 @@
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
-          <a class="btn btn-dark full" href="contact.html?v=20260514-contact-mailto&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
+          <a class="btn btn-dark full" href="contact.html?v=20260514-contact-template&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
         </aside>
       </div>
 
@@ -419,58 +419,32 @@
       if (event.key === "Escape") closeModal();
     });
   }
-
-  function initContactForm() {
-    const form = qs("[data-contact-form]");
-    if (!form) return;
+  function initInquiryTemplate() {
+    const template = qs("[data-inquiry-template]");
+    const copyButton = qs("[data-copy-inquiry]");
+    const status = qs("[data-template-status]");
+    if (!template || !copyButton) return;
 
     const productName = new URLSearchParams(location.search).get("product");
     if (productName) {
-      const input = qs('input[name="product"]', form);
-      if (input) input.value = productName;
+      template.textContent = template.textContent.replace("관심 제품:", `관심 제품: ${productName}`);
     }
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
-      const status = qs("[data-form-status]", form);
-      const getValue = (name) => String(formData.get(name) || "").trim();
-      const company = getValue("company");
-      const name = getValue("name");
-      const phone = getValue("phone");
-      const email = getValue("email");
-      const product = getValue("product");
-      const message = getValue("message");
-      const subjectParts = ["T-WORLD KOREA 문의", company || name, product].filter(Boolean);
-      const body = [
-        "T-WORLD KOREA 홈페이지 문의",
-        "",
-        `회사명: ${company || "-"}`,
-        `담당자명: ${name || "-"}`,
-        `연락처: ${phone || "-"}`,
-        `이메일: ${email || "-"}`,
-        `관심 제품: ${product || "-"}`,
-        "",
-        "문의 내용:",
-        message || "-"
-      ].join("\n");
+    copyButton.addEventListener("click", () => {
+      const text = template.textContent.trim();
+      const showStatus = (message) => {
+        if (status) status.textContent = message;
+      };
 
-      const params = new URLSearchParams({
-        subject: subjectParts.join(" / "),
-        body
-      });
-      const mailtoHref = `mailto:knowjo9438@gmail.com?${params.toString()}`;
-
-      if (status) {
-        status.textContent = "메일 작성창이 열립니다. 메일 앱에서 전송 버튼을 눌러야 문의가 접수됩니다.";
+      if (!navigator.clipboard) {
+        showStatus("양식을 직접 선택해서 복사해주세요.");
+        return;
       }
 
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(body).catch(() => {});
-      }
-
-      alert("메일 작성창이 열립니다.\n메일 앱에서 전송 버튼을 눌러야 문의가 접수됩니다.\n메일 앱이 열리지 않으면 복사된 내용을 이메일이나 카카오톡으로 보내주세요.");
-      window.location.href = mailtoHref;
+      navigator.clipboard
+        .writeText(text)
+        .then(() => showStatus("문의 양식이 복사되었습니다. 카카오톡이나 이메일에 붙여넣어 보내주세요."))
+        .catch(() => showStatus("양식을 직접 선택해서 복사해주세요."));
     });
   }
 
@@ -481,5 +455,5 @@
   renderProductsPage();
   renderProductDetail();
   initLookbookModal();
-  initContactForm();
+  initInquiryTemplate();
 })();
