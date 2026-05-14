@@ -3148,11 +3148,11 @@ const sizeTemplates = {
 };
 
 const catalogItems = [
-  ["01OA1", "20수 230G 헤비웨이트 세미 드롭숄더 티셔츠", "重磅微落肩版T恤", "20s 230G Heavyweight Semi Drop Shoulder T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 3, ["Heavy Weight", "Tubular"]],
-  ["7001", "24수 180G 코마 면 티셔츠", "24支180G精梳棉T恤", "24s 180G Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "neutral", 4, []],
-  ["03XA5", "16수 250G 세미 와이드 트렌디 티셔츠", "16支250G半宽松潮流T恤", "16s 250G Semi Wide Trend T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "250G", "topS5", "neutral", 5, ["Heavy Weight"]],
+  ["01OA1", "20수 230G 반팔 티셔츠", "重磅微落肩版T恤", "20s 230G Heavyweight Semi Drop Shoulder T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 3, ["Heavy Weight", "Tubular"]],
+  ["7001", "24수 180G 반팔 티셔츠", "24支180G精梳棉T恤", "24s 180G Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "neutral", 4, []],
+  ["03XA5", "16수 250G 세미 와이드 반팔 티셔츠", "16支250G半宽松潮流T恤", "16s 250G Semi Wide Trend T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "250G", "topS5", "neutral", 5, ["Heavy Weight"]],
   ["T210", "210G 아이스 실크 코튼 반팔 티셔츠", "冰丝棉短袖T恤", "210G Ice Silk Cotton Blend T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 40% Rayon 40% Polyester 20%", "210G", "topS5", "t210", 6, []],
-  ["O3000", "13수 300G 순면 오버사이즈 루즈핏 티셔츠", "13支300G纯棉宽松T恤", "13s 300G Cotton Oversized T-Shirt", "Short Sleeve", "Oversized Fit", "Cotton 100%", "300G", "topS5", "neutral", 7, ["Heavy Weight"]],
+  ["O3000", "13수 300G 오버핏 반팔 티셔츠", "13支300G纯棉宽松T恤", "13s 300G Cotton Oversized T-Shirt", "Short Sleeve", "Oversized Fit", "Cotton 100%", "300G", "topS5", "neutral", 7, ["Heavy Weight"]],
   ["23012", "20수 230G 빈티지 워싱 티셔츠", "20支230G复古水洗T恤", "20s 230G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "vintage", 8, []],
   ["27012", "16수 270G 빈티지 워싱 티셔츠", "16支270G复古水洗T恤", "16s 270G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "270G", "topS5", "vintage", 9, ["Heavy Weight"]],
   ["S2000", "210G 순면 여성 크롭 티셔츠", "210G纯棉女款短版T恤", "210G Cotton Women's Crop T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "210G", "slimWomen", "women", 10, []],
@@ -3162,9 +3162,9 @@ const catalogItems = [
   ["2405", "240G 여성 워싱 티셔츠", "240G女款水洗T恤", "240G Women's Washed T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "240G", "slimWomen", "women", 14, []],
   ["2408", "200G 여성 슬림핏 티셔츠", "200G女款修身T恤", "200G Women's Slim Fit T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "slimWomen", "women", 15, []],
   ["3053", "60수 250G 반팔 티셔츠", "60支250G短袖T恤", "60s 250G T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 63% Polyester 29% Span 8%", "250G", "topS5", "neutral", 16, []],
-  ["7001-KIDS", "24수 180G 코마 면 키즈 티셔츠", "24支180G儿童精梳棉T恤", "24s 180G Kids Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "fullTee", 17, []],
+  ["7001-KIDS", "24수 180G 순면 아동 반팔 티셔츠", "24支180G儿童精梳棉T恤", "24s 180G Kids Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "fullTee", 17, []],
   ["T160", "190G 코튼 터치 반팔 티셔츠", "190G棉感短袖T恤", "190G Cotton Touch T-Shirt", "Short Sleeve", "Regular Fit", "Cotton Blend", "190G", "topS5", "basic", 18, []],
-  ["Q2000", "21수 200G 산뜻한 컬러 티셔츠", "21支200G清爽色彩T恤", "21s 200G Fresh Color T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "200G", "topS5", "fullTee", 19, []],
+  ["Q2000", "21수 200G 스탠다드 핏 반팔 티셔츠", "21支200G清爽色彩T恤", "21s 200G Fresh Color T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "200G", "topS5", "fullTee", 19, []],
   ["HP004", "220G 베이직 나시", "220G基础背心", "220G Basic Sleeveless", "Sleeveless", "Regular Fit", "Cotton 95% Span 5%", "220G", "slimWomen", "women", 20, []],
   ["7001-LS", "24수 180G 코마 면 긴팔 티셔츠", "24支180G精梳棉长袖T恤", "24s 180G Combed Cotton Long Sleeve", "Long Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "basic", 21, []],
   ["QXK2521", "21수 230G 순면 긴팔 티셔츠", "21支230G纯棉长袖T恤", "21s 230G Cotton Long Sleeve", "Long Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 22, []],
