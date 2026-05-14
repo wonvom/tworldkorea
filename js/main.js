@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-kakao-contact`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-open-kakao`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-kakao-contact">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-open-kakao">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -422,21 +422,6 @@
 
   function initContactForm() {
     const form = qs("[data-contact-form]");
-    qsa("[data-copy-text]").forEach((button) => {
-      button.addEventListener("click", async () => {
-        const text = button.dataset.copyText || "";
-        try {
-          await navigator.clipboard.writeText(text);
-          button.textContent = "Copied";
-          window.setTimeout(() => {
-            button.textContent = "Copy Kakao ID";
-          }, 1600);
-        } catch (error) {
-          window.prompt("카카오톡 아이디를 복사해주세요.", text);
-        }
-      });
-    });
-
     if (!form) return;
 
     const productName = new URLSearchParams(location.search).get("product");
