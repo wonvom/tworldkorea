@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-mail-submit`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-mailto-gmail`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-mail-submit">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-mailto-gmail">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -287,7 +287,7 @@
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
-          <a class="btn btn-dark full" href="contact.html?v=20260514-mail-submit&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
+          <a class="btn btn-dark full" href="contact.html?v=20260514-mailto-gmail&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
         </aside>
       </div>
 
@@ -454,7 +454,7 @@
         message || "-"
       ].join("\n");
 
-      const mailto = new URL("mailto:onfcom02591@daum.net");
+      const mailto = new URL("mailto:knowjo9438@gmail.com");
       mailto.searchParams.set("subject", subjectParts.join(" / "));
       mailto.searchParams.set("body", body);
       window.location.href = mailto.toString();
