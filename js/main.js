@@ -11,7 +11,7 @@
     "Long Sleeve": { kr: "긴팔", en: "Long Sleeve" },
     "Sweatshirt": { kr: "맨투맨", en: "Sweatshirt" },
     "Hoodie": { kr: "후드", en: "Hoodie" },
-    "Pants": { kr: "팬츠", en: "Pants" }
+    "Pants": { kr: "바지", en: "Pants" }
   };
 
   function categoryLabel(category) {
@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-contact-template`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-pants-label`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-contact-template">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-pants-label">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -287,7 +287,7 @@
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
-          <a class="btn btn-dark full" href="contact.html?v=20260514-contact-template&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
+          <a class="btn btn-dark full" href="contact.html?v=20260514-pants-label&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
         </aside>
       </div>
 
