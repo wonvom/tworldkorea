@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-contact-kakao-link`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-contact-mailto`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-contact-kakao-link">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-contact-mailto">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -287,7 +287,7 @@
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
-          <a class="btn btn-dark full" href="contact.html?v=20260514-contact-kakao-link&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
+          <a class="btn btn-dark full" href="contact.html?v=20260514-contact-mailto&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
         </aside>
       </div>
 
@@ -433,6 +433,7 @@
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const formData = new FormData(form);
+      const status = qs("[data-form-status]", form);
       const getValue = (name) => String(formData.get(name) || "").trim();
       const company = getValue("company");
       const name = getValue("name");
@@ -454,10 +455,22 @@
         message || "-"
       ].join("\n");
 
-      const mailto = new URL("mailto:knowjo9438@gmail.com");
-      mailto.searchParams.set("subject", subjectParts.join(" / "));
-      mailto.searchParams.set("body", body);
-      window.location.href = mailto.toString();
+      const params = new URLSearchParams({
+        subject: subjectParts.join(" / "),
+        body
+      });
+      const mailtoHref = `mailto:knowjo9438@gmail.com?${params.toString()}`;
+
+      if (status) {
+        status.textContent = "메일 작성창이 열립니다. 메일 앱에서 전송 버튼을 눌러야 문의가 접수됩니다.";
+      }
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(body).catch(() => {});
+      }
+
+      alert("메일 작성창이 열립니다.\n메일 앱에서 전송 버튼을 눌러야 문의가 접수됩니다.\n메일 앱이 열리지 않으면 복사된 내용을 이메일이나 카카오톡으로 보내주세요.");
+      window.location.href = mailtoHref;
     });
   }
 
