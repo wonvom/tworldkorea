@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-open-kakao-v2`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260514-mail-submit`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-open-kakao-v2">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260514-mail-submit">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -287,7 +287,7 @@
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
-          <a class="btn btn-dark full" href="contact.html?v=20260514-open-kakao-v2&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
+          <a class="btn btn-dark full" href="contact.html?v=20260514-mail-submit&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
         </aside>
       </div>
 
@@ -432,7 +432,32 @@
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      alert("문의 기능은 준비 중입니다. 전화 또는 이메일로 문의해주세요.");
+      const formData = new FormData(form);
+      const getValue = (name) => String(formData.get(name) || "").trim();
+      const company = getValue("company");
+      const name = getValue("name");
+      const phone = getValue("phone");
+      const email = getValue("email");
+      const product = getValue("product");
+      const message = getValue("message");
+      const subjectParts = ["T-WORLD KOREA 문의", company || name, product].filter(Boolean);
+      const body = [
+        "T-WORLD KOREA 홈페이지 문의",
+        "",
+        `회사명: ${company || "-"}`,
+        `담당자명: ${name || "-"}`,
+        `연락처: ${phone || "-"}`,
+        `이메일: ${email || "-"}`,
+        `관심 제품: ${product || "-"}`,
+        "",
+        "문의 내용:",
+        message || "-"
+      ].join("\n");
+
+      const mailto = new URL("mailto:onfcom02591@daum.net");
+      mailto.searchParams.set("subject", subjectParts.join(" / "));
+      mailto.searchParams.set("body", body);
+      window.location.href = mailto.toString();
     });
   }
 
