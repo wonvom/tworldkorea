@@ -2967,10 +2967,7 @@ const productColorImageFolders = {
   "0E2700": "OE2700"
 };
 
-const productColorImageAvailability = {
-  "LM2800": new Set(["LM2800-01"]),
-  "LM3200": new Set(["LM3200-05"])
-};
+const productColorImageAvailability = {};
 
 const colorJapaneseNames = {
   "Angola Red": "アンゴラレッド",
@@ -3656,16 +3653,21 @@ const productImageOverrides = {
     }
   },
   "lm3200": {
-    thumbnail: "images/products/LM3200/colors/LM3200-05.jpg",
-    images: ["images/products/LM3200/colors/LM3200-05.jpg"],
+    thumbnail: "images/products/LM3200/LM3200-front.jpg",
+    images: ["images/products/LM3200/LM3200-front.jpg"],
     imageSlots: {
-      main: "images/products/LM3200/colors/LM3200-05.jpg",
-      front: "images/products/LM3200/colors/LM3200-05.jpg",
+      main: "images/products/LM3200/LM3200-front.jpg",
+      front: "images/products/LM3200/LM3200-front.jpg",
       back: "",
       model: [],
-      detail: [],
+      detail: [
+        "images/products/LM3200/LM3200-detail-01.jpg",
+        "images/products/LM3200/LM3200-detail-02.jpg",
+        "images/products/LM3200/LM3200-detail-03.jpg",
+        "images/products/LM3200/LM3200-detail-04.jpg"
+      ],
       fabric: [],
-      colorChart: ""
+      colorChart: "images/products/LM3200/LM3200-front.jpg"
     }
   },
   "a23014": {
