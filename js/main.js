@@ -98,7 +98,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260515-kakao-copy-label`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260515-inquiry-fields`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -243,7 +243,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260515-kakao-copy-label">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260515-inquiry-fields">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -287,7 +287,7 @@
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
-          <a class="btn btn-dark full" href="contact.html?v=20260515-kakao-copy-label&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
+          <a class="btn btn-dark full" href="contact.html?v=20260515-inquiry-fields&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
         </aside>
       </div>
 
@@ -427,11 +427,24 @@
 
     const productName = new URLSearchParams(location.search).get("product");
     if (productName) {
-      template.textContent = template.textContent.replace("관심 제품:", `관심 제품: ${productName}`);
+      const productInput = qs('input[name="product"]', template);
+      if (productInput) productInput.value = productName;
     }
 
     copyButton.addEventListener("click", () => {
-      const text = template.textContent.trim();
+      const getValue = (name) => String(qs(`[name="${name}"]`, template)?.value || "").trim();
+      const text = [
+        "T-WORLD KOREA 문의",
+        "",
+        `회사명: ${getValue("company") || "-"}`,
+        `성함: ${getValue("name") || "-"}`,
+        `연락처: ${getValue("phone") || "-"}`,
+        `이메일: ${getValue("email") || "-"}`,
+        `관심 제품: ${getValue("product") || "-"}`,
+        "",
+        "문의 내용:",
+        getValue("message") || "-"
+      ].join("\n");
       const showStatus = (message) => {
         if (status) status.textContent = message;
       };

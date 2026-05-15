@@ -897,17 +897,38 @@ p {
   letter-spacing: 0;
 }
 
-.inquiry-template pre {
-  overflow-x: auto;
-  margin: 0;
+.inquiry-fields {
+  display: grid;
+  gap: 14px;
+}
+
+.inquiry-fields label {
+  display: grid;
+  gap: 8px;
+}
+
+.inquiry-fields span {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.inquiry-fields input,
+.inquiry-fields textarea {
+  width: 100%;
   border: 1px solid var(--line);
   background: var(--white);
-  padding: 18px;
+  padding: 13px 14px;
   color: var(--black);
   font-family: inherit;
-  font-size: 15px;
-  line-height: 1.9;
-  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.6;
+  outline: none;
+}
+
+.inquiry-fields input:focus,
+.inquiry-fields textarea:focus {
+  border-color: var(--black);
 }
 
 .template-actions {
