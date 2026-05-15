@@ -772,10 +772,6 @@ p {
   background: var(--white);
 }
 
-.color-image:hover img {
-  transform: none;
-}
-
 .size-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
