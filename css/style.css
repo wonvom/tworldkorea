@@ -763,6 +763,17 @@ p {
 
 .color-image .image-frame {
   aspect-ratio: 4 / 5;
+  background: var(--white);
+}
+
+.color-image .image-frame img {
+  object-fit: contain;
+  object-position: center;
+  background: var(--white);
+}
+
+.color-image:hover img {
+  transform: none;
 }
 
 .size-table-wrap {
