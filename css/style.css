@@ -772,6 +772,11 @@ p {
   background: var(--white);
 }
 
+.color-image:hover .image-frame img {
+  transform: scale(1.07);
+  filter: saturate(0.96);
+}
+
 .size-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
