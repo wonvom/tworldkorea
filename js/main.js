@@ -2,6 +2,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
+  const assetVersion = "20260519-kids-back";
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -16,6 +17,11 @@
 
   function categoryLabel(category) {
     return categoryLabels[category] || { kr: category, en: category };
+  }
+
+  function assetUrl(src) {
+    if (!src || /^(https?:|data:|blob:)/.test(src)) return src || "";
+    return `${src}${src.includes("?") ? "&" : "?"}v=${assetVersion}`;
   }
 
   function initHeader() {
@@ -98,11 +104,11 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-products-guide`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-kids-back`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
-          <img src="${product.thumbnail}" alt="${product.name} 대표 이미지" loading="lazy">
+          <img src="${assetUrl(product.thumbnail)}" alt="${product.name} 대표 이미지" loading="lazy">
         </span>
         <p class="product-code">${product.code}</p>
         <h3>${product.name}</h3>
@@ -216,7 +222,7 @@
     return `
       <article class="placement-card">
         <div class="image-frame wide" data-label="${label}">
-          <img src="${image}" alt="${alt}">
+          <img src="${assetUrl(image)}" alt="${alt}">
         </div>
         <p>${label}</p>
       </article>
@@ -243,7 +249,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-products-guide">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-kids-back">Back to Products</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -262,12 +268,12 @@
       <div class="detail-grid">
         <div class="detail-gallery">
           <div class="detail-main-image image-frame" data-label="${product.code} Front Image">
-            <img src="${product.images[0] || product.thumbnail}" alt="${product.name} 대표 이미지" data-main-product-image>
+            <img src="${assetUrl(product.images[0] || product.thumbnail)}" alt="${product.name} 대표 이미지" data-main-product-image>
           </div>
           <div class="gallery-thumbs">
             ${slotImages.map((slot) => `
-              <button class="gallery-thumb image-frame" type="button" data-image="${slot.image}" data-label="${slot.label}">
-                <img src="${slot.image}" alt="${slot.alt}" loading="lazy">
+              <button class="gallery-thumb image-frame" type="button" data-image="${assetUrl(slot.image)}" data-label="${slot.label}">
+                <img src="${assetUrl(slot.image)}" alt="${slot.alt}" loading="lazy">
               </button>
             `).join("")}
           </div>
@@ -287,7 +293,7 @@
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
-          <a class="btn btn-dark full" href="contact.html?v=20260519-products-guide&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
+          <a class="btn btn-dark full" href="contact.html?v=20260519-kids-back&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
         </aside>
       </div>
 
@@ -351,7 +357,7 @@
           ${product.colors.filter((color) => color.image).map((color) => `
             <article class="color-image">
               <div class="image-frame" data-label="${color.nameKr} ${color.nameEn}">
-                <img src="${color.image}" alt="${product.name} ${color.nameKr} 컬러 이미지" loading="lazy" data-fallback-src="${(color.fallbackImages || []).join("|")}">
+                <img src="${assetUrl(color.image)}" alt="${product.name} ${color.nameKr} 컬러 이미지" loading="lazy" data-fallback-src="${(color.fallbackImages || []).map(assetUrl).join("|")}">
               </div>
               <h3>${color.nameKr}</h3>
               <p>${color.nameCn}<br>${color.nameEn}</p>
@@ -367,7 +373,7 @@
           <div class="color-image-grid">
             ${detailImages.map((image, index) => `
               <div class="image-frame wide" data-label="Detail ${index + 1}">
-                <img src="${image}" alt="${product.name} 원단 봉제 디테일 ${index + 1}" loading="lazy">
+                <img src="${assetUrl(image)}" alt="${product.name} 원단 봉제 디테일 ${index + 1}" loading="lazy">
               </div>
             `).join("")}
           </div>
