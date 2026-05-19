@@ -1081,6 +1081,14 @@ p {
   margin: 0;
 }
 
+.site-footer .footer-credit {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
 .site-footer div:last-child {
   display: flex;
   gap: 18px;
