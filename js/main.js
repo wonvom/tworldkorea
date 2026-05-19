@@ -2,8 +2,9 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260519-kakao-link";
+  const assetVersion = "20260519-sample-contact";
   const sampleListKey = "tworld-sample-list-v1";
+  const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
 
   const qs = (selector, root = document) => root.querySelector(selector);
@@ -45,6 +46,48 @@
     }
   }
 
+  function readSampleContact() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(sampleContactKey) || "{}");
+      return parsed && typeof parsed === "object" ? parsed : {};
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function writeSampleContact(contact) {
+    localStorage.setItem(sampleContactKey, JSON.stringify(contact));
+  }
+
+  function collectSampleContact() {
+    const root = qs("[data-sample-contact]");
+    if (!root) return readSampleContact();
+    const contact = {
+      company: String(qs('[name="sample-company"]', root)?.value || "").trim(),
+      name: String(qs('[name="sample-name"]', root)?.value || "").trim(),
+      phone: String(qs('[name="sample-phone"]', root)?.value || "").trim(),
+      email: String(qs('[name="sample-email"]', root)?.value || "").trim()
+    };
+    writeSampleContact(contact);
+    return contact;
+  }
+
+  function fillSampleContact() {
+    const root = qs("[data-sample-contact]");
+    if (!root) return;
+    const contact = readSampleContact();
+    const values = {
+      "sample-company": contact.company || "",
+      "sample-name": contact.name || "",
+      "sample-phone": contact.phone || "",
+      "sample-email": contact.email || ""
+    };
+    Object.entries(values).forEach(([name, value]) => {
+      const input = qs(`[name="${name}"]`, root);
+      if (input && input.value !== value) input.value = value;
+    });
+  }
+
   function writeSampleList(list) {
     localStorage.setItem(sampleListKey, JSON.stringify(list));
     updateSampleListButton();
@@ -63,13 +106,14 @@
 
   function buildSampleMessage() {
     const list = readSampleList();
+    const contact = collectSampleContact();
     const lines = [
       "T-WORLD KOREA 샘플 문의",
       "",
-      "회사명:",
-      "성함:",
-      "연락처:",
-      "이메일:",
+      `회사명: ${contact.company || "-"}`,
+      `성함: ${contact.name || "-"}`,
+      `연락처: ${contact.phone || "-"}`,
+      `이메일: ${contact.email || "-"}`,
       "",
       "선택 제품:"
     ];
@@ -205,6 +249,24 @@
             <button class="sample-panel-close" type="button" data-close-sample-list aria-label="샘플 문의 리스트 닫기">닫기</button>
           </div>
           <p class="sample-panel-help">원하는 제품과 색상을 담아둔 뒤 내용을 복사해서 카카오톡으로 보내주세요.</p>
+          <div class="sample-contact-fields" data-sample-contact>
+            <label>
+              <span>회사명</span>
+              <input type="text" name="sample-company" placeholder="회사명을 입력하세요">
+            </label>
+            <label>
+              <span>성함</span>
+              <input type="text" name="sample-name" placeholder="성함을 입력하세요">
+            </label>
+            <label>
+              <span>연락처</span>
+              <input type="tel" name="sample-phone" placeholder="010-1234-5678">
+            </label>
+            <label>
+              <span>이메일</span>
+              <input type="email" name="sample-email" placeholder="contact@example.com">
+            </label>
+          </div>
           <p class="sample-empty" data-sample-empty>아직 담은 제품이 없습니다.</p>
           <div class="sample-list" data-sample-list></div>
           <p class="template-status" data-sample-status role="status" aria-live="polite"></p>
@@ -253,12 +315,18 @@
       }
     });
 
+    document.addEventListener("input", (event) => {
+      if (!event.target.closest("[data-sample-contact]")) return;
+      collectSampleContact();
+    });
+
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeSamplePanel();
     });
 
     updateSampleListButton();
     renderSampleListPanel();
+    fillSampleContact();
   }
 
   function initHeader() {
@@ -341,7 +409,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-kakao-link`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-sample-contact`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -486,7 +554,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-kakao-link">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-sample-contact">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
