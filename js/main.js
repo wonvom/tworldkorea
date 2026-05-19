@@ -2,7 +2,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260519-sample-contact";
+  const assetVersion = "20260519-color-notice";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -249,6 +249,7 @@
             <button class="sample-panel-close" type="button" data-close-sample-list aria-label="샘플 문의 리스트 닫기">닫기</button>
           </div>
           <p class="sample-panel-help">원하는 제품과 색상을 담아둔 뒤 내용을 복사해서 카카오톡으로 보내주세요.</p>
+          <p class="sample-color-notice">제품의 실제 색상은 사용하는 모니터 설정, 디스플레이 패널 종류, 기기 밝기에 따라 화면과 다르게 보일 수 있습니다. 가능하시다면 쇼룸에 방문하셔서 직접 확인 후 선택하시는 것을 추천드립니다.</p>
           <div class="sample-contact-fields" data-sample-contact>
             <label>
               <span>회사명</span>
@@ -409,7 +410,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-sample-contact`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-color-notice`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -554,7 +555,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-sample-contact">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-color-notice">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -601,6 +602,7 @@
           <div class="sample-selector" data-sample-selector>
             <p class="filter-label">샘플 문의 선택</p>
             <p>색상과 사이즈를 하나씩 선택해서 담아주세요. 담은 뒤에는 선택값이 초기화됩니다.</p>
+            <p class="sample-color-notice">제품의 실제 색상은 사용하는 모니터 설정, 디스플레이 패널 종류, 기기 밝기에 따라 화면과 다르게 보일 수 있습니다. 가능하시다면 쇼룸에 방문하셔서 직접 확인 후 선택하시는 것을 추천드립니다.</p>
             <div class="sample-choice-block">
               <h3>색상 선택</h3>
               <div class="sample-choice-grid">
