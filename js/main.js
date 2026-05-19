@@ -2,7 +2,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260519-sample-pairs";
+  const assetVersion = "20260519-sample-images";
   const sampleListKey = "tworld-sample-list-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/sd2I4Sui";
 
@@ -107,6 +107,7 @@
     if (existing) {
       existing.color = nextColor;
       existing.size = nextSize;
+      existing.image = selections.image || existing.image || "";
       delete existing.colors;
       delete existing.sizes;
       existing.memo = selections.memo || existing.memo || "";
@@ -118,12 +119,20 @@
         category: `${label.kr} ${label.en}`,
         color: nextColor,
         size: nextSize,
+        image: selections.image || "",
         memo: selections.memo,
         updatedAt: Date.now()
       });
     }
 
     writeSampleList(list);
+  }
+
+  function sampleItemImage(item) {
+    if (item.image) return item.image;
+    const product = productData.find((entry) => entry.code === item.code || entry.id === item.code);
+    const color = product?.colors?.find((entry) => entry.nameKr === item.color);
+    return color?.image || product?.thumbnail || "";
   }
 
   function renderSampleListPanel() {
@@ -135,10 +144,17 @@
     empty.hidden = list.length > 0;
     listRoot.innerHTML = list.map((item, index) => `
       <article class="sample-list-item">
-        <div>
-          <p class="product-code">${escapeHtml(item.code)}</p>
-          <h3>${escapeHtml(item.name)}</h3>
-          <p>${escapeHtml(item.category)}</p>
+        <div class="sample-list-card">
+          <div>
+            <p class="product-code">${escapeHtml(item.code)}</p>
+            <h3>${escapeHtml(item.name)}</h3>
+            <p>${escapeHtml(item.category)}</p>
+          </div>
+          ${sampleItemImage(item) ? `
+            <div class="sample-list-image image-frame" data-label="${escapeHtml(item.color || "선택 색상")}">
+              <img src="${assetUrl(sampleItemImage(item))}" alt="${escapeHtml(item.name)} ${escapeHtml(item.color || "")} 색상 이미지" loading="lazy">
+            </div>
+          ` : ""}
         </div>
         <dl>
           <div><dt>색상</dt><dd>${escapeHtml(item.color || (item.colors || []).join(", ") || "-")}</dd></div>
@@ -149,6 +165,7 @@
       </article>
     `).join("");
     updateSampleListButton();
+    initImageFallbacks(listRoot);
   }
 
   function openSamplePanel() {
@@ -324,7 +341,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-sample-pairs`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-sample-images`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -469,7 +486,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-sample-pairs">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-sample-images">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -521,7 +538,7 @@
               <div class="sample-choice-grid">
                 ${product.colors.map((color) => `
                   <label class="sample-choice">
-                    <input type="radio" name="sample-color" value="${escapeHtml(color.nameKr)}">
+                    <input type="radio" name="sample-color" value="${escapeHtml(color.nameKr)}" data-color-image="${escapeHtml(color.image || product.thumbnail)}">
                     <span class="swatch small" style="background:${color.hex}"></span>
                     <span>${escapeHtml(color.nameKr)}</span>
                   </label>
@@ -664,7 +681,7 @@
           return;
         }
 
-        addSampleItem(product, { color: colorInput.value, size: sizeInput.value, memo });
+        addSampleItem(product, { color: colorInput.value, size: sizeInput.value, image: colorInput.dataset.colorImage, memo });
         const addedText = `${colorInput.value} ${sizeInput.value}`;
         qsa('input[name="sample-color"], input[name="sample-size"]', selector).forEach((input) => {
           input.checked = false;

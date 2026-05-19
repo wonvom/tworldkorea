@@ -1198,6 +1198,23 @@ p {
   background: var(--white);
 }
 
+.sample-list-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 86px;
+  gap: 14px;
+  align-items: start;
+}
+
+.sample-list-image {
+  aspect-ratio: 4 / 5;
+  background: var(--white);
+}
+
+.sample-list-image img {
+  object-fit: contain;
+  background: var(--white);
+}
+
 .sample-list-item h3 {
   margin: 2px 0 4px;
   font-size: 18px;
