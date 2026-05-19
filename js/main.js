@@ -2,7 +2,9 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260519-kids-back";
+  const assetVersion = "20260519-sample-list";
+  const sampleListKey = "tworld-sample-list-v1";
+  const kakaoTalkUrl = "https://open.kakao.com/o/sd2I4Sui";
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -19,9 +21,221 @@
     return categoryLabels[category] || { kr: category, en: category };
   }
 
+  function escapeHtml(value) {
+    return String(value || "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#39;"
+    })[char]);
+  }
+
   function assetUrl(src) {
     if (!src || /^(https?:|data:|blob:)/.test(src)) return src || "";
     return `${src}${src.includes("?") ? "&" : "?"}v=${assetVersion}`;
+  }
+
+  function readSampleList() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(sampleListKey) || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function writeSampleList(list) {
+    localStorage.setItem(sampleListKey, JSON.stringify(list));
+    updateSampleListButton();
+    renderSampleListPanel();
+  }
+
+  function updateSampleListButton() {
+    const count = readSampleList().length;
+    qsa("[data-sample-count]").forEach((target) => {
+      target.textContent = String(count);
+    });
+    qsa("[data-sample-count-label]").forEach((target) => {
+      target.textContent = count ? `담은 제품 ${count}개` : "담은 제품 없음";
+    });
+  }
+
+  function buildSampleMessage() {
+    const list = readSampleList();
+    const lines = [
+      "T-WORLD KOREA 샘플 문의",
+      "",
+      "회사명:",
+      "성함:",
+      "연락처:",
+      "이메일:",
+      "",
+      "선택 제품:"
+    ];
+
+    if (list.length === 0) {
+      lines.push("- 선택한 제품이 없습니다.");
+    } else {
+      list.forEach((item, index) => {
+        lines.push(
+          "",
+          `${index + 1}. ${item.code} ${item.name}`,
+          `분류: ${item.category || "-"}`,
+          `색상: ${item.colors && item.colors.length ? item.colors.join(", ") : "-"}`,
+          `사이즈: ${item.sizes && item.sizes.length ? item.sizes.join(", ") : "-"}`,
+          `메모: ${item.memo || "-"}`
+        );
+      });
+    }
+
+    lines.push("", "문의 내용:");
+    return lines.join("\n");
+  }
+
+  function addSampleItem(product, selections) {
+    const list = readSampleList();
+    const label = categoryLabel(product.category);
+    const existing = list.find((item) => item.code === product.code);
+    const nextColors = selections.colors.length ? selections.colors : ["색상 상담 필요"];
+    const nextSizes = selections.sizes.length ? selections.sizes : ["사이즈 상담 필요"];
+
+    if (existing) {
+      existing.colors = Array.from(new Set([...(existing.colors || []), ...nextColors]));
+      existing.sizes = Array.from(new Set([...(existing.sizes || []), ...nextSizes]));
+      existing.memo = selections.memo || existing.memo || "";
+      existing.updatedAt = Date.now();
+    } else {
+      list.push({
+        code: product.code,
+        name: product.name,
+        category: `${label.kr} ${label.en}`,
+        colors: nextColors,
+        sizes: nextSizes,
+        memo: selections.memo,
+        updatedAt: Date.now()
+      });
+    }
+
+    writeSampleList(list);
+  }
+
+  function renderSampleListPanel() {
+    const listRoot = qs("[data-sample-list]");
+    const empty = qs("[data-sample-empty]");
+    if (!listRoot || !empty) return;
+    const list = readSampleList();
+
+    empty.hidden = list.length > 0;
+    listRoot.innerHTML = list.map((item, index) => `
+      <article class="sample-list-item">
+        <div>
+          <p class="product-code">${escapeHtml(item.code)}</p>
+          <h3>${escapeHtml(item.name)}</h3>
+          <p>${escapeHtml(item.category)}</p>
+        </div>
+        <dl>
+          <div><dt>색상</dt><dd>${escapeHtml((item.colors || []).join(", ") || "-")}</dd></div>
+          <div><dt>사이즈</dt><dd>${escapeHtml((item.sizes || []).join(", ") || "-")}</dd></div>
+          <div><dt>메모</dt><dd>${escapeHtml(item.memo || "-")}</dd></div>
+        </dl>
+        <button type="button" class="text-button" data-remove-sample="${index}">삭제</button>
+      </article>
+    `).join("");
+    updateSampleListButton();
+  }
+
+  function openSamplePanel() {
+    const panel = qs("[data-sample-panel]");
+    if (!panel) return;
+    panel.classList.add("is-open");
+    panel.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-sample-panel-open");
+    renderSampleListPanel();
+  }
+
+  function closeSamplePanel() {
+    const panel = qs("[data-sample-panel]");
+    if (!panel) return;
+    panel.classList.remove("is-open");
+    panel.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-sample-panel-open");
+  }
+
+  function initSampleListUi() {
+    if (qs("[data-sample-panel]")) return;
+
+    document.body.insertAdjacentHTML("beforeend", `
+      <button class="sample-floating-button" type="button" data-open-sample-list aria-label="샘플 문의 리스트 열기">
+        <span>샘플 목록</span>
+        <strong data-sample-count>0</strong>
+      </button>
+      <aside class="sample-panel" data-sample-panel aria-hidden="true" aria-labelledby="sample-panel-title">
+        <div class="sample-panel-backdrop" data-close-sample-list></div>
+        <div class="sample-panel-body" role="dialog" aria-modal="true">
+          <div class="sample-panel-header">
+            <div>
+              <p class="eyebrow">샘플 문의 리스트</p>
+              <h2 id="sample-panel-title">담아둔 제품</h2>
+              <p data-sample-count-label>담은 제품 없음</p>
+            </div>
+            <button class="sample-panel-close" type="button" data-close-sample-list aria-label="샘플 문의 리스트 닫기">닫기</button>
+          </div>
+          <p class="sample-panel-help">원하는 제품과 색상을 담아둔 뒤 내용을 복사해서 카카오톡으로 보내주세요.</p>
+          <p class="sample-empty" data-sample-empty>아직 담은 제품이 없습니다.</p>
+          <div class="sample-list" data-sample-list></div>
+          <p class="template-status" data-sample-status role="status" aria-live="polite"></p>
+          <div class="sample-panel-actions">
+            <button class="btn btn-dark full" type="button" data-copy-sample-list>내용 복사하기</button>
+            <a class="btn btn-light full" href="${kakaoTalkUrl}" target="_blank" rel="noopener" data-kakao-sample>카카오톡 문의하기</a>
+            <button class="text-button" type="button" data-clear-sample-list>목록 비우기</button>
+          </div>
+        </div>
+      </aside>
+    `);
+
+    document.addEventListener("click", (event) => {
+      const openButton = event.target.closest("[data-open-sample-list]");
+      const closeButton = event.target.closest("[data-close-sample-list]");
+      const removeButton = event.target.closest("[data-remove-sample]");
+      const clearButton = event.target.closest("[data-clear-sample-list]");
+      const copyButton = event.target.closest("[data-copy-sample-list]");
+      const kakaoButton = event.target.closest("[data-kakao-sample]");
+      const status = qs("[data-sample-status]");
+
+      if (openButton) openSamplePanel();
+      if (closeButton) closeSamplePanel();
+      if (removeButton) {
+        const index = Number(removeButton.dataset.removeSample);
+        const list = readSampleList();
+        list.splice(index, 1);
+        writeSampleList(list);
+      }
+      if (clearButton) writeSampleList([]);
+      if (copyButton || kakaoButton) {
+        if (kakaoButton) event.preventDefault();
+        if (kakaoButton) window.open(kakaoTalkUrl, "_blank", "noopener");
+        const text = buildSampleMessage();
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text)
+            .then(() => {
+              if (status) status.textContent = "내용이 복사되었습니다. 카카오톡에 붙여넣어 보내주세요.";
+            })
+            .catch(() => {
+              if (status) status.textContent = "복사가 되지 않으면 내용을 직접 선택해서 복사해주세요.";
+            });
+        } else if (status) {
+          status.textContent = "복사가 되지 않으면 내용을 직접 선택해서 복사해주세요.";
+        }
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeSamplePanel();
+    });
+
+    updateSampleListButton();
+    renderSampleListPanel();
   }
 
   function initHeader() {
@@ -104,7 +318,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-kids-back`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-sample-list`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -249,7 +463,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-kids-back">Back to Products</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-sample-list">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -293,7 +507,42 @@
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
-          <a class="btn btn-dark full" href="contact.html?v=20260519-kids-back&product=${encodeURIComponent(product.name)}">Wholesale Inquiry</a>
+          <div class="sample-selector" data-sample-selector>
+            <p class="filter-label">샘플 문의 선택</p>
+            <p>필요한 색상과 사이즈를 선택한 뒤 샘플 문의 리스트에 담아주세요.</p>
+            <div class="sample-choice-block">
+              <h3>색상 선택</h3>
+              <div class="sample-choice-grid">
+                ${product.colors.map((color) => `
+                  <label class="sample-choice">
+                    <input type="checkbox" name="sample-color" value="${escapeHtml(color.nameKr)}">
+                    <span class="swatch small" style="background:${color.hex}"></span>
+                    <span>${escapeHtml(color.nameKr)}</span>
+                  </label>
+                `).join("")}
+              </div>
+            </div>
+            <div class="sample-choice-block">
+              <h3>사이즈 선택</h3>
+              <div class="sample-size-grid">
+                ${product.sizes.map((size) => `
+                  <label class="sample-size">
+                    <input type="checkbox" name="sample-size" value="${escapeHtml(size.size)}">
+                    <span>${escapeHtml(size.size)}</span>
+                  </label>
+                `).join("")}
+              </div>
+            </div>
+            <label class="sample-memo">
+              <span>메모</span>
+              <textarea name="sample-memo" rows="3" placeholder="예: 블랙은 L 사이즈 샘플 먼저 확인하고 싶습니다."></textarea>
+            </label>
+            <p class="template-status" data-sample-add-status role="status" aria-live="polite"></p>
+            <div class="sample-actions">
+              <button class="btn btn-dark full" type="button" data-add-sample>샘플 문의 리스트에 담기</button>
+              <button class="btn btn-light full" type="button" data-open-sample-list>담은 제품 보기</button>
+            </div>
+          </div>
         </aside>
       </div>
 
@@ -394,6 +643,20 @@
       });
     });
 
+    const addButton = qs("[data-add-sample]", mount);
+    if (addButton) {
+      addButton.addEventListener("click", () => {
+        const selector = qs("[data-sample-selector]", mount);
+        const colors = qsa('input[name="sample-color"]:checked', selector).map((input) => input.value);
+        const sizes = qsa('input[name="sample-size"]:checked', selector).map((input) => input.value);
+        const memo = String(qs('[name="sample-memo"]', selector)?.value || "").trim();
+        const status = qs("[data-sample-add-status]", selector);
+
+        addSampleItem(product, { colors, sizes, memo });
+        if (status) status.textContent = "샘플 문의 리스트에 담았습니다.";
+      });
+    }
+
     initImageFallbacks(mount);
   }
 
@@ -470,6 +733,7 @@
   initHeader();
   initFade();
   initImageFallbacks();
+  initSampleListUi();
   renderFeaturedProducts();
   renderProductsPage();
   renderProductDetail();
