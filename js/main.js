@@ -2,7 +2,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260519-sample-list";
+  const assetVersion = "20260519-sample-pairs";
   const sampleListKey = "tworld-sample-list-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/sd2I4Sui";
 
@@ -82,8 +82,8 @@
           "",
           `${index + 1}. ${item.code} ${item.name}`,
           `분류: ${item.category || "-"}`,
-          `색상: ${item.colors && item.colors.length ? item.colors.join(", ") : "-"}`,
-          `사이즈: ${item.sizes && item.sizes.length ? item.sizes.join(", ") : "-"}`,
+          `색상: ${item.color || (item.colors && item.colors.length ? item.colors.join(", ") : "-")}`,
+          `사이즈: ${item.size || (item.sizes && item.sizes.length ? item.sizes.join(", ") : "-")}`,
           `메모: ${item.memo || "-"}`
         );
       });
@@ -96,13 +96,19 @@
   function addSampleItem(product, selections) {
     const list = readSampleList();
     const label = categoryLabel(product.category);
-    const existing = list.find((item) => item.code === product.code);
-    const nextColors = selections.colors.length ? selections.colors : ["색상 상담 필요"];
-    const nextSizes = selections.sizes.length ? selections.sizes : ["사이즈 상담 필요"];
+    const nextColor = selections.color || "색상 상담 필요";
+    const nextSize = selections.size || "사이즈 상담 필요";
+    const existing = list.find((item) => (
+      item.code === product.code &&
+      (item.color || (item.colors || [])[0]) === nextColor &&
+      (item.size || (item.sizes || [])[0]) === nextSize
+    ));
 
     if (existing) {
-      existing.colors = Array.from(new Set([...(existing.colors || []), ...nextColors]));
-      existing.sizes = Array.from(new Set([...(existing.sizes || []), ...nextSizes]));
+      existing.color = nextColor;
+      existing.size = nextSize;
+      delete existing.colors;
+      delete existing.sizes;
       existing.memo = selections.memo || existing.memo || "";
       existing.updatedAt = Date.now();
     } else {
@@ -110,8 +116,8 @@
         code: product.code,
         name: product.name,
         category: `${label.kr} ${label.en}`,
-        colors: nextColors,
-        sizes: nextSizes,
+        color: nextColor,
+        size: nextSize,
         memo: selections.memo,
         updatedAt: Date.now()
       });
@@ -135,8 +141,8 @@
           <p>${escapeHtml(item.category)}</p>
         </div>
         <dl>
-          <div><dt>색상</dt><dd>${escapeHtml((item.colors || []).join(", ") || "-")}</dd></div>
-          <div><dt>사이즈</dt><dd>${escapeHtml((item.sizes || []).join(", ") || "-")}</dd></div>
+          <div><dt>색상</dt><dd>${escapeHtml(item.color || (item.colors || []).join(", ") || "-")}</dd></div>
+          <div><dt>사이즈</dt><dd>${escapeHtml(item.size || (item.sizes || []).join(", ") || "-")}</dd></div>
           <div><dt>메모</dt><dd>${escapeHtml(item.memo || "-")}</dd></div>
         </dl>
         <button type="button" class="text-button" data-remove-sample="${index}">삭제</button>
@@ -318,7 +324,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-sample-list`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-sample-pairs`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -463,7 +469,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-sample-list">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-sample-pairs">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -509,13 +515,13 @@
           <div class="swatch-row">${colorSwatches(product)}</div>
           <div class="sample-selector" data-sample-selector>
             <p class="filter-label">샘플 문의 선택</p>
-            <p>필요한 색상과 사이즈를 선택한 뒤 샘플 문의 리스트에 담아주세요.</p>
+            <p>색상과 사이즈를 하나씩 선택해서 담아주세요. 담은 뒤에는 선택값이 초기화됩니다.</p>
             <div class="sample-choice-block">
               <h3>색상 선택</h3>
               <div class="sample-choice-grid">
                 ${product.colors.map((color) => `
                   <label class="sample-choice">
-                    <input type="checkbox" name="sample-color" value="${escapeHtml(color.nameKr)}">
+                    <input type="radio" name="sample-color" value="${escapeHtml(color.nameKr)}">
                     <span class="swatch small" style="background:${color.hex}"></span>
                     <span>${escapeHtml(color.nameKr)}</span>
                   </label>
@@ -527,7 +533,7 @@
               <div class="sample-size-grid">
                 ${product.sizes.map((size) => `
                   <label class="sample-size">
-                    <input type="checkbox" name="sample-size" value="${escapeHtml(size.size)}">
+                    <input type="radio" name="sample-size" value="${escapeHtml(size.size)}">
                     <span>${escapeHtml(size.size)}</span>
                   </label>
                 `).join("")}
@@ -647,13 +653,24 @@
     if (addButton) {
       addButton.addEventListener("click", () => {
         const selector = qs("[data-sample-selector]", mount);
-        const colors = qsa('input[name="sample-color"]:checked', selector).map((input) => input.value);
-        const sizes = qsa('input[name="sample-size"]:checked', selector).map((input) => input.value);
-        const memo = String(qs('[name="sample-memo"]', selector)?.value || "").trim();
+        const colorInput = qs('input[name="sample-color"]:checked', selector);
+        const sizeInput = qs('input[name="sample-size"]:checked', selector);
+        const memoInput = qs('[name="sample-memo"]', selector);
+        const memo = String(memoInput?.value || "").trim();
         const status = qs("[data-sample-add-status]", selector);
 
-        addSampleItem(product, { colors, sizes, memo });
-        if (status) status.textContent = "샘플 문의 리스트에 담았습니다.";
+        if (!colorInput || !sizeInput) {
+          if (status) status.textContent = "색상과 사이즈를 하나씩 선택해주세요.";
+          return;
+        }
+
+        addSampleItem(product, { color: colorInput.value, size: sizeInput.value, memo });
+        const addedText = `${colorInput.value} ${sizeInput.value}`;
+        qsa('input[name="sample-color"], input[name="sample-size"]', selector).forEach((input) => {
+          input.checked = false;
+        });
+        if (memoInput) memoInput.value = "";
+        if (status) status.textContent = `${addedText} 조합을 샘플 문의 리스트에 담았습니다.`;
       });
     }
 
