@@ -2,7 +2,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260519-sample-panel-fix";
+  const assetVersion = "20260520-sample-cart";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -100,7 +100,7 @@
       target.textContent = String(count);
     });
     qsa("[data-sample-count-label]").forEach((target) => {
-      target.textContent = count ? `담은 제품 ${count}개` : "담은 제품 없음";
+      target.textContent = count ? `담은 샘플 ${count}개` : "담은 샘플 없음";
     });
   }
 
@@ -108,14 +108,14 @@
     const list = readSampleList();
     const contact = collectSampleContact();
     const lines = [
-      "T-WORLD KOREA 샘플 문의",
+      "T-WORLD KOREA 샘플 신청",
       "",
       `회사명: ${contact.company || "-"}`,
       `성함: ${contact.name || "-"}`,
       `연락처: ${contact.phone || "-"}`,
       `이메일: ${contact.email || "-"}`,
       "",
-      "선택 제품:"
+      "샘플 신청할 제품:"
     ];
 
     if (list.length === 0) {
@@ -233,8 +233,8 @@
     if (qs("[data-sample-panel]")) return;
 
     document.body.insertAdjacentHTML("beforeend", `
-      <button class="sample-floating-button" type="button" data-open-sample-list aria-label="샘플 문의 리스트 열기">
-        <span>샘플 목록</span>
+      <button class="sample-floating-button" type="button" data-open-sample-list aria-label="샘플 장바구니 열기">
+        <span>장바구니</span>
         <strong data-sample-count>0</strong>
       </button>
       <aside class="sample-panel" data-sample-panel aria-hidden="true" aria-labelledby="sample-panel-title">
@@ -242,13 +242,13 @@
         <div class="sample-panel-body" role="dialog" aria-modal="true">
           <div class="sample-panel-header">
             <div>
-              <p class="eyebrow">샘플 문의 리스트</p>
-              <h2 id="sample-panel-title">담아둔 제품</h2>
-              <p data-sample-count-label>담은 제품 없음</p>
+              <p class="eyebrow">샘플 장바구니</p>
+              <h2 id="sample-panel-title">샘플 신청할 제품</h2>
+              <p data-sample-count-label>담은 샘플 없음</p>
             </div>
-            <button class="sample-panel-close" type="button" data-close-sample-list aria-label="샘플 문의 리스트 닫기">닫기</button>
+            <button class="sample-panel-close" type="button" data-close-sample-list aria-label="샘플 장바구니 닫기">닫기</button>
           </div>
-          <p class="sample-panel-help">원하는 제품과 색상을 담아둔 뒤 내용을 복사해서 카카오톡으로 보내주세요.</p>
+          <p class="sample-panel-help">샘플 신청할 제품과 색상을 담은 뒤 내용을 복사해서 카카오톡으로 보내주세요.</p>
           <p class="sample-color-notice">제품의 실제 색상은 사용하는 모니터 설정, 디스플레이 패널 종류, 기기 밝기에 따라 화면과 다르게 보일 수 있습니다. 가능하시다면 쇼룸에 방문하셔서 직접 확인 후 선택하시는 것을 추천드립니다.</p>
           <div class="sample-contact-fields" data-sample-contact>
             <label>
@@ -268,7 +268,7 @@
               <input type="email" name="sample-email" placeholder="contact@example.com">
             </label>
           </div>
-          <p class="sample-empty" data-sample-empty>아직 담은 제품이 없습니다.</p>
+          <p class="sample-empty" data-sample-empty>아직 샘플 장바구니에 담은 제품이 없습니다.</p>
           <div class="sample-list" data-sample-list></div>
           <p class="template-status" data-sample-status role="status" aria-live="polite"></p>
           <div class="sample-panel-actions">
@@ -410,7 +410,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260519-sample-panel-fix`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260520-sample-cart`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -555,7 +555,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260519-sample-panel-fix">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260520-sample-cart">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -600,7 +600,7 @@
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
           <div class="sample-selector" data-sample-selector>
-            <p class="filter-label">샘플 문의 선택</p>
+            <p class="filter-label">샘플 신청 선택</p>
             <p>색상과 사이즈를 하나씩 선택해서 담아주세요. 담은 뒤에는 선택값이 초기화됩니다.</p>
             <p class="sample-color-notice">제품의 실제 색상은 사용하는 모니터 설정, 디스플레이 패널 종류, 기기 밝기에 따라 화면과 다르게 보일 수 있습니다. 가능하시다면 쇼룸에 방문하셔서 직접 확인 후 선택하시는 것을 추천드립니다.</p>
             <div class="sample-choice-block">
@@ -632,8 +632,8 @@
             </label>
             <p class="template-status" data-sample-add-status role="status" aria-live="polite"></p>
             <div class="sample-actions">
-              <button class="btn btn-dark full" type="button" data-add-sample>샘플 문의 리스트에 담기</button>
-              <button class="btn btn-light full" type="button" data-open-sample-list>담은 제품 보기</button>
+              <button class="btn btn-dark full" type="button" data-add-sample>샘플 장바구니에 담기</button>
+              <button class="btn btn-light full" type="button" data-open-sample-list>장바구니 보기</button>
             </div>
           </div>
         </aside>
@@ -757,7 +757,7 @@
           input.checked = false;
         });
         if (memoInput) memoInput.value = "";
-        if (status) status.textContent = `${addedText} 조합을 샘플 문의 리스트에 담았습니다.`;
+        if (status) status.textContent = `${addedText} 조합을 샘플 장바구니에 담았습니다.`;
       });
     }
 
