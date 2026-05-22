@@ -3183,7 +3183,7 @@ const catalogItems = [
   ["LK3401", "340G 기모 조거바지", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "pants", "pants", 35, ["Heavy Weight"]]
 ];
 
-const hiddenProductCodes = new Set(["3053", "T160", "7001-LS"]);
+const hiddenProductCodes = new Set(["T160", "7001-LS"]);
 
 function slugifyCode(code) {
   return code.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
