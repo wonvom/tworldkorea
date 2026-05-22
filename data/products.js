@@ -3204,6 +3204,22 @@ function getImageSlots(slug, code, name) {
 }
 
 const productImageOverrides = {
+  "3053": {
+    thumbnail: "images/products/3053/3053-front.jpg",
+    images: ["images/products/3053/3053-front.jpg"],
+    imageSlots: {
+      main: "images/products/3053/3053-front.jpg",
+      front: "images/products/3053/3053-front.jpg",
+      back: "images/products/3053/3053-back.jpg",
+      model: [],
+      detail: [
+        "images/products/3053/3053-detail-01.jpg",
+        "images/products/3053/3053-detail-02.jpg"
+      ],
+      fabric: [],
+      colorChart: ""
+    }
+  },
   "01oa1": {
     thumbnail: "images/products/01OA1/01OA1-front.jpg",
     images: ["images/products/01OA1/01OA1-front.jpg"],
