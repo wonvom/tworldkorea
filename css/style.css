@@ -410,6 +410,34 @@ p {
   border: 1px solid rgba(9, 9, 9, 0.08);
 }
 
+.model-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 6px 10px;
+  border: 1px solid rgba(9, 9, 9, 0.16);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  transition: background 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+
+.product-card:hover .model-badge {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
 .product-card .image-frame img {
   object-fit: contain;
   padding: clamp(14px, 2.4vw, 34px);
@@ -427,12 +455,12 @@ p {
   display: inline-flex;
   align-items: center;
   min-height: 30px;
-  padding: 5px 9px;
-  border: 1px solid rgba(9, 9, 9, 0.18);
-  background: var(--light-gray);
+  padding: 5px 10px;
+  border: 1px solid rgba(9, 9, 9, 0.28);
+  background: var(--white);
   color: var(--black);
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 800;
   line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
