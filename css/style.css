@@ -429,21 +429,33 @@ p {
   gap: 8px;
   min-height: 32px;
   padding: 7px 10px;
-  border: 1px solid var(--black);
-  background: var(--black);
-  color: var(--white);
+  border: 1px solid rgba(9, 9, 9, 0.24);
+  background: var(--white);
+  color: var(--black);
   font-size: 15px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
 }
 
 .product-code span {
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--mid-gray);
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.14em;
+  transition: color 220ms ease;
+}
+
+.product-card:hover .product-code {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+.product-card:hover .product-code span {
+  color: rgba(255, 255, 255, 0.68);
 }
 
 .product-meta {
