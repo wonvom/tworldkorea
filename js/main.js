@@ -2,7 +2,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260522-3053-images";
+  const assetVersion = "20260522-model-code";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -410,7 +410,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260522-3053-images`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260522-model-code`;
     return `
       <a class="product-card image-card" href="${detailHref}">
         <span class="image-frame" data-label="${product.code} Front Image">
@@ -555,7 +555,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260522-3053-images">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260522-model-code">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
@@ -585,7 +585,7 @@
           </div>
         </div>
         <aside class="detail-summary">
-          <p class="eyebrow">${product.code}</p>
+          <p class="product-detail-code"><span>MODEL NO.</span>${product.code}</p>
           <h1>${product.name}</h1>
           <p class="product-subtitle">${product.nameCn}<br>${product.nameEn}</p>
           <p>${product.description}</p>
