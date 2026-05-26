@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --white: #ffffff;
   --ivory: #f7f4ee;
   --stone: #e6e3dc;
@@ -19,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
