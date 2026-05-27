@@ -3161,7 +3161,7 @@ const catalogItems = [
   ["2406", "200G 여성 크롭 티셔츠", "200G女款短版T恤", "200G Women's Crop T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "slimWomen", "women", 13, []],
   ["2405", "240G 여성 워싱 티셔츠", "240G女款水洗T恤", "240G Women's Washed T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "240G", "slimWomen", "women", 14, []],
   ["2408", "200G 여성 슬림핏 티셔츠", "200G女款修身T恤", "200G Women's Slim Fit T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "slimWomen", "women", 15, []],
-  ["3053", "60수 250G 반팔 티셔츠", "60支250G短袖T恤", "60s 250G T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 63% Polyester 29% Span 8%", "250G", "topS5", "neutral", 16, []],
+  ["3053", "60수 250G 반팔 티셔츠", "60支250G粘胶纤维混纺短袖T恤", "60s 250G Rayon Blend T-Shirt", "Short Sleeve", "Regular Fit", "Rayon 63% Polyester 29% Spandex 8%", "250G", "topS5", "neutral", 16, []],
   ["7001-KIDS", "24수 180G 순면 아동 반팔 티셔츠", "24支180G儿童精梳棉T恤", "24s 180G Kids Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "fullTee", 17, []],
   ["T160", "190G 코튼 터치 반팔 티셔츠", "190G棉感短袖T恤", "190G Cotton Touch T-Shirt", "Short Sleeve", "Regular Fit", "Cotton Blend", "190G", "topS5", "basic", 18, []],
   ["Q2000", "21수 200G 스탠다드 핏 반팔 티셔츠", "21支200G清爽色彩T恤", "21s 200G Fresh Color T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "200G", "topS5", "fullTee", 19, []],
