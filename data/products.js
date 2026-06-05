@@ -3453,7 +3453,7 @@ const catalogItems = [
   ["3505", "350G 워싱 맨투맨", "350G水洗卫衣", "350G Washed Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "350G", "size_3505", "hoodie", 32, ["Heavy Weight"]],
   ["3508", "350G 워싱 후드티", "350G水洗连帽卫衣", "350G Washed Hoodie", "Hoodie", "Relaxed Fit", "Cotton 100%", "350G", "size_3508", "hoodie", 33, ["Heavy Weight"]],
   ["CK280", "280G 스웨트바지", "280G卫裤", "280G Sweatpants", "Pants", "Regular Fit", "Cotton 65% Polyester 35%", "280G", "size_CK280", "pants", 34, []],
-  ["LK3401", "340G 기모 조거바지", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "size_LK3401", "pants", 35, ["Heavy Weight"]]
+  ["LK3401", "340G 조거바지", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "size_LK3401", "pants", 35, ["Heavy Weight"]]
 ];
 
 const hiddenProductCodes = new Set(["T160", "7001-LS"]);
