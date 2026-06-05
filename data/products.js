@@ -3093,94 +3093,367 @@ function colorImageFallbacks(folder, code, color) {
   ]);
 }
 
+const sizeFieldSets = {
+  top: [
+    { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+    { key: "chest", label: "가슴", labelCn: "胸围", labelEn: "Chest" },
+    { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" },
+    { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
+    { key: "sleeve", label: "소매", labelCn: "袖长", labelEn: "Sleeve" },
+    { key: "height", label: "추천 키", labelCn: "推荐身高", labelEn: "Height" },
+    { key: "weight", label: "추천 몸무게", labelCn: "推荐体重", labelEn: "Weight" }
+  ],
+  topCirc: [
+    { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+    { key: "chest", label: "가슴둘레", labelCn: "胸围", labelEn: "Chest" },
+    { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" },
+    { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
+    { key: "sleeve", label: "소매", labelCn: "袖长", labelEn: "Sleeve" },
+    { key: "height", label: "추천 키", labelCn: "推荐身高", labelEn: "Height" },
+    { key: "weight", label: "추천 몸무게", labelCn: "推荐体重", labelEn: "Weight" }
+  ],
+  topCircWaist: [
+    { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+    { key: "chest", label: "가슴둘레", labelCn: "胸围", labelEn: "Chest" },
+    { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" },
+    { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
+    { key: "sleeve", label: "소매", labelCn: "袖长", labelEn: "Sleeve" },
+    { key: "waist", label: "허리둘레", labelCn: "腰围", labelEn: "Waist" },
+    { key: "height", label: "추천 키", labelCn: "推荐身高", labelEn: "Height" },
+    { key: "weight", label: "추천 몸무게", labelCn: "推荐体重", labelEn: "Weight" }
+  ],
+  sleeveless: [
+    { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+    { key: "chest", label: "가슴", labelCn: "胸围", labelEn: "Chest" },
+    { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" },
+    { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
+    { key: "height", label: "추천 키", labelCn: "推荐身高", labelEn: "Height" },
+    { key: "weight", label: "추천 몸무게", labelCn: "推荐体重", labelEn: "Weight" }
+  ],
+  simple: [
+    { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+    { key: "chest", label: "가슴", labelCn: "胸围", labelEn: "Chest" },
+    { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" }
+  ],
+  womenCrop: [
+    { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+    { key: "chest", label: "가슴", labelCn: "胸围", labelEn: "Chest" },
+    { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
+    { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" }
+  ],
+  pantsCk: [
+    { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+    { key: "waist", label: "허리둘레", labelCn: "腰围", labelEn: "Waist" },
+    { key: "hip", label: "엉덩이둘레", labelCn: "臀围", labelEn: "Hip" },
+    { key: "thigh", label: "허벅지둘레", labelCn: "大腿围", labelEn: "Thigh" },
+    { key: "length", label: "총장", labelCn: "裤长", labelEn: "Length" },
+    { key: "height", label: "추천 키", labelCn: "推荐身高", labelEn: "Height" },
+    { key: "weight", label: "추천 몸무게", labelCn: "推荐体重", labelEn: "Weight" }
+  ],
+  pantsLk: [
+    { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
+    { key: "waist", label: "허리둘레", labelCn: "腰围", labelEn: "Waist" },
+    { key: "hip", label: "엉덩이둘레", labelCn: "臀围", labelEn: "Hip" },
+    { key: "legOpening", label: "밑단둘레", labelCn: "脚口", labelEn: "Leg Opening" },
+    { key: "thigh", label: "허벅지둘레", labelCn: "大腿围", labelEn: "Thigh" },
+    { key: "length", label: "총장", labelCn: "裤长", labelEn: "Length" }
+  ]
+};
+
+function makeSizeRows(keys, rows) {
+  return rows.map((row) => Object.fromEntries(keys.map((key, index) => [key, row[index]])));
+}
+
+function makeSizeTemplate(fieldSetKey, keys, rows) {
+  return {
+    sizeFields: sizeFieldSets[fieldSetKey],
+    sizes: makeSizeRows(keys, rows)
+  };
+}
+
+const topKeys = ["size", "chest", "length", "shoulder", "sleeve", "height", "weight"];
+const topWaistKeys = ["size", "chest", "length", "shoulder", "sleeve", "waist", "height", "weight"];
+const sleevelessKeys = ["size", "chest", "length", "shoulder", "height", "weight"];
+const simpleKeys = ["size", "chest", "length"];
+const womenCropKeys = ["size", "chest", "shoulder", "length"];
+const pantsCkKeys = ["size", "waist", "hip", "thigh", "length", "height", "weight"];
+const pantsLkKeys = ["size", "waist", "hip", "legOpening", "thigh", "length"];
+
 const sizeTemplates = {
-  topS5: {
-    sizeFields: [
-      { key: "size", label: "사이즈", labelCn: "尺码表", labelEn: "Size" },
-      { key: "chest", label: "가슴", labelCn: "胸围", labelEn: "Chest" },
-      { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" },
-      { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
-      { key: "sleeve", label: "소매", labelCn: "袖长", labelEn: "Sleeve" },
-      { key: "height", label: "추천 키", labelCn: "推荐身高", labelEn: "Height" },
-      { key: "weight", label: "추천 몸무게", labelCn: "推荐体重", labelEn: "Weight" }
-    ],
-    sizes: [
-      { size: "S", chest: "47", length: "65", shoulder: "43", sleeve: "19", height: "160-165cm", weight: "45-55kg" },
-      { size: "M", chest: "50", length: "67", shoulder: "47", sleeve: "20", height: "165-170cm", weight: "55-65kg" },
-      { size: "L", chest: "53", length: "70", shoulder: "50", sleeve: "21", height: "170-175cm", weight: "65-80kg" },
-      { size: "XL", chest: "56", length: "73", shoulder: "53", sleeve: "22", height: "175-180cm", weight: "80-90kg" },
-      { size: "2XL", chest: "59", length: "75", shoulder: "56", sleeve: "23", height: "180-185cm", weight: "90-100kg" },
-      { size: "3XL", chest: "62", length: "77.5", shoulder: "59", sleeve: "24", height: "185-190cm", weight: "100-110kg" },
-      { size: "4XL", chest: "65", length: "80.5", shoulder: "62", sleeve: "25", height: "190-200cm", weight: "110-120kg" },
-      { size: "5XL", chest: "68", length: "83", shoulder: "65", sleeve: "26", height: "200-210cm", weight: "120-130kg" }
-    ]
-  },
-  slimWomen: {
-    sizeFields: [
-      { key: "size", label: "사이즈", labelCn: "尺码", labelEn: "Size" },
-      { key: "chest", label: "가슴", labelCn: "胸围", labelEn: "Chest" },
-      { key: "length", label: "총장", labelCn: "衣长", labelEn: "Length" },
-      { key: "shoulder", label: "어깨", labelCn: "肩宽", labelEn: "Shoulder" },
-      { key: "sleeve", label: "소매", labelCn: "袖长", labelEn: "Sleeve" }
-    ],
-    sizes: [
-      { size: "S", chest: "38", length: "52", shoulder: "34", sleeve: "15" },
-      { size: "M", chest: "40", length: "54", shoulder: "36", sleeve: "16" },
-      { size: "L", chest: "42", length: "56", shoulder: "38", sleeve: "17" }
-    ]
-  },
-  pants: {
-    sizeFields: [
-      { key: "size", label: "사이즈", labelCn: "尺码", labelEn: "Size" },
-      { key: "waist", label: "허리", labelCn: "腰围", labelEn: "Waist" },
-      { key: "hip", label: "엉덩이", labelCn: "臀围", labelEn: "Hip" },
-      { key: "rise", label: "밑위", labelCn: "前档", labelEn: "Rise" },
-      { key: "thigh", label: "허벅지", labelCn: "大腿围", labelEn: "Thigh" },
-      { key: "length", label: "총장", labelCn: "裤长", labelEn: "Length" }
-    ],
-    sizes: [
-      { size: "M", waist: "34", hip: "52", rise: "31", thigh: "31", length: "100" },
-      { size: "L", waist: "36", hip: "55", rise: "32", thigh: "32", length: "102" },
-      { size: "XL", waist: "38", hip: "58", rise: "33", thigh: "33", length: "104" },
-      { size: "2XL", waist: "40", hip: "61", rise: "34", thigh: "34", length: "106" }
-    ]
-  }
+  size_01OA1: makeSizeTemplate("top", topKeys, [
+    ["S", "47", "65", "43", "19", "160-165cm", "45-55kg"],
+    ["M", "50", "67", "47", "20", "165-170cm", "55-65kg"],
+    ["L", "53", "70", "50", "21", "170-175cm", "65-80kg"],
+    ["XL", "56", "73", "53", "22", "175-180cm", "80-90kg"],
+    ["2XL", "59", "75", "56", "23", "180-185cm", "90-100kg"],
+    ["3XL", "62", "77.5", "59", "24", "185-190cm", "100-110kg"],
+    ["4XL", "65", "80.5", "62", "25", "190-200cm", "110-120kg"],
+    ["5XL", "68", "83", "65", "26", "200-210cm", "120-130kg"]
+  ]),
+  size_7001: makeSizeTemplate("top", topKeys, [
+    ["XS", "45", "64", "43", "19.5", "155cm 이하", "45kg 이하"],
+    ["S", "47.5", "67", "45.5", "21", "155-160cm", "45-55kg"],
+    ["M", "50", "69", "48", "21", "165-170cm", "55-60kg"],
+    ["L", "52.5", "71", "50.5", "22", "170-175cm", "60-75kg"],
+    ["XL", "55", "73", "53", "22", "175-180cm", "75-80kg"],
+    ["2XL", "57.5", "75", "55.5", "23", "180-185cm", "80-85kg"],
+    ["3XL", "60", "77", "58", "23", "185-190cm", "85-90kg"],
+    ["4XL", "63", "79", "60.5", "23", "190-195cm", "90-100kg"],
+    ["5XL", "67", "83", "63", "24", "195-200cm", "100-110kg"],
+    ["6XL", "71", "86", "66", "24", "200-210cm", "110-120kg"]
+  ]),
+  size_03XA5: makeSizeTemplate("top", topKeys, [
+    ["S", "50", "67.5", "49", "21", "160-165cm", "50-60kg"],
+    ["M", "52.5", "69.5", "51.5", "21.5", "165-170cm", "60-65kg"],
+    ["L", "55", "71.5", "54", "22", "170-175cm", "65-75kg"],
+    ["XL", "57.5", "73.5", "56.5", "22.5", "175-180cm", "75-85kg"],
+    ["2XL", "60", "75.5", "59", "23", "180-185cm", "85-90kg"],
+    ["3XL", "62.5", "77.5", "61.5", "23.5", "185-200cm", "90-100kg"]
+  ]),
+  size_T210: makeSizeTemplate("topCircWaist", topWaistKeys, [
+    ["S", "94", "64", "41", "21.5", "93", "160-165cm", "45-55kg"],
+    ["M", "98", "66", "42.5", "22", "97", "165-170cm", "55-60kg"],
+    ["L", "106", "70", "45.5", "23", "105", "170-175cm", "60-65kg"],
+    ["XL", "110", "72", "47", "23.5", "109", "175-180cm", "65-70kg"],
+    ["2XL", "114", "74", "48.5", "24", "113", "180-185cm", "70-80kg"],
+    ["3XL", "118", "76", "50", "24.5", "117", "185-190cm", "80-90kg"],
+    ["4XL", "122", "78", "51.5", "25", "121", "185-195cm", "90-100kg"]
+  ]),
+  size_O3000: makeSizeTemplate("top", topKeys, [
+    ["S", "57", "73", "53", "21.5", "150-160cm", "40-50kg"],
+    ["M", "59", "75", "54.5", "22.5", "160-170cm", "55-70kg"],
+    ["L", "61", "77", "56", "23.5", "170-180cm", "70-85kg"],
+    ["XL", "63", "79", "57.5", "24.5", "180-190cm", "85-95kg"],
+    ["2XL", "65", "81", "59", "25.5", "190-200cm", "95-105kg"]
+  ]),
+  size_23012: makeSizeTemplate("top", topKeys, [
+    ["S", "53", "68", "50", "20", "150-155cm", "40-50kg"],
+    ["M", "56", "71", "53", "21.5", "155-165cm", "50-60kg"],
+    ["L", "59", "74", "56", "23", "160-170cm", "60-70kg"],
+    ["XL", "62", "77", "59", "24.5", "165-175cm", "75-85kg"],
+    ["2XL", "65", "80", "62", "26", "170-175cm", "90-100kg"],
+    ["3XL", "68", "83", "65", "27.5", "175-185cm", "100-110kg"],
+    ["4XL", "71", "86", "68", "29", "180-190cm", "110-120kg"],
+    ["5XL", "74", "89", "71", "30.5", "185-195cm", "120-130kg"]
+  ]),
+  size_27012: makeSizeTemplate("top", topKeys, [
+    ["S", "53", "68", "52", "20", "155-165cm", "45-55kg"],
+    ["M", "56", "71", "55", "21.5", "160-170cm", "55-70kg"],
+    ["L", "59", "74", "58", "23", "165-175cm", "70-85kg"],
+    ["XL", "62", "77", "61", "24.5", "170-180cm", "85-100kg"]
+  ]),
+  size_S2000: makeSizeTemplate("top", topKeys, [
+    ["S", "46", "43.5", "40", "16.5", "150-165cm", "45-50kg"],
+    ["M", "48.5", "44.5", "42", "17", "155-170cm", "50-55kg"],
+    ["L", "49.5", "45.5", "43", "18", "160-175cm", "55-65kg"]
+  ]),
+  size_08VS30: makeSizeTemplate("sleeveless", sleevelessKeys, [
+    ["M", "48", "66", "41", "165-170cm", "50-60kg"],
+    ["L", "51", "69", "43", "170-175cm", "60-65kg"],
+    ["XL", "54", "72", "45", "175-180cm", "65-70kg"],
+    ["2XL", "57", "74", "47", "180-190cm", "70-85kg"],
+    ["3XL", "60", "76.5", "49", "185-195cm", "85-100kg"]
+  ]),
+  size_2403: makeSizeTemplate("simple", simpleKeys, [
+    ["Free Size", "36", "51"]
+  ]),
+  size_2406: makeSizeTemplate("womenCrop", womenCropKeys, [
+    ["S", "33", "40", "48"],
+    ["M", "34", "42", "50"],
+    ["L", "35", "44", "52"]
+  ]),
+  size_3053: makeSizeTemplate("topCircWaist", topWaistKeys, [
+    ["S", "94", "65", "41", "21.5", "93", "160-165cm", "45-55kg"],
+    ["M", "98", "67", "42.5", "22", "97", "165-170cm", "55-60kg"],
+    ["L", "106", "71", "45.5", "23", "105", "170-175cm", "60-65kg"],
+    ["XL", "110", "73", "47", "23.5", "109", "175-180cm", "65-70kg"],
+    ["2XL", "114", "75", "48.5", "24", "113", "180-185cm", "70-80kg"],
+    ["3XL", "118", "77", "50", "24.5", "117", "185-190cm", "80-90kg"],
+    ["4XL", "122", "79", "51.5", "25", "121", "185-195cm", "90-100kg"]
+  ]),
+  size_7001_KIDS: makeSizeTemplate("top", topKeys, [
+    ["110", "32.5", "44", "30", "13", "105-115cm", "16-19.5kg"],
+    ["120", "35", "47", "32.5", "14", "115-125cm", "19-24kg"],
+    ["130", "37.5", "51", "35", "15", "125-130cm", "23.5-28.5kg"],
+    ["140", "40", "55", "37.5", "16", "130-140cm", "29-34.5kg"],
+    ["150", "42.5", "59", "40", "17", "140-150cm", "35-40kg"]
+  ]),
+  size_T160: makeSizeTemplate("topCirc", topKeys, [
+    ["S", "96.5", "66", "43.2", "20.3", "160-165cm", "45-55kg"],
+    ["M", "101.5", "68.5", "45.7", "21.6", "165-170cm", "55-65kg"],
+    ["L", "106.5", "71", "48.2", "22.8", "170-175cm", "65-80kg"],
+    ["XL", "111.5", "73.5", "50.7", "24", "175-180cm", "80-90kg"],
+    ["2XL", "116.5", "76", "53.2", "25.4", "180-185cm", "90-100kg"],
+    ["3XL", "122", "78.5", "55.7", "26.7", "185-190cm", "100-110kg"],
+    ["5XL", "132", "84", "61", "29.2", "190-200cm", "110-120kg"]
+  ]),
+  size_Q2000: makeSizeTemplate("top", topKeys, [
+    ["S", "47.5", "67", "45.5", "21", "160-165cm", "45-55kg"],
+    ["M", "50", "69", "48", "21.5", "165-170cm", "55-65kg"],
+    ["L", "52.5", "71", "50.5", "22", "170-175cm", "65-75kg"],
+    ["XL", "55", "73", "53", "22.5", "175-180cm", "75-85kg"],
+    ["2XL", "57.5", "75", "55.5", "23", "180-185cm", "85-95kg"],
+    ["3XL", "60", "77", "58", "23", "185-190cm", "95-105kg"]
+  ]),
+  size_HP004: makeSizeTemplate("simple", simpleKeys, [
+    ["Free Size", "31", "51"]
+  ]),
+  size_7001_LS: makeSizeTemplate("top", topKeys, [
+    ["S", "50", "69", "48", "62", "165-170cm", "55-60kg"],
+    ["M", "52.5", "71", "50.5", "63", "170-175cm", "60-75kg"],
+    ["L", "55", "73", "53", "64", "175-180cm", "75-80kg"],
+    ["XL", "57.5", "75", "55.5", "65", "180-185cm", "80-85kg"],
+    ["2XL", "60", "77", "58", "66", "185-190cm", "85-90kg"],
+    ["3XL", "63", "79", "60.5", "67", "190-195cm", "90-100kg"]
+  ]),
+  size_QXK2521: makeSizeTemplate("topCirc", topKeys, [
+    ["S", "96", "66", "41", "57", "160-165cm", "40-50kg"],
+    ["M", "100", "68", "43", "58", "165-170cm", "50-60kg"],
+    ["L", "104", "70", "45", "59", "170-175cm", "60-70kg"],
+    ["XL", "108", "72", "47", "60", "175-180cm", "70-80kg"],
+    ["2XL", "112", "74", "49", "61", "180-185cm", "80-90kg"],
+    ["3XL", "116", "76", "51", "62", "185-190cm", "90-100kg"],
+    ["4XL", "120", "78", "53", "63", "190-195cm", "100-110kg"]
+  ]),
+  size_06OLK: makeSizeTemplate("top", topKeys, [
+    ["M", "50", "68", "43", "59", "165-170cm", "50-60kg"],
+    ["L", "52", "70", "45", "60", "170-175cm", "60-70kg"],
+    ["XL", "54", "72", "47", "61", "175-180cm", "70-80kg"],
+    ["2XL", "56", "74", "49", "62", "180-185cm", "80-90kg"],
+    ["3XL", "58", "76", "51", "63", "185-190cm", "90-100kg"],
+    ["4XL", "60", "78", "53", "64", "190-200cm", "100-110kg"]
+  ]),
+  size_Q2450: makeSizeTemplate("topCirc", topKeys, [
+    ["M", "104", "72", "46", "58", "165-175cm", "50-60kg"],
+    ["L", "112", "75", "51", "62", "170-180cm", "60-77.5kg"],
+    ["XL", "120", "77", "55", "64", "175-185cm", "77.5-90kg"],
+    ["2XL", "128", "82", "60", "66", "180-190cm", "90-110kg"]
+  ]),
+  size_0E2700: makeSizeTemplate("topCirc", topKeys, [
+    ["M", "112", "70.5", "53", "56", "155-165cm", "50-60kg"],
+    ["L", "118", "74", "56", "57", "165-175cm", "60-70kg"],
+    ["XL", "124", "76", "59", "58", "175-185cm", "70-80kg"]
+  ]),
+  size_YL2800: makeSizeTemplate("topCirc", topKeys, [
+    ["M", "98", "65", "52", "57", "160-165cm", "45-55kg"],
+    ["L", "104", "67", "55", "58", "165-170cm", "55-65kg"],
+    ["XL", "110", "69", "56", "59", "170-175cm", "65-75kg"],
+    ["2XL", "116", "71", "57", "60", "175-180cm", "75-85kg"],
+    ["3XL", "122", "73", "58", "61", "180-185cm", "85-95kg"],
+    ["4XL", "128", "75", "59", "62", "185-190cm", "95-105kg"]
+  ]),
+  size_YL3200: makeSizeTemplate("topCirc", topKeys, [
+    ["S", "100", "63", "40", "57", "155-160cm", "35-45kg"],
+    ["M", "104", "65", "42", "58", "160-165cm", "45-55kg"],
+    ["L", "108", "67", "44", "59", "165-170cm", "55-65kg"],
+    ["XL", "112", "69", "46", "60", "170-175cm", "65-75kg"],
+    ["2XL", "116", "71", "48", "61", "175-180cm", "75-85kg"],
+    ["3XL", "120", "73", "50", "62", "180-185cm", "85-95kg"]
+  ]),
+  size_LM2800: makeSizeTemplate("topCirc", topKeys, [
+    ["M", "98", "65", "52", "58", "160-165cm", "45-55kg"],
+    ["L", "104", "67", "55", "59", "165-170cm", "55-65kg"],
+    ["XL", "110", "69", "56", "60", "170-175cm", "65-75kg"],
+    ["2XL", "116", "71", "57", "61", "175-180cm", "75-85kg"],
+    ["3XL", "122", "73", "58", "62", "180-185cm", "85-95kg"],
+    ["4XL", "128", "75", "59", "63", "185-190cm", "95-105kg"]
+  ]),
+  size_LM3200: makeSizeTemplate("topCirc", topKeys, [
+    ["S", "100", "65", "41.5", "58", "155-160cm", "40-50kg"],
+    ["M", "104", "67", "43", "59", "160-165cm", "50-60kg"],
+    ["L", "108", "69", "44.5", "60", "165-170cm", "60-70kg"],
+    ["XL", "112", "71", "46", "61", "170-175cm", "70-80kg"],
+    ["2XL", "116", "73", "47.5", "62", "175-180cm", "80-90kg"],
+    ["3XL", "120", "75", "49", "63", "180-185cm", "90-100kg"]
+  ]),
+  size_QXX5200: makeSizeTemplate("topCirc", topKeys, [
+    ["S", "112", "68", "60", "56", "155-166cm", "40-50kg"],
+    ["M", "118", "71", "63", "57", "160-170cm", "45-60kg"],
+    ["L", "124", "73", "66", "58", "165-175cm", "55-70kg"],
+    ["XL", "130", "75", "69", "59", "170-185cm", "60-75kg"],
+    ["2XL", "136", "77", "72", "60", "180-190cm", "70-100kg"]
+  ]),
+  size_A23014: makeSizeTemplate("top", topKeys, [
+    ["M", "64", "69", "62", "53", "155-165cm", "50-65kg"],
+    ["L", "66", "71", "64", "54", "160-170cm", "65-80kg"],
+    ["XL", "68", "73", "66", "55", "165-175cm", "75-90kg"],
+    ["2XL", "70", "75", "68", "56", "170-180cm", "85-100kg"],
+    ["3XL", "72", "77", "70", "57", "175-185cm", "100-110kg"],
+    ["4XL", "74", "79", "72", "58", "180-190cm", "110-120kg"],
+    ["5XL", "76", "81", "74", "60", "185-195cm", "120-130kg"]
+  ]),
+  size_3505: makeSizeTemplate("top", topKeys, [
+    ["S", "62", "67", "60", "52", "145-155cm", "40-55kg"],
+    ["M", "64", "69", "62", "53", "155-165cm", "50-65kg"],
+    ["L", "66", "71", "64", "54", "160-170cm", "65-80kg"],
+    ["XL", "68", "73", "66", "55", "165-175cm", "75-90kg"],
+    ["2XL", "70", "75", "68", "56", "170-180cm", "85-100kg"],
+    ["3XL", "72", "77", "70", "57", "175-185cm", "100-110kg"],
+    ["4XL", "74", "79", "72", "58", "180-190cm", "110-120kg"],
+    ["5XL", "76", "81", "74", "60", "185-195cm", "120-130kg"]
+  ]),
+  size_3508: makeSizeTemplate("top", topKeys, [
+    ["S", "62", "67", "60", "52", "145-155cm", "40-55kg"],
+    ["M", "64", "69", "62", "53", "155-165cm", "50-65kg"],
+    ["L", "66", "71", "64", "54", "160-170cm", "65-80kg"],
+    ["XL", "68", "73", "66", "55", "165-175cm", "75-90kg"],
+    ["2XL", "70", "75", "68", "56", "170-180cm", "85-100kg"],
+    ["3XL", "72", "77", "70", "57", "175-185cm", "100-110kg"],
+    ["4XL", "74", "79", "72", "58", "180-190cm", "110-120kg"],
+    ["5XL", "76", "81", "74", "60", "185-195cm", "120-130kg"]
+  ]),
+  size_CK280: makeSizeTemplate("pantsCk", pantsCkKeys, [
+    ["S", "66", "108", "63", "96", "160-165cm", "50-57.5kg"],
+    ["M", "70", "112", "65", "97", "165-170cm", "57.5-65kg"],
+    ["L", "74", "116", "67", "98", "170-175cm", "65-72.5kg"],
+    ["XL", "78", "120", "69", "99", "175-180cm", "72.5-80kg"],
+    ["2XL", "82", "124", "71", "100", "180-185cm", "80-87.5kg"],
+    ["3XL", "86", "128", "73", "101", "185-190cm", "87.5-95kg"]
+  ]),
+  size_LK3401: makeSizeTemplate("pantsLk", pantsLkKeys, [
+    ["S", "66", "108", "38", "63", "96"],
+    ["M", "70", "112", "39", "65", "97"],
+    ["L", "74", "116", "40", "67", "98"],
+    ["XL", "78", "120", "41", "69", "99"],
+    ["2XL", "82", "124", "42", "71", "100"],
+    ["3XL", "86", "128", "43", "73", "101"]
+  ])
 };
 
 const catalogItems = [
-  ["01OA1", "20수 230G 반팔 티셔츠", "重磅微落肩版T恤", "20s 230G Heavyweight Semi Drop Shoulder T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 3, ["Heavy Weight", "Tubular"]],
-  ["7001", "24수 180G 반팔 티셔츠", "24支180G精梳棉T恤", "24s 180G Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "neutral", 4, []],
-  ["03XA5", "16수 250G 세미 와이드 반팔 티셔츠", "16支250G半宽松潮流T恤", "16s 250G Semi Wide Trend T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "250G", "topS5", "neutral", 5, ["Heavy Weight"]],
-  ["T210", "210G 아이스 실크 코튼 반팔 티셔츠", "冰丝棉短袖T恤", "210G Ice Silk Cotton Blend T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 40% Rayon 40% Polyester 20%", "210G", "topS5", "t210", 6, []],
-  ["O3000", "13수 300G 오버핏 반팔 티셔츠", "13支300G纯棉宽松T恤", "13s 300G Cotton Oversized T-Shirt", "Short Sleeve", "Oversized Fit", "Cotton 100%", "300G", "topS5", "neutral", 7, ["Heavy Weight"]],
-  ["23012", "20수 230G 빈티지 워싱 티셔츠", "20支230G复古水洗T恤", "20s 230G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "vintage", 8, []],
-  ["27012", "16수 270G 빈티지 워싱 티셔츠", "16支270G复古水洗T恤", "16s 270G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "270G", "topS5", "vintage", 9, ["Heavy Weight"]],
-  ["S2000", "210G 순면 여성 크롭 티셔츠", "210G纯棉女款短版T恤", "210G Cotton Women's Crop T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "210G", "slimWomen", "women", 10, []],
-  ["08VS30", "20수 230G 순면 민소매 나시", "20支230G纯棉背心", "20s 230G Cotton Sleeveless", "Sleeveless", "Regular Fit", "Cotton 100%", "230G", "slimWomen", "basic", 11, []],
-  ["2403", "240G 여성 워싱 나시", "240G女款水洗背心", "240G Women's Washed Sleeveless", "Sleeveless", "Regular Fit", "Cotton 95% Span 5%", "240G", "slimWomen", "women", 12, []],
-  ["2406", "200G 여성 크롭 티셔츠", "200G女款短版T恤", "200G Women's Crop T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "slimWomen", "women", 13, []],
-  ["2405", "240G 여성 워싱 티셔츠", "240G女款水洗T恤", "240G Women's Washed T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "240G", "slimWomen", "women", 14, []],
-  ["2408", "200G 여성 슬림핏 티셔츠", "200G女款修身T恤", "200G Women's Slim Fit T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "slimWomen", "women", 15, []],
-  ["3053", "60수 250G 반팔 티셔츠", "60支250G粘胶纤维混纺短袖T恤", "60s 250G Rayon Blend T-Shirt", "Short Sleeve", "Regular Fit", "Rayon 63% Polyester 29% Spandex 8%", "250G", "topS5", "neutral", 16, []],
-  ["7001-KIDS", "24수 180G 순면 아동 반팔 티셔츠", "24支180G儿童精梳棉T恤", "24s 180G Kids Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "fullTee", 17, []],
-  ["T160", "190G 코튼 터치 반팔 티셔츠", "190G棉感短袖T恤", "190G Cotton Touch T-Shirt", "Short Sleeve", "Regular Fit", "Cotton Blend", "190G", "topS5", "basic", 18, []],
-  ["Q2000", "21수 200G 스탠다드 핏 반팔 티셔츠", "21支200G清爽色彩T恤", "21s 200G Fresh Color T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "200G", "topS5", "fullTee", 19, []],
-  ["HP004", "220G 베이직 나시", "220G基础背心", "220G Basic Sleeveless", "Sleeveless", "Regular Fit", "Cotton 95% Span 5%", "220G", "slimWomen", "women", 20, []],
-  ["7001-LS", "24수 180G 코마 면 긴팔 티셔츠", "24支180G精梳棉长袖T恤", "24s 180G Combed Cotton Long Sleeve", "Long Sleeve", "Regular Fit", "Cotton 100%", "180G", "topS5", "basic", 21, []],
-  ["QXK2521", "21수 230G 순면 긴팔 티셔츠", "21支230G纯棉长袖T恤", "21s 230G Cotton Long Sleeve", "Long Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "fullTee", 22, []],
-  ["06OLK", "21수 230G 립 소매 긴팔 티셔츠", "21支230G罗纹袖长袖T恤", "21s 230G Rib Cuff Long Sleeve", "Long Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "topS5", "long", 23, []],
-  ["Q2450", "16수 260G 어깨라인 루즈핏 순면 긴팔 티셔츠", "16支260G肩线宽松纯棉长袖", "16s 260G Shoulder Line Relaxed Cotton Long Sleeve", "Long Sleeve", "Oversized Fit", "Cotton 100%", "260G", "topS5", "long", 24, ["Heavy Weight"]],
-  ["0E2700", "270G 순면 크루넥 맨투맨", "270G纯棉圆领卫衣", "270G Cotton Crewneck Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "270G", "topS5", "sweat", 25, ["Heavy Weight"]],
-  ["YL2800", "280G 맨투맨", "280G卫衣", "280G Sweatshirt", "Sweatshirt", "Regular Fit", "Cotton 90% Span 10%", "280G", "topS5", "sweat", 26, []],
-  ["YL3200", "320G 맨투맨", "320G卫衣", "320G Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "topS5", "fullTee", 27, ["Heavy Weight"]],
-  ["LM2800", "280G 후드티", "280G连帽卫衣", "280G Hoodie", "Hoodie", "Regular Fit", "Cotton 90% Span 10%", "280G", "topS5", "sweat", 28, []],
-  ["LM3200", "320G 후드티", "320G连帽卫衣", "320G Hoodie", "Hoodie", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "topS5", "fullTee", 29, ["Heavy Weight"]],
-  ["QXX5200", "480G 후드티", "480G连帽卫衣", "480G Hoodie", "Hoodie", "Oversized Fit", "Cotton 87% Span 13%", "480G", "topS5", "hoodie", 30, ["Heavy Weight"]],
-  ["A23014", "230G 워싱 긴팔 티셔츠", "230G水洗长袖T恤", "230G Washed Long Sleeve", "Sweatshirt", "Regular Fit", "Cotton 100%", "230G", "topS5", "vintage", 31, []],
-  ["3505", "350G 워싱 맨투맨", "350G水洗卫衣", "350G Washed Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "350G", "topS5", "hoodie", 32, ["Heavy Weight"]],
-  ["3508", "350G 워싱 후드티", "350G水洗连帽卫衣", "350G Washed Hoodie", "Hoodie", "Relaxed Fit", "Cotton 100%", "350G", "topS5", "hoodie", 33, ["Heavy Weight"]],
-  ["CK280", "280G 스웨트바지", "280G卫裤", "280G Sweatpants", "Pants", "Regular Fit", "Cotton 65% Polyester 35%", "280G", "pants", "pants", 34, []],
-  ["LK3401", "340G 기모 조거바지", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "pants", "pants", 35, ["Heavy Weight"]]
+  ["01OA1", "20수 230G 반팔 티셔츠", "重磅微落肩版T恤", "20s 230G Heavyweight Semi Drop Shoulder T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "size_01OA1", "fullTee", 3, ["Heavy Weight", "Tubular"]],
+  ["7001", "24수 180G 반팔 티셔츠", "24支180G精梳棉T恤", "24s 180G Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "size_7001", "neutral", 4, []],
+  ["03XA5", "16수 250G 세미 와이드 반팔 티셔츠", "16支250G半宽松潮流T恤", "16s 250G Semi Wide Trend T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "250G", "size_03XA5", "neutral", 5, ["Heavy Weight"]],
+  ["T210", "210G 아이스 실크 코튼 반팔 티셔츠", "冰丝棉短袖T恤", "210G Ice Silk Cotton Blend T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 40% Rayon 40% Polyester 20%", "210G", "size_T210", "t210", 6, []],
+  ["O3000", "13수 300G 오버핏 반팔 티셔츠", "13支300G纯棉宽松T恤", "13s 300G Cotton Oversized T-Shirt", "Short Sleeve", "Oversized Fit", "Cotton 100%", "300G", "size_O3000", "neutral", 7, ["Heavy Weight"]],
+  ["23012", "20수 230G 빈티지 워싱 티셔츠", "20支230G复古水洗T恤", "20s 230G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "size_23012", "vintage", 8, []],
+  ["27012", "16수 270G 빈티지 워싱 티셔츠", "16支270G复古水洗T恤", "16s 270G Vintage Washed T-Shirt", "Short Sleeve", "Relaxed Fit", "Cotton 100%", "270G", "size_27012", "vintage", 9, ["Heavy Weight"]],
+  ["S2000", "210G 순면 여성 크롭 티셔츠", "210G纯棉女款短版T恤", "210G Cotton Women's Crop T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "210G", "size_S2000", "women", 10, []],
+  ["08VS30", "20수 230G 순면 민소매 나시", "20支230G纯棉背心", "20s 230G Cotton Sleeveless", "Sleeveless", "Regular Fit", "Cotton 100%", "230G", "size_08VS30", "basic", 11, []],
+  ["2403", "240G 여성 워싱 나시", "240G女款水洗背心", "240G Women's Washed Sleeveless", "Sleeveless", "Regular Fit", "Cotton 95% Span 5%", "240G", "size_2403", "women", 12, []],
+  ["2406", "200G 여성 크롭 티셔츠", "200G女款短版T恤", "200G Women's Crop T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "size_2406", "women", 13, []],
+  ["2405", "240G 여성 워싱 티셔츠", "240G女款水洗T恤", "240G Women's Washed T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "240G", "size_2406", "women", 14, []],
+  ["2408", "200G 여성 슬림핏 티셔츠", "200G女款修身T恤", "200G Women's Slim Fit T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 95% Span 5%", "200G", "size_2406", "women", 15, []],
+  ["3053", "60수 250G 반팔 티셔츠", "60支250G粘胶纤维混纺短袖T恤", "60s 250G Rayon Blend T-Shirt", "Short Sleeve", "Regular Fit", "Rayon 63% Polyester 29% Spandex 8%", "250G", "size_3053", "neutral", 16, []],
+  ["7001-KIDS", "24수 180G 순면 아동 반팔 티셔츠", "24支180G儿童精梳棉T恤", "24s 180G Kids Combed Cotton T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "180G", "size_7001_KIDS", "fullTee", 17, []],
+  ["T160", "190G 코튼 터치 반팔 티셔츠", "190G棉感短袖T恤", "190G Cotton Touch T-Shirt", "Short Sleeve", "Regular Fit", "Cotton Blend", "190G", "size_T160", "basic", 18, []],
+  ["Q2000", "21수 200G 스탠다드 핏 반팔 티셔츠", "21支200G清爽色彩T恤", "21s 200G Fresh Color T-Shirt", "Short Sleeve", "Regular Fit", "Cotton 100%", "200G", "size_Q2000", "fullTee", 19, []],
+  ["HP004", "220G 베이직 나시", "220G基础背心", "220G Basic Sleeveless", "Sleeveless", "Regular Fit", "Cotton 95% Span 5%", "220G", "size_HP004", "women", 20, []],
+  ["7001-LS", "24수 180G 코마 면 긴팔 티셔츠", "24支180G精梳棉长袖T恤", "24s 180G Combed Cotton Long Sleeve", "Long Sleeve", "Regular Fit", "Cotton 100%", "180G", "size_7001_LS", "basic", 21, []],
+  ["QXK2521", "21수 230G 순면 긴팔 티셔츠", "21支230G纯棉长袖T恤", "21s 230G Cotton Long Sleeve", "Long Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "size_QXK2521", "fullTee", 22, []],
+  ["06OLK", "21수 230G 립 소매 긴팔 티셔츠", "21支230G罗纹袖长袖T恤", "21s 230G Rib Cuff Long Sleeve", "Long Sleeve", "Relaxed Fit", "Cotton 100%", "230G", "size_06OLK", "long", 23, []],
+  ["Q2450", "16수 260G 어깨라인 루즈핏 순면 긴팔 티셔츠", "16支260G肩线宽松纯棉长袖", "16s 260G Shoulder Line Relaxed Cotton Long Sleeve", "Long Sleeve", "Oversized Fit", "Cotton 100%", "260G", "size_Q2450", "long", 24, ["Heavy Weight"]],
+  ["0E2700", "270G 순면 크루넥 맨투맨", "270G纯棉圆领卫衣", "270G Cotton Crewneck Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "270G", "size_0E2700", "sweat", 25, ["Heavy Weight"]],
+  ["YL2800", "280G 맨투맨", "280G卫衣", "280G Sweatshirt", "Sweatshirt", "Regular Fit", "Cotton 90% Span 10%", "280G", "size_YL2800", "sweat", 26, []],
+  ["YL3200", "320G 맨투맨", "320G卫衣", "320G Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "size_YL3200", "fullTee", 27, ["Heavy Weight"]],
+  ["LM2800", "280G 후드티", "280G连帽卫衣", "280G Hoodie", "Hoodie", "Regular Fit", "Cotton 90% Span 10%", "280G", "size_LM2800", "sweat", 28, []],
+  ["LM3200", "320G 후드티", "320G连帽卫衣", "320G Hoodie", "Hoodie", "Relaxed Fit", "Cotton 87% Span 13%", "320G", "size_LM3200", "fullTee", 29, ["Heavy Weight"]],
+  ["QXX5200", "480G 후드티", "480G连帽卫衣", "480G Hoodie", "Hoodie", "Oversized Fit", "Cotton 87% Span 13%", "480G", "size_QXX5200", "hoodie", 30, ["Heavy Weight"]],
+  ["A23014", "230G 워싱 긴팔 티셔츠", "230G水洗长袖T恤", "230G Washed Long Sleeve", "Sweatshirt", "Regular Fit", "Cotton 100%", "230G", "size_A23014", "vintage", 31, []],
+  ["3505", "350G 워싱 맨투맨", "350G水洗卫衣", "350G Washed Sweatshirt", "Sweatshirt", "Relaxed Fit", "Cotton 100%", "350G", "size_3505", "hoodie", 32, ["Heavy Weight"]],
+  ["3508", "350G 워싱 후드티", "350G水洗连帽卫衣", "350G Washed Hoodie", "Hoodie", "Relaxed Fit", "Cotton 100%", "350G", "size_3508", "hoodie", 33, ["Heavy Weight"]],
+  ["CK280", "280G 스웨트바지", "280G卫裤", "280G Sweatpants", "Pants", "Regular Fit", "Cotton 65% Polyester 35%", "280G", "size_CK280", "pants", 34, []],
+  ["LK3401", "340G 기모 조거바지", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "size_LK3401", "pants", 35, ["Heavy Weight"]]
 ];
 
 const hiddenProductCodes = new Set(["T160", "7001-LS"]);
