@@ -3456,7 +3456,7 @@ const catalogItems = [
   ["LK3401", "340G 조거바지", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "size_LK3401", "pants", 35, ["Heavy Weight"]]
 ];
 
-const hiddenProductCodes = new Set(["T160", "7001-LS", "LM2800"]);
+const hiddenProductCodes = new Set(["T160", "7001-LS", "YL2800", "LM2800"]);
 
 function slugifyCode(code) {
   return code.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -4140,7 +4140,7 @@ const products = catalogItems.filter(([code]) => !hiddenProductCodes.has(code)).
 window.products = products;
 window.catalogSummary = {
   companyName: "(주)티월드코리아",
-  tel: "010-3585-4450",
+  tel: "010-2286-3584",
   address: "경기도 구리시 갈매순환로166번길 46, 금강펜테리움 IX센터 B코어 8층 08-081호",
   sourcePdf: "티월드코리아 카탈로그 26.05.07",
   categories: [
