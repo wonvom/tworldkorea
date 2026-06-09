@@ -2,10 +2,10 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260605-polyester-blend";
+  const assetVersion = "20260609-kakao-link";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
-  const kakaoTalkUrl = "https://open.kakao.com/o/srzTlOwi";
+  const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -410,7 +410,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260605-polyester-blend`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260609-kakao-link`;
     const customOrderBadge = product.category === "Pants" ? `<span class="custom-order-badge">주문제작</span>` : "";
     return `
       <a class="product-card image-card" href="${detailHref}">
@@ -557,7 +557,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260605-polyester-blend">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260609-kakao-link">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
