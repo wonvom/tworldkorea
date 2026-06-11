@@ -9,7 +9,8 @@ vm.createContext(context);
 vm.runInContext(source, context);
 
 const products = context.window.products || [];
-const expected = ["TH5615", "TH9309", "XF8281", "TH96001", "TH5611"];
+const expected = ["TH5615", "XF8281", "TH96001", "TH5611"];
+const hidden = ["TH9309"];
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -25,9 +26,18 @@ for (const code of expected) {
   assert(fs.existsSync(path.join(root, product.colors[0].image)), `${code} first color image is missing`);
 }
 
+for (const code of hidden) {
+  assert(!products.some((item) => item.code === code), `${code} should be hidden from visible products`);
+}
+
 assert(
-  context.window.catalogSummary.categories.some((category) => category.name === "Polo Shirt" && category.count === expected.length),
-  "Catalog summary should include five Polo Shirt products"
+  fs.existsSync(path.join(root, "images/products/TH9309/polo image.jpg")),
+  "Polo category image is missing"
 );
 
-console.log(`Validated ${expected.length} new Polo Shirt products.`);
+assert(
+  context.window.catalogSummary.categories.some((category) => category.name === "Polo Shirt" && category.count === expected.length),
+  "Catalog summary should include four visible Polo Shirt products"
+);
+
+console.log(`Validated ${expected.length} visible Polo Shirt products and hidden TH9309.`);
