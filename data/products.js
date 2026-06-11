@@ -3560,11 +3560,11 @@ const catalogItems = [
   ["3508", "350G 워싱 후드티", "350G水洗连帽卫衣", "350G Washed Hoodie", "Hoodie", "Relaxed Fit", "Cotton 100%", "350G", "size_3508", "hoodie", 33, ["Heavy Weight"]],
   ["CK280", "280G 스웨트바지", "280G卫裤", "280G Sweatpants", "Pants", "Regular Fit", "Cotton 65% Polyester 35%", "280G", "size_CK280", "pants", 34, []],
   ["LK3401", "340G 조거바지", "340G加绒束脚裤", "340G Fleece Jogger Pants", "Pants", "Relaxed Fit", "Cotton 85% Polyester 15%", "340G", "size_LK3401", "pants", 35, ["Heavy Weight"]],
-  ["TH5615", "150G 소로나 카라티", "150G Sorona Polo衫", "150G Sorona Polo Shirt", "Polo Shirt", "Regular Fit", "Sorona 100%", "150G", "size_TH5615", "basic", 36, []],
-  ["TH9309", "180G 스포츠 카라티", "180G运动Polo衫", "180G Sports Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 94% Spandex 6%", "180G", "size_TH9309", "basic", 37, []],
-  ["XF8281", "200G 스판 폴로 셔츠", "200G弹力Polo衫", "200G Stretch Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 50% Cooling Fiber 45% Spandex 6%", "200G", "size_XF8281", "basic", 38, []],
-  ["TH96001", "150G 빠른 건조 기능성 카라티", "150G速干功能Polo衫", "150G Quick Dry Functional Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 100%", "150G", "size_TH96001", "basic", 39, []],
-  ["TH5611", "200G 항균 UV차단 카라티", "200G抗菌防晒Polo衫", "200G Antibacterial UV Protection Polo Shirt", "Polo Shirt", "Regular Fit", "Nylon 88% Spandex 12%", "200G", "size_TH5611", "basic", 40, []]
+  ["TH5615", "150G 소로나 카라티", "150G Sorona Polo衫", "150G Sorona Polo Shirt", "Polo Shirt", "Regular Fit", "Sorona 100%", "150G", "size_TH5615", "basic", 32, []],
+  ["TH9309", "180G 스포츠 카라티", "180G运动Polo衫", "180G Sports Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 94% Spandex 6%", "180G", "size_TH9309", "basic", 33, []],
+  ["XF8281", "200G 스판 폴로 셔츠", "200G弹力Polo衫", "200G Stretch Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 50% Cooling Fiber 45% Spandex 6%", "200G", "size_XF8281", "basic", 34, []],
+  ["TH96001", "150G 빠른 건조 기능성 카라티", "150G速干功能Polo衫", "150G Quick Dry Functional Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 100%", "150G", "size_TH96001", "basic", 35, []],
+  ["TH5611", "200G 항균 UV차단 카라티", "200G抗菌防晒Polo衫", "200G Antibacterial UV Protection Polo Shirt", "Polo Shirt", "Regular Fit", "Nylon 88% Spandex 12%", "200G", "size_TH5611", "basic", 36, []]
 ];
 
 const hiddenProductCodes = new Set(["T160", "7001-LS", "YL2800", "LM2800", "TH9309"]);
@@ -4361,7 +4361,7 @@ window.catalogSummary = {
   companyName: "(주)티월드코리아",
   tel: "010-2286-3584",
   address: "경기도 구리시 갈매순환로166번길 46, 금강펜테리움 IX센터 B코어 8층 08-081호",
-  sourcePdf: "티월드코리아 카탈로그 26.05.07",
+  sourcePdf: "티월드코리아 카탈로그 26.06.11",
   categories: [
     { name: "Short Sleeve", count: products.filter((product) => product.category === "Short Sleeve").length },
     { name: "Sleeveless", count: products.filter((product) => product.category === "Sleeveless").length },
