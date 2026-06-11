@@ -3567,7 +3567,7 @@ const catalogItems = [
   ["TH5611", "200G 항균 UV차단 카라티", "200G抗菌防晒Polo衫", "200G Antibacterial UV Protection Polo Shirt", "Polo Shirt", "Regular Fit", "Nylon 88% Spandex 12%", "200G", "size_TH5611", "basic", 36, []]
 ];
 
-const hiddenProductCodes = new Set(["T160", "7001-LS", "YL2800", "LM2800", "TH9309"]);
+const hiddenProductCodes = new Set(["T160", "7001-LS", "YL2800", "LM2800", "TH9309", "2408"]);
 
 function slugifyCode(code) {
   return code.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

@@ -10,7 +10,7 @@ vm.runInContext(source, context);
 
 const products = context.window.products || [];
 const expected = ["TH5615", "XF8281", "TH96001", "TH5611"];
-const hidden = ["TH9309"];
+const hidden = ["TH9309", "2408"];
 const expectedPdfPages = new Map([
   ["TH5615", 32],
   ["XF8281", 34],
@@ -49,4 +49,9 @@ assert(
   "Catalog summary should include four visible Polo Shirt products"
 );
 
-console.log(`Validated ${expected.length} visible Polo Shirt products and hidden TH9309.`);
+assert(
+  context.window.catalogSummary.categories.some((category) => category.name === "Short Sleeve" && category.count === 13),
+  "Catalog summary should include thirteen visible Short Sleeve products"
+);
+
+console.log(`Validated ${expected.length} visible Polo Shirt products and hidden ${hidden.join(", ")}.`);
