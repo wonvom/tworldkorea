@@ -17,6 +17,11 @@ const expectedPdfPages = new Map([
   ["TH96001", 35],
   ["TH5611", 36]
 ]);
+const expectedWomenCropSizes = [
+  { size: "S", chest: "40", shoulder: "33", length: "48" },
+  { size: "M", chest: "42", shoulder: "34", length: "50" },
+  { size: "L", chest: "44", shoulder: "35", length: "52" }
+];
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -38,6 +43,13 @@ for (const code of hidden) {
 }
 
 assert(source.includes('"size_TH9309", "basic", 33, []'), "TH9309 should reference its 26.06.11 PDF page");
+assert(source.includes('"2408", "200G 여성 슬림핏 티셔츠"') && source.includes('"size_2406", "women", 15, []'), "2408 should keep the updated women crop size template while hidden");
+
+for (const code of ["2406", "2405"]) {
+  const product = products.find((item) => item.code === code);
+  assert(product, `Missing visible women crop product ${code}`);
+  assert(JSON.stringify(product.sizes) === JSON.stringify(expectedWomenCropSizes), `${code} should use corrected chest, shoulder, and length sizes`);
+}
 
 assert(
   fs.existsSync(path.join(root, "images/products/TH9309/polo image.jpg")),

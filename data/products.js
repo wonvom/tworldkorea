@@ -3312,9 +3312,9 @@ const sizeTemplates = {
     ["Free Size", "36", "51"]
   ]),
   size_2406: makeSizeTemplate("womenCrop", womenCropKeys, [
-    ["S", "33", "40", "48"],
-    ["M", "34", "42", "50"],
-    ["L", "35", "44", "52"]
+    ["S", "40", "33", "48"],
+    ["M", "42", "34", "50"],
+    ["L", "44", "35", "52"]
   ]),
   size_3053: makeSizeTemplate("topCircWaist", topWaistKeys, [
     ["S", "94", "65", "41", "21.5", "93", "160-165cm", "45-55kg"],
