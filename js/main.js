@@ -2,7 +2,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260609-custom-order-products";
+  const assetVersion = "20260611-polo-shirts";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -13,6 +13,7 @@
     "Short Sleeve": { kr: "반팔", en: "Short Sleeve" },
     "Sleeveless": { kr: "민소매", en: "Sleeveless" },
     "Long Sleeve": { kr: "긴팔", en: "Long Sleeve" },
+    "Polo Shirt": { kr: "카라티", en: "Polo Shirt" },
     "Sweatshirt": { kr: "맨투맨", en: "Sweatshirt" },
     "Hoodie": { kr: "후드", en: "Hoodie" },
     "Pants": { kr: "바지", en: "Pants" }
@@ -416,7 +417,7 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260609-custom-order-products`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260611-polo-shirts`;
     const customOrderBadge = isCustomOrderProduct(product) ? `<span class="custom-order-badge">주문제작</span>` : "";
     return `
       <a class="product-card image-card" href="${detailHref}">
@@ -563,7 +564,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260609-custom-order-products">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260611-polo-shirts">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | T-WORLD KOREA`;
