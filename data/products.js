@@ -3569,6 +3569,11 @@ const catalogItems = [
 
 const hiddenProductCodes = new Set(["T160", "7001-LS", "YL2800", "LM2800", "TH9309", "2408"]);
 
+const hiddenProductColorNames = {
+  "7001": new Set(["Melange"]),
+  "7001-KIDS": new Set(["Melange"])
+};
+
 function slugifyCode(code) {
   return code.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
@@ -4327,6 +4332,10 @@ const products = catalogItems.filter(([code]) => !hiddenProductCodes.has(code)).
         ? color
         : { ...color, image: "", fallbackImages: [] }
     ));
+  }
+  const hiddenColorNames = hiddenProductColorNames[code];
+  if (hiddenColorNames) {
+    colors = colors.filter((color) => !hiddenColorNames.has(color.nameEn));
   }
 
   return {
