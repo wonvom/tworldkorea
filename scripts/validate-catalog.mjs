@@ -9,14 +9,20 @@ vm.createContext(context);
 vm.runInContext(source, context);
 
 const products = context.window.products || [];
-const expected = ["TH5615", "XF8281", "TH96001", "TH5611"];
+const expectedPolo = [
+  { code: "TH5615", pdfPage: 32, minColors: 8, minSizes: 6 },
+  { code: "XF8281", pdfPage: 34, minColors: 8, minSizes: 6 },
+  { code: "TH96001", pdfPage: 35, minColors: 8, minSizes: 6 },
+  { code: "TH5611", pdfPage: 36, minColors: 8, minSizes: 6 },
+  { code: "D0911", pdfPage: 37, minColors: 7, minSizes: 5 }
+];
+const expectedNewShortSleeves = [
+  { code: "TH5618", pdfPage: 37, colors: 9, sizes: 7 },
+  { code: "TH96003", pdfPage: 38, colors: 11, sizes: 7 },
+  { code: "TH9310", pdfPage: 39, colors: 8, sizes: 6 },
+  { code: "7111", pdfPage: 40, colors: 7, sizes: 6 }
+];
 const hidden = ["TH9309", "2408"];
-const expectedPdfPages = new Map([
-  ["TH5615", 32],
-  ["XF8281", 34],
-  ["TH96001", 35],
-  ["TH5611", 36]
-]);
 const expectedWomenCropSizes = [
   { size: "S", chest: "40", shoulder: "33", length: "48" },
   { size: "M", chest: "42", shoulder: "34", length: "50" },
@@ -27,13 +33,24 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-for (const code of expected) {
+for (const { code, pdfPage, minColors, minSizes } of expectedPolo) {
   const product = products.find((item) => item.code === code);
   assert(product, `Missing catalog product ${code}`);
   assert(product.category === "Polo Shirt", `${code} should be in Polo Shirt category`);
-  assert(product.colors.length >= 8, `${code} should include color variants from Excel`);
-  assert(product.sizes.length >= 6, `${code} should include PDF size rows`);
-  assert(product.pdfPage === expectedPdfPages.get(code), `${code} should reference its 26.06.11 PDF page`);
+  assert(product.colors.length >= minColors, `${code} should include color variants from Excel`);
+  assert(product.sizes.length >= minSizes, `${code} should include PDF size rows`);
+  assert(product.pdfPage === pdfPage, `${code} should reference its PDF page`);
+  assert(fs.existsSync(path.join(root, product.thumbnail)), `${code} thumbnail file is missing`);
+  assert(fs.existsSync(path.join(root, product.colors[0].image)), `${code} first color image is missing`);
+}
+
+for (const { code, pdfPage, colors, sizes } of expectedNewShortSleeves) {
+  const product = products.find((item) => item.code === code);
+  assert(product, `Missing new short sleeve product ${code}`);
+  assert(product.category === "Short Sleeve", `${code} should be in Short Sleeve category`);
+  assert(product.colors.length === colors, `${code} should include ${colors} color rows from Excel`);
+  assert(product.sizes.length === sizes, `${code} should include ${sizes} PDF size rows`);
+  assert(product.pdfPage === pdfPage, `${code} should reference its PDF page`);
   assert(fs.existsSync(path.join(root, product.thumbnail)), `${code} thumbnail file is missing`);
   assert(fs.existsSync(path.join(root, product.colors[0].image)), `${code} first color image is missing`);
 }
@@ -57,13 +74,13 @@ assert(
 );
 
 assert(
-  context.window.catalogSummary.categories.some((category) => category.name === "Polo Shirt" && category.count === expected.length),
-  "Catalog summary should include four visible Polo Shirt products"
+  context.window.catalogSummary.categories.some((category) => category.name === "Polo Shirt" && category.count === expectedPolo.length),
+  "Catalog summary should include five visible Polo Shirt products"
 );
 
 assert(
-  context.window.catalogSummary.categories.some((category) => category.name === "Short Sleeve" && category.count === 13),
-  "Catalog summary should include thirteen visible Short Sleeve products"
+  context.window.catalogSummary.categories.some((category) => category.name === "Short Sleeve" && category.count === 17),
+  "Catalog summary should include seventeen visible Short Sleeve products"
 );
 
-console.log(`Validated ${expected.length} visible Polo Shirt products and hidden ${hidden.join(", ")}.`);
+console.log(`Validated ${expectedPolo.length} visible Polo Shirt products, ${expectedNewShortSleeves.length} new Short Sleeve products, and hidden ${hidden.join(", ")}.`);

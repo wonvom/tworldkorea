@@ -3007,6 +3007,58 @@ const productColorData = {
     { "code": "TH5611-06", "key": "th5611-06", "nameKr": "아미 그린", "nameCn": "军绿色", "nameEn": "Army Green", "hex": "#637250", "rgb": "99, 114, 80", "pantone": "5743 C 부근" },
     { "code": "TH5611-07", "key": "th5611-07", "nameKr": "다크 그린", "nameCn": "深绿色", "nameEn": "Dark Green", "hex": "#0F3332", "rgb": "15, 51, 50", "pantone": "5463 C 부근" },
     { "code": "TH5611-08", "key": "th5611-08", "nameKr": "네이비 블루", "nameCn": "藏青色", "nameEn": "Navy Blue", "hex": "#19223E", "rgb": "25, 34, 62", "pantone": "533 C 부근" }
+  ],
+  "D0911": [
+    { "code": "D0911-02", "key": "d0911-02", "nameKr": "블루 블랙", "nameCn": "玄青黑", "nameEn": "Blue Black", "nameJa": "ブルーブラック", "hex": "#302F32", "rgb": "48, 47, 50", "pantone": "Black 7 C 부근" },
+    { "code": "D0911-03", "key": "d0911-03", "nameKr": "크림 베이지", "nameCn": "杏色", "nameEn": "Cream Beige", "nameJa": "クリームベージュ", "hex": "#E0D2C1", "rgb": "224, 210, 193", "pantone": "468 C 부근" },
+    { "code": "D0911-04", "key": "d0911-04", "nameKr": "소프트 그레이", "nameCn": "柔雾灰", "nameEn": "Soft Gray", "nameJa": "ソフトグレー", "hex": "#AEAEBA", "rgb": "174, 174, 186", "pantone": "Cool Gray 5 C 부근" },
+    { "code": "D0911-05", "key": "d0911-05", "nameKr": "엠버 브라운", "nameCn": "琥珀棕", "nameEn": "Amber Brown", "nameJa": "アンバーブラウン", "hex": "#816351", "rgb": "129, 99, 81", "pantone": "7615 C 부근" },
+    { "code": "D0911-06", "key": "d0911-06", "nameKr": "포레스트 그린", "nameCn": "丛林绿", "nameEn": "Forest Green", "nameJa": "フォレストグリーン", "hex": "#506B65", "rgb": "80, 107, 101", "pantone": "5545 C 부근" },
+    { "code": "D0911-07", "key": "d0911-07", "nameKr": "밀리터리 그린", "nameCn": "军绿", "nameEn": "Military Green", "nameJa": "ミリタリーグリーン", "hex": "#777262", "rgb": "119, 114, 98", "pantone": "417 C 부근" },
+    { "code": "D0911-08", "key": "d0911-08", "nameKr": "다크 네이비", "nameCn": "藏蓝", "nameEn": "Dark Navy", "nameJa": "ダークネイビー", "hex": "#3D4062", "rgb": "61, 64, 98", "pantone": "533 C 부근" }
+  ],
+  "TH5618": [
+    { "code": "TH5618-01", "key": "th5618-01", "nameKr": "화이트", "nameCn": "慕光白", "nameEn": "White", "nameJa": "ホワイト", "hex": "#F1F0EC", "rgb": "241, 240, 236", "pantone": "Cool Gray 1 C 부근" },
+    { "code": "TH5618-02", "key": "th5618-02", "nameKr": "블랙", "nameCn": "暗影黑", "nameEn": "Black", "nameJa": "ブラック", "hex": "#1F1F1F", "rgb": "31, 31, 31", "pantone": "Black 7 C 부근" },
+    { "code": "TH5618-03", "key": "th5618-03", "nameKr": "티 그레이", "nameCn": "茶薪灰", "nameEn": "Tea Gray", "nameJa": "ティーグレー", "hex": "#D0D6D2", "rgb": "208, 214, 210", "pantone": "621 C 부근" },
+    { "code": "TH5618-04", "key": "th5618-04", "nameKr": "라이트 블루", "nameCn": "浅蓝", "nameEn": "Light Blue", "nameJa": "ライトブルー", "hex": "#AFC5D3", "rgb": "175, 197, 211", "pantone": "544 C 부근" },
+    { "code": "TH5618-05", "key": "th5618-05", "nameKr": "타로 퍼플", "nameCn": "香芋紫", "nameEn": "Taro Purple", "nameJa": "タロパープル", "hex": "#E2D7DF", "rgb": "226, 215, 223", "pantone": "2635 C 부근" },
+    { "code": "TH5618-06", "key": "th5618-06", "nameKr": "세이지 그린", "nameCn": "青雾绿", "nameEn": "Sage Green", "nameJa": "セージグリーン", "hex": "#9DA8A0", "rgb": "157, 168, 160", "pantone": "5575 C 부근" },
+    { "code": "TH5618-07", "key": "th5618-07", "nameKr": "카키 그린", "nameCn": "军绿", "nameEn": "Khaki Green", "nameJa": "カーキグリーン", "hex": "#656545", "rgb": "101, 101, 69", "pantone": "5743 C 부근" },
+    { "code": "TH5618-08", "key": "th5618-08", "nameKr": "차콜 그레이", "nameCn": "青黛灰", "nameEn": "Charcoal Gray", "nameJa": "チャコールグレー", "hex": "#4B4C51", "rgb": "75, 76, 81", "pantone": "432 C 부근" },
+    { "code": "TH5618-09", "key": "th5618-09", "nameKr": "다크 네이비", "nameCn": "藏青", "nameEn": "Dark Navy", "nameJa": "ダークネイビー", "hex": "#23283C", "rgb": "35, 40, 60", "pantone": "533 C 부근" }
+  ],
+  "TH96003": [
+    { "code": "TH96003-01", "key": "th96003-01", "nameKr": "화이트", "nameCn": "白色", "nameEn": "White", "nameJa": "ホワイト", "hex": "#EBE9EE", "rgb": "235, 233, 238", "pantone": "Cool Gray 1 C 부근" },
+    { "code": "TH96003-02", "key": "th96003-02", "nameKr": "블랙", "nameCn": "黑色", "nameEn": "Black", "nameJa": "ブラック", "hex": "#212121", "rgb": "33, 33, 33", "pantone": "Black 7 C 부근" },
+    { "code": "TH96003-03", "key": "th96003-03", "nameKr": "빙하 그레이", "nameCn": "冰川灰", "nameEn": "Glacier Gray", "nameJa": "グレイシャーグレー", "hex": "#D7D8DA", "rgb": "215, 216, 218", "pantone": "Cool Gray 2 C 부근" },
+    { "code": "TH96003-04", "key": "th96003-04", "nameKr": "라이트 옐로우", "nameCn": "浅黄色", "nameEn": "Light Yellow", "nameJa": "ライトイエロー", "hex": "#F5F5A1", "rgb": "245, 245, 161", "pantone": "600 C 부근" },
+    { "code": "TH96003-05", "key": "th96003-05", "nameKr": "라이트 블루", "nameCn": "浅蓝色", "nameEn": "Light Blue", "nameJa": "ライトブルー", "hex": "#D5E6F7", "rgb": "213, 230, 247", "pantone": "290 C 부근" },
+    { "code": "TH96003-06", "key": "th96003-06", "nameKr": "타로 퍼플", "nameCn": "香芋紫色", "nameEn": "Taro Purple", "nameJa": "タロパープル", "hex": "#E0D0EA", "rgb": "224, 208, 234", "pantone": "2635 C 부근" },
+    { "code": "TH96003-07", "key": "th96003-07", "nameKr": "오렌지", "nameCn": "橘色", "nameEn": "Orange", "nameJa": "オレンジ", "hex": "#FC6B16", "rgb": "252, 107, 22", "pantone": "165 C 부근" },
+    { "code": "TH96003-08", "key": "th96003-08", "nameKr": "레드", "nameCn": "大红色", "nameEn": "Red", "nameJa": "レッド", "hex": "#DA1116", "rgb": "218, 17, 22", "pantone": "186 C 부근" },
+    { "code": "TH96003-09", "key": "th96003-09", "nameKr": "라임 그린", "nameCn": "柠檬绿色", "nameEn": "Lime Green", "nameJa": "ライムグリーン", "hex": "#BAE746", "rgb": "186, 231, 70", "pantone": "374 C 부근" },
+    { "code": "TH96003-10", "key": "th96003-10", "nameKr": "딥 퍼플", "nameCn": "深紫色", "nameEn": "Deep Purple", "nameJa": "ディープパープル", "hex": "#572B81", "rgb": "87, 43, 129", "pantone": "268 C 부근" },
+    { "code": "TH96003-11", "key": "th96003-11", "nameKr": "네이비", "nameCn": "藏青色", "nameEn": "Navy", "nameJa": "ネイビー", "hex": "#1B2749", "rgb": "27, 39, 73", "pantone": "533 C 부근" }
+  ],
+  "TH9310": [
+    { "code": "TH9310-01", "key": "th9310-01", "nameKr": "화이트", "nameCn": "白色", "nameEn": "White", "nameJa": "ホワイト", "hex": "#E4E2F3", "rgb": "228, 226, 243", "pantone": "Cool Gray 1 C 부근" },
+    { "code": "TH9310-02", "key": "th9310-02", "nameKr": "블랙", "nameCn": "黑色", "nameEn": "Black", "nameJa": "ブラック", "hex": "#171717", "rgb": "23, 23, 23", "pantone": "Black 7 C 부근" },
+    { "code": "TH9310-03", "key": "th9310-03", "nameKr": "로즈 핑크", "nameCn": "蜜粉色", "nameEn": "Rose Pink", "nameJa": "ローズピンク", "hex": "#F77775", "rgb": "247, 119, 117", "pantone": "178 C 부근" },
+    { "code": "TH9310-04", "key": "th9310-04", "nameKr": "아쿠아 블루", "nameCn": "水蓝", "nameEn": "Aqua Blue", "nameJa": "アクアブルー", "hex": "#A6DDD5", "rgb": "166, 221, 213", "pantone": "324 C 부근" },
+    { "code": "TH9310-05", "key": "th9310-05", "nameKr": "레드", "nameCn": "大红", "nameEn": "Red", "nameJa": "レッド", "hex": "#B31644", "rgb": "179, 22, 68", "pantone": "7427 C 부근" },
+    { "code": "TH9310-06", "key": "th9310-06", "nameKr": "차콜 그레이", "nameCn": "深灰", "nameEn": "Charcoal Gray", "nameJa": "チャコールグレー", "hex": "#182420", "rgb": "24, 36, 32", "pantone": "5463 C 부근" },
+    { "code": "TH9310-07", "key": "th9310-07", "nameKr": "다크 블루", "nameCn": "乌蓝", "nameEn": "Dark Blue", "nameJa": "ダークブルー", "hex": "#112E45", "rgb": "17, 46, 69", "pantone": "302 C 부근" },
+    { "code": "TH9310-08", "key": "th9310-08", "nameKr": "다크 네이비", "nameCn": "藏青", "nameEn": "Dark Navy", "nameJa": "ダークネイビー", "hex": "#151B2D", "rgb": "21, 27, 45", "pantone": "533 C 부근" }
+  ],
+  "7111": [
+    { "code": "7111-01", "key": "7111-01", "nameKr": "화이트", "nameCn": "白色", "nameEn": "White", "nameJa": "ホワイト", "hex": "#D2D3DF", "rgb": "210, 211, 223", "pantone": "Cool Gray 2 C 부근" },
+    { "code": "7111-02", "key": "7111-02", "nameKr": "블랙", "nameCn": "黑色", "nameEn": "Black", "nameJa": "ブラック", "hex": "#1E1E20", "rgb": "30, 30, 32", "pantone": "Black 7 C 부근" },
+    { "code": "7111-03", "key": "7111-03", "nameKr": "네온 그린", "nameCn": "荧光绿", "nameEn": "Neon Green", "nameJa": "ネオングリーン", "hex": "#B9E375", "rgb": "185, 227, 117", "pantone": "367 C 부근" },
+    { "code": "7111-04", "key": "7111-04", "nameKr": "그레이", "nameCn": "灰色", "nameEn": "Gray", "nameJa": "グレー", "hex": "#595860", "rgb": "89, 88, 96", "pantone": "Cool Gray 11 C 부근" },
+    { "code": "7111-05", "key": "7111-05", "nameKr": "피콕 블루", "nameCn": "孔蓝", "nameEn": "Peacock Blue", "nameJa": "ピーコックブルー", "hex": "#0363B9", "rgb": "3, 99, 185", "pantone": "3005 C 부근" },
+    { "code": "7111-06", "key": "7111-06", "nameKr": "오렌지", "nameCn": "橘色", "nameEn": "Orange", "nameJa": "オレンジ", "hex": "#FA7B22", "rgb": "250, 123, 34", "pantone": "1585 C 부근" },
+    { "code": "7111-07", "key": "7111-07", "nameKr": "레드", "nameCn": "大红", "nameEn": "Red", "nameJa": "レッド", "hex": "#D01B27", "rgb": "208, 27, 39", "pantone": "186 C 부근" }
   ]
 };
 
@@ -3021,7 +3073,20 @@ const productColorImageFolders = {
   "0E2700": "OE2700"
 };
 
-const productColorImageAvailability = {};
+const productColorImageAvailability = {
+  "TH96003": new Set([
+    "TH96003-01",
+    "TH96003-02",
+    "TH96003-03",
+    "TH96003-04",
+    "TH96003-05",
+    "TH96003-07",
+    "TH96003-08",
+    "TH96003-09",
+    "TH96003-10",
+    "TH96003-11"
+  ])
+};
 
 const colorJapaneseNames = {
   "Angola Red": "アンゴラレッド",
@@ -3523,6 +3588,47 @@ const sizeTemplates = {
     ["5XL", "61.5", "79.5", "54", "195-190cm", "105-110kg"],
     ["6XL", "62", "80", "56", "195-200cm", "110-115kg"],
     ["7XL", "63.5", "81.5", "58", "195-200cm", "115-125kg"]
+  ]),
+  size_D0911: makeSizeTemplate("top", topKeys, [
+    ["M", "56", "71", "49", "22", "160-170cm", "47.5-60kg"],
+    ["L", "59", "74", "52", "23", "170-180cm", "60-70kg"],
+    ["XL", "62", "77", "55", "24", "180-185cm", "70-80kg"],
+    ["2XL", "65", "80", "58", "25", "185-190cm", "80-90kg"],
+    ["3XL", "68", "83", "61", "26", "190-195cm", "90-105kg"]
+  ]),
+  size_TH5618: makeSizeTemplate("sleeveless", sleevelessKeys, [
+    ["S", "44", "61", "38", "155-160cm", "45-52.5kg"],
+    ["M", "46", "63", "40", "160-165cm", "52.5-60kg"],
+    ["L", "48", "66", "41.5", "165-170cm", "60-67.5kg"],
+    ["XL", "50", "68", "43", "170-175cm", "67.5-75kg"],
+    ["2XL", "52", "70", "44.5", "175-180cm", "75-82.5kg"],
+    ["3XL", "54", "72", "46", "180-185cm", "82.5-90kg"],
+    ["4XL", "57", "75", "47.5", "185-190cm", "90-95kg"]
+  ]),
+  size_TH96003: makeSizeTemplate("sleeveless", sleevelessKeys, [
+    ["S", "47", "66", "40", "155-160cm", "45-50kg"],
+    ["M", "49", "68", "42", "160-165cm", "50-60kg"],
+    ["L", "51", "70.5", "44", "165-170cm", "60-70kg"],
+    ["XL", "53", "73", "46", "170-175cm", "65-75kg"],
+    ["2XL", "55", "75", "48", "175-180cm", "70-80kg"],
+    ["3XL", "57", "77", "50", "180-185cm", "75-85kg"],
+    ["4XL", "59", "79", "52", "185-190cm", "80-90kg"]
+  ]),
+  size_TH9310: makeSizeTemplate("sleeveless", sleevelessKeys, [
+    ["M", "46", "63", "40", "155-160cm", "50-55kg"],
+    ["L", "48", "66", "41.5", "160-165cm", "55-60kg"],
+    ["XL", "50", "68", "43", "165-170cm", "60-65kg"],
+    ["2XL", "52", "70", "44.5", "170-175cm", "65-70kg"],
+    ["3XL", "54", "72", "46", "175-180cm", "70-80kg"],
+    ["4XL", "57", "75", "47.5", "180-185cm", "80-90kg"]
+  ]),
+  size_7111: makeSizeTemplate("sleeveless", sleevelessKeys, [
+    ["M", "48", "67", "41", "160-165cm", "40-50kg"],
+    ["L", "51", "70", "43", "165-170cm", "50-55kg"],
+    ["XL", "53", "72", "45", "170-175cm", "55-65kg"],
+    ["2XL", "55", "74", "47", "175-180cm", "65-75kg"],
+    ["3XL", "57", "76", "49", "180-185cm", "75-85kg"],
+    ["4XL", "59", "78", "51", "185-190cm", "85-95kg"]
   ])
 };
 
@@ -3564,7 +3670,12 @@ const catalogItems = [
   ["TH9309", "180G 스포츠 카라티", "180G运动Polo衫", "180G Sports Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 94% Spandex 6%", "180G", "size_TH9309", "basic", 33, []],
   ["XF8281", "200G 스판 폴로 셔츠", "200G弹力Polo衫", "200G Stretch Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 50% Cooling Fiber 45% Spandex 6%", "200G", "size_XF8281", "basic", 34, []],
   ["TH96001", "150G 빠른 건조 기능성 카라티", "150G速干功能Polo衫", "150G Quick Dry Functional Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 100%", "150G", "size_TH96001", "basic", 35, []],
-  ["TH5611", "200G 항균 UV차단 카라티", "200G抗菌防晒Polo衫", "200G Antibacterial UV Protection Polo Shirt", "Polo Shirt", "Regular Fit", "Nylon 88% Spandex 12%", "200G", "size_TH5611", "basic", 36, []]
+  ["TH5611", "200G 항균 UV차단 카라티", "200G抗菌防晒Polo衫", "200G Antibacterial UV Protection Polo Shirt", "Polo Shirt", "Regular Fit", "Nylon 88% Spandex 12%", "200G", "size_TH5611", "basic", 36, []],
+  ["D0911", "워싱 카라티", "水洗Polo衫", "Washed Polo Shirt", "Polo Shirt", "Regular Fit", "Polyester 64.9% Cotton 35.1%", "-", "size_D0911", "basic", 37, []],
+  ["TH5618", "150G 빠른 건조 라운드 메쉬 반팔 티셔츠", "150G速干圆领网眼短袖T恤", "150G Quick Dry Round Mesh Short Sleeve T-Shirt", "Short Sleeve", "Regular Fit", "DuPont Sorona 100%", "150G", "size_TH5618", "basic", 37, []],
+  ["TH96003", "150G 빠른 건조 라운드 반팔 티셔츠", "150G速干圆领短袖T恤", "150G Quick Dry Round Short Sleeve T-Shirt", "Short Sleeve", "Regular Fit", "Polyester 100%", "150G", "size_TH96003", "basic", 38, []],
+  ["TH9310", "180G 빠른 건조 라운드 스판 반팔 티셔츠", "180G速干弹力圆领短袖T恤", "180G Quick Dry Stretch Round Short Sleeve T-Shirt", "Short Sleeve", "Regular Fit", "Polyester 94% Spandex 6%", "180G", "size_TH9310", "basic", 39, []],
+  ["7111", "기능성 라운드 반팔 티셔츠", "功能性圆领短袖T恤", "Functional Round Short Sleeve T-Shirt", "Short Sleeve", "Regular Fit", "Polyester 100%", "-", "size_7111", "basic", 40, []]
 ];
 
 const hiddenProductCodes = new Set(["T160", "7001-LS", "YL2800", "LM2800", "TH9309", "2408"]);
@@ -4293,6 +4404,74 @@ const productImageOverrides = {
       detail: [],
       fabric: [],
       colorChart: "images/products/TH5611/TH5611-front.jpg"
+    }
+  },
+  "d0911": {
+    thumbnail: "images/products/D0911/D0911-front.jpg",
+    images: ["images/products/D0911/D0911-front.jpg"],
+    imageSlots: {
+      main: "images/products/D0911/D0911-front.jpg",
+      front: "images/products/D0911/D0911-front.jpg",
+      back: "images/products/D0911/D0911-back.jpg",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/D0911/D0911-front.jpg"
+    }
+  },
+  "th5618": {
+    thumbnail: "images/products/TH5618/TH5618-front.jpg",
+    images: ["images/products/TH5618/TH5618-front.jpg"],
+    imageSlots: {
+      main: "images/products/TH5618/TH5618-front.jpg",
+      front: "images/products/TH5618/TH5618-front.jpg",
+      back: "images/products/TH5618/TH5618-back.jpg",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/TH5618/TH5618-front.jpg"
+    }
+  },
+  "th96003": {
+    thumbnail: "images/products/TH96003/TH96003-frong.jpg",
+    images: ["images/products/TH96003/TH96003-frong.jpg"],
+    imageSlots: {
+      main: "images/products/TH96003/TH96003-frong.jpg",
+      front: "images/products/TH96003/TH96003-frong.jpg",
+      back: "images/products/TH96003/TH96003-back.jpg",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/TH96003/TH96003-frong.jpg"
+    }
+  },
+  "th9310": {
+    thumbnail: "images/products/TH9310/TH9310-front.jpg",
+    images: ["images/products/TH9310/TH9310-front.jpg"],
+    imageSlots: {
+      main: "images/products/TH9310/TH9310-front.jpg",
+      front: "images/products/TH9310/TH9310-front.jpg",
+      back: "images/products/TH9310/TH9310-Back.jpg",
+      model: [],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/TH9310/TH9310-front.jpg"
+    }
+  },
+  "7111": {
+    thumbnail: "images/products/7111/7111-front.jpg",
+    images: ["images/products/7111/7111-front.jpg"],
+    imageSlots: {
+      main: "images/products/7111/7111-front.jpg",
+      front: "images/products/7111/7111-front.jpg",
+      back: "images/products/7111/7111-back.jpg",
+      model: [
+        "images/products/7111/7111-model-01.jpg",
+        "images/products/7111/7111-model-02.jpg"
+      ],
+      detail: [],
+      fabric: [],
+      colorChart: "images/products/7111/7111-front.jpg"
     }
   }
 };
