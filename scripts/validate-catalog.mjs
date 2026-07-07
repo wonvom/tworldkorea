@@ -20,7 +20,7 @@ const expectedNewShortSleeves = [
   { code: "TH5618", pdfPage: 37, colors: 9, sizes: 7 },
   { code: "TH96003", pdfPage: 38, colors: 11, sizes: 7 },
   { code: "TH9310", pdfPage: 39, colors: 8, sizes: 6 },
-  { code: "7111", pdfPage: 40, colors: 7, sizes: 6 }
+  { code: "7111", pdfPage: 40, colors: 7, sizes: 7 }
 ];
 const hidden = ["0E2700", "TH9309", "2408"];
 const expectedWomenCropSizes = [
@@ -70,6 +70,20 @@ for (const code of ["3505", "3508"]) {
   assert(product, `Missing visible product ${code}`);
   assert(product.fabric === "Cotton 80% Polyester 20%", `${code} should use updated fabric blend`);
 }
+
+const product7111 = products.find((item) => item.code === "7111");
+assert(product7111, "Missing visible product 7111");
+assert(
+  JSON.stringify(product7111.sizes[0]) === JSON.stringify({
+    size: "S",
+    chest: "46",
+    length: "64",
+    shoulder: "39",
+    height: "155-160cm",
+    weight: "35-40kg"
+  }),
+  "7111 should include the requested S size as the first size row"
+);
 
 assert(source.includes('"size_TH9309", "basic", 33, []'), "TH9309 should reference its 26.06.11 PDF page");
 assert(source.includes('"2408", "200G 여성 슬림핏 티셔츠"') && source.includes('"size_2406", "women", 15, []'), "2408 should keep the updated women crop size template while hidden");
