@@ -65,6 +65,12 @@ for (const code of ["YL3200", "LM3200"]) {
   assert(product.fabric === "Cotton 87% Polyester 13%", `${code} should use updated fabric blend`);
 }
 
+for (const code of ["3505", "3508"]) {
+  const product = products.find((item) => item.code === code);
+  assert(product, `Missing visible product ${code}`);
+  assert(product.fabric === "Cotton 80% Polyester 20%", `${code} should use updated fabric blend`);
+}
+
 assert(source.includes('"size_TH9309", "basic", 33, []'), "TH9309 should reference its 26.06.11 PDF page");
 assert(source.includes('"2408", "200G 여성 슬림핏 티셔츠"') && source.includes('"size_2406", "women", 15, []'), "2408 should keep the updated women crop size template while hidden");
 
