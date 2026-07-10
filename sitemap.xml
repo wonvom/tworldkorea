@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.tworldkorea.co.kr/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.tworldkorea.co.kr/about.html</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tworldkorea.co.kr/products.html</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.tworldkorea.co.kr/lookbook.html</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.tworldkorea.co.kr/contact.html</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -48,10 +48,7 @@
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=QXK2521</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=06OLK</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=Q2450</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=0E2700</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=YL2800</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=YL3200</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=LM2800</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=LM3200</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=QXX5200</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=A23014</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -63,4 +60,10 @@
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=XF8281</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=TH96001</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=TH5611</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=3053</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=D0911</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=TH5618</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=TH96003</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=TH9310</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tworldkorea.co.kr/product-detail.html?id=7111</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

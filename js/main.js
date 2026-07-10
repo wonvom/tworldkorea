@@ -1,8 +1,16 @@
 (function () {
+  if (window.top !== window.self) {
+    try {
+      window.top.location.replace(window.self.location.href);
+    } catch (error) {
+      document.documentElement.style.display = "none";
+    }
+  }
+
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260707-7111-s-size";
+  const assetVersion = "20260710-security-cleanup";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -39,9 +47,22 @@
     })[char]);
   }
 
+  function safeCssColor(value) {
+    const color = String(value || "").trim();
+    return /^#[0-9a-f]{3,8}$/i.test(color) ? color : "#ffffff";
+  }
+
   function assetUrl(src) {
-    if (!src || /^(https?:|data:|blob:)/.test(src)) return src || "";
-    return `${src}${src.includes("?") ? "&" : "?"}v=${assetVersion}`;
+    const value = String(src || "").trim();
+    if (!value) return "";
+    try {
+      const url = new URL(value, window.location.href);
+      if (url.origin !== window.location.origin) return "";
+      url.searchParams.set("v", assetVersion);
+      return url.href;
+    } catch (error) {
+      return "";
+    }
   }
 
   function readSampleList() {
@@ -203,7 +224,7 @@
           </div>
           ${sampleItemImage(item) ? `
             <div class="sample-list-image image-frame" data-label="${escapeHtml(item.color || "선택 색상")}">
-              <img src="${assetUrl(sampleItemImage(item))}" alt="${escapeHtml(item.name)} ${escapeHtml(item.color || "")} 색상 이미지" loading="lazy">
+              <img src="${escapeHtml(assetUrl(sampleItemImage(item)))}" alt="${escapeHtml(item.name)} ${escapeHtml(item.color || "")} 색상 이미지" loading="lazy">
             </div>
           ` : ""}
         </div>
@@ -417,21 +438,21 @@
 
   function productCard(product) {
     const label = categoryLabel(product.category);
-    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260707-7111-s-size`;
+    const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}&v=20260710-security-cleanup`;
     const customOrderBadge = isCustomOrderProduct(product) ? `<span class="custom-order-badge">주문제작</span>` : "";
     return `
-      <a class="product-card image-card" href="${detailHref}">
-        <span class="image-frame" data-label="${product.code} Front Image">
+      <a class="product-card image-card" href="${escapeHtml(detailHref)}">
+        <span class="image-frame" data-label="${escapeHtml(product.code)} Front Image">
           ${customOrderBadge}
-          <img src="${assetUrl(product.thumbnail)}" alt="${product.name} 대표 이미지" loading="lazy">
+          <img src="${escapeHtml(assetUrl(product.thumbnail))}" alt="${escapeHtml(product.name)} 대표 이미지" loading="lazy">
         </span>
-        <p class="product-code"><span>MODEL NO.</span>${product.code}</p>
-        <h3>${product.name}</h3>
+        <p class="product-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
+        <h3>${escapeHtml(product.name)}</h3>
         <div class="product-meta">
-          <span>${label.kr} <small>${label.en}</small></span>
-          <span>${product.fit}</span>
-          <span>${product.fabric}</span>
-          <span>${product.weight} ${product.colors.length} Colors</span>
+          <span>${escapeHtml(label.kr)} <small>${escapeHtml(label.en)}</small></span>
+          <span>${escapeHtml(product.fit)}</span>
+          <span>${escapeHtml(product.fabric)}</span>
+          <span>${escapeHtml(product.weight)} ${product.colors.length} Colors</span>
         </div>
         <span class="card-link">View Detail</span>
       </a>
@@ -501,7 +522,7 @@
   }
 
   function colorSwatches(product) {
-    return product.colors.map((color) => `<span class="swatch" title="${color.nameKr} ${color.nameCn} ${color.nameEn}" style="background:${color.hex}"></span>`).join("");
+    return product.colors.map((color) => `<span class="swatch" title="${escapeHtml(`${color.nameKr} ${color.nameCn} ${color.nameEn}`)}" style="background:${safeCssColor(color.hex)}"></span>`).join("");
   }
 
   function sizeTable(product) {
@@ -518,13 +539,13 @@
         <table class="size-table">
           <thead>
             <tr>
-              ${fields.map((field) => `<th><span>${field.label}</span><small>${field.labelCn} ${field.labelEn}</small></th>`).join("")}
+              ${fields.map((field) => `<th><span>${escapeHtml(field.label)}</span><small>${escapeHtml(field.labelCn)} ${escapeHtml(field.labelEn)}</small></th>`).join("")}
             </tr>
           </thead>
           <tbody>
             ${product.sizes.map((size) => `
               <tr>
-                ${fields.map((field) => `<td>${size[field.key] || "-"}</td>`).join("")}
+                ${fields.map((field) => `<td>${escapeHtml(size[field.key] || "-")}</td>`).join("")}
               </tr>
             `).join("")}
           </tbody>
@@ -536,10 +557,10 @@
   function placementCard(label, image, alt) {
     return `
       <article class="placement-card">
-        <div class="image-frame wide" data-label="${label}">
-          <img src="${assetUrl(image)}" alt="${alt}">
+        <div class="image-frame wide" data-label="${escapeHtml(label)}">
+          <img src="${escapeHtml(assetUrl(image))}" alt="${escapeHtml(alt)}">
         </div>
-        <p>${label}</p>
+        <p>${escapeHtml(label)}</p>
       </article>
     `;
   }
@@ -564,10 +585,20 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260707-7111-s-size">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html?v=20260710-security-cleanup">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | 티월드코리아`;
+    const detailUrl = new URL("product-detail.html", window.location.href);
+    detailUrl.searchParams.set("id", product.code);
+    const canonical = qs('link[rel="canonical"]');
+    const ogUrl = qs('meta[property="og:url"]');
+    const ogTitle = qs('meta[property="og:title"]');
+    const ogImage = qs('meta[property="og:image"]');
+    if (canonical) canonical.href = detailUrl.href;
+    if (ogUrl) ogUrl.content = detailUrl.href;
+    if (ogTitle) ogTitle.content = `${product.name} | 티월드코리아`;
+    if (ogImage) ogImage.content = new URL(product.thumbnail, window.location.href).href;
     const related = productData.filter((item) => item.category === product.category && item.id !== product.id).slice(0, 3);
     const slots = product.imageSlots || {};
     const modelImages = slots.model || [];
@@ -583,30 +614,30 @@
     mount.innerHTML = `
       <div class="detail-grid">
         <div class="detail-gallery">
-          <div class="detail-main-image image-frame" data-label="${product.code} Front Image">
+          <div class="detail-main-image image-frame" data-label="${escapeHtml(product.code)} Front Image">
             ${customOrderBadge}
-            <img src="${assetUrl(product.images[0] || product.thumbnail)}" alt="${product.name} 대표 이미지" data-main-product-image>
+            <img src="${escapeHtml(assetUrl(product.images[0] || product.thumbnail))}" alt="${escapeHtml(product.name)} 대표 이미지" data-main-product-image>
           </div>
           <div class="gallery-thumbs">
             ${slotImages.map((slot) => `
-              <button class="gallery-thumb image-frame" type="button" data-image="${assetUrl(slot.image)}" data-label="${slot.label}">
-                <img src="${assetUrl(slot.image)}" alt="${slot.alt}" loading="lazy">
+              <button class="gallery-thumb image-frame" type="button" data-image="${escapeHtml(assetUrl(slot.image))}" data-label="${escapeHtml(slot.label)}">
+                <img src="${escapeHtml(assetUrl(slot.image))}" alt="${escapeHtml(slot.alt)}" loading="lazy">
               </button>
             `).join("")}
           </div>
         </div>
         <aside class="detail-summary">
-          <p class="product-detail-code"><span>MODEL NO.</span>${product.code}</p>
-          <h1>${product.name}</h1>
-          <p class="product-subtitle">${product.nameCn}<br>${product.nameEn}</p>
-          <p>${product.description}</p>
+          <p class="product-detail-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
+          <h1>${escapeHtml(product.name)}</h1>
+          <p class="product-subtitle">${escapeHtml(product.nameCn)}<br>${escapeHtml(product.nameEn)}</p>
+          <p>${escapeHtml(product.description)}</p>
           <dl class="summary-list">
-            <div><dt>Category</dt><dd>${categoryLabel(product.category).kr} ${categoryLabel(product.category).en}</dd></div>
-            <div><dt>Fit</dt><dd>${product.fit}</dd></div>
-            <div><dt>Fabric</dt><dd>${product.fabric}</dd></div>
-            <div><dt>Weight</dt><dd>${product.weight}</dd></div>
-            <div><dt>PDF Page</dt><dd>${product.pdfPage} Page</dd></div>
-            <div><dt>Size</dt><dd>${product.sizes.map((size) => size.size).join(", ")}</dd></div>
+            <div><dt>Category</dt><dd>${escapeHtml(categoryLabel(product.category).kr)} ${escapeHtml(categoryLabel(product.category).en)}</dd></div>
+            <div><dt>Fit</dt><dd>${escapeHtml(product.fit)}</dd></div>
+            <div><dt>Fabric</dt><dd>${escapeHtml(product.fabric)}</dd></div>
+            <div><dt>Weight</dt><dd>${escapeHtml(product.weight)}</dd></div>
+            <div><dt>PDF Page</dt><dd>${escapeHtml(product.pdfPage)} Page</dd></div>
+            <div><dt>Size</dt><dd>${escapeHtml(product.sizes.map((size) => size.size).join(", "))}</dd></div>
           </dl>
           <p class="filter-label">COLOR</p>
           <div class="swatch-row">${colorSwatches(product)}</div>
@@ -620,7 +651,7 @@
                 ${product.colors.map((color) => `
                   <label class="sample-choice">
                     <input type="radio" name="sample-color" value="${escapeHtml(color.nameKr)}" data-color-image="${escapeHtml(color.image || product.thumbnail)}">
-                    <span class="swatch small" style="background:${color.hex}"></span>
+                    <span class="swatch small" style="background:${safeCssColor(color.hex)}"></span>
                     <span>${escapeHtml(color.nameKr)}</span>
                   </label>
                 `).join("")}
@@ -653,16 +684,16 @@
       <section class="detail-section">
         <p class="eyebrow">PRODUCT DESCRIPTION</p>
         <h2>DETAIL NOTES</h2>
-        <p class="detail-copy">${product.description}</p>
+        <p class="detail-copy">${escapeHtml(product.description)}</p>
         <div class="detail-info-grid">
-          ${product.details.map((detail) => `<article><h3>${detail.title}</h3><p>${detail.text}</p></article>`).join("")}
+          ${product.details.map((detail) => `<article><h3>${escapeHtml(detail.title)}</h3><p>${escapeHtml(detail.text)}</p></article>`).join("")}
         </div>
       </section>
 
       <section class="detail-section">
         <p class="eyebrow">IMAGE PLACEMENT</p>
         <h2>PRODUCT ASSETS</h2>
-        <p class="detail-copy">${slots.guide || "제품 이미지는 앞면, 뒷면, 모델 착용컷, 확대 디테일컷으로 분리해서 넣어주세요."}</p>
+        <p class="detail-copy">${escapeHtml(slots.guide || "제품 이미지는 앞면, 뒷면, 모델 착용컷, 확대 디테일컷으로 분리해서 넣어주세요.")}</p>
         <div class="placement-grid">
           ${slotImages.map((slot) => placementCard(slot.label, slot.image, slot.alt)).join("")}
         </div>
@@ -693,13 +724,13 @@
             <tbody>
               ${product.colors.map((color) => `
                 <tr>
-                  <td><span class="color-table-chip" style="background:${color.hex}" title="${color.nameKr} ${color.nameCn} ${color.nameEn} ${color.nameJa || ""}"></span></td>
-                  <td>${color.code || ""}</td>
-                  <td>${color.nameKr}</td>
-                  <td>${color.nameCn}</td>
-                  <td>${color.nameEn}</td>
-                  <td>${color.nameJa || ""}</td>
-                  <td>${color.hex}</td>
+                  <td><span class="color-table-chip" style="background:${safeCssColor(color.hex)}" title="${escapeHtml(`${color.nameKr} ${color.nameCn} ${color.nameEn} ${color.nameJa || ""}`)}"></span></td>
+                  <td>${escapeHtml(color.code || "")}</td>
+                  <td>${escapeHtml(color.nameKr)}</td>
+                  <td>${escapeHtml(color.nameCn)}</td>
+                  <td>${escapeHtml(color.nameEn)}</td>
+                  <td>${escapeHtml(color.nameJa || "")}</td>
+                  <td>${escapeHtml(color.hex)}</td>
                 </tr>
               `).join("")}
             </tbody>
@@ -709,11 +740,11 @@
         <div class="color-image-grid">
           ${product.colors.filter((color) => color.image).map((color) => `
             <article class="color-image">
-              <div class="image-frame" data-label="${color.nameKr} ${color.nameEn}">
-                <img src="${assetUrl(color.image)}" alt="${product.name} ${color.nameKr} 컬러 이미지" loading="lazy" data-fallback-src="${(color.fallbackImages || []).map(assetUrl).join("|")}">
+              <div class="image-frame" data-label="${escapeHtml(color.nameKr)} ${escapeHtml(color.nameEn)}">
+                <img src="${escapeHtml(assetUrl(color.image))}" alt="${escapeHtml(product.name)} ${escapeHtml(color.nameKr)} 컬러 이미지" loading="lazy" data-fallback-src="${escapeHtml((color.fallbackImages || []).map(assetUrl).filter(Boolean).join("|"))}">
               </div>
-              <h3>${color.nameKr}</h3>
-              <p>${color.nameCn}<br>${color.nameEn}</p>
+              <h3>${escapeHtml(color.nameKr)}</h3>
+              <p>${escapeHtml(color.nameCn)}<br>${escapeHtml(color.nameEn)}</p>
             </article>
           `).join("")}
         </div>
@@ -726,7 +757,7 @@
           <div class="color-image-grid">
             ${detailImages.map((image, index) => `
               <div class="image-frame wide" data-label="Detail ${index + 1}">
-                <img src="${assetUrl(image)}" alt="${product.name} 원단 봉제 디테일 ${index + 1}" loading="lazy">
+                <img src="${escapeHtml(assetUrl(image))}" alt="${escapeHtml(product.name)} 원단 봉제 디테일 ${index + 1}" loading="lazy">
               </div>
             `).join("")}
           </div>
