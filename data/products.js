@@ -863,15 +863,6 @@
     ],
     "sizes": [
       {
-        "size": "XS",
-        "chest": "45",
-        "length": "64",
-        "shoulder": "43",
-        "sleeve": "19.5",
-        "height": "155cm 이하",
-        "weight": "45kg 이하"
-      },
-      {
         "size": "S",
         "chest": "47.5",
         "length": "67",
