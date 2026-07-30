@@ -1040,9 +1040,9 @@
         "nameKr": "그래스 그린",
         "nameCn": "草绿色",
         "nameEn": "Grass Green",
-        "hex": "#5F685A",
-        "rgb": "95, 104, 90",
-        "pantone": "5615 C 부근",
+        "hex": "#9CA668",
+        "rgb": "156, 166, 104",
+        "pantone": "5777 C 부근",
         "nameJa": "グラスグリーン",
         "image": "images/products/03XA5/colors/03XA5-04.jpg",
         "fallbackImages": []
