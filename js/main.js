@@ -34,8 +34,6 @@
   const customOrderProductCodes = new Set([
     "27012",
     "A23014",
-    "3505",
-    "3508",
     "CK280",
     "LK3401",
     "YL3200",
