@@ -10,7 +10,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260730-03xa5-color";
+  const assetVersion = "20260915-custom-order-colors";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -31,7 +31,16 @@
     return categoryLabels[category] || { kr: category, en: category };
   }
 
-  const customOrderProductCodes = new Set(["27012", "A23014", "3505", "3508"]);
+  const customOrderProductCodes = new Set([
+    "27012",
+    "A23014",
+    "3505",
+    "3508",
+    "CK280",
+    "LK3401",
+    "YL3200",
+    "LM3200"
+  ]);
 
   function isCustomOrderProduct(product) {
     return product.category === "Pants" || customOrderProductCodes.has(product.code);

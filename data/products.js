@@ -1799,32 +1799,6 @@
         "fallbackImages": []
       },
       {
-        "code": "23012-06",
-        "key": "23012-06",
-        "nameKr": "그래스 그린",
-        "nameCn": "草绿",
-        "nameEn": "Grass Green",
-        "hex": "#4A878A",
-        "rgb": "74, 135, 138",
-        "pantone": "7475 C 부근",
-        "nameJa": "グラスグリーン",
-        "image": "images/products/23012/colors/23012-06.jpg",
-        "fallbackImages": []
-      },
-      {
-        "code": "23012-07",
-        "key": "23012-07",
-        "nameKr": "올리브 그린",
-        "nameCn": "橄榄绿",
-        "nameEn": "Olive Green",
-        "hex": "#817666",
-        "rgb": "129, 118, 102",
-        "pantone": "7530 C 부근",
-        "nameJa": "オリーブグリーン",
-        "image": "images/products/23012/colors/23012-07.jpg",
-        "fallbackImages": []
-      },
-      {
         "code": "23012-08",
         "key": "23012-08",
         "nameKr": "브라운",
