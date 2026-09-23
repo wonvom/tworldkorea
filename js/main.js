@@ -37,7 +37,8 @@
     "CK280",
     "LK3401",
     "YL3200",
-    "LM3200"
+    "LM3200",
+    "QXX5200"
   ]);
 
   function isCustomOrderProduct(product) {
