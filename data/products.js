@@ -9312,7 +9312,7 @@
     "nameEn": "",
     "category": "Sleeveless",
     "fit": "루즈핏",
-    "fabric": "면 100%",
+    "fabric": "Cotton 100%",
     "weight": "230G",
     "tags": [],
     "pdfPage": "",
@@ -9490,7 +9490,7 @@
     "nameEn": "",
     "category": "Sleeveless",
     "fit": "",
-    "fabric": "면 100%",
+    "fabric": "Cotton 100%",
     "weight": "230G",
     "tags": [],
     "pdfPage": "",
@@ -9669,7 +9669,7 @@
     "nameEn": "",
     "category": "Long Sleeve",
     "fit": "",
-    "fabric": "면 100%",
+    "fabric": "Cotton 100%",
     "weight": "230G",
     "tags": [],
     "pdfPage": "",
@@ -9877,7 +9877,7 @@
     "nameEn": "",
     "category": "Hoodie",
     "fit": "",
-    "fabric": "겉감 : 면 54.4% 폴리에스터 45.6% / 안감 : 폴리에스터 93.7% 스판덱스 6.3%",
+    "fabric": "Outer: Cotton 54.4% Polyester 45.6% / Lining: Polyester 93.7% Spandex 6.3%",
     "weight": "400G",
     "tags": [],
     "pdfPage": "",
@@ -9915,8 +9915,7 @@
         "rgb": "33, 34, 38",
         "pantone": "",
         "image": "images/products/X1702/colors/X1702-01.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1702/colors/X1702-01-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1702-02",
@@ -9929,8 +9928,7 @@
         "rgb": "124, 124, 127",
         "pantone": "",
         "image": "images/products/X1702/colors/X1702-02.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1702/colors/X1702-02-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1702-03",
@@ -9943,8 +9941,7 @@
         "rgb": "126, 129, 110",
         "pantone": "",
         "image": "images/products/X1702/colors/X1702-03.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1702/colors/X1702-03-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1702-04",
@@ -9957,8 +9954,7 @@
         "rgb": "212, 195, 177",
         "pantone": "",
         "image": "images/products/X1702/colors/X1702-04.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1702/colors/X1702-04-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1702-05",
@@ -9971,8 +9967,7 @@
         "rgb": "142, 70, 90",
         "pantone": "",
         "image": "images/products/X1702/X1702-front.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1702/X1702-back.jpg"
+        "fallbackImages": []
       }
     ],
     "sizeFields": [
@@ -10090,7 +10085,7 @@
     "nameEn": "",
     "category": "Hoodie",
     "fit": "",
-    "fabric": "겉감 : 면 57.2% 폴리에스터 42.8% / 안감 : 폴리에스터 95.6% 스판덱스 4.4%",
+    "fabric": "Outer: Cotton 57.2% Polyester 42.8% / Lining: Polyester 95.6% Spandex 4.4%",
     "weight": "300G",
     "tags": [],
     "pdfPage": "",
@@ -10128,8 +10123,7 @@
         "rgb": "33, 34, 38",
         "pantone": "",
         "image": "images/products/X1602/colors/X1602-01.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1602/colors/X1602-01-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1602-02",
@@ -10142,8 +10136,7 @@
         "rgb": "124, 124, 127",
         "pantone": "",
         "image": "images/products/X1602/colors/X1602-02.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1602/colors/X1602-02-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1602-03",
@@ -10156,8 +10149,7 @@
         "rgb": "126, 129, 110",
         "pantone": "",
         "image": "images/products/X1602/X1602-front.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1602/X1602-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1602-04",
@@ -10170,8 +10162,7 @@
         "rgb": "212, 195, 177",
         "pantone": "",
         "image": "images/products/X1602/colors/X1602-04.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1602/colors/X1602-04-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1602-05",
@@ -10184,8 +10175,7 @@
         "rgb": "142, 70, 90",
         "pantone": "",
         "image": "images/products/X1602/colors/X1602-05.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1602/colors/X1602-05-back.jpg"
+        "fallbackImages": []
       }
     ],
     "sizeFields": [
@@ -10303,7 +10293,7 @@
     "nameEn": "",
     "category": "Hoodie",
     "fit": "",
-    "fabric": "겉감 : 면 54.4% 폴리에스터 45.6% / 안감 : 폴리에스터 93.7% 스판덱스 6.3%",
+    "fabric": "Outer: Cotton 54.4% Polyester 45.6% / Lining: Polyester 93.7% Spandex 6.3%",
     "weight": "400G",
     "tags": [],
     "pdfPage": "",
@@ -10342,8 +10332,7 @@
         "rgb": "33, 34, 38",
         "pantone": "",
         "image": "images/products/X1701/colors/X1701-01.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1701/colors/X1701-01-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1701-02",
@@ -10356,8 +10345,7 @@
         "rgb": "142, 70, 90",
         "pantone": "",
         "image": "images/products/X1701/colors/X1701-02.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1701/colors/X1701-02-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1701-03",
@@ -10370,8 +10358,7 @@
         "rgb": "212, 195, 177",
         "pantone": "",
         "image": "images/products/X1701/X1701-front.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1701/X1701-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1701-04",
@@ -10384,8 +10371,7 @@
         "rgb": "124, 124, 127",
         "pantone": "",
         "image": "images/products/X1701/colors/X1701-04.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1701/colors/X1701-04-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1701-05",
@@ -10398,8 +10384,7 @@
         "rgb": "126, 129, 110",
         "pantone": "",
         "image": "images/products/X1701/colors/X1701-05.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1701/colors/X1701-05-back.jpg"
+        "fallbackImages": []
       }
     ],
     "sizeFields": [
@@ -10517,7 +10502,7 @@
     "nameEn": "",
     "category": "Hoodie",
     "fit": "",
-    "fabric": "겉감 : 면 57.2% 폴리에스터 42.8% / 안감 : 폴리에스터 95.6% 스판덱스 4.5%",
+    "fabric": "Outer: Cotton 57.2% Polyester 42.8% / Lining: Polyester 95.6% Spandex 4.5%",
     "weight": "300G",
     "tags": [],
     "pdfPage": "",
@@ -10556,8 +10541,7 @@
         "rgb": "33, 34, 38",
         "pantone": "",
         "image": "images/products/X1601/X1601-front.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1601/X1601-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1601-02",
@@ -10570,8 +10554,7 @@
         "rgb": "142, 70, 90",
         "pantone": "",
         "image": "images/products/X1601/colors/X1601-02.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1601/colors/X1601-02-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1601-03",
@@ -10584,8 +10567,7 @@
         "rgb": "212, 195, 177",
         "pantone": "",
         "image": "images/products/X1601/colors/X1601-03.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1601/colors/X1601-03-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1601-04",
@@ -10598,8 +10580,7 @@
         "rgb": "124, 124, 127",
         "pantone": "",
         "image": "images/products/X1601/colors/X1601-04.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1601/colors/X1601-04-back.jpg"
+        "fallbackImages": []
       },
       {
         "code": "X1601-05",
@@ -10612,8 +10593,7 @@
         "rgb": "126, 129, 110",
         "pantone": "",
         "image": "images/products/X1601/colors/X1601-05.jpg",
-        "fallbackImages": [],
-        "backImage": "images/products/X1601/colors/X1601-05-back.jpg"
+        "fallbackImages": []
       }
     ],
     "sizeFields": [
@@ -10731,7 +10711,7 @@
     "nameEn": "",
     "category": "Sweatshirt",
     "fit": "",
-    "fabric": "겉감 : 면 54.4% 폴리에스터 45.6% / 안감 : 폴리에스터 93.7% 스판덱스 6.3%",
+    "fabric": "Outer: Cotton 54.4% Polyester 45.6% / Lining: Polyester 93.7% Spandex 6.3%",
     "weight": "400G",
     "tags": [],
     "pdfPage": "",
@@ -10932,7 +10912,7 @@
     "nameEn": "",
     "category": "Sweatshirt",
     "fit": "",
-    "fabric": "겉감 : 면 57.2% 폴리에스터 42.8% / 안감 : 폴리에스터 95.6% 스판덱스 4.4%",
+    "fabric": "Outer: Cotton 57.2% Polyester 42.8% / Lining: Polyester 95.6% Spandex 4.4%",
     "weight": "300G",
     "tags": [],
     "pdfPage": "",

@@ -10,7 +10,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20261012-new-models";
+  const assetVersion = "20261012-fabric-back-images";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -615,9 +615,6 @@
     const slotImages = [
       { label: "Front Image", image: slots.front, alt: `${product.name} 앞면 이미지` },
       { label: "Back Image", image: slots.back, alt: `${product.name} 뒷면 이미지` },
-      ...product.colors.filter((color) => color.backImage && color.backImage !== slots.back).map((color) => ({
-        label: `${color.nameKr} Back Image`, image: color.backImage, alt: `${product.name} ${color.nameKr} 뒷면 이미지`
-      })),
       ...modelImages.map((image, index) => ({ label: `Model Fit ${index + 1}`, image, alt: `${product.name} 모델 착용 이미지 ${index + 1}` })),
       ...detailImages.map((image, index) => ({ label: `Detail Close Up ${index + 1}`, image, alt: `${product.name} 확대 디테일 이미지 ${index + 1}` }))
     ].filter((slot) => slot.image);
