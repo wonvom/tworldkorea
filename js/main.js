@@ -10,7 +10,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20261012-fabric-back-images";
+  const assetVersion = "20261012-multilingual-color-codes";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -209,10 +209,9 @@
   }
 
   function sampleItemImage(item) {
-    if (item.image) return item.image;
     const product = productData.find((entry) => entry.code === item.code || entry.id === item.code);
     const color = product?.colors?.find((entry) => entry.nameKr === item.color);
-    return color?.image || product?.thumbnail || "";
+    return color?.image || item.image || product?.thumbnail || "";
   }
 
   function renderSampleListPanel() {
@@ -638,7 +637,7 @@
           <p class="product-detail-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
           <h1>${escapeHtml(product.name)}</h1>
           ${product.nameCn || product.nameEn ? `<p class="product-subtitle">${[product.nameCn, product.nameEn].filter(Boolean).map(escapeHtml).join("<br>")}</p>` : ""}
-          ${product.description ? `<p>${escapeHtml(product.description)}</p>` : ""}
+          ${product.description && product.description.trim().toLowerCase() !== String(product.nameEn || "").trim().toLowerCase() ? `<p>${escapeHtml(product.description)}</p>` : ""}
           <dl class="summary-list">
             <div><dt>Category</dt><dd>${escapeHtml(categoryLabel(product.category).kr)} ${escapeHtml(categoryLabel(product.category).en)}</dd></div>
             ${product.fit ? `<div><dt>Fit</dt><dd>${escapeHtml(product.fit)}</dd></div>` : ""}
