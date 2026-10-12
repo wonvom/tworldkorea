@@ -9303,6 +9303,1827 @@
         "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
       }
     ]
+  },
+  {
+    "id": "23015",
+    "code": "23015",
+    "name": "20수 230G 빈티지 워싱 민소매 후드",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Sleeveless",
+    "fit": "루즈핏",
+    "fabric": "면 100%",
+    "weight": "230G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "워싱 빈티지 가공, 루즈핏",
+    "thumbnail": "images/products/23015/23015-front.jpg",
+    "images": [
+      "images/products/23015/23015-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/23015/23015-front.jpg",
+      "front": "images/products/23015/23015-front.jpg",
+      "back": "",
+      "model": [
+        "images/products/23015/23015-model-01.jpg"
+      ],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "23015-01",
+        "key": "23015-01",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#111111",
+        "rgb": "17, 17, 17",
+        "pantone": "",
+        "image": "images/products/23015/23015-front.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "23015-02",
+        "key": "23015-02",
+        "nameKr": "아이보리",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#c6beb3",
+        "rgb": "198, 190, 179",
+        "pantone": "",
+        "image": "images/products/23015/colors/23015-02.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "23015-03",
+        "key": "23015-03",
+        "nameKr": "그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#808286",
+        "rgb": "128, 130, 134",
+        "pantone": "",
+        "image": "images/products/23015/colors/23015-03.jpg",
+        "fallbackImages": []
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "S",
+        "shoulder": "43",
+        "chest": "53",
+        "length": "67",
+        "height": "150-155cm",
+        "weight": "40-50kg"
+      },
+      {
+        "size": "M",
+        "shoulder": "45",
+        "chest": "56",
+        "length": "70",
+        "height": "155-165cm",
+        "weight": "50-60kg"
+      },
+      {
+        "size": "L",
+        "shoulder": "47",
+        "chest": "59",
+        "length": "73",
+        "height": "160-170cm",
+        "weight": "60-70kg"
+      },
+      {
+        "size": "XL",
+        "shoulder": "49",
+        "chest": "62",
+        "length": "76",
+        "height": "165-175cm",
+        "weight": "75-85kg"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "51",
+        "chest": "65",
+        "length": "79",
+        "height": "170-175cm",
+        "weight": "90-100kg"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "53",
+        "chest": "68",
+        "length": "82",
+        "height": "175-185cm",
+        "weight": "110-110kg"
+      }
+    ],
+    "details": [
+      {
+        "title": "원단",
+        "text": "20수"
+      },
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/여름"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/60"
+  },
+  {
+    "id": "23011",
+    "code": "23011",
+    "name": "20수 230G 빈티지 워싱 민소매 티셔츠",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Sleeveless",
+    "fit": "",
+    "fabric": "면 100%",
+    "weight": "230G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "",
+    "thumbnail": "images/products/23011/23011-front.jpg",
+    "images": [
+      "images/products/23011/23011-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/23011/23011-front.jpg",
+      "front": "images/products/23011/23011-front.jpg",
+      "back": "",
+      "model": [
+        "images/products/23011/23011-model-01.jpg",
+        "images/products/23011/23011-model-02.jpg"
+      ],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "23011-01",
+        "key": "23011-01",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#111111",
+        "rgb": "17, 17, 17",
+        "pantone": "",
+        "image": "images/products/23011/23011-front.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "23011-02",
+        "key": "23011-02",
+        "nameKr": "아이보리",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#d4cbbf",
+        "rgb": "212, 203, 191",
+        "pantone": "",
+        "image": "images/products/23011/colors/23011-02.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "23011-03",
+        "key": "23011-03",
+        "nameKr": "그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#737477",
+        "rgb": "115, 116, 119",
+        "pantone": "",
+        "image": "images/products/23011/colors/23011-03.jpg",
+        "fallbackImages": []
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "S",
+        "shoulder": "43",
+        "chest": "53",
+        "length": "67",
+        "height": "150-155cm",
+        "weight": "40-50"
+      },
+      {
+        "size": "M",
+        "shoulder": "45",
+        "chest": "56",
+        "length": "70",
+        "height": "155-165cm",
+        "weight": "50-60"
+      },
+      {
+        "size": "L",
+        "shoulder": "47",
+        "chest": "59",
+        "length": "73",
+        "height": "160-170cm",
+        "weight": "60-70"
+      },
+      {
+        "size": "XL",
+        "shoulder": "49",
+        "chest": "62",
+        "length": "76",
+        "height": "165-175cm",
+        "weight": "75-85"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "51",
+        "chest": "65",
+        "length": "79",
+        "height": "170-175cm",
+        "weight": "90-100"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "53",
+        "chest": "68",
+        "length": "82",
+        "height": "175-185cm",
+        "weight": "110-110"
+      }
+    ],
+    "details": [
+      {
+        "title": "원단",
+        "text": "20수"
+      },
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/여름"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/59"
+  },
+  {
+    "id": "23013",
+    "code": "23013",
+    "name": "230G 빈티지 워싱 긴팔 티셔츠",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Long Sleeve",
+    "fit": "",
+    "fabric": "면 100%",
+    "weight": "230G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "빈티지 워싱 긴팔 티셔츠",
+    "thumbnail": "images/products/23013/23013-front.jpg",
+    "images": [
+      "images/products/23013/23013-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/23013/23013-front.jpg",
+      "front": "images/products/23013/23013-front.jpg",
+      "back": "",
+      "model": [
+        "images/products/23013/23013-model-01.jpg"
+      ],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "23013-01",
+        "key": "23013-01",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#111111",
+        "rgb": "17, 17, 17",
+        "pantone": "",
+        "image": "images/products/23013/23013-front.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "23013-02",
+        "key": "23013-02",
+        "nameKr": "아이보리",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#cbc0b3",
+        "rgb": "203, 192, 179",
+        "pantone": "",
+        "image": "images/products/23013/colors/23013-02.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "23013-03",
+        "key": "23013-03",
+        "nameKr": "그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#606670",
+        "rgb": "96, 102, 112",
+        "pantone": "",
+        "image": "images/products/23013/colors/23013-03.jpg",
+        "fallbackImages": []
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "sleeve",
+        "label": "소매",
+        "labelCn": "袖长",
+        "labelEn": "Sleeve"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "S",
+        "shoulder": "52",
+        "chest": "53",
+        "length": "68",
+        "sleeve": "58",
+        "height": "150-155cm",
+        "weight": "40-50kg"
+      },
+      {
+        "size": "M",
+        "shoulder": "55",
+        "chest": "56",
+        "length": "71",
+        "sleeve": "59.5",
+        "height": "155-165",
+        "weight": "50-60"
+      },
+      {
+        "size": "L",
+        "shoulder": "58",
+        "chest": "59",
+        "length": "74",
+        "sleeve": "61",
+        "height": "160-170",
+        "weight": "60-70"
+      },
+      {
+        "size": "XL",
+        "shoulder": "61",
+        "chest": "62",
+        "length": "77",
+        "sleeve": "62.5",
+        "height": "165-175",
+        "weight": "75-85"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "64",
+        "chest": "65",
+        "length": "80",
+        "sleeve": "64",
+        "height": "170-175",
+        "weight": "90-100"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "67",
+        "chest": "68",
+        "length": "83",
+        "sleeve": "65",
+        "height": "175-185",
+        "weight": "100-110"
+      },
+      {
+        "size": "4XL",
+        "shoulder": "70",
+        "chest": "71",
+        "length": "86",
+        "sleeve": "66",
+        "height": "180-190",
+        "weight": "120-110"
+      },
+      {
+        "size": "5XL",
+        "shoulder": "73",
+        "chest": "74",
+        "length": "89",
+        "sleeve": "67",
+        "height": "185-195",
+        "weight": "120-130"
+      }
+    ],
+    "details": [
+      {
+        "title": "원단",
+        "text": "20수"
+      },
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/가을/겨울"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/57"
+  },
+  {
+    "id": "x1702",
+    "code": "X1702",
+    "name": "400G 코튼X폴라플리스(기모) 본딩 집업 후드",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Hoodie",
+    "fit": "",
+    "fabric": "겉감 : 면 54.4% 폴리에스터 45.6% / 안감 : 폴리에스터 93.7% 스판덱스 6.3%",
+    "weight": "400G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "400g Cotton-Polar Fleece Bonded Zip-Up Hoodie",
+    "thumbnail": "images/products/X1702/X1702-front.jpg",
+    "images": [
+      "images/products/X1702/X1702-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/X1702/X1702-front.jpg",
+      "front": "images/products/X1702/X1702-front.jpg",
+      "back": "images/products/X1702/X1702-back.jpg",
+      "model": [
+        "images/products/X1702/X1702-model-01.jpg",
+        "images/products/X1702/X1702-model-02.jpg",
+        "images/products/X1702/X1702-model-03.jpg",
+        "images/products/X1702/X1702-model-04.jpg",
+        "images/products/X1702/X1702-model-05.jpg",
+        "images/products/X1702/X1702-model-06.jpg"
+      ],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "X1702-01",
+        "key": "x1702-01",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#212226",
+        "rgb": "33, 34, 38",
+        "pantone": "",
+        "image": "images/products/X1702/colors/X1702-01.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1702/colors/X1702-01-back.jpg"
+      },
+      {
+        "code": "X1702-02",
+        "key": "x1702-02",
+        "nameKr": "차콜 그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#7c7c7f",
+        "rgb": "124, 124, 127",
+        "pantone": "",
+        "image": "images/products/X1702/colors/X1702-02.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1702/colors/X1702-02-back.jpg"
+      },
+      {
+        "code": "X1702-03",
+        "key": "x1702-03",
+        "nameKr": "카키",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#7e816e",
+        "rgb": "126, 129, 110",
+        "pantone": "",
+        "image": "images/products/X1702/colors/X1702-03.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1702/colors/X1702-03-back.jpg"
+      },
+      {
+        "code": "X1702-04",
+        "key": "x1702-04",
+        "nameKr": "베이지",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#d4c3b1",
+        "rgb": "212, 195, 177",
+        "pantone": "",
+        "image": "images/products/X1702/colors/X1702-04.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1702/colors/X1702-04-back.jpg"
+      },
+      {
+        "code": "X1702-05",
+        "key": "x1702-05",
+        "nameKr": "와인",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#8e465a",
+        "rgb": "142, 70, 90",
+        "pantone": "",
+        "image": "images/products/X1702/X1702-front.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1702/X1702-back.jpg"
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "sleeve",
+        "label": "소매",
+        "labelCn": "袖长",
+        "labelEn": "Sleeve"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "M",
+        "shoulder": "60",
+        "chest": "59",
+        "length": "69",
+        "sleeve": "53",
+        "height": "155-165cm",
+        "weight": "50-60kg"
+      },
+      {
+        "size": "L",
+        "shoulder": "63",
+        "chest": "62",
+        "length": "71",
+        "sleeve": "54",
+        "height": "160-170cm",
+        "weight": "60-70kg"
+      },
+      {
+        "size": "XL",
+        "shoulder": "66",
+        "chest": "65",
+        "length": "73",
+        "sleeve": "55",
+        "height": "165-175cm",
+        "weight": "75-85kg"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "69",
+        "chest": "68",
+        "length": "75",
+        "sleeve": "56",
+        "height": "170-175cm",
+        "weight": "90-100kg"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "72",
+        "chest": "71",
+        "length": "77",
+        "sleeve": "57",
+        "height": "175-185cm",
+        "weight": "100-110KG"
+      }
+    ],
+    "details": [
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/가을/겨울"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지 / 뒤집어 건조"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/56"
+  },
+  {
+    "id": "x1602",
+    "code": "X1602",
+    "name": "300G 코튼X밀크사 본딩 집업 후드",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Hoodie",
+    "fit": "",
+    "fabric": "겉감 : 면 57.2% 폴리에스터 42.8% / 안감 : 폴리에스터 95.6% 스판덱스 4.4%",
+    "weight": "300G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "300g Cotton-Milk Blended Bonded Zip-Up Hoodie",
+    "thumbnail": "images/products/X1602/X1602-front.jpg",
+    "images": [
+      "images/products/X1602/X1602-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/X1602/X1602-front.jpg",
+      "front": "images/products/X1602/X1602-front.jpg",
+      "back": "images/products/X1602/X1602-back.jpg",
+      "model": [
+        "images/products/X1602/X1602-model-01.jpg",
+        "images/products/X1602/X1602-model-02.jpg",
+        "images/products/X1602/X1602-model-03.jpg",
+        "images/products/X1602/X1602-model-04.jpg",
+        "images/products/X1602/X1602-model-05.jpg",
+        "images/products/X1602/X1602-model-06.jpg"
+      ],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "X1602-01",
+        "key": "x1602-01",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#212226",
+        "rgb": "33, 34, 38",
+        "pantone": "",
+        "image": "images/products/X1602/colors/X1602-01.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1602/colors/X1602-01-back.jpg"
+      },
+      {
+        "code": "X1602-02",
+        "key": "x1602-02",
+        "nameKr": "차콜 그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#7c7c7f",
+        "rgb": "124, 124, 127",
+        "pantone": "",
+        "image": "images/products/X1602/colors/X1602-02.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1602/colors/X1602-02-back.jpg"
+      },
+      {
+        "code": "X1602-03",
+        "key": "x1602-03",
+        "nameKr": "카키",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#7e816e",
+        "rgb": "126, 129, 110",
+        "pantone": "",
+        "image": "images/products/X1602/X1602-front.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1602/X1602-back.jpg"
+      },
+      {
+        "code": "X1602-04",
+        "key": "x1602-04",
+        "nameKr": "베이지",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#d4c3b1",
+        "rgb": "212, 195, 177",
+        "pantone": "",
+        "image": "images/products/X1602/colors/X1602-04.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1602/colors/X1602-04-back.jpg"
+      },
+      {
+        "code": "X1602-05",
+        "key": "x1602-05",
+        "nameKr": "와인",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#8e465a",
+        "rgb": "142, 70, 90",
+        "pantone": "",
+        "image": "images/products/X1602/colors/X1602-05.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1602/colors/X1602-05-back.jpg"
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "sleeve",
+        "label": "소매",
+        "labelCn": "袖长",
+        "labelEn": "Sleeve"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "M",
+        "shoulder": "60",
+        "chest": "59",
+        "length": "69",
+        "sleeve": "53",
+        "height": "155-165cm",
+        "weight": "50-60kg"
+      },
+      {
+        "size": "L",
+        "shoulder": "63",
+        "chest": "62",
+        "length": "71",
+        "sleeve": "54",
+        "height": "160-170cm",
+        "weight": "60-70kg"
+      },
+      {
+        "size": "XL",
+        "shoulder": "66",
+        "chest": "65",
+        "length": "73",
+        "sleeve": "55",
+        "height": "165-175cm",
+        "weight": "75-85kg"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "69",
+        "chest": "68",
+        "length": "75",
+        "sleeve": "56",
+        "height": "170-175cm",
+        "weight": "90-100kg"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "72",
+        "chest": "71",
+        "length": "77",
+        "sleeve": "57",
+        "height": "175-185cm",
+        "weight": "100-110KG"
+      }
+    ],
+    "details": [
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/가을/겨울"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지 / 뒤집어 건조"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/55"
+  },
+  {
+    "id": "x1701",
+    "code": "X1701",
+    "name": "400G 코튼X폴라폴리스(기모) 본딩 후드",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Hoodie",
+    "fit": "",
+    "fabric": "겉감 : 면 54.4% 폴리에스터 45.6% / 안감 : 폴리에스터 93.7% 스판덱스 6.3%",
+    "weight": "400G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "400g Cotton-Polar Fleece Bonded Hoodie",
+    "thumbnail": "images/products/X1701/X1701-front.jpg",
+    "images": [
+      "images/products/X1701/X1701-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/X1701/X1701-front.jpg",
+      "front": "images/products/X1701/X1701-front.jpg",
+      "back": "images/products/X1701/X1701-back.jpg",
+      "model": [
+        "images/products/X1701/X1701-model-01.jpg",
+        "images/products/X1701/X1701-model-02.jpg",
+        "images/products/X1701/X1701-model-03.jpg",
+        "images/products/X1701/X1701-model-04.jpg",
+        "images/products/X1701/X1701-model-05.jpg",
+        "images/products/X1701/X1701-model-06.jpg",
+        "images/products/X1701/X1701-model-07.jpg"
+      ],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "X1701-01",
+        "key": "x1701-01",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#212226",
+        "rgb": "33, 34, 38",
+        "pantone": "",
+        "image": "images/products/X1701/colors/X1701-01.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1701/colors/X1701-01-back.jpg"
+      },
+      {
+        "code": "X1701-02",
+        "key": "x1701-02",
+        "nameKr": "와인",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#8e465a",
+        "rgb": "142, 70, 90",
+        "pantone": "",
+        "image": "images/products/X1701/colors/X1701-02.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1701/colors/X1701-02-back.jpg"
+      },
+      {
+        "code": "X1701-03",
+        "key": "x1701-03",
+        "nameKr": "베이지",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#d4c3b1",
+        "rgb": "212, 195, 177",
+        "pantone": "",
+        "image": "images/products/X1701/X1701-front.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1701/X1701-back.jpg"
+      },
+      {
+        "code": "X1701-04",
+        "key": "x1701-04",
+        "nameKr": "차콜 그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#7c7c7f",
+        "rgb": "124, 124, 127",
+        "pantone": "",
+        "image": "images/products/X1701/colors/X1701-04.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1701/colors/X1701-04-back.jpg"
+      },
+      {
+        "code": "X1701-05",
+        "key": "x1701-05",
+        "nameKr": "카키",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#7e816e",
+        "rgb": "126, 129, 110",
+        "pantone": "",
+        "image": "images/products/X1701/colors/X1701-05.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1701/colors/X1701-05-back.jpg"
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "sleeve",
+        "label": "소매",
+        "labelCn": "袖长",
+        "labelEn": "Sleeve"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "M",
+        "shoulder": "60",
+        "chest": "59",
+        "length": "69",
+        "sleeve": "53",
+        "height": "155-165cm",
+        "weight": "50-60kg"
+      },
+      {
+        "size": "L",
+        "shoulder": "63",
+        "chest": "62",
+        "length": "71",
+        "sleeve": "54",
+        "height": "160-170cm",
+        "weight": "60-70kg"
+      },
+      {
+        "size": "XL",
+        "shoulder": "66",
+        "chest": "65",
+        "length": "73",
+        "sleeve": "55",
+        "height": "165-175cm",
+        "weight": "75-85kg"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "69",
+        "chest": "68",
+        "length": "75",
+        "sleeve": "56",
+        "height": "170-175cm",
+        "weight": "90-100kg"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "72",
+        "chest": "71",
+        "length": "77",
+        "sleeve": "57",
+        "height": "175-185cm",
+        "weight": "100-110KG"
+      }
+    ],
+    "details": [
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/가을/겨울"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지 / 뒤집어 건조"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/54"
+  },
+  {
+    "id": "x1601",
+    "code": "X1601",
+    "name": "300G 코튼X밀크사 본딩 후드",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Hoodie",
+    "fit": "",
+    "fabric": "겉감 : 면 57.2% 폴리에스터 42.8% / 안감 : 폴리에스터 95.6% 스판덱스 4.5%",
+    "weight": "300G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "",
+    "thumbnail": "images/products/X1601/X1601-front.jpg",
+    "images": [
+      "images/products/X1601/X1601-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/X1601/X1601-front.jpg",
+      "front": "images/products/X1601/X1601-front.jpg",
+      "back": "images/products/X1601/X1601-back.jpg",
+      "model": [
+        "images/products/X1601/X1601-model-01.jpg",
+        "images/products/X1601/X1601-model-02.jpg",
+        "images/products/X1601/X1601-model-03.jpg",
+        "images/products/X1601/X1601-model-04.jpg",
+        "images/products/X1601/X1601-model-05.jpg",
+        "images/products/X1601/X1601-model-06.jpg",
+        "images/products/X1601/X1601-model-07.jpg"
+      ],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "X1601-01",
+        "key": "x1601-01",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#212226",
+        "rgb": "33, 34, 38",
+        "pantone": "",
+        "image": "images/products/X1601/X1601-front.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1601/X1601-back.jpg"
+      },
+      {
+        "code": "X1601-02",
+        "key": "x1601-02",
+        "nameKr": "와인",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#8e465a",
+        "rgb": "142, 70, 90",
+        "pantone": "",
+        "image": "images/products/X1601/colors/X1601-02.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1601/colors/X1601-02-back.jpg"
+      },
+      {
+        "code": "X1601-03",
+        "key": "x1601-03",
+        "nameKr": "베이지",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#d4c3b1",
+        "rgb": "212, 195, 177",
+        "pantone": "",
+        "image": "images/products/X1601/colors/X1601-03.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1601/colors/X1601-03-back.jpg"
+      },
+      {
+        "code": "X1601-04",
+        "key": "x1601-04",
+        "nameKr": "차콜 그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#7c7c7f",
+        "rgb": "124, 124, 127",
+        "pantone": "",
+        "image": "images/products/X1601/colors/X1601-04.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1601/colors/X1601-04-back.jpg"
+      },
+      {
+        "code": "X1601-05",
+        "key": "x1601-05",
+        "nameKr": "카키",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#7e816e",
+        "rgb": "126, 129, 110",
+        "pantone": "",
+        "image": "images/products/X1601/colors/X1601-05.jpg",
+        "fallbackImages": [],
+        "backImage": "images/products/X1601/colors/X1601-05-back.jpg"
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "sleeve",
+        "label": "소매",
+        "labelCn": "袖长",
+        "labelEn": "Sleeve"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "M",
+        "shoulder": "60",
+        "chest": "59",
+        "length": "69",
+        "sleeve": "53",
+        "height": "155-165cm",
+        "weight": "50-60kg"
+      },
+      {
+        "size": "L",
+        "shoulder": "63",
+        "chest": "62",
+        "length": "71",
+        "sleeve": "54",
+        "height": "160-170cm",
+        "weight": "60-70kg"
+      },
+      {
+        "size": "XL",
+        "shoulder": "66",
+        "chest": "65",
+        "length": "73",
+        "sleeve": "55",
+        "height": "165-175cm",
+        "weight": "75-85kg"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "69",
+        "chest": "68",
+        "length": "75",
+        "sleeve": "56",
+        "height": "170-175cm",
+        "weight": "90-100kg"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "72",
+        "chest": "71",
+        "length": "77",
+        "sleeve": "57",
+        "height": "175-185cm",
+        "weight": "100-110kg"
+      }
+    ],
+    "details": [
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/가을/겨울"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지 / 뒤집어 건조"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/53"
+  },
+  {
+    "id": "x1700",
+    "code": "X1700",
+    "name": "400G 코튼X폴라플리스(기모) 본딩 맨투맨",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Sweatshirt",
+    "fit": "",
+    "fabric": "겉감 : 면 54.4% 폴리에스터 45.6% / 안감 : 폴리에스터 93.7% 스판덱스 6.3%",
+    "weight": "400G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "400g Cotton-Polar Fleece Bonded Sweatshirt",
+    "thumbnail": "images/products/X1700/X1700-front.jpg",
+    "images": [
+      "images/products/X1700/X1700-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/X1700/X1700-front.jpg",
+      "front": "images/products/X1700/X1700-front.jpg",
+      "back": "",
+      "model": [],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "X1700-01",
+        "key": "x1700-01",
+        "nameKr": "차콜 그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#808185",
+        "rgb": "128, 129, 133",
+        "pantone": "",
+        "image": "images/products/X1700/colors/X1700-01.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "X1700-02",
+        "key": "x1700-02",
+        "nameKr": "카키",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#6d6e5e",
+        "rgb": "109, 110, 94",
+        "pantone": "",
+        "image": "images/products/X1700/X1700-front.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "X1700-03",
+        "key": "x1700-03",
+        "nameKr": "와인",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#884e5d",
+        "rgb": "136, 78, 93",
+        "pantone": "",
+        "image": "images/products/X1700/colors/X1700-03.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "X1700-04",
+        "key": "x1700-04",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#27262a",
+        "rgb": "39, 38, 42",
+        "pantone": "",
+        "image": "images/products/X1700/colors/X1700-04.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "X1700-05",
+        "key": "x1700-05",
+        "nameKr": "베이지",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#ddcec5",
+        "rgb": "221, 206, 197",
+        "pantone": "",
+        "image": "images/products/X1700/colors/X1700-05.jpg",
+        "fallbackImages": []
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "sleeve",
+        "label": "소매",
+        "labelCn": "袖长",
+        "labelEn": "Sleeve"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "M",
+        "shoulder": "60",
+        "chest": "59",
+        "length": "69",
+        "sleeve": "53",
+        "height": "155-165cm",
+        "weight": "50-60kg"
+      },
+      {
+        "size": "L",
+        "shoulder": "63",
+        "chest": "62",
+        "length": "71",
+        "sleeve": "54",
+        "height": "160-170cm",
+        "weight": "60-70kg"
+      },
+      {
+        "size": "XL",
+        "shoulder": "66",
+        "chest": "65",
+        "length": "73",
+        "sleeve": "55",
+        "height": "165-175cm",
+        "weight": "75-85kg"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "69",
+        "chest": "68",
+        "length": "75",
+        "sleeve": "56",
+        "height": "170-175cm",
+        "weight": "90-100kg"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "72",
+        "chest": "71",
+        "length": "77",
+        "sleeve": "57",
+        "height": "175-185cm",
+        "weight": "100-110kg"
+      }
+    ],
+    "details": [
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/여름/겨울"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지 / 뒤집어 건조"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/52"
+  },
+  {
+    "id": "x1600",
+    "code": "X1600",
+    "name": "300G 코튼X밀크사 본딩 맨투맨",
+    "nameCn": "",
+    "nameEn": "",
+    "category": "Sweatshirt",
+    "fit": "",
+    "fabric": "겉감 : 면 57.2% 폴리에스터 42.8% / 안감 : 폴리에스터 95.6% 스판덱스 4.4%",
+    "weight": "300G",
+    "tags": [],
+    "pdfPage": "",
+    "description": "300g Cotton-Milk Blended Bonded Sweatshirt",
+    "thumbnail": "images/products/X1600/X1600-front.jpg",
+    "images": [
+      "images/products/X1600/X1600-front.jpg"
+    ],
+    "imageSlots": {
+      "main": "images/products/X1600/X1600-front.jpg",
+      "front": "images/products/X1600/X1600-front.jpg",
+      "back": "",
+      "model": [],
+      "detail": [],
+      "fabric": [],
+      "colorChart": "",
+      "guide": ""
+    },
+    "colors": [
+      {
+        "code": "X1600-01",
+        "key": "x1600-01",
+        "nameKr": "차콜 그레이",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#808185",
+        "rgb": "128, 129, 133",
+        "pantone": "",
+        "image": "images/products/X1600/colors/X1600-01.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "X1600-02",
+        "key": "x1600-02",
+        "nameKr": "카키",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#6d6e5e",
+        "rgb": "109, 110, 94",
+        "pantone": "",
+        "image": "images/products/X1600/colors/X1600-02.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "X1600-03",
+        "key": "x1600-03",
+        "nameKr": "와인",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#884e5d",
+        "rgb": "136, 78, 93",
+        "pantone": "",
+        "image": "images/products/X1600/colors/X1600-03.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "X1600-04",
+        "key": "x1600-04",
+        "nameKr": "블랙",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#27262a",
+        "rgb": "39, 38, 42",
+        "pantone": "",
+        "image": "images/products/X1600/X1600-front.jpg",
+        "fallbackImages": []
+      },
+      {
+        "code": "X1600-05",
+        "key": "x1600-05",
+        "nameKr": "베이지",
+        "nameCn": "",
+        "nameEn": "",
+        "nameJa": "",
+        "hex": "#ddcec5",
+        "rgb": "221, 206, 197",
+        "pantone": "",
+        "image": "images/products/X1600/colors/X1600-05.jpg",
+        "fallbackImages": []
+      }
+    ],
+    "sizeFields": [
+      {
+        "key": "size",
+        "label": "사이즈",
+        "labelCn": "尺码表",
+        "labelEn": "Size"
+      },
+      {
+        "key": "shoulder",
+        "label": "어깨",
+        "labelCn": "肩宽",
+        "labelEn": "Shoulder"
+      },
+      {
+        "key": "chest",
+        "label": "가슴",
+        "labelCn": "胸围",
+        "labelEn": "Chest"
+      },
+      {
+        "key": "length",
+        "label": "총장",
+        "labelCn": "衣长",
+        "labelEn": "Length"
+      },
+      {
+        "key": "sleeve",
+        "label": "소매",
+        "labelCn": "袖长",
+        "labelEn": "Sleeve"
+      },
+      {
+        "key": "height",
+        "label": "추천 키",
+        "labelCn": "推荐身高",
+        "labelEn": "Height"
+      },
+      {
+        "key": "weight",
+        "label": "추천 몸무게",
+        "labelCn": "推荐体重",
+        "labelEn": "Weight"
+      }
+    ],
+    "sizes": [
+      {
+        "size": "M",
+        "shoulder": "60",
+        "chest": "59",
+        "length": "69",
+        "sleeve": "53",
+        "height": "155-165cm",
+        "weight": "50-60kg"
+      },
+      {
+        "size": "L",
+        "shoulder": "63",
+        "chest": "62",
+        "length": "71",
+        "sleeve": "54",
+        "height": "160-170cm",
+        "weight": "60-70kg"
+      },
+      {
+        "size": "XL",
+        "shoulder": "66",
+        "chest": "65",
+        "length": "73",
+        "sleeve": "55",
+        "height": "165-175cm",
+        "weight": "75-85kg"
+      },
+      {
+        "size": "2XL",
+        "shoulder": "69",
+        "chest": "68",
+        "length": "75",
+        "sleeve": "56",
+        "height": "170-175cm",
+        "weight": "90-100kg"
+      },
+      {
+        "size": "3XL",
+        "shoulder": "72",
+        "chest": "71",
+        "length": "77",
+        "sleeve": "57",
+        "height": "175-185cm",
+        "weight": "100-110kg"
+      }
+    ],
+    "details": [
+      {
+        "title": "성별",
+        "text": "남녀공용"
+      },
+      {
+        "title": "시즌",
+        "text": "봄/가을/겨울"
+      },
+      {
+        "title": "세탁",
+        "text": "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지 / 뒤집어 건조"
+      }
+    ],
+    "sourceUrl": "https://www.tworldkorea.kr/products/51"
   }
 ];
 
@@ -9319,11 +11140,11 @@
     },
     {
       "name": "Sleeveless",
-      "count": 3
+      "count": 5
     },
     {
       "name": "Long Sleeve",
-      "count": 3
+      "count": 4
     },
     {
       "name": "Polo Shirt",
@@ -9331,11 +11152,11 @@
     },
     {
       "name": "Sweatshirt",
-      "count": 3
+      "count": 5
     },
     {
       "name": "Hoodie",
-      "count": 3
+      "count": 7
     },
     {
       "name": "Pants",

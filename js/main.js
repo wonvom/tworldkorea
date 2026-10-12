@@ -10,7 +10,7 @@
   const productData = window.products || [];
   const page = document.body.dataset.page;
   const catalogSummary = window.catalogSummary || {};
-  const assetVersion = "20260915-custom-order-colors";
+  const assetVersion = "20261012-new-models";
   const sampleListKey = "tworld-sample-list-v1";
   const sampleContactKey = "tworld-sample-contact-v1";
   const kakaoTalkUrl = "https://open.kakao.com/o/spcUfEvi";
@@ -615,6 +615,9 @@
     const slotImages = [
       { label: "Front Image", image: slots.front, alt: `${product.name} 앞면 이미지` },
       { label: "Back Image", image: slots.back, alt: `${product.name} 뒷면 이미지` },
+      ...product.colors.filter((color) => color.backImage && color.backImage !== slots.back).map((color) => ({
+        label: `${color.nameKr} Back Image`, image: color.backImage, alt: `${product.name} ${color.nameKr} 뒷면 이미지`
+      })),
       ...modelImages.map((image, index) => ({ label: `Model Fit ${index + 1}`, image, alt: `${product.name} 모델 착용 이미지 ${index + 1}` })),
       ...detailImages.map((image, index) => ({ label: `Detail Close Up ${index + 1}`, image, alt: `${product.name} 확대 디테일 이미지 ${index + 1}` }))
     ].filter((slot) => slot.image);
@@ -637,14 +640,14 @@
         <aside class="detail-summary">
           <p class="product-detail-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
           <h1>${escapeHtml(product.name)}</h1>
-          <p class="product-subtitle">${escapeHtml(product.nameCn)}<br>${escapeHtml(product.nameEn)}</p>
-          <p>${escapeHtml(product.description)}</p>
+          ${product.nameCn || product.nameEn ? `<p class="product-subtitle">${[product.nameCn, product.nameEn].filter(Boolean).map(escapeHtml).join("<br>")}</p>` : ""}
+          ${product.description ? `<p>${escapeHtml(product.description)}</p>` : ""}
           <dl class="summary-list">
             <div><dt>Category</dt><dd>${escapeHtml(categoryLabel(product.category).kr)} ${escapeHtml(categoryLabel(product.category).en)}</dd></div>
-            <div><dt>Fit</dt><dd>${escapeHtml(product.fit)}</dd></div>
-            <div><dt>Fabric</dt><dd>${escapeHtml(product.fabric)}</dd></div>
-            <div><dt>Weight</dt><dd>${escapeHtml(product.weight)}</dd></div>
-            <div><dt>PDF Page</dt><dd>${escapeHtml(product.pdfPage)} Page</dd></div>
+            ${product.fit ? `<div><dt>Fit</dt><dd>${escapeHtml(product.fit)}</dd></div>` : ""}
+            ${product.fabric ? `<div><dt>Fabric</dt><dd>${escapeHtml(product.fabric)}</dd></div>` : ""}
+            ${product.weight ? `<div><dt>Weight</dt><dd>${escapeHtml(product.weight)}</dd></div>` : ""}
+            ${product.pdfPage ? `<div><dt>PDF Page</dt><dd>${escapeHtml(product.pdfPage)} Page</dd></div>` : ""}
             <div><dt>Size</dt><dd>${escapeHtml(product.sizes.map((size) => size.size).join(", "))}</dd></div>
           </dl>
           <p class="filter-label">COLOR</p>
@@ -692,7 +695,7 @@
       <section class="detail-section">
         <p class="eyebrow">PRODUCT DESCRIPTION</p>
         <h2>DETAIL NOTES</h2>
-        <p class="detail-copy">${escapeHtml(product.description)}</p>
+        ${product.description ? `<p class="detail-copy">${escapeHtml(product.description)}</p>` : ""}
         <div class="detail-info-grid">
           ${product.details.map((detail) => `<article><h3>${escapeHtml(detail.title)}</h3><p>${escapeHtml(detail.text)}</p></article>`).join("")}
         </div>
@@ -701,7 +704,7 @@
       <section class="detail-section">
         <p class="eyebrow">IMAGE PLACEMENT</p>
         <h2>PRODUCT ASSETS</h2>
-        <p class="detail-copy">${escapeHtml(slots.guide || "제품 이미지는 앞면, 뒷면, 모델 착용컷, 확대 디테일컷으로 분리해서 넣어주세요.")}</p>
+        ${slots.guide ? `<p class="detail-copy">${escapeHtml(slots.guide)}</p>` : ""}
         <div class="placement-grid">
           ${slotImages.map((slot) => placementCard(slot.label, slot.image, slot.alt)).join("")}
         </div>
