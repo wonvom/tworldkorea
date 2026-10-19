@@ -657,7 +657,7 @@
               <div class="sample-choice-grid">
                 ${product.colors.map((color) => `
                   <label class="sample-choice">
-                    <input type="radio" name="sample-color" value="${escapeHtml(color.nameKr)}" data-color-image="${escapeHtml(color.image || product.thumbnail)}">
+                    <input type="radio" name="sample-color" value="${escapeHtml(color.nameKr)}" data-color-code="${escapeHtml(color.code)}" data-color-image="${escapeHtml(color.image || product.thumbnail)}">
                     <span class="swatch small" style="background:${safeCssColor(color.hex)}"></span>
                     <span>${escapeHtml(color.nameKr)}</span>
                   </label>
@@ -785,6 +785,7 @@
       });
     });
 
+    const inventory = window.TworldInventory?.attach(qs("[data-sample-selector]", mount), product, window.inventoryConfig);
     const addButton = qs("[data-add-sample]", mount);
     if (addButton) {
       addButton.addEventListener("click", () => {
@@ -805,6 +806,7 @@
         qsa('input[name="sample-color"], input[name="sample-size"]', selector).forEach((input) => {
           input.checked = false;
         });
+        inventory?.reset();
         if (memoInput) memoInput.value = "";
         if (status) status.textContent = `${addedText} 조합을 샘플 장바구니에 담았습니다.`;
       });

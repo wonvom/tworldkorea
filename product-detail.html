@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self' https://tworld-inventory-api.halestork64.chatgpt.site; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" href="favicon.png?v=20260710-brand-logo" type="image/png">
   <script>if (location.protocol === "http:" && location.hostname === "www.tworldkorea.co.kr") location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);</script>
@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://www.tworldkorea.co.kr/product-detail.html">
   <meta property="og:image" content="https://www.tworldkorea.co.kr/images/products/01OA1/01OA1-front.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/style.css?v=20260710-clean-urls">
+  <link rel="stylesheet" href="css/style.css?v=20261019-inventory-live">
 </head>
 <body data-page="product-detail">
   <header class="site-header" data-header>
@@ -42,6 +42,8 @@
   </footer>
 
   <script src="data/products.js?v=20261012-multilingual-color-codes"></script>
-  <script src="js/main.js?v=20261012-multilingual-color-codes"></script>
+  <script src="data/inventory-config.js?v=20261019-inventory-live"></script>
+  <script src="js/inventory.js?v=20261019-inventory-live"></script>
+  <script src="js/main.js?v=20261019-inventory-live"></script>
 </body>
 </html>
