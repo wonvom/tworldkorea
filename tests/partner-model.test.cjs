@@ -13,12 +13,8 @@ test('unconfirmed prices never become zero-priced totals',()=>{
  assert.equal(M.totals([{...line,unitPrice:2000},line]).supply,null);
  assert.equal(M.totals([{...line,unitPrice:2000}]).supply,6000);
 });
-test('delivery date handles leap days, month/year edges and the Korean timezone',()=>{
+test('order dates use the Korean timezone',()=>{
  assert.equal(M.dayISO(new Date('2026-10-19T15:01:00Z')),'2026-10-20');
- assert.equal(M.validDate('2026-10-19','2026-10-20'),false);assert.equal(M.validDate('2026-10-20','2026-10-20'),true);
- assert.equal(M.validDate('2027-10-21','2026-10-20'),false);assert.equal(M.validDate('2027-02-29','2026-10-20'),false);
- assert.equal(M.validDate('2028-02-29','2028-01-01'),true);assert.equal(M.validDate('','2026-10-20'),true);
- assert.equal(M.addDays('2026-12-31',1),'2027-01-01');
 });
 test('phone field allows domestic formatting and rejects text/short values',()=>{
  assert.equal(M.validPhone('000-0000-0000'),true);assert.equal(M.validPhone('02-000-0000'),true);

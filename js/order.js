@@ -8,9 +8,7 @@
   // Prototype state is intentionally memory-only. No order/profile/PII request reaches the OS or gateway.
   let entered = false, lines = [], orders = [], inquiries = [], historyView = "orders", statement = null;
   let stockSession = null, stockController = null, stockSequence = 0, stockTimer = null, postcodePromise = null, accessController = null;
-  let calendarYear, calendarMonth;
   const currentProduct = () => products.find(p => p.code === $("order-product").value);
-  const dateText = value => value ? new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "short", timeZone: "Asia/Seoul" }).format(new Date(value + "T12:00:00+09:00")) : "미지정";
   const newId = kind => `DEMO-${kind}-${M.dayISO().replaceAll("-", "")}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
   function showTab(name, focus = true) {
     document.querySelectorAll("[data-tab]").forEach(button => { const active = button.dataset.tab === name; button.setAttribute("aria-selected", String(active)); button.tabIndex = active ? 0 : -1; $("panel-" + button.dataset.tab).hidden = !active; });
@@ -55,7 +53,7 @@
     entered = false; cancelStock(); stockSession = null; lines = []; orders = []; inquiries = []; statement = null;
     document.querySelectorAll("dialog[open]").forEach(dialog => dialog.close());
     $("order-check-form").reset(); $("inquiry-form").reset(); $("order-code-form").reset();
-    $("order-date").value = ""; $("order-date-label").textContent = "날짜를 선택해주세요"; syncDelivery();
+    syncDelivery();
     $("statement-document").replaceChildren(); $("postcode-embed").replaceChildren(); $("postcode-panel").hidden = true;
     for (const id of ["order-access-status", "order-item-status", "order-review-status", "inquiry-status", "address-status"]) $(id).textContent = "";
     $("partner-app").hidden = true; $("order-access").hidden = false; renderLines(); renderHistory(); renderInquiries(); renderProduct(); $("order-code").focus();
@@ -144,48 +142,27 @@
     finally { button.disabled = false; }
   });
   $("address-close").addEventListener("click", () => { $("postcode-panel").hidden = true; $("postcode-embed").replaceChildren(); $("address-search").focus(); });
-  function openCalendar() { const base = $("order-date").value || M.dayISO(); [calendarYear, calendarMonth] = base.split("-").map(Number); renderCalendar(); $("date-dialog").showModal(); }
-  function renderCalendar() {
-    const today = M.dayISO(), last = M.addDays(today, 365), days = new Date(Date.UTC(calendarYear, calendarMonth, 0)).getUTCDate(), offset = new Date(Date.UTC(calendarYear, calendarMonth - 1, 1)).getUTCDay();
-    $("calendar-month").textContent = `${calendarYear}년 ${calendarMonth}월`; $("calendar-days").replaceChildren();
-    for (let i = 0; i < offset; i++) $("calendar-days").append(element("span", ""));
-    for (let day = 1; day <= days; day++) {
-      const iso = `${calendarYear}-${String(calendarMonth).padStart(2, "0")}-${String(day).padStart(2, "0")}`, button = element("button", String(day)); button.type = "button"; button.dataset.date = iso;
-      button.disabled = !M.validDate(iso, today); button.setAttribute("aria-label", dateText(iso)); button.setAttribute("aria-pressed", String($("order-date").value === iso));
-      button.addEventListener("click", () => { $("order-date").value = iso; $("order-date-label").textContent = dateText(iso); $("date-dialog").close(); $("order-date-open").focus(); }); $("calendar-days").append(button);
-    }
-    const monthKey = `${calendarYear}-${String(calendarMonth).padStart(2, "0")}`; $("calendar-prev").disabled = monthKey <= today.slice(0, 7); $("calendar-next").disabled = monthKey >= last.slice(0, 7);
-  }
-  function shiftMonth(delta) { const date = new Date(Date.UTC(calendarYear, calendarMonth - 1 + delta, 1)); calendarYear = date.getUTCFullYear(); calendarMonth = date.getUTCMonth() + 1; renderCalendar(); }
-  $("order-date-open").addEventListener("click", openCalendar); $("calendar-prev").addEventListener("click", () => shiftMonth(-1)); $("calendar-next").addEventListener("click", () => shiftMonth(1));
-  $("calendar-clear").addEventListener("click", () => { $("order-date").value = ""; $("order-date-label").textContent = "날짜를 선택해주세요"; $("date-dialog").close(); });
-  $("calendar-days").addEventListener("keydown", event => {
-    if (!event.target.dataset.date || !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
-    event.preventDefault(); const delta = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[event.key], iso = M.addDays(event.target.dataset.date, delta);
-    if (!M.validDate(iso)) return; [calendarYear, calendarMonth] = iso.split("-").map(Number); renderCalendar(); $("calendar-days").querySelector(`[data-date="${iso}"]`)?.focus();
-  });
   document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", () => $(button.dataset.close).close()));
   $("order-check-form").addEventListener("submit", event => {
     event.preventDefault(); if (!entered) return;
     if (!lines.length) { $("order-review-status").textContent = "상품을 먼저 주문서에 담아주세요."; $("order-product").focus(); return; }
     const newAddress = document.querySelector('[name="delivery"]:checked').value === "NEW_ADDRESS";
     if (newAddress && !M.validPhone($("recipient-phone").value)) { $("recipient-phone").setCustomValidity("연락 가능한 전화번호를 숫자와 하이픈으로 입력해주세요."); $("recipient-phone").reportValidity(); return; }
-    if (!M.validDate($("order-date").value)) { $("order-review-status").textContent = "배송 희망일을 다시 선택해주세요."; openCalendar(); return; }
     if (newAddress && (!$("recipient-name").value.trim() || !$("delivery-address").value.trim())) { $("order-review-status").textContent = "수령인 이름과 기본 주소를 입력해주세요."; return; }
-    statement = { id: newId("ORDER"), createdAt: M.dayISO(), items: lines.map(line => ({ ...line })), requestedDate: $("order-date").value, memo: $("delivery-memo").value.trim(), delivery: newAddress ? { type: "NEW_ADDRESS", name: $("recipient-name").value.trim(), phone: $("recipient-phone").value.trim(), postcode: $("delivery-postcode").value, address: $("delivery-address").value.trim(), detail: $("delivery-detail").value.trim() } : { type: "BUSINESS_ADDRESS", name: "등록 담당자 · 연결 예정", phone: "등록 연락처 · 연결 예정", postcode: "", address: "사업자등록증 등록 주소 · OS 연결 후 표시", detail: "" }, confirmed: false };
+    statement = { id: newId("ORDER"), createdAt: M.dayISO(), items: lines.map(line => ({ ...line })), delivery: newAddress ? { type: "NEW_ADDRESS", name: $("recipient-name").value.trim(), phone: $("recipient-phone").value.trim(), postcode: $("delivery-postcode").value, address: $("delivery-address").value.trim(), detail: $("delivery-detail").value.trim() } : { type: "BUSINESS_ADDRESS", name: "등록 담당자 · 연결 예정", phone: "등록 연락처 · 연결 예정", postcode: "", address: "사업자등록증 등록 주소 · OS 연결 후 표시", detail: "" }, confirmed: false };
     $("order-review-status").textContent = ""; showStatement(statement);
   });
   function showStatement(order) {
     statement = order; const total = M.totals(order.items), d = order.delivery;
     $("statement-document").className = "statement-document";
-    $("statement-document").innerHTML = `<div class="statement-head"><div><p>T-WORLD KOREA</p><h2 id="statement-title">거래명세서</h2><p>확인용 · 단가 미확정 · 시연 문서</p></div><div>${esc(order.createdAt)}<br><span class="mini-tag">${order.confirmed ? "시연 내역" : "주문 미리보기"}</span></div></div><div class="statement-parties"><div><span>공급자</span><strong>주식회사 티월드코리아</strong><p>사업자 정보는 사내 OS 연결 후 표시됩니다.</p></div><div><span>공급받는 자</span><strong>시연용 거래처</strong><p>사업자등록증 기준 정보 · 연결 예정</p></div></div><div class="statement-table-wrap"><table class="statement-table"><thead><tr><th>상품</th><th>색상 / 사이즈</th><th>수량</th><th>단가</th><th>공급가액</th></tr></thead><tbody>${order.items.map(line => `<tr><td>${esc(line.productCode)}<small>${esc(line.productName)}</small></td><td>${esc(line.color)} / ${esc(line.size)}</td><td>${n(line.quantity)}장</td><td>확인 예정</td><td>-</td></tr>`).join("")}</tbody></table></div><div class="statement-summary"><span>총 수량 <strong>${n(total.quantity)}장</strong></span><span>공급가액 · 부가세 · 합계 <strong>단가 확인 후 안내</strong></span></div><div class="statement-delivery"><strong>배송 정보</strong><br>${d.type === "BUSINESS_ADDRESS" ? "사업자등록증 주소 (기본)" : "새 배송지"}<br>${esc([d.postcode, d.address, d.detail].filter(Boolean).join(" "))}<br>수령인: ${esc(d.name)} · 연락처: ${esc(d.phone)}<br>배송 희망일: ${esc(dateText(order.requestedDate))}${order.memo ? `<br>요청사항: ${esc(order.memo)}` : ""}</div><p class="statement-warning">${esc(order.id)}<br>이 문서는 화면 확인용이며 거래 확정, 결제 또는 세금계산서 발행을 의미하지 않습니다. 공급단가·부가세·배송비와 납기는 담당자 확인 후 확정됩니다. 입력 내용은 사내 OS로 전송되지 않습니다.</p>`;
+    $("statement-document").innerHTML = `<div class="statement-head"><div><p>T-WORLD KOREA</p><h2 id="statement-title">거래명세서</h2><p>확인용 · 단가 미확정 · 시연 문서</p></div><div>${esc(order.createdAt)}<br><span class="mini-tag">${order.confirmed ? "시연 내역" : "주문 미리보기"}</span></div></div><div class="statement-parties"><div><span>공급자</span><strong>주식회사 티월드코리아</strong><p>사업자 정보는 사내 OS 연결 후 표시됩니다.</p></div><div><span>공급받는 자</span><strong>시연용 거래처</strong><p>사업자등록증 기준 정보 · 연결 예정</p></div></div><div class="statement-table-wrap"><table class="statement-table"><thead><tr><th>상품</th><th>색상 / 사이즈</th><th>수량</th><th>단가</th><th>공급가액</th></tr></thead><tbody>${order.items.map(line => `<tr><td>${esc(line.productCode)}<small>${esc(line.productName)}</small></td><td>${esc(line.color)} / ${esc(line.size)}</td><td>${n(line.quantity)}장</td><td>확인 예정</td><td>-</td></tr>`).join("")}</tbody></table></div><div class="statement-summary"><span>총 수량 <strong>${n(total.quantity)}장</strong></span><span>공급가액 · 부가세 · 합계 <strong>단가 확인 후 안내</strong></span></div><div class="statement-delivery"><strong>배송 정보</strong><br>${d.type === "BUSINESS_ADDRESS" ? "사업자등록증 주소 (기본)" : "새 배송지"}<br>${esc([d.postcode, d.address, d.detail].filter(Boolean).join(" "))}<br>수령인: ${esc(d.name)} · 연락처: ${esc(d.phone)}</div><p class="statement-warning">${esc(order.id)}<br>이 문서는 화면 확인용이며 거래 확정, 결제 또는 세금계산서 발행을 의미하지 않습니다. 공급단가·부가세·배송비와 납기는 담당자 확인 후 확정됩니다. 입력 내용은 사내 OS로 전송되지 않습니다.</p>`;
     $("statement-confirm").hidden = order.confirmed; $("statement-edit").hidden = order.confirmed; $("statement-status").textContent = ""; $("statement-dialog").showModal(); $("statement-dialog").scrollTop = 0;
   }
   $("statement-edit").addEventListener("click", () => { $("statement-dialog").close(); $("order-review").focus(); });
   $("statement-print").addEventListener("click", () => window.print());
   $("statement-confirm").addEventListener("click", () => {
     if (!entered || !statement || statement.confirmed) return;
-    statement.confirmed = true; orders.unshift(statement); lines = []; renderLines(); $("order-check-form").reset(); $("order-date").value = ""; $("order-date-label").textContent = "날짜를 선택해주세요"; syncDelivery(); $("statement-dialog").close(); historyView = "orders"; showTab("mypage");
+    statement.confirmed = true; orders.unshift(statement); lines = []; renderLines(); $("order-check-form").reset(); syncDelivery(); $("statement-dialog").close(); historyView = "orders"; showTab("mypage");
   });
   function empty(container, title, detail, action) { container.replaceChildren(); const box = element("div", "", "empty-state"); box.append(element("span", "―"), element("p", title), element("small", detail)); if (action) { const b = element("button", "첫 주문 작성하기 →", "text-button"); b.type = "button"; b.addEventListener("click", () => showTab("order")); box.append(b); } container.append(box); }
   function renderHistory() {
@@ -195,7 +172,7 @@
     if (!orders.length) { empty($("history-list"), "아직 주문 내역이 없습니다.", "주문 확인 후 시연 내역에 추가해보세요.", true); return; }
     $("history-list").replaceChildren(...orders.map(order => {
       const row = element("article", "", "history-row"), top = element("div", "", "history-top"), actions = element("div", "", "history-actions"), total = M.totals(order.items);
-      top.append(element("span", order.createdAt), element("span", "시연 · 확인 대기", "status-pill")); row.append(top, element("h4", order.items[0].productCode + (order.items.length > 1 ? ` 외 ${order.items.length - 1}개 조합` : "")), element("p", `${order.id}\n총 ${n(total.quantity)}장 · 배송 희망일 ${dateText(order.requestedDate)}`));
+      top.append(element("span", order.createdAt), element("span", "시연 · 확인 대기", "status-pill")); row.append(top, element("h4", order.items[0].productCode + (order.items.length > 1 ? ` 외 ${order.items.length - 1}개 조합` : "")), element("p", `${order.id}\n총 ${n(total.quantity)}장`));
       const button = element("button", "거래명세서 보기 →", "text-button"); button.type = "button"; button.addEventListener("click", () => showStatement(order)); actions.append(element("span", "실제 접수 전", "subtle"), button); row.append(actions); return row;
     }));
   }

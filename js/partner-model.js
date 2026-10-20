@@ -21,13 +21,6 @@
     return { quantity, supply, confirmed };
   }
   function dayISO(now = new Date()) { return new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Seoul" }).format(now); }
-  function addDays(iso, count) { const d = new Date(iso + "T12:00:00+09:00"); d.setUTCDate(d.getUTCDate() + count); return dayISO(d); }
-  function validDate(value, today = dayISO()) {
-    if (!value) return true;
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-    const d = new Date(value + "T12:00:00+09:00");
-    return Number.isFinite(+d) && dayISO(d) === value && value >= today && value <= addDays(today, 365);
-  }
   function validPhone(value) { return /^[0-9 ()+-]+$/.test(value) && /^\d{9,15}$/.test(value.replace(/\D/g, "")); }
-  return Object.freeze({ combine, totals, dayISO, addDays, validDate, validPhone });
+  return Object.freeze({ combine, totals, dayISO, validPhone });
 });
