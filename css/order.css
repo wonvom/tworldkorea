@@ -7,3 +7,18 @@
 @media(max-width:760px){.order-layout>aside{grid-column:1;grid-row:3}.product-picker{padding:20px 14px}.quantity-table th,.quantity-table td{width:94px;min-width:94px;padding:14px 12px}.quantity-table th:first-child{width:120px;min-width:120px;box-shadow:3px 0 7px #29324408}.quantity-table thead th{padding:12px}.partner-main .quantity-table td input[type=number]:not([type=hidden]){width:62px;font-size:16px}.product-picker #order-add{width:100%}.quantity-matrix{max-height:500px}}
 
 .policy-note strong{font-size:14px;line-height:1.7}.policy-note p:last-child{margin-bottom:0}.policy-table-wrap{overflow:auto;margin:20px 0}.policy-table{width:100%;border-collapse:collapse;min-width:600px;font-size:12px;line-height:1.9}.policy-table th,.policy-table td{text-align:left;vertical-align:top;padding:14px;border:1px solid #dfe2d8}.policy-table thead th{background:#f0f3e9}.policy-table tbody th{width:120px;font-weight:600}.policy-table td{color:#646f58}.order-policy p{overflow-wrap:anywhere}
+
+.order-line .line-amount{font-size:11px;color:#657452;margin-top:10px}
+.amount-summary{margin:20px 0 0;padding-top:16px;border-top:1px solid #e1e6d9;font-size:12px;font-variant-numeric:tabular-nums}
+.amount-summary>div{display:flex;justify-content:space-between;align-items:baseline;gap:18px;margin:10px 0}
+.amount-summary dt{color:#737e65}
+.amount-summary dd{margin:0;text-align:right;color:#35452b;overflow-wrap:anywhere}
+.amount-summary dd[data-pending=true]{color:#7b856e;font-size:11px}
+.amount-summary .amount-grand-total{border-top:1px solid #dce2d3;padding-top:16px;margin-top:16px}
+.amount-grand-total dt{font-weight:600;color:#35452b}
+.amount-grand-total dd{font-size:22px;font-weight:600}
+.amount-grand-total dd[data-pending=true]{font-size:14px;font-weight:500}
+.amount-note{font-size:11px;line-height:1.8;margin:18px 0 0}
+.statement-summary>.amount-summary{flex:1;max-width:340px;min-width:240px;margin:0;padding:0;border:0}
+.statement-summary>.amount-summary>div:first-child{margin-top:0}
+@media(max-width:760px){.statement-summary>.amount-summary{max-width:none;min-width:0;flex-basis:100%}.amount-summary>div{gap:12px}.amount-summary dt{flex-shrink:0}}
