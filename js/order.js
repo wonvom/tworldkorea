@@ -2,16 +2,14 @@
   "use strict";
   const $ = id => document.getElementById(id), M = window.TworldPartnerModel;
   const products = window.products || [], inventoryOrigin = "https://tworld-inventory-api.halestork64.chatgpt.site";
-  const stockKey = `tworld-stock-session-v1:${inventoryOrigin}`;
   const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const n = value => value.toLocaleString("ko-KR");
   const element = (tag, value, className) => { const el = document.createElement(tag); el.textContent = value; if (className) el.className = className; return el; };
   // Prototype state is intentionally memory-only. No order/profile/PII request reaches the OS or gateway.
   let entered = false, lines = [], orders = [], inquiries = [], historyView = "orders", statement = null;
-  let stockSession = null, stockController = null, stockSequence = 0, stockTimer = null, postcodePromise = null;
+  let stockSession = null, stockController = null, stockSequence = 0, stockTimer = null, postcodePromise = null, accessController = null;
   let calendarYear, calendarMonth;
   const currentProduct = () => products.find(p => p.code === $("order-product").value);
-  const currentColor = () => currentProduct()?.colors.find(c => c.code === $("order-color").value);
   const dateText = value => value ? new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "short", timeZone: "Asia/Seoul" }).format(new Date(value + "T12:00:00+09:00")) : "미지정";
   const newId = kind => `DEMO-${kind}-${M.dayISO().replaceAll("-", "")}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
   function showTab(name, focus = true) {
@@ -28,14 +26,32 @@
     event.preventDefault(); const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
     showTab(tabs[next].dataset.tab);
   });
-  $("order-code-form").addEventListener("submit", event => {
+  $("order-code-form").addEventListener("submit", async event => {
     event.preventDefault();
-    if ($("order-code").value.trim() !== "9876") { $("order-access-status").textContent = "시연용 주문코드를 확인해주세요. 실제 거래처 인증은 아직 연결되지 않았습니다."; return; }
-    $("order-code").value = ""; entered = true; $("order-access").hidden = true; $("partner-app").hidden = false;
-    showTab(new URL(location.href).searchParams.has("product") ? "order" : "mypage");
-    document.querySelector(".partner-tabs").scrollIntoView({ behavior: "smooth", block: "start" });
+    if (accessController) return;
+    const controller = new AbortController(), button = $("order-code-form").querySelector("button");
+    accessController = controller; button.disabled = true; $("order-access-status").textContent = "주문코드를 확인하고 있습니다…";
+    const body = JSON.stringify({ code: $("order-code").value.trim() }); $("order-code").value = "";
+    const timeout = setTimeout(() => controller.abort(), 12000);
+    try {
+      const response = await fetch(inventoryOrigin + "/stock/partner-auth", { method: "POST", headers: { "Content-Type": "application/json" }, body, credentials: "omit", cache: "no-store", referrerPolicy: "no-referrer", signal: controller.signal });
+      if (accessController !== controller) return;
+      if (!response.ok) {
+        $("order-access-status").textContent = response.status === 401 || response.status === 400 ? "주문코드를 확인해주세요." : response.status === 429 ? "입력 횟수가 많습니다. 잠시 후 다시 시도해주세요." : "주문코드를 확인하지 못했습니다. 잠시 후 다시 시도해주세요.";
+        return;
+      }
+      const value = await response.json();
+      if (accessController !== controller) return;
+      if (typeof value.token !== "string" || !Number.isFinite(value.expiresAt) || value.expiresAt <= Date.now() || value.expiresAt > Date.now() + 3605000) throw Error();
+      stockSession = { token: value.token, expiresAt: value.expiresAt };
+      entered = true; $("order-access-status").textContent = ""; $("order-access").hidden = true; $("partner-app").hidden = false;
+      showTab(new URL(location.href).searchParams.has("product") ? "order" : "mypage");
+      document.querySelector(".partner-tabs").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch { if (accessController === controller) $("order-access-status").textContent = "연결이 지연되고 있습니다. 잠시 후 다시 시도해주세요."; }
+    finally { clearTimeout(timeout); if (accessController === controller) { accessController = null; button.disabled = false; } }
   });
   function leavePartner() {
+    accessController?.abort(); accessController = null; $("order-code-form").querySelector("button").disabled = false;
     entered = false; cancelStock(); stockSession = null; lines = []; orders = []; inquiries = []; statement = null;
     document.querySelectorAll("dialog[open]").forEach(dialog => dialog.close());
     $("order-check-form").reset(); $("inquiry-form").reset(); $("order-code-form").reset();
@@ -49,24 +65,36 @@
     const p = currentProduct(); if (!p) return;
     $("order-product-code").textContent = p.code; $("order-product-name").textContent = p.name;
     $("order-image").src = p.thumbnail; $("order-image").alt = p.name; $("order-product-link").href = `product-detail.html?id=${encodeURIComponent(p.id)}`;
-    $("order-color").replaceChildren(...p.colors.map(c => { const o = element("option", c.nameKr); o.value = c.code; return o; }));
     renderSizes();
   }
   function renderSizes() {
-    cancelStock(); const p = currentProduct(), c = currentColor(); if (!p || !c) return;
-    $("order-image").src = c.image || p.thumbnail;
-    $("order-sizes").replaceChildren(...p.sizes.map((s, index) => {
-      const row = element("div", "", "quantity-row"), info = document.createElement("div"), label = element("label", s.size), stock = element("small", "현재 재고 -"), input = document.createElement("input");
-      Object.assign(input, { type: "number", min: "0", max: "9999", step: "1", value: "0", inputMode: "numeric", id: `quantity-${index}` }); input.dataset.size = s.size; input.setAttribute("aria-label", `${s.size} 주문 수량`);
-      label.htmlFor = input.id; stock.dataset.stockSize = s.size; info.append(label, stock); row.append(info, input); return row;
-    }));
+    cancelStock(); const p = currentProduct(); if (!p) return;
+    const table = element("table", "", "quantity-table"), head = document.createElement("thead"), heading = document.createElement("tr"), body = document.createElement("tbody");
+    table.append(element("caption", `${p.code} 색상·사이즈별 주문 수량과 현재 재고`, "sr-only"));
+    const colorHeading = element("th", "COLOR"); colorHeading.scope = "col"; heading.append(colorHeading);
+    for (const s of p.sizes) { const th = element("th", s.size); th.scope = "col"; heading.append(th); }
+    head.append(heading); table.append(head, body);
+    p.colors.forEach((c, colorIndex) => {
+      const row = document.createElement("tr"), label = document.createElement("th"), color = element("span", "", "matrix-color"), swatch = element("span", "", "color-swatch");
+      label.scope = "row"; swatch.setAttribute("aria-hidden", "true"); if (/^#[0-9a-f]{6}$/i.test(c.hex)) swatch.style.backgroundColor = c.hex;
+      color.append(swatch, element("span", c.nameKr)); label.append(color); row.append(label);
+      p.sizes.forEach((s, sizeIndex) => {
+        const cell = document.createElement("td"), stock = element("small", "-", "matrix-stock"), input = document.createElement("input");
+        Object.assign(input, { type: "number", min: "0", max: "9999", step: "1", value: "0", inputMode: "numeric", id: `quantity-${colorIndex}-${sizeIndex}` });
+        input.dataset.size = s.size; input.dataset.color = c.code; input.setAttribute("aria-label", `${c.nameKr} ${s.size} 주문 수량`);
+        stock.dataset.stockSize = s.size; stock.dataset.stockColor = c.code; stock.id = `stock-${colorIndex}-${sizeIndex}`; stock.setAttribute("aria-label", `${c.nameKr} ${s.size} 현재 재고 미확인`); input.setAttribute("aria-describedby", stock.id);
+        cell.append(input, stock); row.append(cell);
+      });
+      body.append(row);
+    });
+    $("order-sizes").replaceChildren(table); $("order-sizes").scrollTop = 0; $("order-sizes").scrollLeft = 0;
     $("order-item-status").textContent = ""; loadStock();
   }
   $("order-image").addEventListener("error", () => { const p = currentProduct(); if (p && !$("order-image").src.endsWith(p.thumbnail)) $("order-image").src = p.thumbnail; });
   for (const p of products) { const o = element("option", `${p.code} · ${p.name}`); o.value = p.code; $("order-product").append(o); }
   const selected = new URL(location.href).searchParams.get("product"), initial = products.find(p => p.id === selected || p.code === selected);
   if (initial) $("order-product").value = initial.code;
-  $("order-product").addEventListener("change", renderProduct); $("order-color").addEventListener("change", renderSizes);
+  $("order-product").addEventListener("change", renderProduct);
   function renderLines() {
     $("order-items").replaceChildren(...lines.map((line, index) => {
       const row = element("article", "", "order-line"), info = document.createElement("div"), controls = element("div", "", "line-controls");
@@ -80,9 +108,9 @@
     $("order-total").replaceChildren(document.createTextNode(n(M.totals(lines).quantity)), element("small", "장"));
   }
   $("order-add").addEventListener("click", () => {
-    const p = currentProduct(), c = currentColor(), inputs = [...document.querySelectorAll("#order-sizes input")];
+    const p = currentProduct(), inputs = [...document.querySelectorAll("#order-sizes input")];
     if (inputs.some(input => !Number.isInteger(Number(input.value)) || Number(input.value) < 0 || Number(input.value) > 9999)) { $("order-item-status").textContent = "주문 수량은 0~9,999 사이의 정수로 입력해주세요."; return; }
-    const added = inputs.filter(input => Number(input.value) > 0).map(input => ({ productCode: p.code, productName: p.name, colorCode: c.code, color: c.nameKr, size: input.dataset.size, quantity: Number(input.value), unitPrice: null }));
+    const added = inputs.filter(input => Number(input.value) > 0).map(input => { const c = p.colors.find(color => color.code === input.dataset.color); return { productCode: p.code, productName: p.name, colorCode: c.code, color: c.nameKr, size: input.dataset.size, quantity: Number(input.value), unitPrice: null }; });
     if (!added.length) { $("order-item-status").textContent = "한 개 이상의 사이즈에 주문 수량을 입력해주세요."; return; }
     try { lines = M.combine(lines, added); renderLines(); inputs.forEach(input => input.value = "0"); $("order-item-status").textContent = `${added.length}개 조합을 주문서에 담았습니다.`; }
     catch(error) { $("order-item-status").textContent = error.message; }
@@ -178,36 +206,40 @@
     $("inquiry-history").replaceChildren(...inquiries.map(inquiry => { const row = element("article", "", "history-row"); row.append(element("span", "시연 · 미전송", "status-pill"), element("h4", inquiry.type), element("p", inquiry.message), element("p", `${inquiry.date}${inquiry.reference ? " · " + inquiry.reference : ""}`)); return row; }));
   }
   $("inquiry-form").addEventListener("submit", event => { event.preventDefault(); if (!entered || !$("inquiry-message").value.trim()) return; inquiries.unshift({ type: $("inquiry-type").value, message: $("inquiry-message").value.trim(), reference: $("inquiry-reference").value.trim(), date: M.dayISO() }); renderInquiries(); $("inquiry-form").reset(); $("inquiry-status").textContent = "현재 화면의 시연 내역에 추가했습니다. 담당자에게 전송되지 않았습니다."; });
-  function cancelStock() { stockSequence++; stockController?.abort(); stockController = null; clearTimeout(stockTimer); }
+  function cancelStock() { $("order-sizes").setAttribute("aria-busy", "false"); stockSequence++; stockController?.abort(); stockController = null; clearTimeout(stockTimer); }
   function stockActive() { return stockSession && stockSession.expiresAt > Date.now(); }
-  function paintStock(quantities = new Map()) { document.querySelectorAll("[data-stock-size]").forEach(span => { const value = quantities.get(span.dataset.stockSize), known = Number.isSafeInteger(value) && value >= 0; span.textContent = `현재 재고 ${known ? n(value) + "장" : "-"}`; span.dataset.stock = value === 0 ? "empty" : "unknown"; }); }
+  function paintStock(payload) {
+    const p = currentProduct(), colors = new Map();
+    if (payload) for (const c of p.colors) colors.set(c.code, window.TworldInventory.quantitiesFor(payload, p, c.code));
+    document.querySelectorAll("[data-stock-size]").forEach(span => {
+      const value = colors.get(span.dataset.stockColor)?.get(span.dataset.stockSize), known = Number.isSafeInteger(value) && value >= 0;
+      span.textContent = known ? n(value) : "-"; span.dataset.stock = known ? (value === 0 ? "empty" : "known") : "unknown";
+      span.setAttribute("aria-label", `현재 재고 ${known ? n(value) + "장" : "미확인"}`);
+    });
+  }
+  function renewPartnerAccess() {
+    cancelStock(); stockSession = null; entered = false; paintStock();
+    $("partner-app").hidden = true; $("order-access").hidden = false;
+    $("order-access-status").textContent = "이용 시간이 만료되었습니다. 주문코드를 다시 입력해주세요. 작성 중인 주문서는 유지됩니다.";
+    $("order-code").focus();
+  }
   async function loadStock() {
-    cancelStock(); paintStock(); const p = currentProduct(), c = currentColor();
-    if (!entered || !p || !c || $("panel-order").hidden || document.hidden) return;
-    if (!stockActive()) { $("stock-status").textContent = "재고 확인을 누르고 기존 재고 키워드로 인증해주세요. 확인 전에는 -로 표시됩니다."; return; }
-    const seq = stockSequence, controller = new AbortController(); stockController = controller; const timer = setTimeout(() => controller.abort(), 10000); $("stock-status").textContent = `${c.nameKr} 재고 조회 중…`;
+    cancelStock(); const p = currentProduct();
+    if (!entered || !p || $("panel-order").hidden || document.hidden) return;
+    if (!stockActive()) { paintStock(); renewPartnerAccess(); return; }
+    const seq = stockSequence, controller = new AbortController(); stockController = controller;
+    const timer = setTimeout(() => controller.abort(), 10000); $("stock-status").textContent = "전체 색상 재고 조회 중…"; $("order-sizes").setAttribute("aria-busy", "true");
     try {
       const response = await fetch(`${inventoryOrigin}/stock?product=${encodeURIComponent(p.code)}`, { headers: { Authorization: `Bearer ${stockSession.token}` }, cache: "no-store", credentials: "omit", referrerPolicy: "no-referrer", signal: controller.signal });
       if (seq !== stockSequence) return;
-      if ([401, 403].includes(response.status)) { stockSession = null; $("stock-status").textContent = "재고 인증이 만료되었습니다. 재고 확인을 다시 눌러주세요."; return; }
+      if ([401, 403].includes(response.status)) { renewPartnerAccess(); return; }
       if (!response.ok) throw Error(); const payload = await response.json(); if (seq !== stockSequence) return;
-      paintStock(window.TworldInventory.quantitiesFor(payload, p, c.code));
-      $("stock-status").textContent = payload.availability === "inquiry" ? `${c.nameKr} · 문의 상품의 재고는 모두 -로 표시됩니다.` : payload.availability === "unavailable" ? "현재 재고를 확인할 수 없습니다. 수량은 -로 표시됩니다." : `${c.nameKr} · ${new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" })} 조회 · 실제 주문 가능 수량은 담당자가 확인합니다.`;
-    } catch { if (seq === stockSequence) $("stock-status").textContent = "현재 재고를 확인할 수 없습니다. 재고 확인을 눌러 다시 시도해주세요."; }
-    finally { clearTimeout(timer); if (seq === stockSequence) { stockController = null; if (stockActive()) stockTimer = setTimeout(loadStock, 30000); } }
+      paintStock(payload);
+      $("stock-status").textContent = payload.availability === "inquiry" ? "문의 상품의 재고는 모두 -로 표시됩니다." : payload.availability === "unavailable" ? "현재 재고를 확인할 수 없습니다. 수량은 -로 표시됩니다." : `${new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" })} 조회 · 입력칸 아래는 현재 재고(장)입니다. 실제 주문 가능 수량은 담당자가 확인합니다.`;
+    } catch { if (seq === stockSequence) { paintStock(); $("stock-status").textContent = "현재 재고를 확인할 수 없습니다. 재고 새로고침을 눌러 다시 시도해주세요."; } }
+    finally { clearTimeout(timer); if (seq === stockSequence) { $("order-sizes").setAttribute("aria-busy", "false"); stockController = null; if (stockActive()) stockTimer = setTimeout(loadStock, 30000); } }
   }
-  $("stock-refresh").addEventListener("click", () => { if (stockActive()) loadStock(); else { $("stock-keyword").value = ""; $("stock-auth-status").textContent = ""; $("stock-dialog").showModal(); } });
-  $("stock-auth-form").addEventListener("submit", async event => {
-    event.preventDefault(); const button = $("stock-auth-form").querySelector('[type="submit"]'); button.disabled = true; const keyword = $("stock-keyword").value; $("stock-keyword").value = "";
-    try { const response = await fetch(inventoryOrigin + "/stock/auth", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ keyword }), credentials: "omit", cache: "no-store", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(10000) });
-      if (!response.ok) throw Error(response.status === 401 ? "재고 키워드를 확인해주세요." : "재고 인증이 지연되고 있습니다. 잠시 후 다시 시도해주세요.");
-      const value = await response.json(); if (typeof value.token !== "string" || !Number.isFinite(value.expiresAt) || value.expiresAt <= Date.now()) throw Error("재고 인증 응답을 확인할 수 없습니다.");
-      if (!entered || !$("stock-dialog").open) return; stockSession = { token: value.token, expiresAt: value.expiresAt }; $("stock-dialog").close(); loadStock();
-    } catch(error) { $("stock-auth-status").textContent = error.message === "재고 키워드를 확인해주세요." ? error.message : "재고를 확인할 수 없습니다. 잠시 후 다시 시도해주세요."; }
-    finally { button.disabled = false; }
-  });
-  $("stock-dialog").addEventListener("close", () => $("stock-keyword").value = "");
-  try { const saved = JSON.parse(sessionStorage.getItem(stockKey) || "null"); if (typeof saved?.token === "string" && saved.expiresAt > Date.now() && saved.expiresAt < Date.now() + 3605000) stockSession = saved; } catch { /* Existing stock sign-in is optional; no partner data is persisted. */ }
+  $("stock-refresh").addEventListener("click", loadStock);
   document.addEventListener("visibilitychange", () => document.hidden ? cancelStock() : loadStock()); window.addEventListener("pagehide", leavePartner);
   const navToggle = document.querySelector("[data-nav-toggle]"), header = document.querySelector("[data-header]");
   navToggle.addEventListener("click", () => { const open = navToggle.getAttribute("aria-expanded") !== "true"; navToggle.setAttribute("aria-expanded", String(open)); navToggle.classList.toggle("is-active", open); header.classList.toggle("is-open", open); document.querySelector("[data-nav]").classList.toggle("is-open", open); document.body.classList.toggle("is-nav-open", open); });
