@@ -23,7 +23,6 @@ async function until(check, message) {
 }
 
 (async () => {
-  const { createHandler } = await import("../server/inventory/relay.mjs");
   fs.mkdirSync(output, { recursive: true });
   const browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) });
   let context;
@@ -35,19 +34,14 @@ async function until(check, message) {
     let mode = "ok";
     let baseQuantity = 42;
     let apiCalls = 0;
-    let live = false;
+    let authMode = "ok";
+    let authTtl = 3600000;
+    let authCalls = 0;
     let releaseHeld = null;
     const requests = [];
     const errors = [];
     const responses = new Map();
-    const relayEnv = {
-      ALLOWED_ORIGINS: base,
-      STOCK_RATE_LIMITER: { limit: async () => ({ success: true }) }
-    };
-    const relay = createHandler(async (url, options) => {
-      if (live) return fetch(url, options);
-      const id = Number(url.searchParams.get("product"));
-      const [code] = Object.entries(codes).find(([, value]) => value === id);
+    const fixture = async (code) => {
       const product = productFor(code);
       const quantity = baseQuantity;
       const held = mode === "delay";
@@ -55,25 +49,23 @@ async function until(check, message) {
         mode = "ok";
         await new Promise((resolve) => { releaseHeld = resolve; });
       }
-      if (mode === "error") return new Response("unavailable", { status: 503 });
+      if (mode === "unauthorized") return new Response("{}", { status: 401 });
+      if (mode === "error") return new Response("{}", { status: 502 });
       const rows = product.colors.flatMap((color) => product.sizes.filter((size) => size.size !== "L").map(({ size }) => ({
-        product_id: id,
-        products: { code, is_active: true },
-        color_code: color.code,
+        colorCode: color.code,
         size,
-        available_qty: size === "M" ? 0 : quantity,
-        is_active: true
+        quantity: size === "M" ? 0 : quantity
       })));
       if (code === "7001") {
-        rows.push({ ...rows[0], size: "XS", available_qty: 12345 });
-        rows.push({ ...rows[0], color_code: "7001-07", available_qty: 12345 });
+        rows.push({ ...rows[0], size: "XS", quantity: 12345 });
+        rows.push({ ...rows[0], colorCode: "7001-07", quantity: 12345 });
       }
       if (code === "23012") {
-        rows.push({ ...rows[0], color_code: "23012-06", available_qty: 12345 });
-        rows.push({ ...rows[0], color_code: "23012-07", available_qty: 12345 });
+        rows.push({ ...rows[0], colorCode: "23012-06", quantity: 12345 });
+        rows.push({ ...rows[0], colorCode: "23012-07", quantity: 12345 });
       }
-      return new Response(JSON.stringify({ rows }), { headers: { "Content-Type": "application/json" } });
-    });
+      return Response.json({ product: code, queriedAt: new Date().toISOString(), variants: rows });
+    };
     await context.route("**/data/inventory-config.js*", (route) => route.fulfill({
       contentType: "application/javascript",
       body: `window.inventoryConfig = { enabled: ${enabled}, endpoint: ${JSON.stringify(configEndpoint)} };`
@@ -81,6 +73,7 @@ async function until(check, message) {
     await context.route("**/api/stock?*", async (route) => {
       apiCalls += 1;
       requests.push(route.request().url());
+      assert.equal(route.request().headers().authorization, "Bearer isolated-test-token");
       if (mode === "hang") {
         mode = "ok";
         await new Promise((resolve) => { releaseHeld = resolve; });
@@ -88,10 +81,18 @@ async function until(check, message) {
         return;
       }
       const url = new URL(route.request().url());
-      const response = await relay(new Request(`https://relay.example/stock${url.search}`, { headers: { Origin: base, "CF-Connecting-IP": "127.0.0.1" } }), relayEnv);
+      const response = await fixture(url.searchParams.get("product"));
       const body = await response.text();
       if (response.ok) responses.set(url.searchParams.get("product"), JSON.parse(body));
       await route.fulfill({ status: response.status, headers: Object.fromEntries(response.headers), body }).catch(() => {});
+    });
+    await context.route("**/api/stock/auth", async (route) => {
+      authCalls += 1;
+      assert.equal(route.request().method(), "POST");
+      assert.equal(route.request().headers()["content-type"], "application/json");
+      const keyword = route.request().postDataJSON().keyword;
+      const status = authMode === "unconfigured" ? 503 : authMode === "limited" ? 429 : keyword === "test-keyword" ? 200 : 401;
+      await route.fulfill({ status, contentType: "application/json", body: JSON.stringify(status === 200 ? { token: "isolated-test-token", expiresAt: await page.evaluate(() => Date.now()) + authTtl } : { error: "Authentication failed" }) });
     });
     page = await context.newPage();
     page.on("pageerror", (error) => errors.push(error.message));
@@ -106,6 +107,12 @@ async function until(check, message) {
     const text = (size) => page.locator(`[data-stock-size="${size}"]`).textContent();
     const ready = () => until(async () => await state() === "ready", "stock ready");
     const waitCalls = (count) => until(() => apiCalls === count, `API count ${count}`);
+    const authenticate = async () => {
+      await page.getByRole("button", { name: "재고 확인", exact: true }).click();
+      await page.locator("#stock-keyword").fill("test-keyword");
+      await page.locator(".stock-auth-submit").click();
+      await until(async () => !(await page.locator("dialog").evaluate((dialog) => dialog.open)), "authentication dialog closed");
+    };
 
     await open("7001");
     await choose("7001-01");
@@ -116,23 +123,39 @@ async function until(check, message) {
     enabled = true;
     for (const code of Object.keys(codes)) {
       await open(code);
-      assert.equal(await state(), "idle");
+      assert.equal(await state(), "locked");
       const before = apiCalls;
       await choose(productFor(code).colors[0].code);
+      await page.clock.runFor(60000);
+      assert.equal(apiCalls, before);
+      assert.equal(await page.locator(".size-stock:visible").count(), 0);
+      if (code === "01OA1") {
+        await page.getByRole("button", { name: "재고 확인", exact: true }).click();
+        await page.locator("#stock-keyword").fill("wrong-keyword");
+        await page.locator(".stock-auth-submit").click();
+        await until(async () => (await page.locator("#stock-auth-error").textContent()).includes("키워드"), "wrong keyword rejected");
+        assert.equal(apiCalls, before);
+        assert.equal(await page.locator("#stock-keyword").inputValue(), "");
+        await page.keyboard.press("Escape");
+      }
+      await authenticate();
       await ready();
       assert.equal(apiCalls, before + 1);
       assert.equal(await text("S"), "42장");
       assert.equal(await text("M"), "품절 (0장)");
       assert.equal(await text("L"), "확인 불가");
       assert.equal(await page.locator(".sample-size").count(), productFor(code).sizes.length);
+      await page.getByRole("button", { name: "재고 숨기기", exact: true }).click();
+      assert.equal(await state(), "locked");
     }
-    console.log("PASS: all five products map stock by color code and keep existing size lists");
+    console.log("PASS: all five products send no stock requests until keyword authentication; wrong keywords rejected; logout hides quantities");
 
     await open("7001");
     assert.equal(await page.locator('input[name="sample-size"][value="XS"]').count(), 0);
     assert.equal(await page.locator('input[data-color-code="7001-07"]').count(), 0);
     await page.locator('input[data-color-code="7001-01"]').evaluate((input) => { input.checked = true; });
     await choose("7001-01");
+    await authenticate();
     await ready();
     let keyboardBefore = apiCalls;
     await page.locator('input[data-color-code="7001-01"]').focus();
@@ -228,6 +251,8 @@ async function until(check, message) {
     console.log("PASS: sample cart still works and clearing the selection stops refreshes");
 
     await open("23012");
+    assert.equal(await page.getByRole("button", { name: "재고 숨기기", exact: true }).count(), 1);
+    assert.equal(await page.evaluate(() => localStorage.getItem("tworld-stock-session-v1:http://127.0.0.1:4173")), null);
     assert.equal(await page.locator('input[data-color-code="23012-06"], input[data-color-code="23012-07"]').count(), 0);
     await choose("23012-02");
     await ready();
@@ -241,6 +266,40 @@ async function until(check, message) {
       assert.equal(overflow, false);
     }
     console.log("PASS: hidden colors stay hidden; desktop/mobile stock controls fit without overflow");
+
+    mode = "unauthorized";
+    await choose("23012-02");
+    await until(async () => await state() === "locked", "API rejects expired token");
+    assert.equal(await page.locator(".size-stock:visible").count(), 0);
+    before = apiCalls;
+    await page.clock.runFor(60000);
+    await choose("23012-02");
+    assert.equal(apiCalls, before);
+    mode = "ok";
+    for (const value of ["unconfigured", "limited"]) {
+      authMode = value;
+      await page.getByRole("button", { name: "재고 확인", exact: true }).click();
+      await page.locator("#stock-keyword").fill("test-keyword");
+      await page.locator(".stock-auth-submit").click();
+      await until(async () => Boolean(await page.locator("#stock-auth-error").textContent()), "auth failure visible");
+      assert.equal(await state(), "locked");
+      assert.equal(apiCalls, before);
+      for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 1000 }]) {
+        await page.setViewportSize(viewport);
+        assert.equal(await page.locator("dialog").evaluate((dialog) => { const box = dialog.getBoundingClientRect(); return box.left >= 0 && box.right <= innerWidth && dialog.scrollWidth <= dialog.clientWidth; }), true);
+      }
+      await page.screenshot({ path: path.join(output, `auth-${value}.png`) });
+      await page.keyboard.press("Escape");
+    }
+    authMode = "ok";
+    authTtl = 1000;
+    await authenticate();
+    await ready();
+    await page.clock.runFor(1000);
+    assert.equal(await state(), "locked");
+    assert.equal(await page.locator(".size-stock:visible").count(), 0);
+    assert.equal(await page.evaluate(() => sessionStorage.getItem("tworld-stock-session-v1:http://127.0.0.1:4173")), null);
+    console.log("PASS: tab session survives navigation; server rejection/expiry removes stock and stops polling; unconfigured and throttled auth stays locked");
 
     before = apiCalls;
     await open("3505");
@@ -257,22 +316,7 @@ async function until(check, message) {
     configEndpoint = "/api/stock";
     console.log("PASS: invalid relay configuration does not break the existing catalog");
 
-    if (process.env.INVENTORY_LIVE_TEST === "1") {
-      live = true;
-      await page.setViewportSize({ width: 1440, height: 1000 });
-      for (const code of Object.keys(codes)) {
-        await open(code);
-        const color = productFor(code).colors[0];
-        await choose(color.code);
-        await ready();
-        const quantity = responses.get(code).variants.find((variant) => variant.colorCode === color.code && variant.size === "S")?.quantity;
-        assert.ok(Number.isSafeInteger(quantity));
-        assert.equal(await text("S"), quantity === 0 ? "품절 (0장)" : `${quantity.toLocaleString("ko-KR")}장`);
-        console.log(`PASS: real source -> local relay -> browser for ${code}`);
-      }
-      await page.locator(".sample-size-grid").scrollIntoViewIfNeeded();
-      await page.screenshot({ path: path.join(output, "live-desktop.png"), animations: "disabled" });
-    }
+    assert.ok(authCalls >= 8);
     assert.deepEqual(errors, []);
     assert.ok(requests.every((url) => Object.hasOwn(codes, new URL(url).searchParams.get("product"))));
     console.log("PASS: no uncaught browser errors; only the five allowed products were requested");
