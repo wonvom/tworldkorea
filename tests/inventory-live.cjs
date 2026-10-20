@@ -54,7 +54,7 @@ const codes = sandbox.window.products.map((product) => product.code);
     for (const code of codes) {
       await page.goto(`${site}/product-detail.html?id=${code}`, { waitUntil: "load" });
       await page.locator(".sample-choice").first().click();
-      const customOrder = await page.locator(".custom-order-badge").count() > 0;
+      const customOrder = await page.locator(".detail-main-image .custom-order-badge").count() > 0;
       if (customOrder) assert.equal(await page.locator("[data-stock-access], .size-stock, .stock-refresh, [data-stock-status]").count(), 0);
       else assert.equal(await page.locator(".sample-size-grid").getAttribute("data-stock-state"), "locked");
       assert.equal(await page.locator(".size-stock:visible").count(), 0);

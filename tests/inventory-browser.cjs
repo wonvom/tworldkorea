@@ -102,7 +102,7 @@ async function until(check, message) {
     await page.clock.install({ time: new Date("2026-10-19T12:00:00Z") });
     await page.clock.pauseAt(new Date("2026-10-19T12:00:01Z"));
     const open = async (code) => {
-      await page.goto(`${base}/product-detail.html?id=${code}`, { waitUntil: "load" });
+      await page.goto(`${base}/product-detail.html?id=${code}`, { waitUntil: "domcontentloaded" });
       await until(async () => await page.locator(".sample-selector").count() === 1, "product render");
     };
     const choose = (code) => page.locator(`.sample-choice:has(input[data-color-code="${code}"])`).click();
@@ -128,7 +128,7 @@ async function until(check, message) {
       await open(code);
       if (customOrders.has(code)) {
         const before = apiCalls;
-        assert.equal(await page.locator(".custom-order-badge").count(), 1);
+        assert.equal(await page.locator(".detail-main-image .custom-order-badge").count(), 1);
         assert.equal(await page.locator("[data-stock-access], .size-stock, .stock-refresh, [data-stock-status]").count(), 0);
         await choose(productFor(code).colors[0].code);
         await page.clock.runFor(60000);
