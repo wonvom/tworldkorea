@@ -36,8 +36,9 @@
 
   <main class="order-main">
     <section class="order-heading"><p class="eyebrow">FOR OUR PARTNERS</p><h1>기존 거래처 ORDER</h1><p>필요한 상품을 한 번에 요청하세요.<br>담당자가 재고와 단가, 납기를 확인한 후 주문을 확정합니다.</p><ol class="order-steps"><li><b>01</b> 주문코드 확인</li><li><b>02</b> 주문서 작성</li><li><b>03</b> 담당자 확인</li></ol></section>
-    <section class="order-access" id="order-access"><div><p class="eyebrow">PARTNER ACCESS</p><h2>거래처 주문코드</h2><p>담당자에게 받은 전용 주문코드를 입력해주세요.<br>코드가 없거나 만료된 경우 <a href="contact.html">담당자에게 문의</a>해주세요.</p></div><form id="order-code-form" autocomplete="off"><label for="order-code">주문코드</label><div class="order-code-row"><input id="order-code" type="password" required minlength="12" maxlength="64" autocomplete="off" spellcheck="false" placeholder="전용 주문코드 입력"><button class="btn btn-dark" type="submit">확인</button></div><p id="order-access-status" role="status" aria-live="polite"></p></form></section>
+    <section class="order-access" id="order-access"><div><p class="eyebrow">PARTNER ACCESS</p><h2>거래처 주문코드</h2><p>담당자에게 받은 전용 주문코드를 입력해주세요.<br>코드가 없거나 만료된 경우 <a href="contact.html">담당자에게 문의</a>해주세요.</p></div><form id="order-code-form" autocomplete="off"><label for="order-code">주문코드</label><div class="order-code-row"><input id="order-code" type="password" required minlength="4" maxlength="64" autocomplete="off" spellcheck="false" placeholder="전용 주문코드 입력"><button class="btn btn-dark" type="submit">확인</button></div><p id="order-access-status" role="status" aria-live="polite"></p></form></section>
     <section id="order-editor" hidden>
+      <p id="order-demo-notice" class="order-notice" role="status" hidden><strong>개발·시연 주문</strong><br>시연 접수함으로 전송됩니다. 실제 주문·결제·배송은 진행되지 않습니다. 시연 코드를 실제 주문에 사용하지 마세요.</p>
       <div class="order-layout"><div><section class="order-card"><div class="order-section-title"><span>01 / PRODUCTS</span><h2>상품과 수량 선택</h2></div>
       <label for="order-product">상품</label><select id="order-product"></select><div class="order-product-info"><img id="order-image" alt="선택 상품"><div><strong id="order-product-name"></strong><a id="order-product-link" target="_blank" rel="noopener">상품 상세 보기 ↗</a><p>실제 재고와 공급단가는 담당자 확인 후 안내됩니다. 문의 상품도 요청할 수 있습니다.</p></div></div>
       <label for="order-color">색상</label><select id="order-color"></select><fieldset class="order-size-field"><legend>사이즈별 요청 수량</legend><div id="order-sizes" class="order-size-grid"></div></fieldset><button class="btn btn-dark full" id="order-add" type="button">주문서에 담기</button><p id="order-item-status" role="status"></p></section>
@@ -50,6 +51,6 @@
   <footer class="site-footer"><p>T-WORLD KOREA</p><a href="order-privacy.html">주문 개인정보 처리 안내</a><a href="contact.html">담당자 문의</a></footer>
   <script src="data/products.js"></script>
   <script src="js/main.js?v=20261020-order"></script>
-  <script src="js/order.js?v=20261020-order"></script>
+  <script src="js/order.js?v=20261020-public-demo"></script>
 </body>
 </html>

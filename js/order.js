@@ -4,7 +4,7 @@
   const KEY = "tworld-order-draft-v1";
   const $ = id => document.getElementById(id);
   const products = window.products || [];
-  let verified = false, busy = false, draft = { items: [], requestedDate: "", delivery: "EXISTING_ADDRESS", requestId: crypto.randomUUID(), pending: false };
+  let verified = false, busy = false, demo = false, draft = { items: [], requestedDate: "", delivery: "EXISTING_ADDRESS", requestId: crypto.randomUUID(), pending: false };
   try { const saved = JSON.parse(sessionStorage.getItem(KEY) || "null"); if (saved && Array.isArray(saved.items) && typeof saved.requestId === "string") draft = saved; } catch {}
   const productByCode = code => products.find(p => p.code === code);
   draft.items = draft.items.filter(i => { const p = productByCode(i.productCode); return p && p.colors.some(c => c.code === i.colorCode) && p.sizes.some(s => s.size === i.size) && Number.isInteger(i.quantity) && i.quantity > 0 && i.quantity <= 9999; });
@@ -12,7 +12,7 @@
   const text = (tag, value, className) => { const node = document.createElement(tag); node.textContent = value; if (className) node.className = className; return node; };
   function change() { draft.requestId = crypto.randomUUID(); save(); }
   async function request(path, body) {
-    const response = await fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), cache: "no-store", credentials: "omit", signal: AbortSignal.timeout(20000) });
+    const response = await fetch(API + (body.code === "9876" ? "/demo" : "") + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), cache: "no-store", credentials: "omit", signal: AbortSignal.timeout(20000) });
     const value = await response.json();
     if (!response.ok) { const error = new Error(value.error || "요청을 처리하지 못했습니다."); error.status = response.status; throw error; }
     return value;
@@ -25,7 +25,7 @@
     $("order-delivery").disabled = busy || draft.pending;
     $("order-agree").disabled = busy;
     $("order-submit").disabled = busy || !draft.items.length;
-    $("order-submit").textContent = busy ? "접수 확인 중…" : draft.pending ? "같은 주문 접수 결과 확인 · 재시도" : "주문 요청 보내기";
+    $("order-submit").textContent = busy ? "접수 확인 중…" : draft.pending ? "같은 주문 접수 결과 확인 · 재시도" : demo ? "시연 주문 보내기" : "주문 요청 보내기";
     document.querySelectorAll("#order-items input, #order-items button, #order-sizes input").forEach(n => { n.disabled = busy || draft.pending; });
   }
   function renderDraft() {
@@ -66,7 +66,7 @@
   $("order-delivery").addEventListener("change", () => { draft.delivery = $("order-delivery").value; change(); });
   $("order-code-form").addEventListener("submit", async event => {
     event.preventDefault(); if (busy) return; busy = true; lock(); $("order-access-status").textContent = "코드를 확인하고 있습니다…";
-    try { await request("/orders/verify", { code: $("order-code").value.trim() }); verified = true; $("order-editor").hidden = false; $("order-access-status").textContent = "주문코드가 확인되었습니다."; $("order-editor").scrollIntoView({ behavior: "smooth", block: "start" }); }
+    try { const result = await request("/orders/verify", { code: $("order-code").value.trim() }); verified = true; demo = result.demo === true; $("order-demo-notice").hidden = !demo; $("order-editor").hidden = false; $("order-access-status").textContent = demo ? "시연 코드가 확인되었습니다. 테스트 주문서를 작성할 수 있습니다." : "주문코드가 확인되었습니다."; $("order-editor").scrollIntoView({ behavior: "smooth", block: "start" }); }
     catch (error) { verified = false; $("order-editor").hidden = true; $("order-access-status").textContent = error.message || "연결을 확인한 뒤 다시 시도해주세요."; }
     finally { busy = false; lock(); }
   });
@@ -86,6 +86,8 @@
     busy = true; draft.pending = true; save(); lock(); $("order-submit-status").textContent = "주문을 접수하고 있습니다. 잠시 기다려주세요.";
     try {
       const result = await request("/orders", { code: $("order-code").value.trim(), requestId: draft.requestId, items: draft.items, requestedDate: draft.requestedDate || null, delivery: draft.delivery, noticeVersion: "2026-10-20" });
+      $("order-success").querySelector("h2").textContent = result.demo ? "시연 주문이 접수되었습니다." : "주문 요청이 접수되었습니다.";
+      $("order-success").querySelector("h2 + p").textContent = result.demo ? "Mac Studio의 시연 접수함에서 확인할 수 있습니다. 실제 주문·배송은 진행되지 않습니다." : "담당자가 내용을 확인한 뒤 기존 연락처로 안내드립니다.";
       $("order-receipt").textContent = result.receiptId; $("order-received-at").textContent = new Date(result.submittedAt).toLocaleString("ko-KR");
       $("order-editor").hidden = true; $("order-access").hidden = true; $("order-success").hidden = false; $("order-code").value = ""; verified = false;
       draft = { items: [], requestedDate: "", delivery: "EXISTING_ADDRESS", requestId: crypto.randomUUID(), pending: false }; save();
