@@ -141,7 +141,8 @@ async function until(check, message) {
       }
       assert.equal(await state(), "locked");
       const before = apiCalls;
-      await choose(productFor(code).colors[0].code);
+      assert.equal(await page.locator('input[name="sample-color"]:checked').count(), 0);
+      if (code === "7001") await choose("7001-02");
       await page.clock.runFor(60000);
       assert.equal(apiCalls, before);
       assert.equal(await page.locator(".size-stock:visible").count(), 0);
@@ -151,12 +152,14 @@ async function until(check, message) {
         await page.locator(".stock-auth-submit").click();
         await until(async () => (await page.locator("#stock-auth-error").textContent()).includes("키워드"), "wrong keyword rejected");
         assert.equal(apiCalls, before);
+        assert.equal(await page.locator('input[name="sample-color"]:checked').count(), 0);
         assert.equal(await page.locator("#stock-keyword").inputValue(), "");
         await page.keyboard.press("Escape");
       }
       await authenticate();
       await ready();
       assert.equal(apiCalls, before + 1);
+      assert.equal(await page.locator('input[name="sample-color"]:checked').getAttribute("data-color-code"), code === "7001" ? "7001-02" : productFor(code).colors[0].code);
       for (const { size } of productFor(code).sizes) {
         assert.equal(await text(size), unavailable.has(code) || size === "L" ? "확인 불가" : size === "M" ? "품절 (0장)" : "42장", `${code} ${size}`);
         assert.equal(await sizeInput(size).isDisabled(), !unavailable.has(code) && size === "M", `${code} ${size} selection`);
@@ -167,7 +170,7 @@ async function until(check, message) {
       assert.equal(await state(), "locked");
       assert.equal(await page.locator('input[name="sample-size"]:disabled').count(), 0);
     }
-    console.log("PASS: 38 regular products require authentication; 7 custom-order products have no stock UI/traffic; hidden sizes/colors and existing size labels preserved");
+    console.log("PASS: 38 regular products load their first color after authentication and preserve existing choices; 7 custom-order products have no stock UI/traffic; hidden settings preserved");
 
     await open("7001");
     assert.equal(await page.locator('input[name="sample-size"][value="XS"]').count(), 0);
@@ -332,10 +335,15 @@ async function until(check, message) {
     assert.equal(apiCalls, before);
     console.log("PASS: sample cart still works and clearing the selection stops refreshes");
 
+    before = apiCalls;
     await open("23012");
+    await ready();
+    assert.equal(apiCalls, before + 1);
+    assert.equal(await page.locator('input[name="sample-color"]:checked').getAttribute("data-color-code"), productFor("23012").colors[0].code);
     assert.equal(await page.getByRole("button", { name: "재고 숨기기", exact: true }).count(), 1);
     assert.equal(await page.evaluate(() => localStorage.getItem("tworld-stock-session-v1:http://127.0.0.1:4173")), null);
     assert.equal(await page.locator('input[data-color-code="23012-06"], input[data-color-code="23012-07"]').count(), 0);
+    console.log("PASS: restored tab authentication automatically selects and loads the first visible color on navigation");
     await choose("23012-02");
     await ready();
     for (const [name, viewport] of [["desktop", { width: 1440, height: 1000 }], ["mobile", { width: 390, height: 844 }]]) {

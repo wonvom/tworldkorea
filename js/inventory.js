@@ -146,6 +146,13 @@
       paint("idle");
       status.textContent = "색상 미선택";
       if (selected) load();
+      else {
+        const input = selector.querySelector('input[name="sample-color"]:checked') || selector.querySelector('input[name="sample-color"]');
+        if (input) {
+          input.checked = true;
+          choose(input);
+        }
+      }
     }
 
     function closeDialog() { dialog.close(); }

@@ -23,6 +23,9 @@ required. Do not move the catalog, change its CNAME/DNS, or expose account token
 - Stock is hidden and no inventory requests run until the visitor uses the
   "재고 확인" button and successfully submits the shared keyword.
 - Keyword verification happens on the server, not in public JavaScript.
+- Successful authentication selects and fetches the first visible color when
+  no color is selected. An existing color selection is preserved. Restoring a
+  valid tab session on another product also loads its first visible color.
 - One-hour bearer tokens are kept only in memory/sessionStorage for the tab;
   keywords are not saved. "재고 숨기기", expiration or server rejection clears
   quantities and stops polling. A keyword must be entered again after locking.
