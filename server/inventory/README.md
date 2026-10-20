@@ -31,9 +31,15 @@ required. Do not move the catalog, change its CNAME/DNS, or expose account token
 - Refresh icon also fetches fresh stock. No stock snapshots are persisted.
 - Hidden tabs and cleared selections stop polling; returning to a tab refreshes.
 - Old color responses are aborted/discarded, and errors clear outdated numbers.
-- Actual zero stock is sold out; absent/invalid data and errors are unknown.
+- Actual zero stock is sold out and disables that size. A selected size is cleared
+  if refreshed stock becomes zero; the status announces the change.
+- Same-color refreshes keep known sold-out sizes disabled until the response.
+  Changing color clears the previous color's restrictions. Absent/invalid data
+  and errors are unknown and leave sizes selectable. Locking/reset also clears
+  stock restrictions.
 - Existing hidden colors, sizes, product data and custom-order flags are retained.
-- Sample requests are not blocked based on stock; this is not a reservation system.
+- Sample requests reject disabled sizes but allow unknown stock. This is not a
+  reservation system, and stock must be rechecked before confirming an order.
 
 ## Configuration
 

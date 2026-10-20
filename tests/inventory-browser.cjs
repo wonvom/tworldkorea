@@ -35,6 +35,7 @@ async function until(check, message) {
     let configEndpoint = "/api/stock";
     let mode = "ok";
     let baseQuantity = 42;
+    const sizeQuantities = new Map();
     let apiCalls = 0;
     let authMode = "ok";
     let authTtl = 3600000;
@@ -47,6 +48,7 @@ async function until(check, message) {
       const product = productFor(code);
       if (unavailable.has(code)) return Response.json({ product: code, variants: [], availability: "unavailable" });
       const quantity = baseQuantity;
+      const overrides = new Map(sizeQuantities);
       const held = mode === "delay";
       if (held) {
         mode = "ok";
@@ -57,7 +59,7 @@ async function until(check, message) {
       const rows = product.colors.flatMap((color) => product.sizes.filter((size) => size.size !== "L").map(({ size }) => ({
         colorCode: color.code,
         size,
-        quantity: size === "M" ? 0 : quantity
+        quantity: overrides.has(size) ? overrides.get(size) : size === "M" ? 0 : quantity
       })));
       if (code === "7001") {
         rows.push({ ...rows[0], size: "XS", quantity: 12345 });
@@ -108,6 +110,8 @@ async function until(check, message) {
     const choose = (code) => page.locator(`.sample-choice:has(input[data-color-code="${code}"])`).click();
     const state = () => page.locator(".sample-size-grid").getAttribute("data-stock-state");
     const text = (size) => page.locator(`[data-stock-size="${size}"]`).textContent();
+    const sizeInput = (size) => page.locator(`input[name="sample-size"][value="${size}"]`);
+    const chooseSize = (size) => page.locator(`.sample-size:has(input[value="${size}"])`).click();
     const ready = () => until(async () => await state() === "ready", "stock ready");
     const waitCalls = (count) => until(() => apiCalls === count, `API count ${count}`);
     const authenticate = async () => {
@@ -155,11 +159,13 @@ async function until(check, message) {
       assert.equal(apiCalls, before + 1);
       for (const { size } of productFor(code).sizes) {
         assert.equal(await text(size), unavailable.has(code) || size === "L" ? "확인 불가" : size === "M" ? "품절 (0장)" : "42장", `${code} ${size}`);
+        assert.equal(await sizeInput(size).isDisabled(), !unavailable.has(code) && size === "M", `${code} ${size} selection`);
       }
       if (unavailable.has(code)) assert.match(await page.locator("[data-stock-status]").textContent(), /원본 재고 확인 불가/);
       assert.equal(await page.locator(".sample-size").count(), productFor(code).sizes.length);
       await page.getByRole("button", { name: "재고 숨기기", exact: true }).click();
       assert.equal(await state(), "locked");
+      assert.equal(await page.locator('input[name="sample-size"]:disabled').count(), 0);
     }
     console.log("PASS: 38 regular products require authentication; 7 custom-order products have no stock UI/traffic; hidden sizes/colors and existing size labels preserved");
 
@@ -169,6 +175,60 @@ async function until(check, message) {
     await page.locator('input[data-color-code="7001-01"]').evaluate((input) => { input.checked = true; });
     await choose("7001-01");
     await authenticate();
+    await ready();
+    await page.locator('.sample-size:has(input[value="M"])').click({ force: true });
+    assert.equal(await sizeInput("M").isChecked(), false);
+    await sizeInput("M").evaluate((input) => { input.checked = true; });
+    await page.locator("[data-add-sample]").click();
+    assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem("tworld-sample-list-v1") || "[]").length), 0);
+    await sizeInput("M").evaluate((input) => { input.checked = false; });
+    await chooseSize("L");
+    assert.equal(await sizeInput("L").isChecked(), true);
+    await page.locator("[data-add-sample]").click();
+    assert.equal(await state(), "idle");
+    assert.equal(await page.locator('input[name="sample-size"]:disabled').count(), 0);
+    assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem("tworld-sample-list-v1"))[0].size), "L");
+    await page.evaluate(() => localStorage.removeItem("tworld-sample-list-v1"));
+    await choose("7001-01");
+    await ready();
+    await chooseSize("S");
+    baseQuantity = 0;
+    await page.getByRole("button", { name: "재고 새로고침", exact: true }).click();
+    await ready();
+    assert.equal(await sizeInput("S").isDisabled(), true);
+    assert.equal(await sizeInput("S").isChecked(), false);
+    assert.match(await page.locator("[data-stock-status]").textContent(), /품절되어 선택이 해제/);
+    baseQuantity = 42;
+    sizeQuantities.set("M", 8);
+    mode = "delay";
+    await choose("7001-01");
+    await until(() => Boolean(releaseHeld), "same-color refresh held");
+    assert.equal(await state(), "loading");
+    assert.equal(await sizeInput("S").isDisabled(), true);
+    assert.equal(await text("S"), "품절 (0장)");
+    assert.equal(await sizeInput("L").isDisabled(), false);
+    releaseHeld();
+    releaseHeld = null;
+    await ready();
+    assert.equal(await sizeInput("S").isDisabled(), false);
+    assert.equal(await sizeInput("M").isDisabled(), false);
+    assert.equal(await text("M"), "8장");
+    sizeQuantities.clear();
+    await choose("7001-01");
+    await ready();
+    await chooseSize("S");
+    mode = "delay";
+    await choose("7001-02");
+    await until(() => Boolean(releaseHeld), "new-color refresh held");
+    assert.equal(await sizeInput("M").isDisabled(), false);
+    assert.equal(await text("M"), "조회 중");
+    assert.equal(await sizeInput("S").isChecked(), true);
+    releaseHeld();
+    releaseHeld = null;
+    await ready();
+    assert.equal(await sizeInput("M").isDisabled(), true);
+    console.log("PASS: zero stock blocks selection/cart, unknown stock stays selectable, refresh clears sold-out selections and recovery/color changes restore availability");
+    await choose("7001-01");
     await ready();
     let keyboardBefore = apiCalls;
     await page.locator('input[data-color-code="7001-01"]').focus();
@@ -214,16 +274,22 @@ async function until(check, message) {
     await until(async () => await state() === "error", "upstream error");
     assert.equal(await text("S"), "확인 불가");
     assert.equal(await text("M"), "확인 불가");
+    assert.equal(await page.locator('input[name="sample-size"]:disabled').count(), 0);
+    await chooseSize("M");
+    assert.equal(await sizeInput("M").isChecked(), true);
     mode = "ok";
     await page.clock.runFor(30000);
     await ready();
     assert.equal(await text("S"), "999장");
+    assert.equal(await sizeInput("M").isDisabled(), true);
+    assert.equal(await sizeInput("M").isChecked(), false);
     mode = "hang";
     await choose("7001-02");
     await until(() => Boolean(releaseHeld), "hanging request");
     await page.clock.runFor(10000);
     await until(async () => await state() === "error", "request timeout");
     assert.equal(await text("S"), "확인 불가");
+    assert.equal(await page.locator('input[name="sample-size"]:disabled').count(), 0);
     releaseHeld();
     releaseHeld = null;
     await choose("7001-02");
@@ -237,6 +303,8 @@ async function until(check, message) {
     });
     await page.clock.runFor(60000);
     assert.equal(apiCalls, before);
+    assert.equal(await sizeInput("M").isDisabled(), true);
+    assert.equal(await text("M"), "품절 (0장)");
     await page.evaluate(() => {
       Object.defineProperty(document, "hidden", { configurable: true, value: false });
       document.dispatchEvent(new Event("visibilitychange"));
@@ -255,6 +323,7 @@ async function until(check, message) {
     await page.locator('.sample-size:has(input[value="S"])').click();
     await page.locator("[data-add-sample]").click();
     assert.equal(await state(), "idle");
+    assert.equal(await page.locator('input[name="sample-size"]:disabled').count(), 0);
     assert.equal(await page.locator('input[name="sample-color"]:checked').count(), 0);
     assert.equal(await text("S"), "-");
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem("tworld-sample-list-v1"))[0].size), "S");
@@ -310,6 +379,7 @@ async function until(check, message) {
     await ready();
     await page.clock.runFor(1000);
     assert.equal(await state(), "locked");
+    assert.equal(await page.locator('input[name="sample-size"]:disabled').count(), 0);
     assert.equal(await page.locator(".size-stock:visible").count(), 0);
     assert.equal(await page.evaluate(() => sessionStorage.getItem("tworld-stock-session-v1:http://127.0.0.1:4173")), null);
     console.log("PASS: tab session survives navigation; server rejection/expiry removes stock and stops polling; unconfigured and throttled auth stays locked");

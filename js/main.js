@@ -796,7 +796,7 @@
         const memo = String(memoInput?.value || "").trim();
         const status = qs("[data-sample-add-status]", selector);
 
-        if (!colorInput || !sizeInput) {
+        if (!colorInput || !sizeInput || sizeInput.disabled) {
           if (status) status.textContent = "색상과 사이즈를 하나씩 선택해주세요.";
           return;
         }

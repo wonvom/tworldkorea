@@ -1001,6 +1001,13 @@ p {
   color: #a3342d;
 }
 
+.sample-size:has(input:disabled) {
+  border-color: var(--line);
+  background: var(--light-gray);
+  color: var(--mid-gray);
+  cursor: not-allowed;
+}
+
 .stock-status {
   min-height: 32px;
   margin: 0;

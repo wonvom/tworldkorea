@@ -100,6 +100,7 @@
     });
 
     let selected = null;
+    let stockColor = null;
     let timer = null;
     let controller = null;
     let sequence = 0;
@@ -207,8 +208,20 @@
     function paint(state, quantities) {
       grid.dataset.stockState = state;
       grid.setAttribute("aria-busy", String(state === "loading"));
+      // Keep the current color's confirmed zeros blocked until a refresh completes.
+      const preserveSoldOut = (state === "loading" || state === "paused") && selected && stockColor === selected.code;
+      stockColor = state === "ready" ? selected?.code : preserveSoldOut ? stockColor : null;
+      let selectionCleared = false;
       for (const { input, text } of entries) {
         const locked = state === "locked";
+        const quantity = quantities?.get(input.value);
+        const known = Number.isSafeInteger(quantity) && quantity >= 0;
+        const soldOut = (state === "ready" && known && quantity === 0) || (preserveSoldOut && input.disabled);
+        input.disabled = Boolean(soldOut);
+        if (input.disabled && input.checked) {
+          input.checked = false;
+          selectionCleared = true;
+        }
         text.hidden = locked;
         text.closest(".sample-size").classList.toggle("sample-size--stock", !locked);
         if (locked) {
@@ -216,12 +229,11 @@
           input.removeAttribute("aria-label");
           continue;
         }
-        const quantity = quantities?.get(input.value);
-        const known = Number.isSafeInteger(quantity) && quantity >= 0;
-        text.dataset.stockState = state === "ready" && known ? (quantity === 0 ? "empty" : "available") : state;
-        text.textContent = state === "idle" ? "-" : state === "loading" ? "조회 중" : known ? (quantity === 0 ? "품절 (0장)" : `${quantity.toLocaleString("ko-KR")}장`) : "확인 불가";
+        text.dataset.stockState = soldOut ? "empty" : state === "ready" && known ? "available" : state;
+        text.textContent = soldOut ? "품절 (0장)" : state === "idle" ? "-" : state === "loading" ? "조회 중" : known ? `${quantity.toLocaleString("ko-KR")}장` : "확인 불가";
         input.setAttribute("aria-label", `${input.value}, 재고 ${text.textContent}`);
       }
+      return selectionCleared;
     }
 
     function cancel() {
@@ -267,10 +279,11 @@
         const payload = await response.json();
         const quantities = quantitiesFor(payload, product, color.code);
         if (current !== sequence || disposed) return;
-        paint("ready", quantities);
+        const selectionCleared = paint("ready", quantities);
         const complete = entries.every(({ input }) => Number.isSafeInteger(quantities.get(input.value)));
         const time = new Date().toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul", hour12: false });
         status.textContent = payload.availability === "unavailable" ? `${color.name} · 원본 재고 확인 불가` : `${color.name} · ${time} 조회${complete ? "" : " · 일부 사이즈 확인 불가"}`;
+        if (selectionCleared) status.textContent += " · 선택한 사이즈가 품절되어 선택이 해제되었습니다.";
       } catch (error) {
         if (current !== sequence || disposed) return;
         paint("error");
