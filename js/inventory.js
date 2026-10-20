@@ -10,6 +10,9 @@
     if (payload?.product !== product.code || !Array.isArray(payload.variants)) {
       throw new Error("Invalid inventory response");
     }
+    // Inquiry-only products have no confirmed quantities, even if the source
+    // includes placeholder zeros or numbers in its variant rows.
+    if (payload.availability === "inquiry") return new Map();
     const quantities = new Map();
     const seen = new Set();
     const sizes = new Set(product.sizes.map((size) => size.size));
@@ -212,7 +215,7 @@
       }
     }
 
-    function paint(state, quantities) {
+    function paint(state, quantities, inquiry = false) {
       grid.dataset.stockState = state;
       grid.setAttribute("aria-busy", String(state === "loading"));
       // Keep the current color's confirmed zeros blocked until a refresh completes.
@@ -237,7 +240,7 @@
           continue;
         }
         text.dataset.stockState = soldOut ? "empty" : state === "ready" && known ? "available" : state;
-        text.textContent = soldOut ? "품절 (0장)" : state === "idle" ? "-" : state === "loading" ? "조회 중" : known ? `${quantity.toLocaleString("ko-KR")}장` : "확인 불가";
+        text.textContent = soldOut ? "품절 (0장)" : state === "idle" || inquiry ? "-" : state === "loading" ? "조회 중" : known ? `${quantity.toLocaleString("ko-KR")}장` : "확인 불가";
         input.setAttribute("aria-label", `${input.value}, 재고 ${text.textContent}`);
       }
       return selectionCleared;
@@ -286,10 +289,10 @@
         const payload = await response.json();
         const quantities = quantitiesFor(payload, product, color.code);
         if (current !== sequence || disposed) return;
-        const selectionCleared = paint("ready", quantities);
+        const selectionCleared = paint("ready", quantities, payload.availability === "inquiry");
         const complete = entries.every(({ input }) => Number.isSafeInteger(quantities.get(input.value)));
         const time = new Date().toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul", hour12: false });
-        status.textContent = payload.availability === "unavailable" ? `${color.name} · 원본 재고 확인 불가` : `${color.name} · ${time} 조회${complete ? "" : " · 일부 사이즈 확인 불가"}`;
+        status.textContent = payload.availability === "inquiry" ? `${color.name} · 문의 상품 · 재고 수량 확인 불가` : payload.availability === "unavailable" ? `${color.name} · 원본 재고 확인 불가` : `${color.name} · ${time} 조회${complete ? "" : " · 일부 사이즈 확인 불가"}`;
         if (selectionCleared) status.textContent += " · 선택한 사이즈가 품절되어 선택이 해제되었습니다.";
       } catch (error) {
         if (current !== sequence || disposed) return;

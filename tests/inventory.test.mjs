@@ -27,3 +27,11 @@ test("invalid quantities and duplicates never become fabricated stock", () => {
   assert.throws(() => quantitiesFor({ product: "03XA5", variants: [] }, product, "7001-01"));
   assert.throws(() => quantitiesFor({ product: "7001", variants: null }, product, "7001-01"));
 });
+
+test("inquiry products never display source placeholder quantities as known stock", () => {
+  const quantities = quantitiesFor({ product: "7001", availability: "inquiry", variants: [
+    { colorCode: "7001-01", size: "S", quantity: 0 },
+    { colorCode: "7001-01", size: "M", quantity: 123 }
+  ] }, product, "7001-01");
+  assert.equal(quantities.size, 0);
+});

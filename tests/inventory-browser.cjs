@@ -12,6 +12,7 @@ vm.runInNewContext(fs.readFileSync(path.join(root, "data/products.js"), "utf8"),
 const products = JSON.parse(JSON.stringify(sandbox.window.products));
 const codes = Object.fromEntries(products.map((product) => [product.code, true]));
 const unavailable = new Set(["27012", "YL3200", "A23014", "CK280"]);
+const inquiryProducts = new Set(["TH5615", "XF8281", "TH96001", "TH5611", "TH96003", "7111"]);
 const customOrders = new Set(["27012", "A23014", "CK280", "LK3401", "YL3200", "LM3200", "QXX5200"]);
 const productFor = (code) => products.find((product) => product.code === code);
 
@@ -69,7 +70,8 @@ async function until(check, message) {
         rows.push({ ...rows[0], colorCode: "23012-06", quantity: 12345 });
         rows.push({ ...rows[0], colorCode: "23012-07", quantity: 12345 });
       }
-      return Response.json({ product: code, queriedAt: new Date().toISOString(), variants: rows });
+      return Response.json({ product: code, queriedAt: new Date().toISOString(), variants: rows,
+        ...(inquiryProducts.has(code) ? { availability: "inquiry" } : {}) });
     };
     await context.route("**/data/inventory-config.js*", (route) => route.fulfill({
       contentType: "application/javascript",
@@ -161,16 +163,33 @@ async function until(check, message) {
       assert.equal(apiCalls, before + 1);
       assert.equal(await page.locator('input[name="sample-color"]:checked').getAttribute("data-color-code"), code === "7001" ? "7001-02" : productFor(code).colors[0].code);
       for (const { size } of productFor(code).sizes) {
-        assert.equal(await text(size), unavailable.has(code) || size === "L" ? "확인 불가" : size === "M" ? "품절 (0장)" : "42장", `${code} ${size}`);
-        assert.equal(await sizeInput(size).isDisabled(), !unavailable.has(code) && size === "M", `${code} ${size} selection`);
+        assert.equal(await text(size), inquiryProducts.has(code) ? "-" : unavailable.has(code) || size === "L" ? "확인 불가" : size === "M" ? "품절 (0장)" : "42장", `${code} ${size}`);
+        assert.equal(await sizeInput(size).isDisabled(), !unavailable.has(code) && !inquiryProducts.has(code) && size === "M", `${code} ${size} selection`);
       }
       if (unavailable.has(code)) assert.match(await page.locator("[data-stock-status]").textContent(), /원본 재고 확인 불가/);
+      if (inquiryProducts.has(code)) assert.match(await page.locator("[data-stock-status]").textContent(), /문의 상품/);
       assert.equal(await page.locator(".sample-size").count(), productFor(code).sizes.length);
       await page.getByRole("button", { name: "재고 숨기기", exact: true }).click();
       assert.equal(await state(), "locked");
       assert.equal(await page.locator('input[name="sample-size"]:disabled').count(), 0);
     }
     console.log("PASS: 38 regular products load their first color after authentication and preserve existing choices; 7 custom-order products have no stock UI/traffic; hidden settings preserved");
+
+    await open("TH5611");
+    await authenticate();
+    await ready();
+    for (const color of productFor("TH5611").colors) {
+      await choose(color.code);
+      await ready();
+      for (const { size } of productFor("TH5611").sizes) {
+        assert.equal(await text(size), "-");
+        assert.equal(await sizeInput(size).isDisabled(), false);
+      }
+    }
+    await page.locator(".sample-size-grid").scrollIntoViewIfNeeded();
+    await page.screenshot({ path: path.join(output, "inquiry-TH5611.png") });
+    console.log("PASS: all six inquiry products show dashes, including every TH5611 color/size; placeholder stock never marks them sold out");
+    await page.getByRole("button", { name: "재고 숨기기", exact: true }).click();
 
     await open("7001");
     assert.equal(await page.locator('input[name="sample-size"][value="XS"]').count(), 0);
