@@ -683,6 +683,7 @@
             <div class="sample-actions">
               <button class="btn btn-dark full" type="button" data-add-sample>샘플 장바구니에 담기</button>
               <button class="btn btn-light full" type="button" data-open-sample-list>장바구니 보기</button>
+              <a class="btn btn-light full" href="order.html?product=${encodeURIComponent(product.id)}">기존 거래처 주문하기</a>
             </div>
           </div>
         </aside>

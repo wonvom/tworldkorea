@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self' https://tworld-inventory-api.halestork64.chatgpt.site; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="favicon.png?v=20260710-brand-logo" type="image/png">
+  <script>if (location.protocol === "http:" && location.hostname === "www.tworldkorea.co.kr") location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);</script>
+  <title>기존 거래처 주문 | 티월드코리아</title>
+  <meta name="description" content="티월드코리아 제품 카탈로그, 도매 상담, 납품 관련 연락처를 확인할 수 있는 문의 페이지입니다.">
+  <link rel="canonical" href="https://www.tworldkorea.co.kr/order.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="티월드코리아">
+  <meta property="og:title" content="기존 거래처 주문 | 티월드코리아">
+  <meta property="og:description" content="티월드코리아 제품 카탈로그, 도매 상담, 납품 관련 연락처와 카카오톡 문의 정보를 확인하세요.">
+  <meta property="og:url" content="https://www.tworldkorea.co.kr/order.html">
+  <meta property="og:image" content="https://www.tworldkorea.co.kr/images/company/korea-warehouse.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/style.css?v=20260710-clean-urls">
+  <link rel="stylesheet" href="css/order.css?v=20261020-order">
+</head>
+<body data-page="order">
+  <header class="site-header" data-header>
+    <a class="brand" href="index.html" aria-label="홈으로 이동">T-WORLD KOREA</a>
+    <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
+    <nav class="site-nav" data-nav>
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="products.html">PRODUCTS</a>
+      <a href="lookbook.html">LOOKBOOK</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="order.html">기존 거래처 ORDER</a>
+    </nav>
+  </header>
+
+  <main class="order-main">
+    <section class="order-heading"><p class="eyebrow">FOR OUR PARTNERS</p><h1>기존 거래처 ORDER</h1><p>필요한 상품을 한 번에 요청하세요.<br>담당자가 재고와 단가, 납기를 확인한 후 주문을 확정합니다.</p><ol class="order-steps"><li><b>01</b> 주문코드 확인</li><li><b>02</b> 주문서 작성</li><li><b>03</b> 담당자 확인</li></ol></section>
+    <section class="order-access" id="order-access"><div><p class="eyebrow">PARTNER ACCESS</p><h2>거래처 주문코드</h2><p>담당자에게 받은 전용 주문코드를 입력해주세요.<br>코드가 없거나 만료된 경우 <a href="contact.html">담당자에게 문의</a>해주세요.</p></div><form id="order-code-form" autocomplete="off"><label for="order-code">주문코드</label><div class="order-code-row"><input id="order-code" type="password" required minlength="12" maxlength="64" autocomplete="off" spellcheck="false" placeholder="전용 주문코드 입력"><button class="btn btn-dark" type="submit">확인</button></div><p id="order-access-status" role="status" aria-live="polite"></p></form></section>
+    <section id="order-editor" hidden>
+      <div class="order-layout"><div><section class="order-card"><div class="order-section-title"><span>01 / PRODUCTS</span><h2>상품과 수량 선택</h2></div>
+      <label for="order-product">상품</label><select id="order-product"></select><div class="order-product-info"><img id="order-image" alt="선택 상품"><div><strong id="order-product-name"></strong><a id="order-product-link" target="_blank" rel="noopener">상품 상세 보기 ↗</a><p>실제 재고와 공급단가는 담당자 확인 후 안내됩니다. 문의 상품도 요청할 수 있습니다.</p></div></div>
+      <label for="order-color">색상</label><select id="order-color"></select><fieldset class="order-size-field"><legend>사이즈별 요청 수량</legend><div id="order-sizes" class="order-size-grid"></div></fieldset><button class="btn btn-dark full" id="order-add" type="button">주문서에 담기</button><p id="order-item-status" role="status"></p></section>
+      <section class="order-card"><div class="order-section-title"><span>02 / ORDER SHEET</span><h2>작성한 주문서 <small id="order-item-count">0개 조합</small></h2></div><p id="order-empty">상품을 선택하고 수량을 담아주세요.</p><div id="order-items"></div><p class="order-total">총 요청 수량 <strong id="order-total">0장</strong></p></section></div>
+      <aside class="order-card order-submit-card"><div class="order-section-title"><span>03 / REQUEST</span><h2>요청사항 확인</h2></div><form id="order-submit-form"><label for="order-delivery">수령 방법</label><select id="order-delivery"><option value="EXISTING_ADDRESS">기존 거래처 배송지</option><option value="PICKUP">직접 수령</option></select><p class="order-help">주소가 변경됐다면 담당자에게 먼저 알려주세요.</p><label for="order-date">희망일 <span>(선택)</span></label><input id="order-date" type="date"><p class="order-help">희망일은 확정 납기일이 아닙니다.</p>
+      <div class="order-notice"><strong>제출 전 확인해주세요</strong><ul><li>주문 요청 후 담당자가 재고·단가·납기를 확인합니다.</li><li>결제와 출고는 기존 거래 절차로 진행합니다.</li><li>주문 변경은 접수번호와 함께 담당자에게 알려주세요.</li></ul></div><label class="order-check"><input type="checkbox" id="order-agree" required><span>주문 접수 안내와 <a href="order-privacy.html" target="_blank" rel="noopener">개인정보 처리 안내</a>를 확인했습니다.</span></label><button class="btn btn-dark full" id="order-submit" type="submit">주문 요청 보내기</button><p id="order-submit-status" role="status" aria-live="polite"></p></form></aside></div>
+    </section>
+    <section id="order-success" class="order-success" hidden><p class="eyebrow">REQUEST RECEIVED</p><h2>주문 요청이 접수되었습니다.</h2><p>담당자가 내용을 확인한 뒤 기존 연락처로 안내드립니다.</p><div><span>접수번호</span><strong id="order-receipt"></strong><span id="order-received-at"></span></div><p>이 화면의 접수번호를 보관해주세요.<br>같은 주문을 다시 작성하지 않아도 됩니다.</p><button type="button" class="btn btn-dark" id="order-new">새 주문 작성</button><a class="btn btn-light" href="products.html">상품 더 보기</a></section>
+  </main>
+  <footer class="site-footer"><p>T-WORLD KOREA</p><a href="order-privacy.html">주문 개인정보 처리 안내</a><a href="contact.html">담당자 문의</a></footer>
+  <script src="data/products.js"></script>
+  <script src="js/main.js?v=20261020-order"></script>
+  <script src="js/order.js?v=20261020-order"></script>
+</body>
+</html>
