@@ -6,9 +6,10 @@
   const n = value => value.toLocaleString("ko-KR");
   const money = (value, pending = "확인 예정") => value === null ? pending : `${n(value)}원`;
   const element = (tag, value, className) => { const el = document.createElement(tag); el.textContent = value; if (className) el.className = className; return el; };
-  // Prototype state is intentionally memory-only. No order/profile/PII request reaches the OS or gateway.
+  // Credentials and displayed account data stay in memory; draft orders remain a separate preview.
   let entered = false, lines = [], orders = [], inquiries = [], historyView = "orders", statement = null, orderCharges = {};
   let stockSession = null, stockController = null, stockSequence = 0, stockTimer = null, postcodePromise = null, accessController = null;
+  let memberSession = null, account = null, historyTimer = null, historyController = null;
   const currentProduct = () => products.find(p => p.code === $("order-product").value);
   const newId = kind => `DEMO-${kind}-${M.dayISO().replaceAll("-", "")}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
   function showTab(name, focus = true) {
@@ -42,6 +43,15 @@
       const value = await response.json();
       if (accessController !== controller) return;
       if (typeof value.token !== "string" || !Number.isFinite(value.expiresAt) || value.expiresAt <= Date.now() || value.expiresAt > Date.now() + 3605000) throw Error();
+      if (!value.demo && (typeof value.memberToken !== "string" || !value.account || !Number.isFinite(value.memberExpiresAt))) throw Error();
+      memberSession = value.demo ? null : { token: value.memberToken, expiresAt: value.memberExpiresAt };
+      account = value.demo ? null : value.account;
+      $("member-greeting").textContent = `안녕하세요, ${account?.companyName || "시연용 거래처"}님.`;
+      $("member-company").textContent = account?.companyName || "시연용 거래처";
+      $("partner-notice").textContent = account ? "사내 OS 연결 · 주문·발송 내역을 조회할 수 있습니다. 주문서 작성·문의는 아직 시연 기능이며 직원에게 전송되지 않습니다. 실제 개인정보는 시연 입력란에 넣지 마세요." : "화면 시연 · 실제 주문·문의는 전송되지 않습니다. 시연 내역은 새로고침하면 사라집니다. 실제 개인정보는 입력하지 마세요.";
+      $("history-refresh").hidden = !memberSession;
+      clearInterval(historyTimer);
+      if (memberSession) historyTimer = setInterval(() => { if (!document.hidden) refreshHistory(); }, 30000);
       stockSession = { token: value.token, expiresAt: value.expiresAt };
       entered = true; $("order-access-status").textContent = ""; $("order-access").hidden = true; $("partner-app").hidden = false;
       showTab(new URL(location.href).searchParams.has("product") ? "order" : "mypage");
@@ -51,6 +61,11 @@
   });
   function leavePartner() {
     accessController?.abort(); accessController = null; $("order-code-form").querySelector("button").disabled = false;
+    const session = memberSession; memberSession = null; account = null;
+    clearInterval(historyTimer); historyController?.abort(); historyController = null;
+    if (session) fetch(inventoryOrigin + "/member/logout", { method: "POST", headers: { Authorization: `Bearer ${session.token}` }, credentials: "omit", cache: "no-store", referrerPolicy: "no-referrer", keepalive: true }).catch(() => undefined);
+    $("member-greeting").textContent = "안녕하세요."; $("member-company").textContent = "";
+    $("member-history-document").replaceChildren(); $("history-status").textContent = "";
     entered = false; cancelStock(); stockSession = null; lines = []; orders = []; inquiries = []; statement = null; orderCharges = {};
     document.querySelectorAll("dialog[open]").forEach(dialog => dialog.close());
     $("order-check-form").reset(); $("inquiry-form").reset(); $("order-code-form").reset();
@@ -198,10 +213,57 @@
   $("statement-print").addEventListener("click", () => window.print());
   $("statement-confirm").addEventListener("click", () => {
     if (!entered || !statement || statement.confirmed) return;
-    statement.confirmed = true; orders.unshift(statement); lines = []; orderCharges = {}; renderLines(); $("order-check-form").reset(); syncDelivery(); $("statement-dialog").close(); historyView = "orders"; showTab("mypage");
+    statement.confirmed = true; orders.unshift(statement); lines = []; orderCharges = {}; renderLines(); $("order-check-form").reset(); syncDelivery(); $("statement-dialog").close(); historyView = "orders"; showTab("mypage"); if (memberSession) $("history-status").textContent = "시연 주문서를 확인했습니다. 실제 OS 주문 내역에는 추가되지 않습니다.";
   });
   function empty(container, title, detail, action) { container.replaceChildren(); const box = element("div", "", "empty-state"); box.append(element("span", "―"), element("p", title), element("small", detail)); if (action) { const b = element("button", "첫 주문 작성하기 →", "text-button"); b.type = "button"; b.addEventListener("click", () => showTab("order")); box.append(b); } container.append(box); }
+  const statusLabels = { RECEIVED: "확인 대기", APPROVED: "출고 등록", REJECTED: "반려", REQUEST_IN_PROGRESS: "주문 진행", STATEMENT_SENT: "명세서 발송", PAYMENT_CONFIRMED: "입금 확인", TAX_INVOICE_ISSUED: "출고 준비", SHIPPED: "발송 완료", SHIPPED_UNPAID: "발송 완료", COMPLETED: "처리 완료", CANCELLED: "취소" };
+  const dateTime = value => new Date(value).toLocaleString("ko-KR");
+  async function refreshHistory() {
+    if (!memberSession || historyController) return;
+    const session = memberSession, controller = new AbortController(); historyController = controller;
+    const timer = setTimeout(() => controller.abort(), 12000); $("history-refresh").disabled = true;
+    try {
+      const response = await fetch(inventoryOrigin + "/member/history", { headers: { Authorization: `Bearer ${session.token}` }, credentials: "omit", cache: "no-store", referrerPolicy: "no-referrer", signal: controller.signal });
+      if (memberSession !== session) return;
+      if (response.status === 401) { leavePartner(); $("order-access-status").textContent = "접속이 만료되었거나 회원코드가 변경되었습니다. 다시 입력해주세요."; return; }
+      if (!response.ok) throw Error();
+      const value = await response.json(); if (memberSession !== session) return;
+      account = value.account; renderHistory();
+    } catch {
+      if (memberSession === session) { account = null; $("member-history-dialog").close(); $("member-history-document").replaceChildren(); renderHistory(); $("history-status").textContent = "사내 시스템과 연결하지 못했습니다. 잠시 후 내역 새로고침을 눌러주세요."; }
+    } finally { clearTimeout(timer); if (historyController === controller) historyController = null; $("history-refresh").disabled = false; }
+  }
+  $("history-refresh").addEventListener("click", refreshHistory);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && memberSession) refreshHistory(); });
+  function showMemberOrder(order) {
+    const article = $("member-history-document"); article.replaceChildren();
+    article.append(element("p", account?.companyName || "거래처"), element("h3", statusLabels[order.status] || "확인 중"), element("p", `주문일 ${dateTime(order.createdAt)}${order.shippedAt ? ` · 발송일 ${dateTime(order.shippedAt)}` : ""}`));
+    const wrap = element("div", "", "statement-table-wrap"), table = element("table", "", "statement-table");
+    table.innerHTML = "<thead><tr><th>상품</th><th>색상 / 사이즈</th><th>수량</th><th>단가</th></tr></thead>";
+    const body = document.createElement("tbody");
+    for (const item of order.items) { const row = document.createElement("tr"); row.append(element("td", `${item.productCode} ${item.productName}`), element("td", `${item.color} / ${item.size}`), element("td", `${n(item.quantity)}장`), element("td", money(item.unitPrice))); body.append(row); }
+    table.append(body); wrap.append(table); article.append(wrap, element("p", `총 ${n(order.quantity)}장 · OS 주문금액 ${money(order.total)}`));
+    if (order.itemsTruncated) article.append(element("p", "품목은 최근 100개 조합까지 표시됩니다. 전체 명세서는 담당자에게 문의해주세요."));
+    article.append(element("small", `접수번호 ${order.id}`)); $("member-history-dialog").showModal();
+  }
+  function renderMemberHistory() {
+    const list = account?.orders || [], shipped = list.filter(o => o.shippedAt && o.status !== "CANCELLED");
+    const pending = list.filter(o => ["RECEIVED", "REQUEST_IN_PROGRESS"].includes(o.status));
+    for (const [id, count] of [["metric-orders", list.length], ["metric-pending", pending.length], ["metric-shipped", shipped.length]]) $(id).replaceChildren(document.createTextNode(String(count)), element("small", "건"));
+    document.querySelectorAll("[data-history]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.history === historyView)));
+    $("history-status").textContent = account ? `${dateTime(account.updatedAt)} 기준 · ${account.hasMore ? "최근 200건 표시. 이전 내역은 담당자에게 문의해주세요." : "OS에 연결된 주문 내역"}` : "내역 연결을 확인하고 있습니다.";
+    const visible = historyView === "shipments" ? shipped : list;
+    if (!visible.length) { empty($("history-list"), account ? (historyView === "shipments" ? "등록된 발송 내역이 없습니다." : "등록된 주문 내역이 없습니다.") : "내역을 불러올 수 없습니다.", "거래처 연결과 내역에 관한 사항은 담당자에게 문의해주세요."); return; }
+    $("history-list").replaceChildren(...visible.map(order => {
+      const row = element("article", "", "history-row"), top = element("div", "", "history-top"), actions = element("div", "", "history-actions");
+      top.append(element("span", dateTime(historyView === "shipments" ? order.shippedAt : order.createdAt)), element("span", statusLabels[order.status] || "확인 중", "status-pill"));
+      row.append(top, element("h4", order.items[0]?.productCode || "주문"), element("p", `총 ${n(order.quantity)}장 · ${money(order.total)}`));
+      const button = element("button", "상세 내역 보기 →", "text-button"); button.type = "button"; button.addEventListener("click", () => showMemberOrder(order)); actions.append(button); row.append(actions); return row;
+    }));
+  }
   function renderHistory() {
+    if (memberSession) { renderMemberHistory(); return; }
+    $("metric-shipped").replaceChildren(document.createTextNode("0"), element("small", "건"));
     $("metric-orders").replaceChildren(document.createTextNode(String(orders.length)), element("small", "건")); $("metric-pending").replaceChildren(document.createTextNode(String(orders.length)), element("small", "건"));
     document.querySelectorAll("[data-history]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.history === historyView)));
     if (historyView === "shipments") { empty($("history-list"), "아직 발송 내역이 없습니다.", "OS 연결 후 택배사, 운송장과 배송 상태가 이곳에 표시됩니다."); return; }
