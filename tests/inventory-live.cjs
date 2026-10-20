@@ -1,16 +1,20 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const vm = require("node:vm");
 const { chromium } = require("playwright");
 
 const root = path.resolve(__dirname, "..");
 const site = "https://www.tworldkorea.co.kr";
 const api = "https://tworld-inventory-api.halestork64.chatgpt.site/stock";
 const output = path.join(root, "outputs/inventory-qa");
+const sandbox = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(root, "data/products.js"), "utf8"), sandbox);
+const codes = sandbox.window.products.map((product) => product.code);
 
 (async () => {
-  // The owner intentionally deferred setting a production keyword. This suite verifies fail-closed publication.
-  for (const code of ["01OA1", "7001", "03XA5", "T210", "23012"]) {
+  // Never read the owner's keyword or bypass authentication for a production test.
+  for (const code of codes) {
     const response = await fetch(`${api}?product=${code}`, { headers: { Origin: site } });
     assert.equal(response.status, 401);
     assert.match(response.headers.get("cache-control"), /no-store/);
@@ -21,7 +25,7 @@ const output = path.join(root, "outputs/inventory-qa");
   const preflight = await fetch(api, { method: "OPTIONS", headers: { Origin: site, "Access-Control-Request-Method": "GET", "Access-Control-Request-Headers": "authorization" } });
   assert.equal(preflight.status, 204);
   assert.match(preflight.headers.get("access-control-allow-headers"), /Authorization/i);
-  console.log("PASS: production API rejects all five anonymous product lookups and forged tokens; authentication CORS preflight succeeds");
+  console.log("PASS: production API rejects all public catalog lookups without authentication; forged tokens rejected and CORS preflight succeeds");
 
   fs.mkdirSync(output, { recursive: true });
   const browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) });
@@ -47,10 +51,12 @@ const output = path.join(root, "outputs/inventory-qa");
       if (url.pathname === "/stock/auth") authCalls += 1;
       else stockCalls += 1;
     });
-    for (const code of ["01OA1", "7001", "03XA5", "T210", "23012"]) {
+    for (const code of codes) {
       await page.goto(`${site}/product-detail.html?id=${code}`, { waitUntil: "load" });
       await page.locator(".sample-choice").first().click();
-      assert.equal(await page.locator(".sample-size-grid").getAttribute("data-stock-state"), "locked");
+      const customOrder = await page.locator(".custom-order-badge").count() > 0;
+      if (customOrder) assert.equal(await page.locator("[data-stock-access], .size-stock, .stock-refresh, [data-stock-status]").count(), 0);
+      else assert.equal(await page.locator(".sample-size-grid").getAttribute("data-stock-state"), "locked");
       assert.equal(await page.locator(".size-stock:visible").count(), 0);
       assert.equal(stockCalls, 0);
       if (code === "7001") assert.equal(await page.locator('input[name="sample-size"][value="XS"], input[data-color-code="7001-07"]').count(), 0);
@@ -60,13 +66,9 @@ const output = path.join(root, "outputs/inventory-qa");
     await page.waitForTimeout(31000);
     assert.equal(stockCalls, 0);
     await page.getByRole("button", { name: "재고 확인", exact: true }).click();
-    await page.locator("#stock-keyword").fill("unconfigured-test-input");
-    const authResponse = page.waitForResponse((response) => response.url() === `${api}/auth` && response.request().method() === "POST");
-    await page.locator(".stock-auth-submit").click();
-    assert.equal((await authResponse).status(), 503);
-    await page.locator("#stock-auth-error").filter({ hasText: "설정되지" }).waitFor();
+    assert.equal(await page.locator("#stock-keyword").getAttribute("type"), "password");
     assert.equal(await page.locator("#stock-keyword").inputValue(), "");
-    assert.equal(authCalls, 1);
+    assert.equal(authCalls, 0);
     assert.equal(stockCalls, 0);
     for (const [name, viewport] of [["live-auth-desktop", { width: 1440, height: 1000 }], ["live-auth-mobile", { width: 390, height: 844 }]]) {
       await page.setViewportSize(viewport);
@@ -78,7 +80,7 @@ const output = path.join(root, "outputs/inventory-qa");
     await page.locator(".sample-size-grid").scrollIntoViewIfNeeded();
     await page.screenshot({ path: path.join(output, "live-locked.png"), animations: "disabled" });
     await page.goto(`${site}/product-detail.html?id=3505`, { waitUntil: "load" });
-    assert.equal(await page.locator("[data-stock-access]").count(), 0);
+    assert.equal(await page.locator("[data-stock-access]").count(), 1);
     assert.deepEqual(errors, []);
     console.log("PASS: real HTTPS/CORS keyword dialog; all products locked before auth; no inventory traffic across 31 seconds; responsive layout and hidden settings preserved");
     await context.close();

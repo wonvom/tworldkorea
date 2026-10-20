@@ -7,10 +7,12 @@ const { chromium } = require("playwright");
 const root = path.resolve(__dirname, "..");
 const base = "http://127.0.0.1:4173";
 const output = path.join(root, "outputs/inventory-qa");
-const codes = { "01OA1": 1, "7001": 11, "03XA5": 12, "T210": 13, "23012": 15 };
 const sandbox = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, "data/products.js"), "utf8"), sandbox);
 const products = JSON.parse(JSON.stringify(sandbox.window.products));
+const codes = Object.fromEntries(products.map((product) => [product.code, true]));
+const unavailable = new Set(["27012", "YL3200", "A23014", "CK280"]);
+const customOrders = new Set(["27012", "A23014", "CK280", "LK3401", "YL3200", "LM3200", "QXX5200"]);
 const productFor = (code) => products.find((product) => product.code === code);
 
 async function until(check, message) {
@@ -43,6 +45,7 @@ async function until(check, message) {
     const responses = new Map();
     const fixture = async (code) => {
       const product = productFor(code);
+      if (unavailable.has(code)) return Response.json({ product: code, variants: [], availability: "unavailable" });
       const quantity = baseQuantity;
       const held = mode === "delay";
       if (held) {
@@ -123,6 +126,15 @@ async function until(check, message) {
     enabled = true;
     for (const code of Object.keys(codes)) {
       await open(code);
+      if (customOrders.has(code)) {
+        const before = apiCalls;
+        assert.equal(await page.locator(".custom-order-badge").count(), 1);
+        assert.equal(await page.locator("[data-stock-access], .size-stock, .stock-refresh, [data-stock-status]").count(), 0);
+        await choose(productFor(code).colors[0].code);
+        await page.clock.runFor(60000);
+        assert.equal(apiCalls, before);
+        continue;
+      }
       assert.equal(await state(), "locked");
       const before = apiCalls;
       await choose(productFor(code).colors[0].code);
@@ -141,14 +153,15 @@ async function until(check, message) {
       await authenticate();
       await ready();
       assert.equal(apiCalls, before + 1);
-      assert.equal(await text("S"), "42장");
-      assert.equal(await text("M"), "품절 (0장)");
-      assert.equal(await text("L"), "확인 불가");
+      for (const { size } of productFor(code).sizes) {
+        assert.equal(await text(size), unavailable.has(code) || size === "L" ? "확인 불가" : size === "M" ? "품절 (0장)" : "42장", `${code} ${size}`);
+      }
+      if (unavailable.has(code)) assert.match(await page.locator("[data-stock-status]").textContent(), /원본 재고 확인 불가/);
       assert.equal(await page.locator(".sample-size").count(), productFor(code).sizes.length);
       await page.getByRole("button", { name: "재고 숨기기", exact: true }).click();
       assert.equal(await state(), "locked");
     }
-    console.log("PASS: all five products send no stock requests until keyword authentication; wrong keywords rejected; logout hides quantities");
+    console.log("PASS: 38 regular products require authentication; 7 custom-order products have no stock UI/traffic; hidden sizes/colors and existing size labels preserved");
 
     await open("7001");
     assert.equal(await page.locator('input[name="sample-size"][value="XS"]').count(), 0);
@@ -303,11 +316,24 @@ async function until(check, message) {
 
     before = apiCalls;
     await open("3505");
-    assert.equal(await page.locator("[data-stock-status]").count(), 0);
+    assert.equal(await page.locator("[data-stock-access]").count(), 1);
     await page.locator(".sample-choice").first().click();
     await page.clock.runFor(60000);
     assert.equal(apiCalls, before);
-    console.log("PASS: unrelated products have no stock UI or API traffic");
+    authTtl = 3600000;
+    await authenticate();
+    await ready();
+    assert.equal(apiCalls, before + 1);
+    console.log("PASS: previously unsupported products now use the same protected inventory flow");
+    for (const code of customOrders) {
+      before = apiCalls;
+      await open(code);
+      await page.locator(".sample-choice").first().click();
+      await page.clock.runFor(60000);
+      assert.equal(await page.locator("[data-stock-access], .size-stock, .stock-refresh, [data-stock-status]").count(), 0);
+      assert.equal(apiCalls, before);
+    }
+    console.log("PASS: custom-order stock remains absent even with a valid authenticated session");
 
     configEndpoint = "https://[invalid";
     await open("7001");
@@ -319,7 +345,7 @@ async function until(check, message) {
     assert.ok(authCalls >= 8);
     assert.deepEqual(errors, []);
     assert.ok(requests.every((url) => Object.hasOwn(codes, new URL(url).searchParams.get("product"))));
-    console.log("PASS: no uncaught browser errors; only the five allowed products were requested");
+    console.log("PASS: no uncaught browser errors; only public catalog models were requested");
   } catch (error) {
     if (page) await page.screenshot({ path: path.join(output, "failure.png") }).catch(() => {});
     throw error;

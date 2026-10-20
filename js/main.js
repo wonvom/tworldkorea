@@ -785,7 +785,7 @@
       });
     });
 
-    const inventory = window.TworldInventory?.attach(qs("[data-sample-selector]", mount), product, window.inventoryConfig);
+    const inventory = isCustomOrderProduct(product) ? null : window.TworldInventory?.attach(qs("[data-sample-selector]", mount), product, window.inventoryConfig);
     const addButton = qs("[data-add-sample]", mount);
     if (addButton) {
       addButton.addEventListener("click", () => {

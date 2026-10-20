@@ -12,7 +12,14 @@ required. Do not move the catalog, change its CNAME/DNS, or expose account token
 
 ## Behavior
 
-- Only 01OA1, 7001, 03XA5, T210 and 23012 show size-level stock.
+- All 38 regular catalog products have the same protected stock UI. The 7
+  custom-order products have no stock button, quantity labels or API traffic,
+  even when the tab is already authenticated. Eligibility reuses the existing
+  `isCustomOrderProduct` badge rule in `main.js`, including Pants.
+- The server allowlist covers 45 public models / 321 mapped local colors. Four
+  source-absent models (27012, YL3200, A23014, CK280) are all custom-order products,
+  so their stock UI is omitted. Direct authenticated API queries remain unknown,
+  never fabricated zero. All 38 regular models have verified source mappings.
 - Stock is hidden and no inventory requests run until the visitor uses the
   "재고 확인" button and successfully submits the shared keyword.
 - Keyword verification happens on the server, not in public JavaScript.
@@ -35,7 +42,7 @@ The exact API origin is allowed in `product-detail.html`'s `connect-src`; CSP ha
 not been broadly relaxed. Asset versions are used only for cache invalidation,
 not visible navigation URLs.
 
-The relay permits only the catalog's www/apex Origins and five product codes.
+The relay permits only the catalog's www/apex Origins and public catalog codes.
 `POST /stock/auth` exchanges a valid keyword for a short-lived signed token.
 `GET /stock` rejects unauthenticated calls, including spoofed allowed Origins.
 It never forwards cookies, tokens, arbitrary URLs, prices,
@@ -48,15 +55,19 @@ live in the separate Sites source project. The obsolete anonymous relay copy
 has been removed from this repository to prevent accidental reuse.
 No standalone Cloudflare login/deploy configuration is needed in this repository.
 
-## Deferred Keyword Setup
+## Keyword Management
 
-The owner chose to configure the production keyword later (2026-10-20).
-No default keyword, real signing secret or public bypass has been created.
-The deployed API remains locked: anonymous requests get 401, and keyword
-submissions get 503 until `STOCK_AUTH_VERIFIER` and `STOCK_TOKEN_SECRET` are
-configured as Sites secrets and applied with a saved-version deployment. See
-the API project's README for provisioning and rotation. The existing domain,
-DNS, GitHub Pages hosting and ONF remain untouched.
+The owner manages the production keyword with the private Mac application
+`~/Applications/Tworld Stock Access.app`. No default keyword or public bypass
+exists. Anonymous requests get 401. See the API project's README for Keychain,
+encrypted server configuration and rotation. Existing domain, DNS, GitHub Pages
+hosting and ONF remain untouched. The Mac app currently allows 6-128 characters.
+
+Source mapping is generated in the API project by `scripts/sync-stock-products.mjs`
+into its fixed `data/stock-products.json` allowlist. Source IDs, re-numbered/HEX
+color identifiers and size aliases are mapped without changing local catalog
+data. Source-only/hidden products, hidden colors and removed 7001 XS stay excluded.
+The missing source 7111 S row remains unknown while its local S size stays present.
 
 ## Verification
 
@@ -76,7 +87,7 @@ The first browser suite uses isolated authentication/stock fixtures for gating,
 expiry, errors, race conditions, timeouts, 30-second polling, hidden tabs, reset
 behavior and mobile layout. Production credentials are never used by fixtures.
 
-`inventory-live.cjs` verifies the actual deployed fail-closed API and real
+`inventory-live.cjs` verifies the actual deployed anonymous-access gate and real
 HTTPS/CORS keyword dialog. It also checks no anonymous stock requests occur
 across a real 31-second interval, without fake API responses.
 Set `INVENTORY_PREDEPLOY=1` to preview local catalog files on the catalog origin

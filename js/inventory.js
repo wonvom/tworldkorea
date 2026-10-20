@@ -3,7 +3,6 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.TworldInventory = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  const productCodes = new Set(["01OA1", "7001", "03XA5", "T210", "23012"]);
   const refreshInterval = 30000;
   const requestTimeout = 10000;
 
@@ -24,7 +23,7 @@
   }
 
   function attach(selector, product, config) {
-    if (!selector || config?.enabled !== true || !productCodes.has(product.code) || !config.endpoint) return null;
+    if (!selector || config?.enabled !== true || !product?.code || !product.sizes?.length || !product.colors?.length || !config.endpoint) return null;
     let endpoint;
     try {
       endpoint = new URL(config.endpoint, location.href);
@@ -53,7 +52,7 @@
     refresh.title = "재고 새로고침";
     refresh.setAttribute("aria-label", "재고 새로고침");
     const icon = document.createElement("img");
-    icon.src = "images/icons/refresh-cw.svg?v=20261020-inventory-auth";
+    icon.src = "images/icons/refresh-cw.svg?v=20261020-inventory-all";
     icon.alt = "";
     icon.width = 16;
     icon.height = 16;
@@ -265,12 +264,13 @@
         if (current !== sequence || disposed) return;
         if (response.status === 401 || response.status === 403) return lock("재고 확인을 위해 다시 인증해 주세요.");
         if (!response.ok) throw new Error(`Inventory HTTP ${response.status}`);
-        const quantities = quantitiesFor(await response.json(), product, color.code);
+        const payload = await response.json();
+        const quantities = quantitiesFor(payload, product, color.code);
         if (current !== sequence || disposed) return;
         paint("ready", quantities);
         const complete = entries.every(({ input }) => Number.isSafeInteger(quantities.get(input.value)));
         const time = new Date().toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul", hour12: false });
-        status.textContent = `${color.name} · ${time} 조회${complete ? "" : " · 일부 사이즈 확인 불가"}`;
+        status.textContent = payload.availability === "unavailable" ? `${color.name} · 원본 재고 확인 불가` : `${color.name} · ${time} 조회${complete ? "" : " · 일부 사이즈 확인 불가"}`;
       } catch (error) {
         if (current !== sequence || disposed) return;
         paint("error");
