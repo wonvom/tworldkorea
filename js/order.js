@@ -29,14 +29,14 @@
     event.preventDefault();
     if (accessController) return;
     const controller = new AbortController(), button = $("order-code-form").querySelector("button");
-    accessController = controller; button.disabled = true; $("order-access-status").textContent = "주문코드를 확인하고 있습니다…";
+    accessController = controller; button.disabled = true; $("order-access-status").textContent = "회원코드를 확인하고 있습니다…";
     const body = JSON.stringify({ code: $("order-code").value.trim() }); $("order-code").value = "";
     const timeout = setTimeout(() => controller.abort(), 12000);
     try {
       const response = await fetch(inventoryOrigin + "/stock/partner-auth", { method: "POST", headers: { "Content-Type": "application/json" }, body, credentials: "omit", cache: "no-store", referrerPolicy: "no-referrer", signal: controller.signal });
       if (accessController !== controller) return;
       if (!response.ok) {
-        $("order-access-status").textContent = response.status === 401 || response.status === 400 ? "주문코드를 확인해주세요." : response.status === 429 ? "입력 횟수가 많습니다. 잠시 후 다시 시도해주세요." : "주문코드를 확인하지 못했습니다. 잠시 후 다시 시도해주세요.";
+        $("order-access-status").textContent = response.status === 401 || response.status === 400 ? "회원코드를 확인해주세요." : response.status === 429 ? "입력 횟수가 많습니다. 잠시 후 다시 시도해주세요." : "회원코드를 확인하지 못했습니다. 잠시 후 다시 시도해주세요.";
         return;
       }
       const value = await response.json();
@@ -233,7 +233,7 @@
   function renewPartnerAccess() {
     cancelStock(); stockSession = null; entered = false; paintStock();
     $("partner-app").hidden = true; $("order-access").hidden = false;
-    $("order-access-status").textContent = "이용 시간이 만료되었습니다. 주문코드를 다시 입력해주세요. 작성 중인 주문서는 유지됩니다.";
+    $("order-access-status").textContent = "이용 시간이 만료되었습니다. 회원코드를 다시 입력해주세요. 작성 중인 주문서는 유지됩니다.";
     $("order-code").focus();
   }
   async function loadStock() {
