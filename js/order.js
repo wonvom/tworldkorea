@@ -119,12 +119,23 @@
       const row = element("article", "", "order-line"), info = document.createElement("div"), controls = element("div", "", "line-controls");
       info.append(element("strong", line.productCode), element("p", line.productName), element("small", `${line.color} · ${line.size}`));
       const input = document.createElement("input"); Object.assign(input, { type: "number", min: "1", max: "9999", step: "1", value: String(line.quantity), inputMode: "numeric" }); input.setAttribute("aria-label", `${line.productCode} ${line.color} ${line.size} 주문 수량`);
-      input.addEventListener("change", () => { const value = Number(input.value); if (!Number.isInteger(value) || value < 1 || value > 9999) { input.value = String(line.quantity); return; } lines[index].quantity = value; orderCharges = {}; renderLines(); });
+      const amount = element("p", `상품금액 ${money(M.lineAmount(line), "단가 확인 후 안내")}`, "line-amount");
+      const validQuantity = () => Number.isInteger(Number(input.value)) && Number(input.value) >= 1 && Number(input.value) <= 9999;
+      input.addEventListener("input", () => {
+        if (!validQuantity()) return;
+        lines[index].quantity = Number(input.value); orderCharges = {};
+        amount.textContent = `상품금액 ${money(M.lineAmount(line), "단가 확인 후 안내")}`;
+        renderTotals();
+      });
+      input.addEventListener("change", () => { if (!validQuantity()) input.value = String(line.quantity); });
       const remove = element("button", "삭제", "order-remove"); remove.type = "button"; remove.setAttribute("aria-label", `${line.productCode} ${line.color} ${line.size} 삭제`); remove.addEventListener("click", () => { lines.splice(index, 1); orderCharges = {}; renderLines(); });
-      info.append(element("p", `상품금액 ${money(M.lineAmount(line), "단가 확인 후 안내")}`, "line-amount"));
+      info.append(amount);
       controls.append(input, element("span", "장"), remove); row.append(info, controls); return row;
     }));
     $("order-empty").hidden = lines.length > 0; $("order-item-count").textContent = `${lines.length}개 조합`; $("cart-count").textContent = String(lines.length);
+    renderTotals();
+  }
+  function renderTotals() {
     const total = M.totals(lines, orderCharges);
     $("order-total").replaceChildren(document.createTextNode(n(total.quantity)), element("small", "장"));
     $("order-amounts").replaceChildren(amountSummary(total, lines.length > 0));
