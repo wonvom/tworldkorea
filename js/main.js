@@ -250,7 +250,8 @@
     ];
 
     return `
-      <div class="size-table-wrap">
+      <p class="table-scroll-hint">표를 좌우로 밀어 확인하세요.</p>
+      <div class="size-table-wrap" tabindex="0">
         <table class="size-table">
           <thead>
             <tr>
@@ -389,7 +390,8 @@
       <section class="detail-section" id="color-names">
         <p class="eyebrow">COLOR VARIATIONS</p>
         <h2>COLOR NAMES</h2>
-        <div class="color-name-table-wrap">
+        <p class="table-scroll-hint">표를 좌우로 밀어 확인하세요.</p>
+        <div class="color-name-table-wrap" tabindex="0">
           <table class="color-name-table">
             <thead>
               <tr>

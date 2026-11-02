@@ -5,6 +5,10 @@
 })(typeof window !== "undefined" ? window : globalThis, function (root) {
   const storageKey = "tworld-language";
   const pairs = [
+    ["Swipe sideways to view the full table.", "표를 좌우로 밀어 확인하세요."],
+    ["e.g. 01OA1 T-shirt", "예: 01OA1 반팔 티셔츠"],
+    ["Office location map", "사무실 위치 지도"],
+    ["T-WORLD KOREA office building location", "티월드코리아 사무실 건물 위치 지도"],
     ["View products", "제품 보기"],
     ["HOME", "홈"], ["ABOUT", "회사 소개"], ["PRODUCTS", "제품"], ["LOOKBOOK", "룩북"], ["CONTACT", "문의"],
     ["Log in", "로그인"], ["Sign up", "회원가입"], ["My Page", "마이페이지"],
