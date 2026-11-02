@@ -300,7 +300,7 @@
     mount.classList.add("is-visible");
 
     if (!product) {
-      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>제품 데이터를 찾을 수 없습니다.</p><a class="btn btn-dark" href="products.html">제품 목록으로 돌아가기</a></div>`;
+      mount.innerHTML = `<div class="page-hero"><h1>PRODUCT NOT FOUND</h1><p>요청하신 제품이 없습니다. 제품 목록에서 다시 선택해 주세요.</p><a class="btn btn-dark" href="products.html">제품 목록으로 돌아가기</a></div>`;
       return;
     }
     document.title = `${product.name} | 티월드코리아`;
@@ -522,14 +522,14 @@
       };
 
       if (!navigator.clipboard) {
-        showStatus("양식을 직접 선택해서 복사해주세요.");
+        showStatus("복사하지 못했습니다. 입력한 내용을 직접 복사해 보내주세요.");
         return;
       }
 
       navigator.clipboard
         .writeText(text)
-        .then(() => showStatus("문의 양식이 복사되었습니다. 카카오톡이나 이메일에 붙여넣어 보내주세요."))
-        .catch(() => showStatus("양식을 직접 선택해서 복사해주세요."));
+        .then(() => showStatus("문의 내용을 복사했습니다. 카카오톡이나 이메일에 붙여넣어 보내주세요."))
+        .catch(() => showStatus("복사하지 못했습니다. 입력한 내용을 직접 복사해 보내주세요."));
     });
   }
 

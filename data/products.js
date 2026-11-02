@@ -1453,7 +1453,7 @@
       "Heavy Weight"
     ],
     "pdfPage": 7,
-    "description": "13수 면 100% 원단으로 만든 300G 반팔 티셔츠입니다. 넉넉한 오버핏과 고중량 원단을 조합했습니다.",
+    "description": "13수 면 100% 원단으로 만든 300G 반팔 티셔츠입니다. 고중량 원단을 사용했으며 넉넉한 오버핏입니다.",
     "descriptionEn": "A 300G short-sleeve T-shirt made from 13s, 100% cotton fabric. Heavyweight fabric is paired with a generous oversized fit.",
     "thumbnail": "images/products/O3000/O3000-front.jpg",
     "images": [
@@ -1659,7 +1659,7 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": 8,
-    "description": "빈티지 워싱을 더한 20수 면 100% 티셔츠입니다. 230G 원단과 릴렉스핏으로 구성했습니다.",
+    "description": "빈티지 워싱을 더한 20수 면 100% 티셔츠입니다. 230G 원단을 사용했으며 여유 있는 릴렉스핏입니다.",
     "descriptionEn": "A vintage-washed T-shirt made from 20s, 100% cotton. Finished in 230G fabric with a relaxed fit.",
     "thumbnail": "images/products/23012/23012-front.jpg",
     "images": [
@@ -2143,7 +2143,7 @@
     "weight": "210G",
     "tags": [],
     "pdfPage": 10,
-    "description": "면 100% 원단을 사용한 210G 여성 크롭 티셔츠입니다. 짧은 기장에 레귤러핏을 더했으며 S, M, L 사이즈로 구성했습니다.",
+    "description": "면 100% 원단을 사용한 210G 여성 크롭 티셔츠입니다. 짧은 기장의 레귤러핏이며 S, M, L 사이즈를 선택할 수 있습니다.",
     "descriptionEn": "A 210G women's crop T-shirt made from 100% cotton. A cropped length and regular fit, available in S, M and L.",
     "thumbnail": "images/products/S2000/S2000-front.jpg",
     "images": [
@@ -3180,7 +3180,7 @@
     "weight": "180G",
     "tags": [],
     "pdfPage": 17,
-    "description": "24수 면 100% 원단으로 만든 180G 아동 반팔 티셔츠입니다. 레귤러핏에 110부터 150까지 사이즈를 갖췄습니다.",
+    "description": "24수 면 100% 원단으로 만든 180G 아동 반팔 티셔츠입니다. 레귤러핏이며 110부터 150까지 선택할 수 있습니다.",
     "descriptionEn": "A 180G children's short-sleeve T-shirt in 24s, 100% cotton fabric. A regular fit in sizes 110 to 150.",
     "thumbnail": "images/products/7001-kids/7001-kids-front.jpg",
     "images": [
@@ -3378,7 +3378,7 @@
     "weight": "200G",
     "tags": [],
     "pdfPage": 19,
-    "description": "21수 면 100% 원단을 사용한 200G 반팔 티셔츠입니다. 기본 레귤러핏으로 S부터 3XL까지 구성했습니다.",
+    "description": "21수 면 100% 원단을 사용한 200G 반팔 티셔츠입니다. 레귤러핏으로 S부터 3XL까지 선택할 수 있습니다.",
     "descriptionEn": "A 200G short-sleeve T-shirt made from 21s, 100% cotton fabric. A regular-fit essential, available from S to 3XL.",
     "thumbnail": "images/products/Q2000/Q2000-front.jpg",
     "images": [
@@ -4151,7 +4151,7 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": 23,
-    "description": "소매 끝을 립으로 마감한 긴팔 티셔츠입니다. 21수 면 100%의 230G 원단을 사용했으며 릴렉스핏으로 제작했습니다.",
+    "description": "소매 끝을 시보리로 마감한 긴팔 티셔츠입니다. 21수 면 100%의 230G 원단을 사용했으며 릴렉스핏으로 제작했습니다.",
     "descriptionEn": "A long-sleeve T-shirt with ribbed cuffs. Made from 21s, 230G cotton fabric in a relaxed fit, with a 100% cotton composition.",
     "thumbnail": "images/products/06OLK/06OLK-front.jpg",
     "images": [
@@ -4635,7 +4635,7 @@
       "Heavy Weight"
     ],
     "pdfPage": 27,
-    "description": "면 87%와 폴리에스터 13%를 혼방한 320G 맨투맨입니다. 여유 있는 릴렉스핏이며 S부터 3XL까지 구성했습니다.",
+    "description": "면 87%와 폴리에스터 13%를 혼방한 320G 맨투맨입니다. 여유 있는 릴렉스핏이며 S부터 3XL까지 선택할 수 있습니다.",
     "descriptionEn": "A 320G sweatshirt in 87% cotton and 13% polyester. Cut in a relaxed fit, with sizes from S to 3XL.",
     "thumbnail": "images/products/YL3200/YL3200-front.jpg",
     "images": [
@@ -5357,7 +5357,7 @@
       "Heavy Weight"
     ],
     "pdfPage": 30,
-    "description": "480G 고중량 원단을 사용한 오버핏 후드티입니다. 면 87%와 폴리에스터 13%를 혼방했으며 S부터 2XL까지 구성했습니다.",
+    "description": "480G 고중량 원단을 사용한 오버핏 후드티입니다. 면 87%와 폴리에스터 13%를 혼방했으며 S부터 2XL까지 선택할 수 있습니다.",
     "descriptionEn": "An oversized hoodie made with heavyweight 480G fabric. Composed of 87% cotton and 13% polyester, in sizes S to 2XL.",
     "thumbnail": "images/products/QXX5200/QXX5200-front.jpg",
     "images": [
@@ -6038,7 +6038,7 @@
       "Heavy Weight"
     ],
     "pdfPage": 33,
-    "description": "면 80%, 폴리에스터 20% 혼방 원단에 워싱을 더한 후드티입니다. 350G 중량에 여유 있는 릴렉스핏으로 구성했습니다.",
+    "description": "면 80%, 폴리에스터 20% 혼방 원단에 워싱을 더한 후드티입니다. 350G 원단을 사용한 여유 있는 릴렉스핏입니다.",
     "descriptionEn": "A washed hoodie in 80% cotton and 20% polyester. Made with 350G fabric in a relaxed fit.",
     "thumbnail": "images/products/3508/3508-front.jpg",
     "images": [
@@ -6434,7 +6434,7 @@
       "Heavy Weight"
     ],
     "pdfPage": 35,
-    "description": "면 85%, 폴리에스터 15% 혼방 원단의 340G 조거바지입니다. 여유 있는 릴렉스핏으로 S부터 3XL까지 구성했습니다.",
+    "description": "면 85%, 폴리에스터 15% 혼방 원단의 340G 조거바지입니다. 여유 있는 릴렉스핏으로 S부터 3XL까지 선택할 수 있습니다.",
     "descriptionEn": "Relaxed-fit joggers made from 340G fabric in 85% cotton and 15% polyester. Available in sizes S to 3XL.",
     "thumbnail": "images/products/LK3401/LK3401-front.jpg",
     "images": [
@@ -6584,7 +6584,7 @@
     "weight": "150G",
     "tags": [],
     "pdfPage": 32,
-    "description": "소로나 100% 원단으로 만든 150G 카라티입니다. 레귤러핏에 S부터 7XL까지 폭넓은 사이즈를 갖췄습니다.",
+    "description": "소로나 100% 원단으로 만든 150G 카라티입니다. 레귤러핏이며 S부터 7XL까지 선택할 수 있습니다.",
     "descriptionEn": "A 150G polo shirt made from 100% Sorona. Cut in a regular fit, with sizes from S to 7XL.",
     "thumbnail": "images/products/TH5615/TH5615-front.jpg",
     "images": [
@@ -7136,7 +7136,7 @@
     "weight": "150G",
     "tags": [],
     "pdfPage": 35,
-    "description": "폴리에스터 100% 원단을 사용한 150G 카라티입니다. 기본 레귤러핏으로 S부터 4XL까지 구성했습니다.",
+    "description": "폴리에스터 100% 원단을 사용한 150G 카라티입니다. 레귤러핏으로 S부터 4XL까지 선택할 수 있습니다.",
     "descriptionEn": "A 150G polo shirt made from 100% polyester. Cut in a regular fit with sizes from S to 4XL.",
     "thumbnail": "images/products/TH96001/TH96001-front.jpg",
     "images": [
@@ -7677,7 +7677,7 @@
     "weight": "-",
     "tags": [],
     "pdfPage": 37,
-    "description": "폴리에스터 64.9%와 면 35.1%를 혼방한 워싱 카라티입니다. 레귤러핏이며 M부터 3XL까지 구성했습니다.",
+    "description": "폴리에스터 64.9%와 면 35.1%를 혼방한 워싱 카라티입니다. 레귤러핏이며 M부터 3XL까지 선택할 수 있습니다.",
     "descriptionEn": "A washed polo shirt in 64.9% polyester and 35.1% cotton. Cut in a regular fit, available from M to 3XL.",
     "thumbnail": "images/products/D0911/D0911-front.jpg",
     "images": [
@@ -8134,7 +8134,7 @@
     "weight": "150G",
     "tags": [],
     "pdfPage": 38,
-    "description": "폴리에스터 100% 원단으로 만든 라운드 반팔 티셔츠입니다. 150G 중량의 레귤러핏으로 S부터 4XL까지 구성했습니다.",
+    "description": "폴리에스터 100% 원단으로 만든 라운드 반팔 티셔츠입니다. 150G 중량의 레귤러핏으로 S부터 4XL까지 선택할 수 있습니다.",
     "descriptionEn": "A round-neck short-sleeve T-shirt made from 100% polyester. A 150G regular-fit style, available from S to 4XL.",
     "thumbnail": "images/products/TH96003/TH96003-frong.jpg",
     "images": [
@@ -9026,7 +9026,7 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": "",
-    "description": "20수 면 100% 원단에 빈티지 워싱을 더한 민소매 티셔츠입니다. 230G 중량의 남녀공용 제품으로 S부터 3XL까지 구성했습니다.",
+    "description": "20수 면 100% 원단에 빈티지 워싱을 더한 민소매 티셔츠입니다. 230G 중량의 남녀공용 제품으로 S부터 3XL까지 선택할 수 있습니다.",
     "descriptionEn": "A vintage-washed sleeveless T-shirt made from 20s, 100% cotton. A 230G unisex style, available from S to 3XL.",
     "thumbnail": "images/products/23011/23011-front.jpg",
     "images": [
@@ -9413,7 +9413,7 @@
     "weight": "400G",
     "tags": [],
     "pdfPage": "",
-    "description": "면 혼방 겉감과 폴라플리스 안감을 결합한 400G 본딩 집업 후드입니다. 기모 안감을 사용한 남녀공용 제품으로 M부터 3XL까지 구성했습니다.",
+    "description": "면 혼방 겉감과 폴라플리스 안감을 결합한 400G 본딩 집업 후드입니다. 기모 안감을 사용한 남녀공용 제품으로 M부터 3XL까지 선택할 수 있습니다.",
     "descriptionEn": "A 400G bonded zip-up hoodie combining a cotton-blend outer with polar fleece lining. A unisex style with a brushed lining, available from M to 3XL.",
     "thumbnail": "images/products/X1702/X1702-front.jpg",
     "images": [
@@ -10038,7 +10038,7 @@
     "weight": "300G",
     "tags": [],
     "pdfPage": "",
-    "description": "면 혼방 겉감과 밀크사 안감을 결합한 300G 본딩 후드입니다. 남녀공용 제품으로 M부터 3XL까지 구성했습니다.",
+    "description": "면 혼방 겉감과 밀크사 안감을 결합한 300G 본딩 후드입니다. 남녀공용 제품으로 M부터 3XL까지 선택할 수 있습니다.",
     "descriptionEn": "A 300G bonded hoodie with a cotton-blend outer and polyester-spandex lining. A unisex style in sizes M to 3XL.",
     "thumbnail": "images/products/X1601/X1601-front.jpg",
     "images": [
