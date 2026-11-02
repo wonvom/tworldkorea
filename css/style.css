@@ -125,27 +125,6 @@ img {
 
 .language-switch > span { color: #aaa; }
 
-/* Make room for both language options before the desktop navigation crowds the logo. */
-@media (min-width: 768px) and (max-width: 960px) {
-  .nav-toggle { display: block; position: relative; z-index: 35; }
-  .site-header .site-nav {
-    position: fixed;
-    inset: var(--header-height) 0 auto 0;
-    display: grid;
-    gap: 0;
-    padding: 20px 24px 28px;
-    background: var(--white);
-    border-bottom: 1px solid var(--line);
-    transform: translateY(-120%);
-    transition: transform 280ms var(--ease);
-  }
-  .site-header .site-nav.is-open { transform: translateY(0); }
-  .site-header .site-nav a { padding: 16px 0; font-size: 13px; border-bottom: 1px solid var(--line); }
-  .site-header .site-nav .nav-login { margin-left: 0; padding-left: 0; border-left: 0; }
-  .site-header .site-nav .nav-signup { margin-top: 8px; padding: 12px; text-align: center; }
-  .language-switch { padding-bottom: 10px; }
-  .language-switch button { min-width: 44px; min-height: 44px; }
-}
 
 html[lang="ko"] .section-heading h2,
 html[lang="ko"] .page-hero h1,
@@ -1973,3 +1952,25 @@ p {
   .site-nav .nav-signup { margin-top: 8px; padding: 12px; text-align: center; }
 }
 .member-order-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;min-width:0}.member-order-actions .btn{min-width:0;padding-inline:12px;white-space:normal;text-align:center}
+
+/* Make room for both language options before the desktop navigation crowds the logo. */
+@media (min-width: 768px) and (max-width: 960px) {
+  .nav-toggle { display: block; position: relative; z-index: 35; }
+  .site-header .site-nav {
+    position: fixed;
+    inset: var(--header-height) 0 auto 0;
+    display: grid;
+    gap: 0;
+    padding: 20px 24px 28px;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-120%);
+    transition: transform 280ms var(--ease);
+  }
+  .site-header .site-nav.is-open { transform: translateY(0); }
+  .site-header .site-nav a { padding: 16px 0; font-size: 13px; border-bottom: 1px solid var(--line); }
+  .site-header .site-nav .nav-login { margin-left: 0; padding-left: 0; border-left: 0; }
+  .site-header .site-nav .nav-signup { margin-top: 8px; padding: 12px; text-align: center; }
+  .language-switch { padding-bottom: 10px; }
+  .language-switch button { min-width: 44px; min-height: 44px; }
+}
