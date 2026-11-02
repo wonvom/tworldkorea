@@ -6,6 +6,8 @@
   function paint(signedIn) {
     document.querySelectorAll('.nav-mypage').forEach(link => { link.hidden = !signedIn; });
     document.querySelectorAll('.nav-login, .nav-signup').forEach(link => { link.hidden = signedIn; });
+    window.TworldMemberSignedIn = signedIn;
+    window.dispatchEvent(new CustomEvent('tworld:session', { detail: { signedIn } }));
   }
 
   function refresh() {

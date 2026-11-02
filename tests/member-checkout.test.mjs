@@ -13,7 +13,8 @@ test('every product renders member order links without sample basket or anonymou
     const document={body:{dataset:{page:'product-detail'}},documentElement:{style:{}},querySelector(s){return s==='[data-product-detail]'?mount:s==='[data-header]'?header:null;},querySelectorAll(){return [];}};
     const window={products:catalog.window.products,location,addEventListener(){},scrollY:0};window.self=window;window.top=window;
     vm.runInNewContext(script,{window,document,location,URL,URLSearchParams,navigator:{}});
-    assert(mount.innerHTML.includes('/account/shop?product='+encodeURIComponent(product.code)),product.code);
+    assert(mount.innerHTML.includes('/account/login?next='+encodeURIComponent('https://www.tworldkorea.co.kr/product-detail.html?id='+encodeURIComponent(product.code)+'#order')),product.code);
+    assert(mount.innerHTML.includes('data-member-product="'+product.code+'"'),product.code);
     assert(mount.innerHTML.includes('주문하기'));assert(mount.innerHTML.includes('재고 확인'));
     assert(!mount.innerHTML.includes('샘플 담기'));assert(!mount.innerHTML.includes('data-stock'));
     assert(!mount.innerHTML.includes(product.nameCn), `${product.code}: Chinese product title must not render`);

@@ -353,11 +353,16 @@
             ${product.pdfPage ? `<div><dt>PDF Page</dt><dd>${escapeHtml(product.pdfPage)} Page</dd></div>` : ""}
             <div><dt>Size</dt><dd>${escapeHtml(product.sizes.map((size) => size.size).join(", "))}</dd></div>
           </dl>
-          <p class="filter-label">COLOR</p>
-          <div class="swatch-row">${colorSwatches(product)}</div>
-          <div class="member-order-actions">
-            <a class="btn btn-dark full" href="https://members.tworldkorea.co.kr/account/shop?product=${encodeURIComponent(product.code)}">주문하기</a>
-            <a class="btn btn-light full" href="https://members.tworldkorea.co.kr/account/shop?product=${encodeURIComponent(product.code)}#stock">재고 확인</a>
+          <div data-member-product="${escapeHtml(product.code)}" id="order">
+            <div data-member-anonymous>
+              <p class="filter-label">COLOR</p>
+              <div class="swatch-row">${colorSwatches(product)}</div>
+              <div class="member-order-actions">
+                <a class="btn btn-dark full" href="https://members.tworldkorea.co.kr/account/login?next=${encodeURIComponent(`https://www.tworldkorea.co.kr/product-detail.html?id=${encodeURIComponent(product.code)}#order`)}">주문하기</a>
+                <a class="btn btn-light full" href="https://members.tworldkorea.co.kr/account/login?next=${encodeURIComponent(`https://www.tworldkorea.co.kr/product-detail.html?id=${encodeURIComponent(product.code)}#order`)}">재고 확인</a>
+              </div>
+            </div>
+            <div data-member-options hidden></div>
           </div>
         </aside>
       </div>

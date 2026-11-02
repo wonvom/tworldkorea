@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self' https://members.tworldkorea.co.kr; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com https://members.tworldkorea.co.kr; connect-src 'self' https://members.tworldkorea.co.kr; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="css/member-session.css?v=20261102-member-session">
-  <script src="js/member-session.js?v=20261102-member-session" defer></script>
+  <link rel="stylesheet" href="css/member-shopping.css?v=20261102-inline-order">
+  <script src="js/member-session.js?v=20261102-inline-order" defer></script>
+  <script src="js/member-shopping.js?v=20261102-inline-order" defer></script>
   <link rel="icon" href="favicon.png?v=20260710-brand-logo" type="image/png">
   <script>if (location.protocol === "http:" && location.hostname === "www.tworldkorea.co.kr") location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);</script>
   <title>제품 라인업 | 티월드코리아 티셔츠 도매 총판</title>
@@ -126,6 +128,6 @@
 
   <script src="data/products.js?v=20261012-multilingual-color-codes"></script>
   <script src="js/i18n.js?v=20261102-no-middle-dots"></script>
-  <script src="js/main.js?v=20261102-kor-eng"></script>
+  <script src="js/main.js?v=20261102-inline-order"></script>
 </body>
 </html>
