@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self' https://members.tworldkorea.co.kr; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="css/member-session.css?v=20261102-member-session">
+  <script src="js/member-session.js?v=20261102-member-session" defer></script>
   <link rel="icon" href="favicon.png?v=20260710-brand-logo" type="image/png">
   <script>if (location.protocol === "http:" && location.hostname === "www.tworldkorea.co.kr") location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);</script>
   <title>도매 문의 | 티월드코리아 티셔츠 도매 총판</title>
@@ -17,45 +19,48 @@
   <meta property="og:url" content="https://www.tworldkorea.co.kr/contact.html">
   <meta property="og:image" content="https://www.tworldkorea.co.kr/images/company/korea-warehouse.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/style.css?v=20261102-member-checkout">
+  <link rel="stylesheet" href="css/style.css?v=20261102-kor-eng">
 </head>
 <body data-page="contact">
   <header class="site-header" data-header>
-    <a class="brand" href="index.html" aria-label="홈으로 이동">T-WORLD KOREA</a>
+    <a translate="no" class="brand" href="index.html" aria-label="홈으로 이동">T-WORLD KOREA</a>
     <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
     <nav class="site-nav" data-nav>
-      <a href="index.html">HOME</a>
-      <a href="about.html">ABOUT</a>
-      <a href="products.html">PRODUCTS</a>
-      <a href="lookbook.html">LOOKBOOK</a>
-      <a href="contact.html">CONTACT</a>
+      <div class="language-switch" role="group" aria-label="언어 선택 / Language" data-language-switch>
+        <button type="button" lang="ko" aria-label="한국어" aria-pressed="true" data-language="ko">KOR</button><span aria-hidden="true">|</span><button type="button" lang="en" aria-label="English" aria-pressed="false" data-language="en">ENG</button>
+      </div>
+      <a href="index.html">홈</a>
+      <a href="about.html">회사 소개</a>
+      <a href="products.html">제품</a>
+      <a href="lookbook.html">룩북</a>
+      <a href="contact.html">문의</a>
       <a class="nav-login" href="https://members.tworldkorea.co.kr/account/login">로그인</a>
       <a class="nav-signup" href="https://members.tworldkorea.co.kr/account/signup">회원가입</a>
-      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account">마이페이지</a>
+      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account" hidden>마이페이지</a>
     </nav>
   </header>
 
   <main>
     <section class="page-hero compact fade-up">
-      <p class="eyebrow">WHOLESALE CONTACT</p>
-      <h1>CONTACT US</h1>
+      <p class="eyebrow">도매 상담</p>
+      <h1>문의 안내</h1>
       <p>대량 구매, 납품, 제품 카탈로그 문의가 필요하시면 아래 연락처로 상담을 요청해주세요.</p>
     </section>
 
     <section class="section contact-layout fade-up">
       <div class="contact-info">
         <article>
-          <p class="eyebrow">MOBILE</p>
+          <p class="eyebrow">전화 상담</p>
           <h2>010-2286-3584</h2>
           <p>제품명, 수량, 납품 일정, 희망 컬러를 함께 보내주시면 빠르게 확인합니다.</p>
         </article>
         <article>
-          <p class="eyebrow">BUSINESS</p>
+          <p class="eyebrow">회사 정보</p>
           <h2>(주)티월드코리아</h2>
           <p>경기도 구리시 갈매순환로166번길 46<br>금강펜테리움 IX센터 B코어 8층 08-081호<br>중국 본사 공장, 한국 지사 창고, 쇼룸 기반 제품 상담</p>
         </article>
         <article>
-          <p class="eyebrow">KAKAO</p>
+          <p class="eyebrow">카카오톡</p>
           <h2>티월드코리아</h2>
           <p>카카오톡 채널에서 문의 가능합니다.</p>
           <p>평일 10:00부터 18:00까지 상담 가능합니다.</p>
@@ -103,8 +108,8 @@
     <section class="section fade-up">
       <div class="map-panel">
         <div class="section-heading">
-          <p class="eyebrow">LOCATION</p>
-          <h2>OFFICE MAP</h2>
+          <p class="eyebrow">오시는 길</p>
+          <h2>사무실 위치</h2>
           <p>경기도 구리시 갈매순환로166번길 46 금강펜테리움 IX센터 B코어 8층 08-081호</p>
         </div>
         <div class="map-frame" title="네이버 지도">
@@ -116,18 +121,19 @@
             sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
         </div>
         <div class="map-actions">
-          <a class="btn btn-dark" href="https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B5%AC%EB%A6%AC%EC%8B%9C%20%EA%B0%88%EB%A7%A4%EC%88%9C%ED%99%98%EB%A1%9C166%EB%B2%88%EA%B8%B8%2046" target="_blank" rel="noopener">Open Naver Map</a>
-          <a class="btn btn-light" href="https://map.kakao.com/link/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B5%AC%EB%A6%AC%EC%8B%9C%20%EA%B0%88%EB%A7%A4%EC%88%9C%ED%99%98%EB%A1%9C166%EB%B2%88%EA%B8%B8%2046" target="_blank" rel="noopener">Open Kakao Map</a>
+          <a class="btn btn-dark" href="https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B5%AC%EB%A6%AC%EC%8B%9C%20%EA%B0%88%EB%A7%A4%EC%88%9C%ED%99%98%EB%A1%9C166%EB%B2%88%EA%B8%B8%2046" target="_blank" rel="noopener">네이버 지도 열기</a>
+          <a class="btn btn-light" href="https://map.kakao.com/link/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B5%AC%EB%A6%AC%EC%8B%9C%20%EA%B0%88%EB%A7%A4%EC%88%9C%ED%99%98%EB%A1%9C166%EB%B2%88%EA%B8%B8%2046" target="_blank" rel="noopener">카카오맵 열기</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div><strong>T-WORLD KOREA</strong><p>도매 문의와 제품 상담 안내</p><p class="footer-credit">&copy; 2026 T-WORLD KOREA. All rights reserved. Designed by Wonjong Kim.</p></div>
-    <div><a href="products.html">PRODUCTS</a><a href="lookbook.html">LOOKBOOK</a></div>
+    <div><strong translate="no">T-WORLD KOREA</strong><p>도매 문의와 제품 상담 안내</p><p class="footer-credit">&copy; 2026 T-WORLD KOREA. All rights reserved. Designed by Wonjong Kim.</p></div>
+    <div><a href="products.html">제품</a><a href="lookbook.html">룩북</a></div>
   </footer>
 
-  <script src="js/main.js?v=20261102-member-checkout"></script>
+  <script src="js/i18n.js?v=20261102-kor-eng"></script>
+  <script src="js/main.js?v=20261102-kor-eng"></script>
 </body>
 </html>

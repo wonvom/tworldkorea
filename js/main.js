@@ -162,7 +162,7 @@
         <p class="product-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
         <h3>${escapeHtml(product.name)}</h3>
         <div class="product-meta">
-          <span>${escapeHtml(label.kr)} <small>${escapeHtml(label.en)}</small></span>
+          <span>${escapeHtml(label.kr)}</span>
           <span>${escapeHtml(product.fit)}</span>
           <span>${escapeHtml(product.fabric)}</span>
           <span>${escapeHtml(product.weight)} ${product.colors.length} Colors</span>
@@ -215,6 +215,8 @@
       syncButtons(categoryButtons, categoryFilter);
       syncButtons(typeButtons, typeFilter);
       initImageFallbacks(grid);
+      window.TworldI18n?.apply(grid);
+      window.TworldI18n?.apply(count);
     }
 
     categoryButtons.forEach((button) => {
@@ -252,7 +254,7 @@
         <table class="size-table">
           <thead>
             <tr>
-              ${fields.map((field) => `<th><span>${escapeHtml(field.label)}</span><small>${escapeHtml(field.labelCn)} ${escapeHtml(field.labelEn)}</small></th>`).join("")}
+              ${fields.map((field) => `<th><span>${escapeHtml(field.label)}</span></th>`).join("")}
             </tr>
           </thead>
           <tbody>
@@ -342,10 +344,9 @@
         <aside class="detail-summary">
           <p class="product-detail-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
           <h1>${escapeHtml(product.name)}</h1>
-          ${product.nameCn || product.nameEn ? `<p class="product-subtitle">${[product.nameCn, product.nameEn].filter(Boolean).map(escapeHtml).join("<br>")}</p>` : ""}
           ${product.description && product.description.trim().toLowerCase() !== String(product.nameEn || "").trim().toLowerCase() ? `<p>${escapeHtml(product.description)}</p>` : ""}
           <dl class="summary-list">
-            <div><dt>Category</dt><dd>${escapeHtml(categoryLabel(product.category).kr)} ${escapeHtml(categoryLabel(product.category).en)}</dd></div>
+            <div><dt>Category</dt><dd>${escapeHtml(categoryLabel(product.category).kr)}</dd></div>
             ${product.fit ? `<div><dt>Fit</dt><dd>${escapeHtml(product.fit)}</dd></div>` : ""}
             ${product.fabric ? `<div><dt>Fabric</dt><dd>${escapeHtml(product.fabric)}</dd></div>` : ""}
             ${product.weight ? `<div><dt>Weight</dt><dd>${escapeHtml(product.weight)}</dd></div>` : ""}
@@ -395,7 +396,7 @@
                 <th>Chip</th>
                 <th>Color Code</th>
                 <th>한국어</th>
-                <th>中文</th>
+                <th>중국어</th>
                 <th>English</th>
                 <th>일본어</th>
                 <th>HEX</th>
@@ -406,10 +407,10 @@
                 <tr>
                   <td><span class="color-table-chip" style="background:${safeCssColor(color.hex)}" title="${escapeHtml(`${color.nameKr} ${color.nameCn} ${color.nameEn} ${color.nameJa || ""}`)}"></span></td>
                   <td>${escapeHtml(color.code || "")}</td>
-                  <td>${escapeHtml(color.nameKr)}</td>
-                  <td>${escapeHtml(color.nameCn)}</td>
-                  <td>${escapeHtml(color.nameEn)}</td>
-                  <td>${escapeHtml(color.nameJa || "")}</td>
+                  <td lang="ko" translate="no">${escapeHtml(color.nameKr)}</td>
+                  <td lang="zh" translate="no">${escapeHtml(color.nameCn)}</td>
+                  <td lang="en" translate="no">${escapeHtml(color.nameEn)}</td>
+                  <td lang="ja" translate="no">${escapeHtml(color.nameJa || "")}</td>
                   <td>${escapeHtml(color.hex)}</td>
                 </tr>
               `).join("")}
@@ -423,8 +424,8 @@
               <div class="image-frame" data-label="${escapeHtml(color.nameKr)} ${escapeHtml(color.nameEn)}">
                 <img src="${escapeHtml(assetUrl(color.image))}" alt="${escapeHtml(product.name)} ${escapeHtml(color.nameKr)} 컬러 이미지" loading="lazy" data-fallback-src="${escapeHtml((color.fallbackImages || []).map(assetUrl).filter(Boolean).join("|"))}">
               </div>
-              <h3>${escapeHtml(color.nameKr)}</h3>
-              <p>${escapeHtml(color.nameCn)}<br>${escapeHtml(color.nameEn)}</p>
+              <h3 translate="no">${escapeHtml(color.nameKr)}</h3>
+              <p translate="no">${escapeHtml(color.nameCn)}<br>${escapeHtml(color.nameEn)}</p>
             </article>
           `).join("")}
         </div>
@@ -503,20 +504,21 @@
 
     copyButton.addEventListener("click", () => {
       const getValue = (name) => String(qs(`[name="${name}"]`, template)?.value || "").trim();
+      const t = value => window.TworldI18n?.text(value) || value;
       const text = [
-        "T-WORLD KOREA 문의",
+        t("T-WORLD KOREA 문의"),
         "",
-        `회사명: ${getValue("company") || "-"}`,
-        `성함: ${getValue("name") || "-"}`,
-        `연락처: ${getValue("phone") || "-"}`,
-        `이메일: ${getValue("email") || "-"}`,
-        `관심 제품: ${getValue("product") || "-"}`,
+        `${t("회사명")}: ${getValue("company") || "-"}`,
+        `${t("성함")}: ${getValue("name") || "-"}`,
+        `${t("연락처")}: ${getValue("phone") || "-"}`,
+        `${t("이메일")}: ${getValue("email") || "-"}`,
+        `${t("관심 제품")}: ${getValue("product") || "-"}`,
         "",
-        "문의 내용:",
+        `${t("문의 내용")}:`,
         getValue("message") || "-"
       ].join("\n");
       const showStatus = (message) => {
-        if (status) status.textContent = message;
+        if (status) status.textContent = t(message);
       };
 
       if (!navigator.clipboard) {
@@ -540,4 +542,5 @@
   renderProductDetail();
   initLookbookModal();
   initInquiryTemplate();
+  window.TworldI18n?.init();
 })();

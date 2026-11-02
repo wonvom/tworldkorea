@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self' https://members.tworldkorea.co.kr; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="css/member-session.css?v=20261102-member-session">
+  <script src="js/member-session.js?v=20261102-member-session" defer></script>
   <link rel="icon" href="favicon.png?v=20260710-brand-logo" type="image/png">
   <script>if (location.protocol === "http:" && location.hostname === "www.tworldkorea.co.kr") location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);</script>
   <title>룩북 | 티월드코리아 티셔츠 도매 총판</title>
@@ -17,28 +19,31 @@
   <meta property="og:url" content="https://www.tworldkorea.co.kr/lookbook.html">
   <meta property="og:image" content="https://www.tworldkorea.co.kr/images/lookbook/lookbook-01.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/style.css?v=20261102-member-checkout">
+  <link rel="stylesheet" href="css/style.css?v=20261102-kor-eng">
 </head>
 <body data-page="lookbook">
   <header class="site-header" data-header>
-    <a class="brand" href="index.html" aria-label="홈으로 이동">T-WORLD KOREA</a>
+    <a translate="no" class="brand" href="index.html" aria-label="홈으로 이동">T-WORLD KOREA</a>
     <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
     <nav class="site-nav" data-nav>
-      <a href="index.html">HOME</a>
-      <a href="about.html">ABOUT</a>
-      <a href="products.html">PRODUCTS</a>
-      <a href="lookbook.html">LOOKBOOK</a>
-      <a href="contact.html">CONTACT</a>
+      <div class="language-switch" role="group" aria-label="언어 선택 / Language" data-language-switch>
+        <button type="button" lang="ko" aria-label="한국어" aria-pressed="true" data-language="ko">KOR</button><span aria-hidden="true">|</span><button type="button" lang="en" aria-label="English" aria-pressed="false" data-language="en">ENG</button>
+      </div>
+      <a href="index.html">홈</a>
+      <a href="about.html">회사 소개</a>
+      <a href="products.html">제품</a>
+      <a href="lookbook.html">룩북</a>
+      <a href="contact.html">문의</a>
       <a class="nav-login" href="https://members.tworldkorea.co.kr/account/login">로그인</a>
       <a class="nav-signup" href="https://members.tworldkorea.co.kr/account/signup">회원가입</a>
-      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account">마이페이지</a>
+      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account" hidden>마이페이지</a>
     </nav>
   </header>
 
   <main>
     <section class="page-hero compact fade-up">
-      <p class="eyebrow">LOOKBOOK</p>
-      <h1>MODEL FIT ARCHIVE</h1>
+      <p class="eyebrow">룩북</p>
+      <h1>모델 착용컷</h1>
       <p>판매 화면보다 제품의 분위기와 실루엣을 차분하게 보여주는 이미지북입니다.</p>
     </section>
 
@@ -46,21 +51,21 @@
       <div class="lookbook-grid" data-lookbook-grid>
         <button class="lookbook-item image-frame" type="button" data-full="images/lookbook/lookbook-01.jpg?v=20260511-mobile" data-label="Lookbook 01"><img src="images/lookbook/lookbook-01.jpg?v=20260511-mobile" alt="룩북 모델 착용컷 1" loading="lazy"></button>
         <article class="lookbook-word">
-          <span>ESSENTIAL FORM</span>
+          <span>기본 실루엣</span>
           <p>기본을 정돈한 실루엣</p>
         </article>
         <button class="lookbook-item image-frame" type="button" data-full="images/lookbook/lookbook-02.jpg?v=20260511-mobile" data-label="Lookbook 02"><img src="images/lookbook/lookbook-02.jpg?v=20260511-mobile" alt="룩북 모델 착용컷 2" loading="lazy"></button>
         <button class="lookbook-item image-frame" type="button" data-full="images/lookbook/lookbook-03.jpg?v=20260511-mobile" data-label="Lookbook 03"><img src="images/lookbook/lookbook-03.jpg?v=20260511-mobile" alt="룩북 모델 착용컷 3" loading="lazy"></button>
         <button class="lookbook-item image-frame" type="button" data-full="images/lookbook/lookbook-04.jpg?v=20260511-mobile" data-label="Lookbook 04"><img src="images/lookbook/lookbook-04.jpg?v=20260511-mobile" alt="룩북 모델 착용컷 4" loading="lazy"></button>
         <article class="lookbook-word dark">
-          <span>QUIET TEXTURE</span>
+          <span>차분한 소재감</span>
           <p>소재감이 먼저 보이는 옷</p>
         </article>
         <button class="lookbook-item image-frame" type="button" data-full="images/models/model-01.jpg?v=20260511-mobile" data-label="Model 01"><img src="images/models/model-01.jpg?v=20260511-mobile" alt="모델 착용컷 1" loading="lazy"></button>
         <button class="lookbook-item image-frame" type="button" data-full="images/models/model-02.jpg?v=20260511-mobile" data-label="Model 02"><img src="images/models/model-02.jpg?v=20260511-mobile" alt="모델 착용컷 2" loading="lazy"></button>
         <button class="lookbook-item image-frame" type="button" data-full="images/lookbook/lookbook-05.jpg?v=20260511-mobile" data-label="Lookbook 05"><img src="images/lookbook/lookbook-05.jpg?v=20260511-mobile" alt="룩북 모델 착용컷 5" loading="lazy"></button>
         <article class="lookbook-word">
-          <span>DAILY UNIFORM</span>
+          <span>편안한 일상복</span>
           <p>매일 입기 좋은 균형</p>
         </article>
         <button class="lookbook-item image-frame" type="button" data-full="images/lookbook/lookbook-06.jpg?v=20260511-mobile" data-label="Lookbook 06"><img src="images/lookbook/lookbook-06.jpg?v=20260511-mobile" alt="룩북 모델 착용컷 6" loading="lazy"></button>
@@ -70,20 +75,21 @@
   </main>
 
   <div class="modal" data-modal aria-hidden="true" role="dialog" aria-label="룩북 이미지 크게 보기">
-    <button class="modal-close" type="button" data-modal-close aria-label="이미지 닫기">Close</button>
+    <button class="modal-close" type="button" data-modal-close aria-label="이미지 닫기">닫기</button>
     <div class="modal-body image-frame" data-label="Lookbook Image">
       <img src="" alt="선택한 룩북 이미지" data-modal-image>
     </div>
   </div>
 
   <footer class="site-footer">
-    <div><strong>T-WORLD KOREA</strong><p>모델 착용컷과 제품 실루엣 아카이브</p><p class="footer-credit">&copy; 2026 T-WORLD KOREA. All rights reserved. Designed by Wonjong Kim.</p></div>
-    <div><a href="products.html">PRODUCTS</a><a href="contact.html">CONTACT</a>
+    <div><strong translate="no">T-WORLD KOREA</strong><p>모델 착용컷과 제품 실루엣 아카이브</p><p class="footer-credit">&copy; 2026 T-WORLD KOREA. All rights reserved. Designed by Wonjong Kim.</p></div>
+    <div><a href="products.html">제품</a><a href="contact.html">문의</a>
       <a class="nav-login" href="https://members.tworldkorea.co.kr/account/login">로그인</a>
       <a class="nav-signup" href="https://members.tworldkorea.co.kr/account/signup">회원가입</a>
-      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account">마이페이지</a></div>
+      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account" hidden>마이페이지</a></div>
   </footer>
 
-  <script src="js/main.js?v=20261102-member-checkout"></script>
+  <script src="js/i18n.js?v=20261102-kor-eng"></script>
+  <script src="js/main.js?v=20261102-kor-eng"></script>
 </body>
 </html>

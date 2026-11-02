@@ -16,6 +16,10 @@ test('every product renders member order links without sample basket or anonymou
     assert(mount.innerHTML.includes('/account/shop?product='+encodeURIComponent(product.code)),product.code);
     assert(mount.innerHTML.includes('주문하기'));assert(mount.innerHTML.includes('재고 확인'));
     assert(!mount.innerHTML.includes('샘플 담기'));assert(!mount.innerHTML.includes('data-stock'));
+    assert(!mount.innerHTML.includes(product.nameCn), `${product.code}: Chinese product title must not render`);
+    const sizeTable=mount.innerHTML.match(/<table class="size-table">[\s\S]*?<\/table>/)[0];
+    assert(!/[\u3400-\u9fff]/.test(sizeTable), `${product.code}: size headings must not contain Chinese`);
+    assert(mount.innerHTML.includes('lang="zh" translate="no"'), `${product.code}: Chinese color names must remain`);
   }
   const detail=readFileSync(new URL('../product-detail.html',import.meta.url),'utf8');assert(!detail.includes('js/inventory.js'));assert(!script.includes('localStorage'));
 });

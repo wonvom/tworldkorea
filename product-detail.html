@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self' https://tworld-inventory-api.halestork64.chatgpt.site; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mpk5mN+L+UlEoe32eCm9B/wOpYqcZHggOfg5VRk3aaQ=' 'sha256-uWl2Ejs/1hVRMy7LkK6oa5yj08ujHqGt8cZPDwkcCOA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://map.naver.com; connect-src 'self' https://members.tworldkorea.co.kr; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="css/member-session.css?v=20261102-member-session">
+  <script src="js/member-session.js?v=20261102-member-session" defer></script>
   <link rel="icon" href="favicon.png?v=20260710-brand-logo" type="image/png">
   <script>if (location.protocol === "http:" && location.hostname === "www.tworldkorea.co.kr") location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);</script>
   <title>제품 상세 | 티월드코리아 티셔츠 도매 총판</title>
@@ -17,21 +19,24 @@
   <meta property="og:url" content="https://www.tworldkorea.co.kr/product-detail.html">
   <meta property="og:image" content="https://www.tworldkorea.co.kr/images/products/01OA1/01OA1-front.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/style.css?v=20261102-member-checkout">
+  <link rel="stylesheet" href="css/style.css?v=20261102-kor-eng">
 </head>
 <body data-page="product-detail">
   <header class="site-header" data-header>
-    <a class="brand" href="index.html" aria-label="홈으로 이동">T-WORLD KOREA</a>
+    <a translate="no" class="brand" href="index.html" aria-label="홈으로 이동">T-WORLD KOREA</a>
     <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
     <nav class="site-nav" data-nav>
-      <a href="index.html">HOME</a>
-      <a href="about.html">ABOUT</a>
-      <a href="products.html">PRODUCTS</a>
-      <a href="lookbook.html">LOOKBOOK</a>
-      <a href="contact.html">CONTACT</a>
+      <div class="language-switch" role="group" aria-label="언어 선택 / Language" data-language-switch>
+        <button type="button" lang="ko" aria-label="한국어" aria-pressed="true" data-language="ko">KOR</button><span aria-hidden="true">|</span><button type="button" lang="en" aria-label="English" aria-pressed="false" data-language="en">ENG</button>
+      </div>
+      <a href="index.html">홈</a>
+      <a href="about.html">회사 소개</a>
+      <a href="products.html">제품</a>
+      <a href="lookbook.html">룩북</a>
+      <a href="contact.html">문의</a>
       <a class="nav-login" href="https://members.tworldkorea.co.kr/account/login">로그인</a>
       <a class="nav-signup" href="https://members.tworldkorea.co.kr/account/signup">회원가입</a>
-      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account">마이페이지</a>
+      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account" hidden>마이페이지</a>
     </nav>
   </header>
 
@@ -40,14 +45,15 @@
   </main>
 
   <footer class="site-footer">
-    <div><strong>T-WORLD KOREA</strong><p>제품 상세 문의는 전화, 이메일, 카카오톡으로 가능합니다.</p><p class="footer-credit">&copy; 2026 T-WORLD KOREA. All rights reserved. Designed by Wonjong Kim.</p></div>
-    <div><a href="products.html">PRODUCTS</a><a href="contact.html">CONTACT</a>
+    <div><strong translate="no">T-WORLD KOREA</strong><p>제품 상세 문의는 전화, 이메일, 카카오톡으로 가능합니다.</p><p class="footer-credit">&copy; 2026 T-WORLD KOREA. All rights reserved. Designed by Wonjong Kim.</p></div>
+    <div><a href="products.html">제품</a><a href="contact.html">문의</a>
       <a class="nav-login" href="https://members.tworldkorea.co.kr/account/login">로그인</a>
       <a class="nav-signup" href="https://members.tworldkorea.co.kr/account/signup">회원가입</a>
-      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account">마이페이지</a></div>
+      <a class="nav-mypage" href="https://members.tworldkorea.co.kr/account" hidden>마이페이지</a></div>
   </footer>
 
   <script src="data/products.js?v=20261012-multilingual-color-codes"></script>
-  <script src="js/main.js?v=20261102-member-checkout"></script>
+  <script src="js/i18n.js?v=20261102-kor-eng"></script>
+  <script src="js/main.js?v=20261102-kor-eng"></script>
 </body>
 </html>

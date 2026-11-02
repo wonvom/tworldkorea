@@ -92,6 +92,68 @@ img {
   text-transform: uppercase;
 }
 
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  letter-spacing: .04em;
+}
+
+.language-switch button {
+  min-height: 36px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.language-switch button[aria-pressed="true"] {
+  color: var(--black);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.language-switch button:focus-visible {
+  outline: 2px solid var(--charcoal);
+  outline-offset: 4px;
+}
+
+.language-switch > span { color: #aaa; }
+
+/* Make room for both language options before the desktop navigation crowds the logo. */
+@media (min-width: 768px) and (max-width: 960px) {
+  .nav-toggle { display: block; position: relative; z-index: 35; }
+  .site-header .site-nav {
+    position: fixed;
+    inset: var(--header-height) 0 auto 0;
+    display: grid;
+    gap: 0;
+    padding: 20px 24px 28px;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-120%);
+    transition: transform 280ms var(--ease);
+  }
+  .site-header .site-nav.is-open { transform: translateY(0); }
+  .site-header .site-nav a { padding: 16px 0; font-size: 13px; border-bottom: 1px solid var(--line); }
+  .site-header .site-nav .nav-login { margin-left: 0; padding-left: 0; border-left: 0; }
+  .site-header .site-nav .nav-signup { margin-top: 8px; padding: 12px; text-align: center; }
+  .language-switch { padding-bottom: 10px; }
+  .language-switch button { min-width: 44px; min-height: 44px; }
+}
+
+html[lang="ko"] .section-heading h2,
+html[lang="ko"] .page-hero h1,
+html[lang="ko"] .detail-section h2 {
+  word-break: keep-all;
+  letter-spacing: -.03em;
+}
+
 .site-nav a {
   position: relative;
   padding: 6px 0;
@@ -1773,6 +1835,9 @@ p {
     border-bottom: 1px solid var(--line);
     font-size: 13px;
   }
+
+  .language-switch { padding: 0 0 10px; }
+  .language-switch button { min-width: 44px; min-height: 44px; }
 
   .hero-section {
     padding: 8px;
