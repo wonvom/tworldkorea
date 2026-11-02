@@ -1907,3 +1907,4 @@ p {
   .site-nav .nav-login { margin-left: 0; padding-left: 0; border-left: 0; }
   .site-nav .nav-signup { margin-top: 8px; padding: 12px; text-align: center; }
 }
+.member-order-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;min-width:0}.member-order-actions .btn{min-width:0;padding-inline:12px;white-space:normal;text-align:center}
