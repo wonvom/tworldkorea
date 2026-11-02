@@ -19,23 +19,23 @@
     ["ABOUT COMPANY", "회사 안내"], ["FACTORY, SHOWROOM AND WHOLESALE", "공장, 쇼룸, 도매 공급"],
     ["OUR WORK", "우리가 하는 일"], ["DOMESTIC COMMUNICATION AND OVERSEAS PRODUCTION", "국내 상담과 해외 생산"],
     ["SUPPLY VALUE", "공급 서비스"], ["WHAT WE SUPPORT", "거래처 지원 안내"],
-    ["PRODUCT CATALOG", "제품 카탈로그"], ["PRODUCT LINEUP", "제품 라인업"], ["CATEGORY", "카테고리"],
+    ["OUR PRODUCTS", "제품 안내"], ["PRODUCT LINEUP", "제품 라인업"], ["CATEGORY", "카테고리"],
     ["FIT AND WEIGHT", "핏과 중량"], ["All", "전체"], ["Regular Fit", "레귤러핏"], ["Relaxed Fit", "릴렉스핏"],
     ["Oversized Fit", "오버핏"], ["Loose Fit", "루즈핏"], ["Heavy Weight", "고중량"],
     ["Short Sleeve", "반팔"], ["Sleeveless", "민소매"], ["Long Sleeve", "긴팔"], ["Polo Shirt", "카라티"],
     ["Sweatshirt", "맨투맨"], ["Hoodie", "후드"], ["Pants", "바지"],
-    ["CATALOG GUIDE", "카탈로그 안내"], ["MODEL NO.", "모델명"], ["View Detail", "상세 보기"],
+    ["BUYING GUIDE", "구매 안내"], ["MODEL NO.", "모델명"], ["View Detail", "상세 보기"],
     ["Made to order", "주문제작"], ["Category", "제품 분류"], ["Fit", "핏"], ["Fabric", "소재와 혼용률"],
-    ["Weight", "중량"], ["PDF Page", "카탈로그 페이지"], ["Size", "사이즈"], ["COLOR", "색상"],
+    ["Weight", "중량"], ["Size", "사이즈"], ["COLOR", "색상"],
     ["Order", "주문하기"], ["Check stock", "재고 확인"],
-    ["PRODUCT DESCRIPTION", "제품 설명"], ["DETAIL NOTES", "상세 안내"], ["IMAGE PLACEMENT", "제품 이미지 안내"],
-    ["PRODUCT ASSETS", "제품 이미지"], ["SIZE GUIDE", "사이즈 안내"], ["MEASUREMENT", "실측 사이즈"],
+    ["PRODUCT DETAILS", "제품 상세 정보"], ["PRODUCT PHOTOS", "제품 사진"],
+    ["SIZE GUIDE", "사이즈 안내"], ["MEASUREMENT", "실측 사이즈"],
     ["COLOR VARIATIONS", "색상 구성"], ["COLOR NAMES", "색상명 안내"], ["COLOR IMAGES", "색상별 이미지"],
     ["Chip", "색상표"], ["Color Code", "색상 코드"], ["DETAIL CLOSE UP", "확대 보기"], ["DETAIL IMAGES", "상세 이미지"],
     ["Korean", "한국어"], ["Chinese", "중국어"], ["English", "영어"], ["Japanese", "일본어"],
     ["RELATED PRODUCTS", "함께 볼 제품"], ["SAME CATEGORY", "같은 카테고리 제품"],
-    ["Front Image", "앞면"], ["Back Image", "뒷면"], ["Catalog Source", "카탈로그 출처"], ["Image Plan", "이미지 구성"],
-    ["Color Language", "색상명 표기"], ["Shoulder", "어깨"], ["Chest", "가슴"], ["Sleeve", "소매"], ["Length", "총장"],
+    ["Front Image", "앞면"], ["Back Image", "뒷면"],
+    ["Shoulder", "어깨"], ["Chest", "가슴"], ["Sleeve", "소매"], ["Length", "총장"],
     ["Recommended height", "추천 키"], ["Recommended weight", "추천 몸무게"], ["Waist", "허리둘레"], ["Hip", "엉덩이둘레"],
     ["Thigh", "허벅지둘레"], ["Leg Opening", "밑단둘레"],
     ["ESSENTIAL FORM", "기본 실루엣"], ["QUIET TEXTURE", "차분한 소재감"], ["DAILY UNIFORM", "편안한 일상복"], ["Close", "닫기"],
@@ -54,8 +54,6 @@
     ["Wash separately with neutral detergent at or below 30°C. Do not bleach.", "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지"],
     ["Wash separately with neutral detergent at or below 30°C. Do not bleach. Dry inside out.", "30℃ 이하 중성세제 단독세탁 / 표백제 사용 금지 / 뒤집어 건조"],
     ["Vintage washed, loose fit", "워싱 빈티지 가공, 루즈핏"], ["Vintage washed long-sleeve T-shirt", "빈티지 워싱 긴팔 티셔츠"],
-    ["Includes front, back, color and close-up images.", "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."],
-    ["Color names are provided in Korean, Chinese, English and Japanese.", "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."],
     ["T-WORLD KOREA Wholesale T-Shirts", "티월드코리아 티셔츠 도매 총판"], ["T-WORLD KOREA", "티월드코리아"],
     ["About | T-WORLD KOREA Wholesale T-Shirts", "회사 소개 | 티월드코리아 티셔츠 도매 총판"],
     ["Products | T-WORLD KOREA Wholesale T-Shirts", "제품 라인업 | 티월드코리아 티셔츠 도매 총판"],
@@ -63,7 +61,7 @@
     ["Lookbook | T-WORLD KOREA Wholesale T-Shirts", "룩북 | 티월드코리아 티셔츠 도매 총판"],
     ["Wholesale Inquiries | T-WORLD KOREA Wholesale T-Shirts", "도매 문의 | 티월드코리아 티셔츠 도매 총판"],
     ["© 2026 T-WORLD KOREA. All rights reserved. Designed by Wonjong Kim.", "© 2026 티월드코리아. 모든 권리 보유. 디자인: Wonjong Kim."],
-    ["Fabric count, weight, composition, wash finish and size ranges are listed by product in the PDF catalog.", "PDF 카탈로그 제품 기준으로 수, 중량, 혼용률, 워싱 여부, 사이즈 대응 범위를 제품별로 안내합니다."],
+    ["Check the fabric count, weight, composition, wash finish and sizes for each product.", "제품마다 원단의 수, 중량, 혼용률과 워싱 여부, 사이즈를 확인할 수 있습니다."],
     ["Heavyweight T-shirts for oversized and loose silhouettes", "오버사이즈와 루즈핏에 적합한 고중량 티셔츠 라인"],
     ["A balanced weight for semi drop-shoulder and everyday T-shirts", "세미 드롭숄더와 기본 티셔츠에 안정적인 중량감"],
     ["Light and soft essentials for everyday wear", "가볍고 부드러운 데일리 라인"],
@@ -71,41 +69,41 @@
     ["Winter options including sweatshirts, hoodies and joggers", "맨투맨, 후드, 조거바지까지 겨울 시즌 대응"],
     ["Our Korean office and warehouse in Guri support domestic wholesale inquiries and dispatch consultations.", "경기도 구리 한국 지사와 창고를 기반으로 국내 도매 고객 응대와 출고 상담을 진행합니다."],
     ["Our China factory includes knitting, dyeing, cutting, sewing, warehousing and showroom facilities.", "제직, 염색, 재단, 봉제, 창고, 쇼룸을 갖춘 중국 본사 공장 기반을 소개합니다."],
-    ["Showroom images help you review actual colors, fits and fabric textures.", "실제 컬러와 핏, 원단감을 확인할 수 있는 쇼룸 이미지를 배치하면 신뢰도를 높일 수 있습니다."],
-    ["Need help with bulk purchases or our product catalog?", "대량 구매, 제품 카탈로그 문의가 필요하신가요?"],
+    ["Visit our showroom to see product colors, fits and fabric textures.", "쇼룸에서 제품의 실제 색상과 핏, 원단감을 확인할 수 있습니다."],
+    ["Need help with bulk purchases or product information?", "대량 구매나 제품에 관해 궁금하신가요?"],
     ["Contact us about reliable supply and competitive pricing.", "안정적인 공급과 합리적인 가격으로 상담을 도와드립니다."],
-    ["A brand website for wholesale apparel supply and product catalog inquiries.", "기본 의류 도매 공급과 제품 카탈로그 문의를 위한 브랜드 사이트입니다."],
-    ["T-WORLD KOREA supplies premium T-shirts for wholesale and retail, presenting both its products and production facilities.", "티월드코리아는 프리미엄 티셔츠 도매 및 소매 총판을 중심으로 제품 라인업과 생산 기반을 함께 보여주는 의류 회사입니다."],
-    ["The PDF catalog introduces our China factory, Korean warehouse and showroom before presenting individual product details.", "PDF 카탈로그는 중국 본사 공장과 한국 지사 창고, 쇼룸을 먼저 보여준 뒤 제품별 상세 정보를 이어서 안내하는 구조입니다."],
-    ["The China factory section presents knitting, dyeing, cutting, sewing, warehousing and showroom facilities.", "중국 본사 공장 파트는 공장 전경, 제직, 염색, 재단, 봉제, 창고, 쇼룸 이미지를 통해 생산 기반을 설명합니다."],
-    ["Our Korean warehouse and showroom help wholesale customers review product colors, sizes and fabric textures.", "한국 지사 파트는 창고와 쇼룸 이미지를 중심으로 국내 도매 고객이 제품 컬러, 사이즈, 원단감을 빠르게 확인할 수 있는 기반을 보여줍니다."],
-    ["Our catalog covers T-shirts, sleeveless tops, long sleeves, sweatshirts, hoodies and pants. Compare colors, sizes, fabrics and weights for wholesale and supply inquiries.", "티월드코리아는 반팔 티셔츠, 긴팔 티셔츠, 민소매, 맨투맨, 후드티, 바지 등 기본 의류 라인업을 카탈로그 형태로 정리합니다. 제품별 색상, 사이즈, 원단, 중량 정보를 확인하고 도매 상담이나 납품 검토에 필요한 자료를 빠르게 살펴볼 수 있도록 구성했습니다."],
-    ["Product range", "제품 라인업"], ["Fabric options", "원단 대응"], ["Size range", "사이즈 구성"], ["Color support", "컬러 운영"],
-    ["Inquiry information", "상담 기준"], ["About this catalog", "카탈로그 역할"],
-    ["The PDF-based catalog includes 33 products across short sleeves, sleeveless tops, long sleeves, sweatshirts, hoodies and pants.", "반팔, 나시, 긴팔, 맨투맨, 후드, 바지까지 PDF 기준 33개 제품을 카탈로그화했습니다."],
+    ["We supply T-shirts and essential apparel wholesale. Contact us for product and supply inquiries.", "티셔츠와 기본 의류를 도매로 공급합니다. 제품과 납품에 관한 문의를 도와드립니다."],
+    ["T-WORLD KOREA supplies T-shirts and essential apparel for wholesale and retail. Our China production facilities and Korean office support product inquiries and supply.", "티월드코리아는 티셔츠와 기본 의류를 도매 및 소매로 공급합니다. 중국 생산 시설과 한국 지사를 통해 제품 상담과 공급을 지원합니다."],
+    ["Our China factory, Korean warehouse and showroom support apparel production and supply.", "중국 본사 공장과 한국 지사 창고, 쇼룸을 바탕으로 의류를 생산하고 공급합니다."],
+    ["Our China factory has knitting, dyeing, cutting and sewing facilities, along with a warehouse and showroom.", "중국 본사 공장은 제직, 염색, 재단, 봉제 시설과 창고, 쇼룸을 갖추고 있습니다."],
+    ["At our Korean office, you can review product colors, sizes and fabrics and discuss wholesale purchases and dispatch.", "한국 지사에서는 제품의 색상, 사이즈, 원단을 확인하고 도매 구매와 출고에 관해 상담할 수 있습니다."],
+    ["Our range includes T-shirts, sleeveless tops, long sleeves, sweatshirts, hoodies and pants. Compare colors, sizes, fabrics and weights to choose the products you need.", "반팔 티셔츠, 긴팔 티셔츠, 민소매, 맨투맨, 후드티, 바지까지 다양한 기본 의류를 취급합니다. 제품별 색상과 사이즈, 원단과 중량을 비교해 필요한 제품을 선택해 주세요."],
+    ["Product range", "제품 라인업"], ["Fabric options", "원단 대응"], ["Size range", "사이즈 구성"], ["Color selection", "색상 확인"],
+    ["Purchase inquiries", "구매 상담"], ["Choosing your products", "제품 선택 안내"],
+    ["We supply essential apparel including short sleeves, sleeveless tops, long sleeves, sweatshirts, hoodies and pants.", "반팔 티셔츠부터 민소매, 긴팔, 맨투맨, 후드, 바지까지 다양한 기본 의류를 공급합니다."],
     ["Review composition and weight by product, including cotton, stretch blends, polyester blends, mercerized cotton and fleece.", "면 100%, 스판 혼방, 폴리 혼방, 실켓 코튼, 기모 등 제품별 혼용률과 중량을 안내합니다."],
-    ["Measurement fields vary for tops, sleeveless styles and pants, based on each product's size chart.", "제품별 실측표를 기반으로 상의, 나시, 바지 사이즈 항목을 다르게 보여줍니다."],
-    ["Color names in Korean, Chinese and English support both local inquiries and communication with production in China.", "색상명은 한국어, 중국어, 영어를 함께 표기해 국내 상담과 중국 생산 커뮤니케이션을 모두 고려합니다."],
-    ["Product information supports blank T-shirt wholesale, apparel supply, uniforms and essential brand collections.", "무지 티셔츠 도매, 기본 의류 납품, 단체복 검토, 브랜드 기본 라인업 확인에 필요한 제품 정보를 우선 정리합니다."],
-    ["Compare colors, fits, fabrics and sizes before sending a product inquiry.", "구매 기능보다 제품 정보 확인에 집중하여 업체가 컬러, 핏, 소재, 사이즈를 비교한 뒤 문의할 수 있도록 안내합니다."],
+    ["Use the measurements for each top, sleeveless style or pair of pants to choose the right size.", "상의와 민소매, 바지마다 필요한 실측 항목을 확인해 알맞은 사이즈를 선택할 수 있습니다."],
+    ["Compare color charts and model photos to choose your preferred colors.", "제품별 색상표와 착용 사진을 비교해 원하는 색상을 선택해 주세요."],
+    ["Contact us for blank T-shirt wholesale and apparel supply. Let us know the products and quantities you need for uniforms or your brand collection.", "무지 티셔츠 도매와 기본 의류 납품을 상담해 드립니다. 단체복이나 브랜드 의류로 사용할 제품과 필요한 수량을 알려주세요."],
+    ["Compare colors, fits, fabrics and sizes to choose your products. Contact us about quantities and delivery schedules.", "색상과 핏, 소재, 사이즈를 비교해 필요한 제품을 선택해 주세요. 수량과 납품 일정은 담당자에게 문의하실 수 있습니다."],
     ["About our wholesale apparel company", "기본 의류 도매 공급 회사 소개"],
-    ["Browse short sleeves, sleeveless tops, long sleeves, sweatshirts, hoodies and pants from the PDF catalog.", "PDF 카탈로그 기준 반팔, 민소매, 긴팔, 맨투맨, 후드, 바지 라인업을 확인하세요."],
-    ["A wholesale catalog for reviewing product information", "제품 정보 확인용 도매 카탈로그"],
-    ["This static wholesale catalog helps businesses review colors, sizes, materials, weights and fits for blank T-shirts, apparel supply, uniforms and essential collections.", "티월드코리아 제품 라인업은 쇼핑몰이 아니라 도매 상담과 제품 검토를 위한 정적 카탈로그입니다. 무지 티셔츠 도매, 기본 의류 납품, 단체복 검토, 브랜드 기본 라인업 확인에 필요한 색상, 사이즈, 소재, 중량, 핏 정보를 제품별로 정리합니다."],
+    ["Find the short sleeves, sleeveless tops, long sleeves, sweatshirts, hoodies and pants you need.", "반팔부터 민소매, 긴팔, 맨투맨, 후드, 바지까지 필요한 제품을 찾아보세요."],
+    ["Essential apparel for your needs", "용도에 맞는 기본 의류"],
+    ["Choose products for blank T-shirt wholesale, uniforms and essential brand collections. Compare colors, sizes, materials, weights and fits, then contact us about quantities and delivery schedules.", "무지 티셔츠 도매부터 단체복과 브랜드 기본 의류까지, 용도에 맞는 제품을 선택해 보세요. 색상, 사이즈, 소재, 중량, 핏을 비교하고 필요한 수량과 납품 일정을 상담할 수 있습니다."],
     ["Short-sleeve T-shirts", "반팔 티셔츠"], ["Long-sleeve T-shirts", "긴팔 티셔츠"], ["Hoodies", "후드티"],
     ["Weights from 180G to 300G and a variety of fits for blank T-shirt wholesale and essential collections.", "180G부터 300G까지 다양한 중량과 핏으로 구성되어 있으며 무지 티셔츠 도매와 기본 반팔 라인업 검토에 적합합니다."],
     ["Review colors, sizes and compositions for summer essentials and layering.", "여름 시즌 기본 의류와 이너 라인업을 확인할 수 있도록 컬러, 사이즈, 혼용률 정보를 함께 안내합니다."],
     ["Compare essential long sleeves, rib cuffs and loose fits for seasonal supply inquiries.", "기본 긴팔 티셔츠, 립 소매, 루즈핏 제품 등 계절별 납품 상담에 필요한 제품 정보를 비교할 수 있습니다."],
     ["Review materials, weights, colors and recommended sizes for functional polos and polo shirts.", "기능성 카라 셔츠와 폴로 셔츠 라인을 중심으로 소재, 중량, 색상, 권장 사이즈 정보를 확인할 수 있습니다."],
     ["Compare textures, weights and fits across basic and washed sweatshirts from 270G to 350G.", "270G부터 350G까지 기본 맨투맨과 워싱 제품을 중심으로 원단감, 중량, 핏 정보를 확인할 수 있습니다."],
-    ["Browse colors and detailed images for basic and heavyweight wholesale hoodies.", "기본 후드티와 고중량 후드티 라인을 도매 상담 기준으로 정리하여 색상과 상세 이미지를 함께 제공합니다."],
+    ["Browse colors and detailed images for basic and heavyweight wholesale hoodies.", "기본 후드티와 고중량 후드티 라인을 도매 구매 상담으로 정리하여 색상과 상세 이미지를 함께 제공합니다."],
     ["Explore sweatpants and joggers to coordinate with essential tops.", "스웨트바지와 조거바지 라인업을 중심으로 상의 제품과 함께 검토할 수 있는 기본 의류 구성을 안내합니다."],
     ["Check materials, weights and colors for each product.", "제품별 소재, 중량, 컬러 정보를 확인하세요."],
     ["Contact us by phone, email or KakaoTalk for product details.", "제품 상세 문의는 전화, 이메일, 카카오톡으로 가능합니다."],
-    ["An image collection focused on the mood and silhouette of each product.", "판매 화면보다 제품의 분위기와 실루엣을 차분하게 보여주는 이미지북입니다."],
+    ["Explore product fits and silhouettes through our model photos.", "제품별 착용 사진으로 핏과 실루엣을 살펴보세요."],
     ["A refined essential silhouette", "기본을 정돈한 실루엣"], ["Clothing with a focus on texture", "소재감이 먼저 보이는 옷"],
     ["Balanced for everyday wear", "매일 입기 좋은 균형"], ["Model looks and product silhouettes", "모델 착용컷과 제품 실루엣 아카이브"],
-    ["Contact us below for bulk purchases, supply arrangements and product catalog inquiries.", "대량 구매, 납품, 제품 카탈로그 문의가 필요하시면 아래 연락처로 상담을 요청해주세요."],
+    ["Contact us below for bulk purchases, supply arrangements and product inquiries.", "대량 구매와 납품, 제품에 관한 문의는 아래 연락처로 상담해 주세요."],
     ["Include the product name, quantity, delivery schedule and preferred colors for a faster response.", "제품명, 수량, 납품 일정, 희망 컬러를 함께 보내주시면 빠르게 확인합니다."],
     ["T-WORLD KOREA Co., Ltd.", "(주)티월드코리아"],
     ["Product support backed by our China factory, Korean warehouse and showroom", "중국 본사 공장, 한국 지사 창고, 쇼룸 기반 제품 상담"],
@@ -133,12 +131,7 @@
       add(product.nameEn, product.name);
       add(`${product.nameEn} | T-WORLD KOREA`, `${product.name} | 티월드코리아`);
       add(product.fabric, koreanFabric(product.fabric));
-      if (product.description?.includes("PDF 카탈로그 기준으로")) {
-        add(`${product.code}: model looks, front and back views, close-ups and color references from the PDF catalog.`, product.description);
-      } else if (/^[\x00-\x7F]+$/.test(product.description || "") && product.description) {
-        add(product.description, product.name);
-      }
-      if (product.imageSlots?.guide) add(`${product.code} ${product.nameEn}: front, back, close-up and color images.`, product.imageSlots.guide);
+      add(product.descriptionEn, product.description);
     }
     return function translate(value, language = "ko") {
       const original = String(value);
@@ -148,13 +141,11 @@
         const products = text.match(/^(\d+) Products$/) || text.match(/^제품 (\d+)개$/);
         const colors = text.match(/^(.*?)\s+(\d+) Colors$/) || text.match(/^(.*?)\s+(\d+)색상$/);
         const page = text.match(/^(\d+) Page$/) || text.match(/^(\d+)페이지$/);
-        const source = text.match(/^PDF 카탈로그 (\d+)페이지 기준 제품입니다\.$/) || text.match(/^Based on page (\d+) of the PDF catalog\.$/);
         const slot = text.match(/^(Model Fit|Detail Close Up|Detail|Lookbook) (\d+)$/) || text.match(/^(모델 착용컷|확대 디테일|상세|룩북) (\d+)$/);
         const category = text.match(/^(Short Sleeve|Sleeveless|Long Sleeve|Polo Shirt|Sweatshirt|Hoodie|Pants) (\d+) Styles$/) || text.match(/^(반팔|민소매|긴팔|카라티|맨투맨|후드|바지) (\d+)종$/);
         if (products) result = language === "ko" ? `제품 ${products[1]}개` : `${products[1]} Products`;
         else if (colors) result = language === "ko" ? `${colors[1]} ${colors[2]}색상` : `${colors[1]} ${colors[2]} Colors`;
         else if (page) result = language === "ko" ? `${page[1]}페이지` : `${page[1]} Page`;
-        else if (source) result = language === "ko" ? `PDF 카탈로그 ${source[1]}페이지 기준 제품입니다.` : `Based on page ${source[1]} of the PDF catalog.`;
         else if (slot) {
           const names = { "Model Fit": ["모델 착용컷", "Model Fit"], "Detail Close Up": ["확대 디테일", "Detail Close Up"], Detail: ["상세", "Detail"], Lookbook: ["룩북", "Lookbook"] };
           const pair = names[slot[1]] || Object.values(names).find(pair => pair[0] === slot[1]);

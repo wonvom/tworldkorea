@@ -15,7 +15,8 @@
       "Tubular"
     ],
     "pdfPage": 3,
-    "description": "01OA1 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "20수 면 100% 원단을 사용한 230G 반팔 티셔츠입니다. 릴렉스핏으로 여유 있는 실루엣을 연출합니다.",
+    "descriptionEn": "A 230G short-sleeve T-shirt made from 20s, 100% cotton fabric. The relaxed fit creates a roomy silhouette.",
     "thumbnail": "images/products/01OA1/01OA1-front.jpg",
     "images": [
       "images/products/01OA1/01OA1-front.jpg"
@@ -33,8 +34,7 @@
         "images/products/01OA1/01OA1-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "",
-      "guide": "01OA1 20수 230G 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": ""
     },
     "colors": [
       {
@@ -611,20 +611,7 @@
         "weight": "120-130kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 3페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "7001",
@@ -638,7 +625,8 @@
     "weight": "180G",
     "tags": [],
     "pdfPage": 4,
-    "description": "7001 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "24수 면 100% 원단으로 만든 180G 반팔 티셔츠입니다. 기본 레귤러핏에 S부터 6XL까지 사이즈를 갖췄습니다.",
+    "descriptionEn": "A 180G short-sleeve T-shirt in 24s, 100% cotton fabric. Cut in a regular fit, with sizes from S to 6XL.",
     "thumbnail": "images/products/7001/7001-front.jpg",
     "images": [
       "images/products/7001/7001-front.jpg"
@@ -656,8 +644,7 @@
         "images/products/7001/7001-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/7001/7001-front.jpg",
-      "guide": "7001 24수 180G 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/7001/7001-front.jpg"
     },
     "colors": [
       {
@@ -944,20 +931,7 @@
         "weight": "110-120kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 4페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "03xa5",
@@ -973,7 +947,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 5,
-    "description": "03XA5 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "16수 면 100% 원단을 사용한 250G 반팔 티셔츠입니다. 세미 와이드 실루엣으로 여유 있게 떨어지는 핏이 특징입니다.",
+    "descriptionEn": "A 250G short-sleeve T-shirt made from 16s, 100% cotton fabric. Its semi-wide silhouette offers a relaxed fit.",
     "thumbnail": "images/products/03XA5/03XA5-front.jpg",
     "images": [
       "images/products/03XA5/03XA5-front.jpg"
@@ -991,8 +966,7 @@
         "images/products/03XA5/03XA5-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/03XA5/03XA5-front.jpg",
-      "guide": "03XA5 16수 250G 세미 와이드 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/03XA5/03XA5-front.jpg"
     },
     "colors": [
       {
@@ -1161,20 +1135,7 @@
         "weight": "90-100kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 5페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "t210",
@@ -1188,7 +1149,8 @@
     "weight": "210G",
     "tags": [],
     "pdfPage": 6,
-    "description": "T210 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면과 레이온, 폴리에스터를 혼방한 210G 반팔 티셔츠입니다. 레귤러핏으로 제작했으며 S부터 4XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 210G short-sleeve T-shirt in a cotton, rayon and polyester blend. Available in a regular fit from S to 4XL.",
     "thumbnail": "images/products/T210/T210-front.jpg",
     "images": [
       "images/products/T210/T210-front.jpg"
@@ -1206,8 +1168,7 @@
         "images/products/T210/T210-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/T210/T210-front.jpg",
-      "guide": "T210 210G 아이스 실크 코튼 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/T210/T210-front.jpg"
     },
     "colors": [
       {
@@ -1476,20 +1437,7 @@
         "weight": "90-100kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 6페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "o3000",
@@ -1505,7 +1453,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 7,
-    "description": "O3000 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "13수 면 100% 원단으로 만든 300G 반팔 티셔츠입니다. 넉넉한 오버핏과 고중량 원단을 조합했습니다.",
+    "descriptionEn": "A 300G short-sleeve T-shirt made from 13s, 100% cotton fabric. Heavyweight fabric is paired with a generous oversized fit.",
     "thumbnail": "images/products/O3000/O3000-front.jpg",
     "images": [
       "images/products/O3000/O3000-front.jpg"
@@ -1523,8 +1472,7 @@
         "images/products/O3000/O3000-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/O3000/O3000-front.jpg",
-      "guide": "O3000 13수 300G 오버핏 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/O3000/O3000-front.jpg"
     },
     "colors": [
       {
@@ -1697,20 +1645,7 @@
         "weight": "95-105kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 7페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "23012",
@@ -1724,7 +1659,8 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": 8,
-    "description": "23012 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "빈티지 워싱을 더한 20수 면 100% 티셔츠입니다. 230G 원단과 릴렉스핏으로 구성했습니다.",
+    "descriptionEn": "A vintage-washed T-shirt made from 20s, 100% cotton. Finished in 230G fabric with a relaxed fit.",
     "thumbnail": "images/products/23012/23012-front.jpg",
     "images": [
       "images/products/23012/23012-front.jpg"
@@ -1742,8 +1678,7 @@
         "images/products/23012/23012-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/23012/23012-front.jpg",
-      "guide": "23012 20수 230G 빈티지 워싱 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/23012/23012-front.jpg"
     },
     "colors": [
       {
@@ -1982,20 +1917,7 @@
         "weight": "120-130kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 8페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "27012",
@@ -2011,7 +1933,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 9,
-    "description": "27012 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "16수 면 100% 원단에 빈티지 워싱을 적용한 반팔 티셔츠입니다. 270G 중량에 여유 있는 릴렉스핏으로 제작했습니다.",
+    "descriptionEn": "A vintage-washed short-sleeve T-shirt in 16s, 100% cotton fabric. The 270G fabric is cut in a relaxed fit.",
     "thumbnail": "images/products/27012/27012-front.jpg",
     "images": [
       "images/products/27012/27012-front.jpg"
@@ -2029,8 +1952,7 @@
         "images/products/27012/27012-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/27012/27012-front.jpg",
-      "guide": "27012 16수 270G 빈티지 워싱 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/27012/27012-front.jpg"
     },
     "colors": [
       {
@@ -2207,20 +2129,7 @@
         "weight": "85-100kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 9페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "s2000",
@@ -2234,7 +2143,8 @@
     "weight": "210G",
     "tags": [],
     "pdfPage": 10,
-    "description": "S2000 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 100% 원단을 사용한 210G 여성 크롭 티셔츠입니다. 짧은 기장에 레귤러핏을 더했으며 S, M, L 사이즈로 구성했습니다.",
+    "descriptionEn": "A 210G women's crop T-shirt made from 100% cotton. A cropped length and regular fit, available in S, M and L.",
     "thumbnail": "images/products/S2000/S2000-front.jpg",
     "images": [
       "images/products/S2000/S2000-front.jpg"
@@ -2251,8 +2161,7 @@
         "images/products/S2000/S2000-detail-01.jpg"
       ],
       "fabric": [],
-      "colorChart": "",
-      "guide": "S2000 210G 순면 여성 크롭 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": ""
     },
     "colors": [
       {
@@ -2355,20 +2264,7 @@
         "weight": "55-65kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 10페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "08vs30",
@@ -2382,7 +2278,8 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": 11,
-    "description": "08VS30 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "20수 면 100% 원단으로 만든 230G 민소매 티셔츠입니다. 레귤러핏이며 M부터 3XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 230G sleeveless top made from 20s, 100% cotton fabric. Cut in a regular fit and available from M to 3XL.",
     "thumbnail": "images/products/08VS30/08VS30-front.jpg",
     "images": [
       "images/products/08VS30/08VS30-front.jpg"
@@ -2400,8 +2297,7 @@
         "images/products/08VS30/08VS30-detail-05.JPG"
       ],
       "fabric": [],
-      "colorChart": "images/products/08VS30/08VS30-front.jpg",
-      "guide": "08VS30 20수 230G 순면 민소매 나시 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/08VS30/08VS30-front.jpg"
     },
     "colors": [
       {
@@ -2524,20 +2420,7 @@
         "weight": "85-100kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 11페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "2403",
@@ -2551,7 +2434,8 @@
     "weight": "240G",
     "tags": [],
     "pdfPage": 12,
-    "description": "2403 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 95%에 스판 5%를 혼방한 240G 여성 민소매입니다. 워싱 가공을 더했으며 프리사이즈로 준비했습니다.",
+    "descriptionEn": "A 240G women's sleeveless top in 95% cotton and 5% spandex. Finished with a wash treatment and available in one size.",
     "thumbnail": "images/products/2403/2403-front.jpg",
     "images": [
       "images/products/2403/2403-front.jpg"
@@ -2569,8 +2453,7 @@
         "images/products/2403/2403-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "",
-      "guide": "2403 240G 여성 워싱 나시 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": ""
     },
     "colors": [
       {
@@ -2653,20 +2536,7 @@
         "length": "51"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 12페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "2406",
@@ -2680,7 +2550,8 @@
     "weight": "200G",
     "tags": [],
     "pdfPage": 13,
-    "description": "2406 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 95%와 스판 5%를 혼방한 200G 여성 크롭 티셔츠입니다. 짧은 기장과 레귤러핏으로 제작했으며 S, M, L 사이즈를 선택할 수 있습니다.",
+    "descriptionEn": "A 200G women's crop T-shirt made from 95% cotton and 5% spandex. Cut with a cropped length and regular fit, in S, M and L.",
     "thumbnail": "images/products/2406/2406-front.jpg",
     "images": [
       "images/products/2406/2406-front.jpg"
@@ -2695,8 +2566,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": "2406 200G 여성 크롭 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": ""
     },
     "colors": [
       {
@@ -2863,20 +2733,7 @@
         "length": "52"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 13페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "2405",
@@ -2890,7 +2747,8 @@
     "weight": "240G",
     "tags": [],
     "pdfPage": 14,
-    "description": "2405 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "워싱 가공을 더한 240G 여성 반팔 티셔츠입니다. 면 95%와 스판 5% 혼방 원단을 사용했으며 레귤러핏으로 제작했습니다.",
+    "descriptionEn": "A washed 240G women's short-sleeve T-shirt. Made from 95% cotton and 5% spandex in a regular fit.",
     "thumbnail": "images/products/2405/2405-front.jpg",
     "images": [
       "images/products/2405/2405-front.jpg"
@@ -2907,8 +2765,7 @@
         "images/products/2405/2405-detail-01.jpg"
       ],
       "fabric": [],
-      "colorChart": "",
-      "guide": "2405 240G 여성 워싱 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": ""
     },
     "colors": [
       {
@@ -3088,20 +2945,7 @@
         "length": "52"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 14페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "3053",
@@ -3115,7 +2959,8 @@
     "weight": "250G",
     "tags": [],
     "pdfPage": 16,
-    "description": "3053 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "레이온 63%, 폴리에스터 29%, 스판 8%를 혼방한 반팔 티셔츠입니다. 60수 250G 원단을 사용했으며 레귤러핏으로 제작했습니다.",
+    "descriptionEn": "A short-sleeve T-shirt in 63% rayon, 29% polyester and 8% spandex. Made with 60s, 250G fabric in a regular fit.",
     "thumbnail": "images/products/3053/3053-front.jpg",
     "images": [
       "images/products/3053/3053-front.jpg"
@@ -3130,8 +2975,7 @@
         "images/products/3053/3053-detail-02.jpg"
       ],
       "fabric": [],
-      "colorChart": "",
-      "guide": "3053 60수 250G 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": ""
     },
     "colors": [
       {
@@ -3322,20 +3166,7 @@
         "weight": "90-100kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 16페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "7001-kids",
@@ -3349,7 +3180,8 @@
     "weight": "180G",
     "tags": [],
     "pdfPage": 17,
-    "description": "7001-KIDS 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "24수 면 100% 원단으로 만든 180G 아동 반팔 티셔츠입니다. 레귤러핏에 110부터 150까지 사이즈를 갖췄습니다.",
+    "descriptionEn": "A 180G children's short-sleeve T-shirt in 24s, 100% cotton fabric. A regular fit in sizes 110 to 150.",
     "thumbnail": "images/products/7001-kids/7001-kids-front.jpg",
     "images": [
       "images/products/7001-kids/7001-kids-front.jpg"
@@ -3372,8 +3204,7 @@
         "images/products/7001-kids/7001-kids-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "",
-      "guide": "7001-KIDS 24수 180G 순면 아동 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": ""
     },
     "colors": [
       {
@@ -3533,20 +3364,7 @@
         "weight": "35-40kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 17페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "q2000",
@@ -3560,7 +3378,8 @@
     "weight": "200G",
     "tags": [],
     "pdfPage": 19,
-    "description": "Q2000 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "21수 면 100% 원단을 사용한 200G 반팔 티셔츠입니다. 기본 레귤러핏으로 S부터 3XL까지 구성했습니다.",
+    "descriptionEn": "A 200G short-sleeve T-shirt made from 21s, 100% cotton fabric. A regular-fit essential, available from S to 3XL.",
     "thumbnail": "images/products/Q2000/Q2000-front.jpg",
     "images": [
       "images/products/Q2000/Q2000-front.jpg"
@@ -3581,8 +3400,7 @@
         "images/products/Q2000/Q2000-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/Q2000/Q2000-front.jpg",
-      "guide": "Q2000 21수 200G 스탠다드 핏 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/Q2000/Q2000-front.jpg"
     },
     "colors": [
       {
@@ -3803,20 +3621,7 @@
         "weight": "95-105kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 19페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "hp004",
@@ -3830,7 +3635,8 @@
     "weight": "220G",
     "tags": [],
     "pdfPage": 20,
-    "description": "HP004 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 95%와 스판 5%를 혼방한 220G 기본 민소매입니다. 레귤러핏의 프리사이즈 제품입니다.",
+    "descriptionEn": "A 220G basic sleeveless top made from 95% cotton and 5% spandex. A regular-fit style available in one size.",
     "thumbnail": "images/products/HP004/HP004-front.jpg",
     "images": [
       "images/products/HP004/HP004-front.jpg"
@@ -3850,8 +3656,7 @@
         "images/products/HP004/HP004-detail-03.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/HP004/HP004-front.jpg",
-      "guide": "HP004 220G 베이직 나시 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/HP004/HP004-front.jpg"
     },
     "colors": [
       {
@@ -3960,20 +3765,7 @@
         "length": "51"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 20페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "qxk2521",
@@ -3987,7 +3779,8 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": 22,
-    "description": "QXK2521 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "21수 면 100% 원단으로 만든 230G 긴팔 티셔츠입니다. 여유 있는 릴렉스핏으로 S부터 4XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 230G long-sleeve T-shirt in 21s, 100% cotton fabric. A relaxed fit with sizes from S to 4XL.",
     "thumbnail": "images/products/QXK2521/QXK2521-frong.jpg",
     "images": [
       "images/products/QXK2521/QXK2521-frong.jpg"
@@ -4010,8 +3803,7 @@
         "images/products/QXK2521/QXK2521-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/QXK2521/QXK2521-frong.jpg",
-      "guide": "QXK2521 21수 230G 순면 긴팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/QXK2521/QXK2521-frong.jpg"
     },
     "colors": [
       {
@@ -4345,20 +4137,7 @@
         "weight": "100-110kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 22페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "06olk",
@@ -4372,7 +4151,8 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": 23,
-    "description": "06OLK 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "소매 끝을 립으로 마감한 긴팔 티셔츠입니다. 21수 면 100%의 230G 원단을 사용했으며 릴렉스핏으로 제작했습니다.",
+    "descriptionEn": "A long-sleeve T-shirt with ribbed cuffs. Made from 21s, 230G cotton fabric in a relaxed fit, with a 100% cotton composition.",
     "thumbnail": "images/products/06OLK/06OLK-front.jpg",
     "images": [
       "images/products/06OLK/06OLK-front.jpg"
@@ -4390,8 +4170,7 @@
         "images/products/06OLK/06OLK-detail-05.JPG"
       ],
       "fabric": [],
-      "colorChart": "images/products/06OLK/06OLK-front.jpg",
-      "guide": "06OLK 21수 230G 립 소매 긴팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/06OLK/06OLK-front.jpg"
     },
     "colors": [
       {
@@ -4612,20 +4391,7 @@
         "weight": "100-110kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 23페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "q2450",
@@ -4641,7 +4407,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 24,
-    "description": "Q2450 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "16수 면 100% 원단을 사용한 260G 긴팔 티셔츠입니다. 어깨라인이 여유 있게 떨어지는 오버핏으로 제작했습니다.",
+    "descriptionEn": "A 260G long-sleeve T-shirt made from 16s, 100% cotton fabric. An oversized fit with a relaxed shoulder line.",
     "thumbnail": "images/products/Q2450/Q2450-front.jpg",
     "images": [
       "images/products/Q2450/Q2450-front.jpg"
@@ -4662,8 +4429,7 @@
         "images/products/Q2450/Q2450-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/Q2450/Q2450-front.jpg",
-      "guide": "Q2450 16수 260G 어깨라인 루즈핏 순면 긴팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/Q2450/Q2450-front.jpg"
     },
     "colors": [
       {
@@ -4853,20 +4619,7 @@
         "weight": "90-110kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 24페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "yl3200",
@@ -4882,7 +4635,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 27,
-    "description": "YL3200 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 87%와 폴리에스터 13%를 혼방한 320G 맨투맨입니다. 여유 있는 릴렉스핏이며 S부터 3XL까지 구성했습니다.",
+    "descriptionEn": "A 320G sweatshirt in 87% cotton and 13% polyester. Cut in a relaxed fit, with sizes from S to 3XL.",
     "thumbnail": "images/products/YL3200/YL3200-front.jpg",
     "images": [
       "images/products/YL3200/YL3200-front.jpg"
@@ -4903,8 +4657,7 @@
         "images/products/YL3200/YL3200-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/YL3200/YL3200-front.jpg",
-      "guide": "YL3200 320G 맨투맨 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/YL3200/YL3200-front.jpg"
     },
     "colors": [
       {
@@ -5229,20 +4982,7 @@
         "weight": "85-95kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 27페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "lm3200",
@@ -5258,7 +4998,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 29,
-    "description": "LM3200 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 87%, 폴리에스터 13% 혼방 원단의 320G 후드티입니다. 릴렉스핏으로 제작했으며 S부터 3XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 320G hoodie made from 87% cotton and 13% polyester. Available in a relaxed fit from S to 3XL.",
     "thumbnail": "images/products/LM3200/LM3200-front.jpg",
     "images": [
       "images/products/LM3200/LM3200-front.jpg"
@@ -5275,8 +5016,7 @@
         "images/products/LM3200/LM3200-detail-04.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/LM3200/LM3200-front.jpg",
-      "guide": "LM3200 320G 후드티 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/LM3200/LM3200-front.jpg"
     },
     "colors": [
       {
@@ -5601,20 +5341,7 @@
         "weight": "90-100kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 29페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "qxx5200",
@@ -5630,7 +5357,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 30,
-    "description": "QXX5200 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "480G 고중량 원단을 사용한 오버핏 후드티입니다. 면 87%와 폴리에스터 13%를 혼방했으며 S부터 2XL까지 구성했습니다.",
+    "descriptionEn": "An oversized hoodie made with heavyweight 480G fabric. Composed of 87% cotton and 13% polyester, in sizes S to 2XL.",
     "thumbnail": "images/products/QXX5200/QXX5200-front.jpg",
     "images": [
       "images/products/QXX5200/QXX5200-front.jpg"
@@ -5647,8 +5375,7 @@
         "images/products/QXX5200/QXX5200-detail-04.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/QXX5200/QXX5200-front.jpg",
-      "guide": "QXX5200 480G 후드티 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/QXX5200/QXX5200-front.jpg"
     },
     "colors": [
       {
@@ -5847,20 +5574,7 @@
         "weight": "70-100kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 30페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "a23014",
@@ -5874,7 +5588,8 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": 31,
-    "description": "A23014 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 100% 원단에 워싱을 더한 230G 긴팔 티셔츠입니다. 레귤러핏이며 M부터 5XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A washed long-sleeve T-shirt made from 230G, 100% cotton fabric. A regular fit in sizes M to 5XL.",
     "thumbnail": "images/products/A23014/A23014-front.jpg",
     "images": [
       "images/products/A23014/A23014-front.jpg"
@@ -5892,8 +5607,7 @@
         "images/products/A23014/A23014-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/A23014/A23014-front.jpg",
-      "guide": "A23014 230G 워싱 긴팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/A23014/A23014-front.jpg"
     },
     "colors": [
       {
@@ -6071,20 +5785,7 @@
         "weight": "120-130kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 31페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "3505",
@@ -6100,7 +5801,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 32,
-    "description": "3505 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "워싱 가공을 더한 350G 맨투맨입니다. 면 80%와 폴리에스터 20% 혼방 원단을 사용했으며 릴렉스핏으로 제작했습니다.",
+    "descriptionEn": "A washed 350G sweatshirt in a relaxed fit. Made from 80% cotton and 20% polyester.",
     "thumbnail": "images/products/3505/3505-front.jpg",
     "images": [
       "images/products/3505/3505-front.jpg"
@@ -6120,8 +5822,7 @@
         "images/products/3505/3505-detail-04.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/3505/3505-front.jpg",
-      "guide": "3505 350G 워싱 맨투맨 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/3505/3505-front.jpg"
     },
     "colors": [
       {
@@ -6321,20 +6022,7 @@
         "weight": "120-130kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 32페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "3508",
@@ -6350,7 +6038,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 33,
-    "description": "3508 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 80%, 폴리에스터 20% 혼방 원단에 워싱을 더한 후드티입니다. 350G 중량에 여유 있는 릴렉스핏으로 구성했습니다.",
+    "descriptionEn": "A washed hoodie in 80% cotton and 20% polyester. Made with 350G fabric in a relaxed fit.",
     "thumbnail": "images/products/3508/3508-front.jpg",
     "images": [
       "images/products/3508/3508-front.jpg"
@@ -6370,8 +6059,7 @@
         "images/products/3508/3508-detail-04.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/3508/3508-front.jpg",
-      "guide": "3508 350G 워싱 후드티 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/3508/3508-front.jpg"
     },
     "colors": [
       {
@@ -6571,20 +6259,7 @@
         "weight": "120-130kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 33페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "ck280",
@@ -6598,7 +6273,8 @@
     "weight": "280G",
     "tags": [],
     "pdfPage": 34,
-    "description": "CK280 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 65%와 폴리에스터 35%를 혼방한 280G 스웨트바지입니다. 레귤러핏으로 S부터 3XL까지 준비했습니다.",
+    "descriptionEn": "Regular-fit sweatpants made from 280G fabric in 65% cotton and 35% polyester. Available from S to 3XL.",
     "thumbnail": "images/products/CK280/CK280-front.jpg",
     "images": [
       "images/products/CK280/CK280-front.jpg"
@@ -6612,8 +6288,7 @@
         "images/products/CK280/CK280-detail-01.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/CK280/CK280-front.jpg",
-      "guide": "CK280 280G 스웨트바지 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/CK280/CK280-front.jpg"
     },
     "colors": [
       {
@@ -6743,20 +6418,7 @@
         "weight": "87.5-95kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 34페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "lk3401",
@@ -6772,7 +6434,8 @@
       "Heavy Weight"
     ],
     "pdfPage": 35,
-    "description": "LK3401 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "면 85%, 폴리에스터 15% 혼방 원단의 340G 조거바지입니다. 여유 있는 릴렉스핏으로 S부터 3XL까지 구성했습니다.",
+    "descriptionEn": "Relaxed-fit joggers made from 340G fabric in 85% cotton and 15% polyester. Available in sizes S to 3XL.",
     "thumbnail": "images/products/LK3401/LK3401-front.jpg",
     "images": [
       "images/products/LK3401/LK3401-front.jpg"
@@ -6789,8 +6452,7 @@
         "images/products/LK3401/LK3401-detail-04.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/LK3401/LK3401-front.jpg",
-      "guide": "LK3401 340G 조거바지 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/LK3401/LK3401-front.jpg"
     },
     "colors": [
       {
@@ -6908,20 +6570,7 @@
         "length": "101"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 35페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "th5615",
@@ -6935,7 +6584,8 @@
     "weight": "150G",
     "tags": [],
     "pdfPage": 32,
-    "description": "TH5615 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "소로나 100% 원단으로 만든 150G 카라티입니다. 레귤러핏에 S부터 7XL까지 폭넓은 사이즈를 갖췄습니다.",
+    "descriptionEn": "A 150G polo shirt made from 100% Sorona. Cut in a regular fit, with sizes from S to 7XL.",
     "thumbnail": "images/products/TH5615/TH5615-front.jpg",
     "images": [
       "images/products/TH5615/TH5615-front.jpg"
@@ -6958,8 +6608,7 @@
         "images/products/TH5615/TH5615-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/TH5615/TH5615-front.jpg",
-      "guide": "TH5615 150G 소로나 카라티 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/TH5615/TH5615-front.jpg"
     },
     "colors": [
       {
@@ -7200,20 +6849,7 @@
         "weight": "104-113kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 32페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "xf8281",
@@ -7227,7 +6863,8 @@
     "weight": "200G",
     "tags": [],
     "pdfPage": 34,
-    "description": "XF8281 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "폴리에스터, 냉감 섬유, 스판을 혼방한 200G 폴로 셔츠입니다. 레귤러핏이며 S부터 6XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 200G polo shirt in a polyester, cooling-fiber and spandex blend. Available in a regular fit from S to 6XL.",
     "thumbnail": "images/products/XF8281/XF8281-front.jpg",
     "images": [
       "images/products/XF8281/XF8281-front.jpg"
@@ -7250,8 +6887,7 @@
         "images/products/XF8281/XF8281-detail-05.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/XF8281/XF8281-front.jpg",
-      "guide": "XF8281 200G 스판 폴로 셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/XF8281/XF8281-front.jpg"
     },
     "colors": [
       {
@@ -7486,20 +7122,7 @@
         "weight": "110-115kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 34페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "th96001",
@@ -7513,7 +7136,8 @@
     "weight": "150G",
     "tags": [],
     "pdfPage": 35,
-    "description": "TH96001 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "폴리에스터 100% 원단을 사용한 150G 카라티입니다. 기본 레귤러핏으로 S부터 4XL까지 구성했습니다.",
+    "descriptionEn": "A 150G polo shirt made from 100% polyester. Cut in a regular fit with sizes from S to 4XL.",
     "thumbnail": "images/products/TH96001/TH96001-front.jpg",
     "images": [
       "images/products/TH96001/TH96001-front.jpg"
@@ -7536,8 +7160,7 @@
         "images/products/TH96001/TH96001-detail-04.jpg"
       ],
       "fabric": [],
-      "colorChart": "images/products/TH96001/TH96001-front.jpg",
-      "guide": "TH96001 150G 빠른 건조 기능성 카라티 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/TH96001/TH96001-front.jpg"
     },
     "colors": [
       {
@@ -7780,20 +7403,7 @@
         "weight": "80-90kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 35페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "th5611",
@@ -7807,7 +7417,8 @@
     "weight": "200G",
     "tags": [],
     "pdfPage": 36,
-    "description": "TH5611 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "나일론 88%와 스판 12%를 혼방한 200G 카라티입니다. 레귤러핏으로 S부터 7XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 200G polo shirt made from 88% nylon and 12% spandex. A regular fit in sizes S to 7XL.",
     "thumbnail": "images/products/TH5611/TH5611-front.jpg",
     "images": [
       "images/products/TH5611/TH5611-front.jpg"
@@ -7824,8 +7435,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "images/products/TH5611/TH5611-front.jpg",
-      "guide": "TH5611 200G 항균 UV차단 카라티 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/TH5611/TH5611-front.jpg"
     },
     "colors": [
       {
@@ -8053,20 +7663,7 @@
         "weight": "115-125kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 36페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "d0911",
@@ -8080,7 +7677,8 @@
     "weight": "-",
     "tags": [],
     "pdfPage": 37,
-    "description": "D0911 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "폴리에스터 64.9%와 면 35.1%를 혼방한 워싱 카라티입니다. 레귤러핏이며 M부터 3XL까지 구성했습니다.",
+    "descriptionEn": "A washed polo shirt in 64.9% polyester and 35.1% cotton. Cut in a regular fit, available from M to 3XL.",
     "thumbnail": "images/products/D0911/D0911-front.jpg",
     "images": [
       "images/products/D0911/D0911-front.jpg"
@@ -8092,8 +7690,7 @@
       "model": [],
       "detail": [],
       "fabric": [],
-      "colorChart": "images/products/D0911/D0911-front.jpg",
-      "guide": "D0911 워싱 카라티 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/D0911/D0911-front.jpg"
     },
     "colors": [
       {
@@ -8279,20 +7876,7 @@
         "weight": "90-105kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 37페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "th5618",
@@ -8306,7 +7890,8 @@
     "weight": "150G",
     "tags": [],
     "pdfPage": 37,
-    "description": "TH5618 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "듀폰 소로나 100% 원단의 150G 라운드 메쉬 반팔 티셔츠입니다. 레귤러핏으로 S부터 4XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 150G round-neck mesh T-shirt made from 100% DuPont Sorona. Available in a regular fit from S to 4XL.",
     "thumbnail": "images/products/TH5618/TH5618-front.jpg",
     "images": [
       "images/products/TH5618/TH5618-front.jpg"
@@ -8318,8 +7903,7 @@
       "model": [],
       "detail": [],
       "fabric": [],
-      "colorChart": "images/products/TH5618/TH5618-front.jpg",
-      "guide": "TH5618 150G 빠른 건조 라운드 메쉬 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/TH5618/TH5618-front.jpg"
     },
     "colors": [
       {
@@ -8536,20 +8120,7 @@
         "weight": "90-95kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 37페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "th96003",
@@ -8563,7 +8134,8 @@
     "weight": "150G",
     "tags": [],
     "pdfPage": 38,
-    "description": "TH96003 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "폴리에스터 100% 원단으로 만든 라운드 반팔 티셔츠입니다. 150G 중량의 레귤러핏으로 S부터 4XL까지 구성했습니다.",
+    "descriptionEn": "A round-neck short-sleeve T-shirt made from 100% polyester. A 150G regular-fit style, available from S to 4XL.",
     "thumbnail": "images/products/TH96003/TH96003-frong.jpg",
     "images": [
       "images/products/TH96003/TH96003-frong.jpg"
@@ -8575,8 +8147,7 @@
       "model": [],
       "detail": [],
       "fabric": [],
-      "colorChart": "images/products/TH96003/TH96003-frong.jpg",
-      "guide": "TH96003 150G 빠른 건조 라운드 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/TH96003/TH96003-frong.jpg"
     },
     "colors": [
       {
@@ -8819,20 +8390,7 @@
         "weight": "80-90kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 38페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "th9310",
@@ -8846,7 +8404,8 @@
     "weight": "180G",
     "tags": [],
     "pdfPage": 39,
-    "description": "TH9310 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "폴리에스터 94%와 스판 6%를 혼방한 180G 라운드 반팔 티셔츠입니다. 레귤러핏이며 M부터 4XL까지 준비했습니다.",
+    "descriptionEn": "A 180G round-neck T-shirt in 94% polyester and 6% spandex. Cut in a regular fit, with sizes from M to 4XL.",
     "thumbnail": "images/products/TH9310/TH9310-front.jpg",
     "images": [
       "images/products/TH9310/TH9310-front.jpg"
@@ -8858,8 +8417,7 @@
       "model": [],
       "detail": [],
       "fabric": [],
-      "colorChart": "images/products/TH9310/TH9310-front.jpg",
-      "guide": "TH9310 180G 빠른 건조 라운드 스판 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/TH9310/TH9310-front.jpg"
     },
     "colors": [
       {
@@ -9055,20 +8613,7 @@
         "weight": "80-90kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 39페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "7111",
@@ -9082,7 +8627,8 @@
     "weight": "-",
     "tags": [],
     "pdfPage": 40,
-    "description": "7111 제품으로 PDF 카탈로그 기준으로 모델 착용컷, 제품 앞면과 뒷면, 확대 디테일, 색상표를 함께 보여주는 상세 페이지입니다.",
+    "description": "폴리에스터 100% 원단을 사용한 라운드 반팔 티셔츠입니다. 레귤러핏으로 S부터 4XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A round-neck short-sleeve T-shirt made from 100% polyester. Available in a regular fit from S to 4XL.",
     "thumbnail": "images/products/7111/7111-front.jpg",
     "images": [
       "images/products/7111/7111-front.jpg"
@@ -9097,8 +8643,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "images/products/7111/7111-front.jpg",
-      "guide": "7111 기능성 라운드 반팔 티셔츠 앞면, 뒷면, 확대컷, 컬러별 이미지입니다."
+      "colorChart": "images/products/7111/7111-front.jpg"
     },
     "colors": [
       {
@@ -9289,20 +8834,7 @@
         "weight": "85-95kg"
       }
     ],
-    "details": [
-      {
-        "title": "Catalog Source",
-        "text": "PDF 카탈로그 40페이지 기준 제품입니다."
-      },
-      {
-        "title": "Image Plan",
-        "text": "앞면, 뒷면, 색상, 상세 확대 이미지를 포함했습니다."
-      },
-      {
-        "title": "Color Language",
-        "text": "색상명은 한국어, 중국어, 영어, 일본어를 함께 노출하도록 구성했습니다."
-      }
-    ]
+    "details": []
   },
   {
     "id": "23015",
@@ -9316,7 +8848,8 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": "",
-    "description": "워싱 빈티지 가공, 루즈핏",
+    "description": "빈티지 워싱을 더한 민소매 후드입니다. 20수 면 100%의 230G 원단을 사용한 남녀공용 루즈핏 제품입니다.",
+    "descriptionEn": "A vintage-washed sleeveless hoodie in a unisex loose fit. Made from 20s, 230G fabric in 100% cotton.",
     "thumbnail": "images/products/23015/23015-front.jpg",
     "images": [
       "images/products/23015/23015-front.jpg"
@@ -9330,8 +8863,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {
@@ -9494,7 +9026,8 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": "",
-    "description": "",
+    "description": "20수 면 100% 원단에 빈티지 워싱을 더한 민소매 티셔츠입니다. 230G 중량의 남녀공용 제품으로 S부터 3XL까지 구성했습니다.",
+    "descriptionEn": "A vintage-washed sleeveless T-shirt made from 20s, 100% cotton. A 230G unisex style, available from S to 3XL.",
     "thumbnail": "images/products/23011/23011-front.jpg",
     "images": [
       "images/products/23011/23011-front.jpg"
@@ -9509,8 +9042,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {
@@ -9673,7 +9205,8 @@
     "weight": "230G",
     "tags": [],
     "pdfPage": "",
-    "description": "빈티지 워싱 긴팔 티셔츠",
+    "description": "20수 면 100% 원단으로 만든 빈티지 워싱 긴팔 티셔츠입니다. 230G 중량의 남녀공용 제품이며 S부터 5XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A vintage-washed long-sleeve T-shirt in 20s, 100% cotton fabric. A 230G unisex style in sizes S to 5XL.",
     "thumbnail": "images/products/23013/23013-front.jpg",
     "images": [
       "images/products/23013/23013-front.jpg"
@@ -9687,8 +9220,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {
@@ -9881,7 +9413,8 @@
     "weight": "400G",
     "tags": [],
     "pdfPage": "",
-    "description": "400g Cotton-Polar Fleece Bonded Zip-Up Hoodie",
+    "description": "면 혼방 겉감과 폴라플리스 안감을 결합한 400G 본딩 집업 후드입니다. 기모 안감을 사용한 남녀공용 제품으로 M부터 3XL까지 구성했습니다.",
+    "descriptionEn": "A 400G bonded zip-up hoodie combining a cotton-blend outer with polar fleece lining. A unisex style with a brushed lining, available from M to 3XL.",
     "thumbnail": "images/products/X1702/X1702-front.jpg",
     "images": [
       "images/products/X1702/X1702-front.jpg"
@@ -9900,8 +9433,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {
@@ -10089,7 +9621,8 @@
     "weight": "300G",
     "tags": [],
     "pdfPage": "",
-    "description": "300g Cotton-Milk Blended Bonded Zip-Up Hoodie",
+    "description": "면 혼방 겉감과 밀크사 안감을 결합한 300G 본딩 집업 후드입니다. 남녀공용 제품이며 M부터 3XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 300G bonded zip-up hoodie combining a cotton-blend outer with polyester-spandex lining. A unisex style in sizes M to 3XL.",
     "thumbnail": "images/products/X1602/X1602-front.jpg",
     "images": [
       "images/products/X1602/X1602-front.jpg"
@@ -10108,8 +9641,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {
@@ -10297,7 +9829,8 @@
     "weight": "400G",
     "tags": [],
     "pdfPage": "",
-    "description": "400g Cotton-Polar Fleece Bonded Hoodie",
+    "description": "면 혼방 겉감에 폴라플리스 기모 안감을 결합한 400G 본딩 후드입니다. 남녀공용으로 M부터 3XL까지 준비했습니다.",
+    "descriptionEn": "A 400G bonded hoodie pairing a cotton-blend outer with brushed polar fleece lining. A unisex style, available from M to 3XL.",
     "thumbnail": "images/products/X1701/X1701-front.jpg",
     "images": [
       "images/products/X1701/X1701-front.jpg"
@@ -10317,8 +9850,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {
@@ -10506,7 +10038,8 @@
     "weight": "300G",
     "tags": [],
     "pdfPage": "",
-    "description": "",
+    "description": "면 혼방 겉감과 밀크사 안감을 결합한 300G 본딩 후드입니다. 남녀공용 제품으로 M부터 3XL까지 구성했습니다.",
+    "descriptionEn": "A 300G bonded hoodie with a cotton-blend outer and polyester-spandex lining. A unisex style in sizes M to 3XL.",
     "thumbnail": "images/products/X1601/X1601-front.jpg",
     "images": [
       "images/products/X1601/X1601-front.jpg"
@@ -10526,8 +10059,7 @@
       ],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {
@@ -10715,7 +10247,8 @@
     "weight": "400G",
     "tags": [],
     "pdfPage": "",
-    "description": "400g Cotton-Polar Fleece Bonded Sweatshirt",
+    "description": "면 혼방 겉감과 폴라플리스 기모 안감을 결합한 400G 본딩 맨투맨입니다. 남녀공용으로 M부터 3XL까지 선택할 수 있습니다.",
+    "descriptionEn": "A 400G bonded sweatshirt combining a cotton-blend outer with brushed polar fleece lining. A unisex style, available from M to 3XL.",
     "thumbnail": "images/products/X1700/X1700-front.jpg",
     "images": [
       "images/products/X1700/X1700-front.jpg"
@@ -10727,8 +10260,7 @@
       "model": [],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {
@@ -10916,7 +10448,8 @@
     "weight": "300G",
     "tags": [],
     "pdfPage": "",
-    "description": "300g Cotton-Milk Blended Bonded Sweatshirt",
+    "description": "면 혼방 겉감에 밀크사 안감을 결합한 300G 본딩 맨투맨입니다. 남녀공용 제품이며 M부터 3XL까지 준비했습니다.",
+    "descriptionEn": "A 300G bonded sweatshirt pairing a cotton-blend outer with polyester-spandex lining. A unisex style in sizes M to 3XL.",
     "thumbnail": "images/products/X1600/X1600-front.jpg",
     "images": [
       "images/products/X1600/X1600-front.jpg"
@@ -10928,8 +10461,7 @@
       "model": [],
       "detail": [],
       "fabric": [],
-      "colorChart": "",
-      "guide": ""
+      "colorChart": ""
     },
     "colors": [
       {

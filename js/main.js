@@ -344,13 +344,12 @@
         <aside class="detail-summary">
           <p class="product-detail-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
           <h1>${escapeHtml(product.name)}</h1>
-          ${product.description && product.description.trim().toLowerCase() !== String(product.nameEn || "").trim().toLowerCase() ? `<p>${escapeHtml(product.description)}</p>` : ""}
+          ${product.description ? `<p>${escapeHtml(product.description)}</p>` : ""}
           <dl class="summary-list">
             <div><dt>Category</dt><dd>${escapeHtml(categoryLabel(product.category).kr)}</dd></div>
             ${product.fit ? `<div><dt>Fit</dt><dd>${escapeHtml(product.fit)}</dd></div>` : ""}
             ${product.fabric ? `<div><dt>Fabric</dt><dd>${escapeHtml(product.fabric)}</dd></div>` : ""}
             ${product.weight ? `<div><dt>Weight</dt><dd>${escapeHtml(product.weight)}</dd></div>` : ""}
-            ${product.pdfPage ? `<div><dt>PDF Page</dt><dd>${escapeHtml(product.pdfPage)} Page</dd></div>` : ""}
             <div><dt>Size</dt><dd>${escapeHtml(product.sizes.map((size) => size.size).join(", "))}</dd></div>
           </dl>
           <div data-member-product="${escapeHtml(product.code)}" id="order">
@@ -367,19 +366,15 @@
         </aside>
       </div>
 
-      <section class="detail-section">
-        <p class="eyebrow">PRODUCT DESCRIPTION</p>
-        <h2>DETAIL NOTES</h2>
-        ${product.description ? `<p class="detail-copy">${escapeHtml(product.description)}</p>` : ""}
+      ${product.details.length ? `<section class="detail-section">
+        <h2>PRODUCT DETAILS</h2>
         <div class="detail-info-grid">
           ${product.details.map((detail) => `<article><h3>${escapeHtml(detail.title)}</h3><p>${escapeHtml(detail.text)}</p></article>`).join("")}
         </div>
-      </section>
+      </section>` : ""}
 
       <section class="detail-section">
-        <p class="eyebrow">IMAGE PLACEMENT</p>
-        <h2>PRODUCT ASSETS</h2>
-        ${slots.guide ? `<p class="detail-copy">${escapeHtml(slots.guide)}</p>` : ""}
+        <h2>PRODUCT PHOTOS</h2>
         <div class="placement-grid">
           ${slotImages.map((slot) => placementCard(slot.label, slot.image, slot.alt)).join("")}
         </div>
