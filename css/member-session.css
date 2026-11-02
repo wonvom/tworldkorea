@@ -1,0 +1,5 @@
+.nav-mypage[hidden],
+.nav-login[hidden],
+.nav-signup[hidden] {
+  display: none !important;
+}
