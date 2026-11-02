@@ -48,7 +48,7 @@
       account = value.demo ? null : value.account;
       $("member-greeting").textContent = `안녕하세요, ${account?.companyName || "시연용 거래처"}님.`;
       $("member-company").textContent = account?.companyName || "시연용 거래처";
-      $("partner-notice").textContent = account ? "사내 OS 연결 · 주문·발송 내역을 조회할 수 있습니다. 주문서 작성·문의는 아직 시연 기능이며 직원에게 전송되지 않습니다. 실제 개인정보는 시연 입력란에 넣지 마세요." : "화면 시연 · 실제 주문·문의는 전송되지 않습니다. 시연 내역은 새로고침하면 사라집니다. 실제 개인정보는 입력하지 마세요.";
+      $("partner-notice").textContent = account ? "사내 OS 연결 주문 및 발송 내역을 조회할 수 있습니다. 주문서 작성과 문의는 아직 시연 기능이며 직원에게 전송되지 않습니다. 실제 개인정보는 시연 입력란에 넣지 마세요." : "화면 시연 실제 주문과 문의는 전송되지 않습니다. 시연 내역은 새로고침하면 사라집니다. 실제 개인정보는 입력하지 마세요.";
       $("history-refresh").hidden = !memberSession;
       clearInterval(historyTimer);
       if (memberSession) historyTimer = setInterval(() => { if (!document.hidden) refreshHistory(); }, 30000);
@@ -84,7 +84,7 @@
   function renderSizes() {
     cancelStock(); const p = currentProduct(); if (!p) return;
     const table = element("table", "", "quantity-table"), head = document.createElement("thead"), heading = document.createElement("tr"), body = document.createElement("tbody");
-    table.append(element("caption", `${p.code} 색상·사이즈별 주문 수량과 현재 재고`, "sr-only"));
+    table.append(element("caption", `${p.code} 색상 및 사이즈별 주문 수량과 현재 재고`, "sr-only"));
     const colorHeading = element("th", "COLOR"); colorHeading.scope = "col"; heading.append(colorHeading);
     for (const s of p.sizes) { const th = element("th", s.size); th.scope = "col"; heading.append(th); }
     head.append(heading); table.append(head, body);
@@ -109,7 +109,7 @@
     $("order-item-status").textContent = ""; loadStock();
   }
   $("order-image").addEventListener("error", () => { const p = currentProduct(); if (p && !$("order-image").src.endsWith(p.thumbnail)) $("order-image").src = p.thumbnail; });
-  for (const p of products) { const o = element("option", `${p.code} · ${p.name}`); o.value = p.code; $("order-product").append(o); }
+  for (const p of products) { const o = element("option", `${p.code} ${p.name}`); o.value = p.code; $("order-product").append(o); }
   const selected = new URL(location.href).searchParams.get("product"), initial = products.find(p => p.id === selected || p.code === selected);
   if (initial) $("order-product").value = initial.code;
   $("order-product").addEventListener("change", renderProduct);
@@ -132,7 +132,7 @@
   function renderLines() {
     $("order-items").replaceChildren(...lines.map((line, index) => {
       const row = element("article", "", "order-line"), info = document.createElement("div"), controls = element("div", "", "line-controls");
-      info.append(element("strong", line.productCode), element("p", line.productName), element("small", `${line.color} · ${line.size}`));
+      info.append(element("strong", line.productCode), element("p", line.productName), element("small", `${line.color} ${line.size}`));
       const input = document.createElement("input"); Object.assign(input, { type: "number", min: "1", max: "9999", step: "1", value: String(line.quantity), inputMode: "numeric" }); input.setAttribute("aria-label", `${line.productCode} ${line.color} ${line.size} 주문 수량`);
       const amount = element("p", `상품금액 ${money(M.lineAmount(line), "단가 확인 후 안내")}`, "line-amount");
       const validQuantity = () => Number.isInteger(Number(input.value)) && Number(input.value) >= 1 && Number(input.value) <= 9999;
@@ -199,13 +199,13 @@
     const newAddress = document.querySelector('[name="delivery"]:checked').value === "NEW_ADDRESS";
     if (newAddress && !M.validPhone($("recipient-phone").value)) { $("recipient-phone").setCustomValidity("연락 가능한 전화번호를 숫자와 하이픈으로 입력해주세요."); $("recipient-phone").reportValidity(); return; }
     if (newAddress && (!$("recipient-name").value.trim() || !$("delivery-address").value.trim())) { $("order-review-status").textContent = "수령인 이름과 기본 주소를 입력해주세요."; return; }
-    statement = { id: newId("ORDER"), createdAt: M.dayISO(), items: lines.map(line => ({ ...line })), charges: { ...orderCharges }, delivery: newAddress ? { type: "NEW_ADDRESS", name: $("recipient-name").value.trim(), phone: $("recipient-phone").value.trim(), postcode: $("delivery-postcode").value, address: $("delivery-address").value.trim(), detail: $("delivery-detail").value.trim() } : { type: "BUSINESS_ADDRESS", name: "등록 담당자 · 연결 예정", phone: "등록 연락처 · 연결 예정", postcode: "", address: "사업자등록증 등록 주소 · OS 연결 후 표시", detail: "" }, confirmed: false };
+    statement = { id: newId("ORDER"), createdAt: M.dayISO(), items: lines.map(line => ({ ...line })), charges: { ...orderCharges }, delivery: newAddress ? { type: "NEW_ADDRESS", name: $("recipient-name").value.trim(), phone: $("recipient-phone").value.trim(), postcode: $("delivery-postcode").value, address: $("delivery-address").value.trim(), detail: $("delivery-detail").value.trim() } : { type: "BUSINESS_ADDRESS", name: "등록 담당자 연결 예정", phone: "등록 연락처 연결 예정", postcode: "", address: "사업자등록증 등록 주소 OS 연결 후 표시", detail: "" }, confirmed: false };
     $("order-review-status").textContent = ""; showStatement(statement);
   });
   function showStatement(order) {
     statement = order; const total = M.totals(order.items, order.charges), d = order.delivery;
     $("statement-document").className = "statement-document";
-    $("statement-document").innerHTML = `<div class="statement-head"><div><p>T-WORLD KOREA</p><h2 id="statement-title">거래명세서</h2><p>확인용 · ${total.confirmed ? "단가 반영" : "단가 미확정"} · 시연 문서</p></div><div>${esc(order.createdAt)}<br><span class="mini-tag">${order.confirmed ? "시연 내역" : "주문 미리보기"}</span></div></div><div class="statement-parties"><div><span>공급자</span><strong>주식회사 티월드코리아</strong><p>사업자 정보는 사내 OS 연결 후 표시됩니다.</p></div><div><span>공급받는 자</span><strong>시연용 거래처</strong><p>사업자등록증 기준 정보 · 연결 예정</p></div></div><div class="statement-table-wrap"><table class="statement-table"><thead><tr><th>상품</th><th>색상 / 사이즈</th><th>수량</th><th>단가</th><th>공급가액</th></tr></thead><tbody>${order.items.map(line => `<tr><td>${esc(line.productCode)}<small>${esc(line.productName)}</small></td><td>${esc(line.color)} / ${esc(line.size)}</td><td>${n(line.quantity)}장</td><td>${M.lineAmount(line) === null ? "확인 예정" : money(line.unitPrice)}</td><td>${money(M.lineAmount(line), "-")}</td></tr>`).join("")}</tbody></table></div><div class="statement-summary"><span>총 수량 <strong>${n(total.quantity)}장</strong></span></div><div class="statement-delivery"><strong>배송 정보</strong><br>${d.type === "BUSINESS_ADDRESS" ? "사업자등록증 주소 (기본)" : "새 배송지"}<br>${esc([d.postcode, d.address, d.detail].filter(Boolean).join(" "))}<br>수령인: ${esc(d.name)} · 연락처: ${esc(d.phone)}</div><p class="statement-warning">${esc(order.id)}<br>이 문서는 화면 확인용이며 거래 확정, 결제 또는 세금계산서 발행을 의미하지 않습니다. 공급단가·부가세·배송비와 납기는 담당자 확인 후 확정됩니다. 입력 내용은 사내 OS로 전송되지 않습니다.</p>`;
+    $("statement-document").innerHTML = `<div class="statement-head"><div><p>T-WORLD KOREA</p><h2 id="statement-title">거래명세서</h2><p>확인용 ${total.confirmed ? "단가 반영" : "단가 미확정"} 시연 문서</p></div><div>${esc(order.createdAt)}<br><span class="mini-tag">${order.confirmed ? "시연 내역" : "주문 미리보기"}</span></div></div><div class="statement-parties"><div><span>공급자</span><strong>주식회사 티월드코리아</strong><p>사업자 정보는 사내 OS 연결 후 표시됩니다.</p></div><div><span>공급받는 자</span><strong>시연용 거래처</strong><p>사업자등록증 기준 정보 연결 예정</p></div></div><div class="statement-table-wrap"><table class="statement-table"><thead><tr><th>상품</th><th>색상 / 사이즈</th><th>수량</th><th>단가</th><th>공급가액</th></tr></thead><tbody>${order.items.map(line => `<tr><td>${esc(line.productCode)}<small>${esc(line.productName)}</small></td><td>${esc(line.color)} / ${esc(line.size)}</td><td>${n(line.quantity)}장</td><td>${M.lineAmount(line) === null ? "확인 예정" : money(line.unitPrice)}</td><td>${money(M.lineAmount(line), "-")}</td></tr>`).join("")}</tbody></table></div><div class="statement-summary"><span>총 수량 <strong>${n(total.quantity)}장</strong></span></div><div class="statement-delivery"><strong>배송 정보</strong><br>${d.type === "BUSINESS_ADDRESS" ? "사업자등록증 주소 (기본)" : "새 배송지"}<br>${esc([d.postcode, d.address, d.detail].filter(Boolean).join(" "))}<br>수령인: ${esc(d.name)} 연락처: ${esc(d.phone)}</div><p class="statement-warning">${esc(order.id)}<br>이 문서는 화면 확인용이며 거래 확정, 결제 또는 세금계산서 발행을 의미하지 않습니다. 공급단가, 부가세, 배송비와 납기는 담당자 확인 후 확정됩니다. 입력 내용은 사내 OS로 전송되지 않습니다.</p>`;
     $("statement-document").querySelector(".statement-summary").append(amountSummary(total, true));
     $("statement-confirm").hidden = order.confirmed; $("statement-edit").hidden = order.confirmed; $("statement-status").textContent = ""; $("statement-dialog").showModal(); $("statement-dialog").scrollTop = 0;
   }
@@ -237,12 +237,12 @@
   document.addEventListener("visibilitychange", () => { if (!document.hidden && memberSession) refreshHistory(); });
   function showMemberOrder(order) {
     const article = $("member-history-document"); article.replaceChildren();
-    article.append(element("p", account?.companyName || "거래처"), element("h3", statusLabels[order.status] || "확인 중"), element("p", `주문일 ${dateTime(order.createdAt)}${order.shippedAt ? ` · 발송일 ${dateTime(order.shippedAt)}` : ""}`));
+    article.append(element("p", account?.companyName || "거래처"), element("h3", statusLabels[order.status] || "확인 중"), element("p", `주문일 ${dateTime(order.createdAt)}${order.shippedAt ? ` 발송일 ${dateTime(order.shippedAt)}` : ""}`));
     const wrap = element("div", "", "statement-table-wrap"), table = element("table", "", "statement-table");
     table.innerHTML = "<thead><tr><th>상품</th><th>색상 / 사이즈</th><th>수량</th><th>단가</th></tr></thead>";
     const body = document.createElement("tbody");
     for (const item of order.items) { const row = document.createElement("tr"); row.append(element("td", `${item.productCode} ${item.productName}`), element("td", `${item.color} / ${item.size}`), element("td", `${n(item.quantity)}장`), element("td", money(item.unitPrice))); body.append(row); }
-    table.append(body); wrap.append(table); article.append(wrap, element("p", `총 ${n(order.quantity)}장 · OS 주문금액 ${money(order.total)}`));
+    table.append(body); wrap.append(table); article.append(wrap, element("p", `총 ${n(order.quantity)}장 OS 주문금액 ${money(order.total)}`));
     if (order.itemsTruncated) article.append(element("p", "품목은 최근 100개 조합까지 표시됩니다. 전체 명세서는 담당자에게 문의해주세요."));
     article.append(element("small", `접수번호 ${order.id}`)); $("member-history-dialog").showModal();
   }
@@ -251,13 +251,13 @@
     const pending = list.filter(o => ["RECEIVED", "REQUEST_IN_PROGRESS"].includes(o.status));
     for (const [id, count] of [["metric-orders", list.length], ["metric-pending", pending.length], ["metric-shipped", shipped.length]]) $(id).replaceChildren(document.createTextNode(String(count)), element("small", "건"));
     document.querySelectorAll("[data-history]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.history === historyView)));
-    $("history-status").textContent = account ? `${dateTime(account.updatedAt)} 기준 · ${account.hasMore ? "최근 200건 표시. 이전 내역은 담당자에게 문의해주세요." : "OS에 연결된 주문 내역"}` : "내역 연결을 확인하고 있습니다.";
+    $("history-status").textContent = account ? `${dateTime(account.updatedAt)} 기준 ${account.hasMore ? "최근 200건 표시. 이전 내역은 담당자에게 문의해주세요." : "OS에 연결된 주문 내역"}` : "내역 연결을 확인하고 있습니다.";
     const visible = historyView === "shipments" ? shipped : list;
     if (!visible.length) { empty($("history-list"), account ? (historyView === "shipments" ? "등록된 발송 내역이 없습니다." : "등록된 주문 내역이 없습니다.") : "내역을 불러올 수 없습니다.", "거래처 연결과 내역에 관한 사항은 담당자에게 문의해주세요."); return; }
     $("history-list").replaceChildren(...visible.map(order => {
       const row = element("article", "", "history-row"), top = element("div", "", "history-top"), actions = element("div", "", "history-actions");
       top.append(element("span", dateTime(historyView === "shipments" ? order.shippedAt : order.createdAt)), element("span", statusLabels[order.status] || "확인 중", "status-pill"));
-      row.append(top, element("h4", order.items[0]?.productCode || "주문"), element("p", `총 ${n(order.quantity)}장 · ${money(order.total)}`));
+      row.append(top, element("h4", order.items[0]?.productCode || "주문"), element("p", `총 ${n(order.quantity)}장 ${money(order.total)}`));
       const button = element("button", "상세 내역 보기 →", "text-button"); button.type = "button"; button.addEventListener("click", () => showMemberOrder(order)); actions.append(button); row.append(actions); return row;
     }));
   }
@@ -270,7 +270,7 @@
     if (!orders.length) { empty($("history-list"), "아직 주문 내역이 없습니다.", "주문 확인 후 시연 내역에 추가해보세요.", true); return; }
     $("history-list").replaceChildren(...orders.map(order => {
       const row = element("article", "", "history-row"), top = element("div", "", "history-top"), actions = element("div", "", "history-actions"), total = M.totals(order.items);
-      top.append(element("span", order.createdAt), element("span", "시연 · 확인 대기", "status-pill")); row.append(top, element("h4", order.items[0].productCode + (order.items.length > 1 ? ` 외 ${order.items.length - 1}개 조합` : "")), element("p", `${order.id}\n총 ${n(total.quantity)}장`));
+      top.append(element("span", order.createdAt), element("span", "시연 확인 대기", "status-pill")); row.append(top, element("h4", order.items[0].productCode + (order.items.length > 1 ? ` 외 ${order.items.length - 1}개 조합` : "")), element("p", `${order.id}\n총 ${n(total.quantity)}장`));
       const button = element("button", "거래명세서 보기 →", "text-button"); button.type = "button"; button.addEventListener("click", () => showStatement(order)); actions.append(element("span", "실제 접수 전", "subtle"), button); row.append(actions); return row;
     }));
   }
@@ -278,7 +278,7 @@
   function renderInquiries() {
     $("metric-inquiries").replaceChildren(document.createTextNode(String(inquiries.length)), element("small", "건"));
     if (!inquiries.length) { empty($("inquiry-history"), "남긴 문의가 없습니다.", "시연 문의를 작성하면 이곳에서 확인할 수 있습니다."); return; }
-    $("inquiry-history").replaceChildren(...inquiries.map(inquiry => { const row = element("article", "", "history-row"); row.append(element("span", "시연 · 미전송", "status-pill"), element("h4", inquiry.type), element("p", inquiry.message), element("p", `${inquiry.date}${inquiry.reference ? " · " + inquiry.reference : ""}`)); return row; }));
+    $("inquiry-history").replaceChildren(...inquiries.map(inquiry => { const row = element("article", "", "history-row"); row.append(element("span", "시연 미전송", "status-pill"), element("h4", inquiry.type), element("p", inquiry.message), element("p", `${inquiry.date}${inquiry.reference ? " " + inquiry.reference : ""}`)); return row; }));
   }
   $("inquiry-form").addEventListener("submit", event => { event.preventDefault(); if (!entered || !$("inquiry-message").value.trim()) return; inquiries.unshift({ type: $("inquiry-type").value, message: $("inquiry-message").value.trim(), reference: $("inquiry-reference").value.trim(), date: M.dayISO() }); renderInquiries(); $("inquiry-form").reset(); $("inquiry-status").textContent = "현재 화면의 시연 내역에 추가했습니다. 담당자에게 전송되지 않았습니다."; });
   function cancelStock() { $("order-sizes").setAttribute("aria-busy", "false"); stockSequence++; stockController?.abort(); stockController = null; clearTimeout(stockTimer); }
@@ -310,7 +310,7 @@
       if ([401, 403].includes(response.status)) { renewPartnerAccess(); return; }
       if (!response.ok) throw Error(); const payload = await response.json(); if (seq !== stockSequence) return;
       paintStock(payload);
-      $("stock-status").textContent = payload.availability === "inquiry" ? "문의 상품의 재고는 모두 -로 표시됩니다." : payload.availability === "unavailable" ? "현재 재고를 확인할 수 없습니다. 수량은 -로 표시됩니다." : `${new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" })} 조회 · 입력칸 아래는 현재 재고(장)입니다. 실제 주문 가능 수량은 담당자가 확인합니다.`;
+      $("stock-status").textContent = payload.availability === "inquiry" ? "문의 상품의 재고는 모두 -로 표시됩니다." : payload.availability === "unavailable" ? "현재 재고를 확인할 수 없습니다. 수량은 -로 표시됩니다." : `${new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" })} 조회 입력칸 아래는 현재 재고(장)입니다. 실제 주문 가능 수량은 담당자가 확인합니다.`;
     } catch { if (seq === stockSequence) { paintStock(); $("stock-status").textContent = "현재 재고를 확인할 수 없습니다. 재고 새로고침을 눌러 다시 시도해주세요."; } }
     finally { clearTimeout(timer); if (seq === stockSequence) { $("order-sizes").setAttribute("aria-busy", "false"); stockController = null; if (stockActive()) stockTimer = setTimeout(loadStock, 30000); } }
   }

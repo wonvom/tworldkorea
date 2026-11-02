@@ -292,12 +292,12 @@
         const selectionCleared = paint("ready", quantities, payload.availability === "inquiry");
         const complete = entries.every(({ input }) => Number.isSafeInteger(quantities.get(input.value)));
         const time = new Date().toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul", hour12: false });
-        status.textContent = payload.availability === "inquiry" ? `${color.name} · 문의 상품 · 재고 수량 확인 불가` : payload.availability === "unavailable" ? `${color.name} · 원본 재고 확인 불가` : `${color.name} · ${time} 조회${complete ? "" : " · 일부 사이즈 확인 불가"}`;
-        if (selectionCleared) status.textContent += " · 선택한 사이즈가 품절되어 선택이 해제되었습니다.";
+        status.textContent = payload.availability === "inquiry" ? `${color.name} 문의 상품 재고 수량 확인 불가` : payload.availability === "unavailable" ? `${color.name} 원본 재고 확인 불가` : `${color.name} ${time} 조회${complete ? "" : " 일부 사이즈 확인 불가"}`;
+        if (selectionCleared) status.textContent += " 선택한 사이즈가 품절되어 선택이 해제되었습니다.";
       } catch (error) {
         if (current !== sequence || disposed) return;
         paint("error");
-        status.textContent = `${color.name} · 재고 조회 실패`;
+        status.textContent = `${color.name} 재고 조회 실패`;
       } finally {
         clearTimeout(timeout);
         if (current === sequence && !disposed) {
@@ -338,7 +338,7 @@
         cancel();
         if (authenticated() && selected) {
           paint("paused");
-          status.textContent = `${selected.name} · 조회 일시중지`;
+          status.textContent = `${selected.name} 조회 일시중지`;
         }
       } else if (selected) load();
     }

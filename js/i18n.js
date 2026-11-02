@@ -12,20 +12,20 @@
     ["MATERIAL STANDARD", "원단 기준"], ["FABRIC AND QUALITY", "소재와 품질"],
     ["Washed 20s 230G", "워싱 20수 230G"], ["Fleece 270G", "기모 270G"],
     ["16s 250G", "16수 250G"], ["20s 230g", "20수 230g"], ["24s 180G", "24수 180G"], ["20s", "20수"],
-    ["COMPANY AND FACTORY", "회사와 생산 시설"], ["SUPPLY NETWORK", "생산·공급 기반"],
+    ["COMPANY AND FACTORY", "회사와 생산 시설"], ["SUPPLY NETWORK", "생산 및 공급 기반"],
     ["Korea Office", "한국 지사"], ["China Office", "중국 본사"], ["Korea Showroom", "한국 쇼룸"],
     ["Production Facility", "생산 시설"], ["LOOKBOOK PREVIEW", "룩북 미리보기"], ["MODEL FIT ARCHIVE", "모델 착용컷"],
     ["View Lookbook", "룩북 보기"], ["WHOLESALE CONTACT", "도매 상담"], ["Contact Us", "문의하기"],
-    ["ABOUT COMPANY", "회사 안내"], ["FACTORY, SHOWROOM AND WHOLESALE", "공장·쇼룸·도매 공급"],
+    ["ABOUT COMPANY", "회사 안내"], ["FACTORY, SHOWROOM AND WHOLESALE", "공장, 쇼룸, 도매 공급"],
     ["OUR WORK", "우리가 하는 일"], ["DOMESTIC COMMUNICATION AND OVERSEAS PRODUCTION", "국내 상담과 해외 생산"],
     ["SUPPLY VALUE", "공급 서비스"], ["WHAT WE SUPPORT", "거래처 지원 안내"],
     ["PRODUCT CATALOG", "제품 카탈로그"], ["PRODUCT LINEUP", "제품 라인업"], ["CATEGORY", "카테고리"],
-    ["FIT AND WEIGHT", "핏·중량"], ["All", "전체"], ["Regular Fit", "레귤러핏"], ["Relaxed Fit", "릴렉스핏"],
+    ["FIT AND WEIGHT", "핏과 중량"], ["All", "전체"], ["Regular Fit", "레귤러핏"], ["Relaxed Fit", "릴렉스핏"],
     ["Oversized Fit", "오버핏"], ["Loose Fit", "루즈핏"], ["Heavy Weight", "고중량"],
     ["Short Sleeve", "반팔"], ["Sleeveless", "민소매"], ["Long Sleeve", "긴팔"], ["Polo Shirt", "카라티"],
     ["Sweatshirt", "맨투맨"], ["Hoodie", "후드"], ["Pants", "바지"],
     ["CATALOG GUIDE", "카탈로그 안내"], ["MODEL NO.", "모델명"], ["View Detail", "상세 보기"],
-    ["Made to order", "주문제작"], ["Category", "제품 분류"], ["Fit", "핏"], ["Fabric", "소재·혼용률"],
+    ["Made to order", "주문제작"], ["Category", "제품 분류"], ["Fit", "핏"], ["Fabric", "소재와 혼용률"],
     ["Weight", "중량"], ["PDF Page", "카탈로그 페이지"], ["Size", "사이즈"], ["COLOR", "색상"],
     ["Order", "주문하기"], ["Check stock", "재고 확인"],
     ["PRODUCT DESCRIPTION", "제품 설명"], ["DETAIL NOTES", "상세 안내"], ["IMAGE PLACEMENT", "제품 이미지 안내"],
@@ -118,8 +118,7 @@
 
   function koreanFabric(value) {
     return String(value).replace(/DuPont Sorona|Cooling Fiber|Polyester|Spandex|Cotton|Rayon|Nylon|Sorona|Span|Outer:|Lining:/g,
-      word => ({ "DuPont Sorona": "듀폰 소로나", "Cooling Fiber": "냉감 섬유", Polyester: "폴리에스터", Spandex: "스판", Cotton: "면", Rayon: "레이온", Nylon: "나일론", Sorona: "소로나", Span: "스판", "Outer:": "겉감:", "Lining:": "안감:" })[word])
-      .replace(/% (?=[가-힣])/g, "% · ");
+      word => ({ "DuPont Sorona": "듀폰 소로나", "Cooling Fiber": "냉감 섬유", Polyester: "폴리에스터", Spandex: "스판", Cotton: "면", Rayon: "레이온", Nylon: "나일론", Sorona: "소로나", Span: "스판", "Outer:": "겉감:", "Lining:": "안감:" })[word]);
   }
 
   function createTranslator(products = []) {
@@ -147,13 +146,13 @@
       let result = dictionary.get(text)?.[language];
       if (result === undefined) {
         const products = text.match(/^(\d+) Products$/) || text.match(/^제품 (\d+)개$/);
-        const colors = text.match(/^(.*?)\s+(\d+) Colors$/) || text.match(/^(.*?)\s+·\s+(\d+)색상$/);
+        const colors = text.match(/^(.*?)\s+(\d+) Colors$/) || text.match(/^(.*?)\s+(\d+)색상$/);
         const page = text.match(/^(\d+) Page$/) || text.match(/^(\d+)페이지$/);
         const source = text.match(/^PDF 카탈로그 (\d+)페이지 기준 제품입니다\.$/) || text.match(/^Based on page (\d+) of the PDF catalog\.$/);
         const slot = text.match(/^(Model Fit|Detail Close Up|Detail|Lookbook) (\d+)$/) || text.match(/^(모델 착용컷|확대 디테일|상세|룩북) (\d+)$/);
         const category = text.match(/^(Short Sleeve|Sleeveless|Long Sleeve|Polo Shirt|Sweatshirt|Hoodie|Pants) (\d+) Styles$/) || text.match(/^(반팔|민소매|긴팔|카라티|맨투맨|후드|바지) (\d+)종$/);
         if (products) result = language === "ko" ? `제품 ${products[1]}개` : `${products[1]} Products`;
-        else if (colors) result = language === "ko" ? `${colors[1]} · ${colors[2]}색상` : `${colors[1]} ${colors[2]} Colors`;
+        else if (colors) result = language === "ko" ? `${colors[1]} ${colors[2]}색상` : `${colors[1]} ${colors[2]} Colors`;
         else if (page) result = language === "ko" ? `${page[1]}페이지` : `${page[1]} Page`;
         else if (source) result = language === "ko" ? `PDF 카탈로그 ${source[1]}페이지 기준 제품입니다.` : `Based on page ${source[1]} of the PDF catalog.`;
         else if (slot) {

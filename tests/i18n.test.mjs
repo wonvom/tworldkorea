@@ -28,11 +28,11 @@ test("all catalog compositions keep every numeric percentage and support both la
     assert.equal(t(product.nameEn, "ko"), product.name, product.code);
   }
   assert.equal(t("Regular Fit", "ko"), "레귤러핏");
-  assert.equal(t("Cotton 95% Span 5%", "ko"), "면 95% · 스판 5%");
+  assert.equal(t("Cotton 95% Span 5%", "ko"), "면 95% 스판 5%");
 });
 
 test("dynamic counts and image labels translate without changing model codes or size values", () => {
-  for (const [en, ko] of [["22 Products", "제품 22개"], ["180G 12 Colors", "180G · 12색상"], ["Model Fit 2", "모델 착용컷 2"], ["13 Page", "13페이지"]]) {
+  for (const [en, ko] of [["22 Products", "제품 22개"], ["180G 12 Colors", "180G 12색상"], ["Model Fit 2", "모델 착용컷 2"], ["13 Page", "13페이지"]]) {
     assert.equal(t(en, "ko"), ko);
     assert.equal(t(ko, "en"), en);
   }
