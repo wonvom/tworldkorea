@@ -6,5 +6,5 @@ html.member-cart-open{overflow:hidden}.member-cart-drawer{position:fixed;inset:0
 @keyframes member-cart-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
 .member-cart-drawer{width:min(460px,100vw)}.member-cart-drawer h2{font-size:22px}
 @media(prefers-reduced-motion:reduce){.member-cart-drawer[open]{animation:none}}
-@media(max-width:1080px){.site-header .member-cart-launcher{margin-left:auto;margin-right:12px;order:1}.site-header .nav-toggle{order:2}.site-header .site-nav{order:3}}
+@media(max-width:960px){.site-header .member-cart-launcher{margin-left:auto;margin-right:12px;order:1}.site-header .nav-toggle{order:2}.site-header .site-nav{order:3}}
 @media(max-width:480px){.site-header .member-cart-launcher{padding:8px;margin-right:8px}.member-cart-launcher>span{display:none}.member-cart-drawer>header{padding:12px 16px}.member-cart-body{padding:8px 12px 0}}
