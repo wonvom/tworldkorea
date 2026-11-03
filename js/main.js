@@ -158,8 +158,9 @@
         <span class="image-frame" data-label="${escapeHtml(product.code)} Front Image">
           ${customOrderBadge}
           <img src="${escapeHtml(assetUrl(product.thumbnail))}" alt="${escapeHtml(product.name)} 대표 이미지" loading="lazy">
+          <span class="member-start-price" data-member-price="${escapeHtml(product.code)}" hidden></span>
         </span>
-        <p class="product-code"><span>MODEL NO.</span><b>${escapeHtml(product.code)}</b><span class="member-start-price" data-member-price="${escapeHtml(product.code)}" hidden></span></p>
+        <p class="product-code"><span>MODEL NO.</span><b>${escapeHtml(product.code)}</b></p>
         <h3>${escapeHtml(product.name)}</h3>
         <div class="product-meta">
           <span>${escapeHtml(label.kr)}</span>
@@ -334,6 +335,7 @@
           <div class="detail-main-image image-frame" data-label="${escapeHtml(product.code)} Front Image">
             ${customOrderBadge}
             <img src="${escapeHtml(assetUrl(product.images[0] || product.thumbnail))}" alt="${escapeHtml(product.name)} 대표 이미지" data-main-product-image>
+            <span class="member-start-price" data-member-price="${escapeHtml(product.code)}" hidden></span>
           </div>
           <div class="gallery-thumbs">
             ${slotImages.map((slot) => `
@@ -344,7 +346,7 @@
           </div>
         </div>
         <aside class="detail-summary">
-          <p class="product-detail-code"><span>MODEL NO.</span><b>${escapeHtml(product.code)}</b><span class="member-start-price" data-member-price="${escapeHtml(product.code)}" hidden></span></p>
+          <p class="product-detail-code"><span>MODEL NO.</span><b>${escapeHtml(product.code)}</b></p>
           <h1>${escapeHtml(product.name)}</h1>
           ${product.description ? `<p>${escapeHtml(product.description)}</p>` : ""}
           <dl class="summary-list">
