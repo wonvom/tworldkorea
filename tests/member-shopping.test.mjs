@@ -39,3 +39,16 @@ test('authenticated product choices and right cart mount only while needed, with
   const before=navigation.length;send(product.contentWindow,'checkout');assert.equal(navigation.length,before);
   assert(!script.includes('document.cookie')&&!script.includes('localStorage')&&!script.includes('setInterval'));
 });
+test('catalogue prices load once for the approved session and disappear on logout without browser storage',async()=>{
+  const events={},calls=[],badge={dataset:{memberPrice:'01OA1'},hidden:false};
+  const node=()=>({children:[],append(...values){this.children.push(...values);},setAttribute(){},addEventListener(){}}),header=node();
+  const document={querySelector:s=>s==='[data-member-product]'?null:header,querySelectorAll:()=>[badge],createElement:node};
+  const window={addEventListener:(name,fn)=>{events[name]=fn;},location:{assign(){assert.fail('Price lookup must not navigate');}}};
+  vm.runInNewContext(script,{document,window,AbortController,encodeURIComponent,fetch:async(url,options)=>{calls.push({url,options});return {ok:true,json:async()=>({products:[{code:'01OA1',minPrice:3570}]})};}});
+  assert(badge.hidden);assert.equal(calls.length,0);
+  events['tworld:session']({detail:{signedIn:true}});events['tworld:session']({detail:{signedIn:true}});
+  for(let i=0;i<10;i++)await Promise.resolve();
+  assert.equal(calls.length,1);assert.equal(calls[0].url,'https://members.tworldkorea.co.kr/account/shop/api/catalog');assert.equal(calls[0].options.credentials,'include');assert.equal(calls[0].options.cache,'no-store');assert.equal(badge.textContent,'3,570원~');assert(!badge.hidden);
+  events['tworld:products']();events['tworld:session']({detail:{signedIn:true}});assert.equal(calls.length,1);
+  events['tworld:session']({detail:{signedIn:false}});assert(badge.hidden);
+});
