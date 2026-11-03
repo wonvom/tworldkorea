@@ -16,3 +16,13 @@
 @media(max-width:1280px){.site-nav .nav-greeting{max-width:100%;padding:12px 0;font-size:14px}}
 @media(min-width:1281px){.site-header .site-nav{flex:0 1 auto}.site-header .site-nav>a{white-space:nowrap}.site-header .member-cart-launcher{margin-left:4px}}
 @media(max-width:1280px){.site-header .site-nav{align-items:stretch;justify-content:stretch;grid-template-columns:minmax(0,1fr);gap:0;background:#fff;max-height:calc(100dvh - var(--header-height));overflow-y:auto;overscroll-behavior:contain}.site-header .nav-mypage{padding-left:0;border-left:0;border-top:1px solid var(--line)}.site-header .site-nav a{font-size:15px;padding-top:18px;padding-bottom:18px}.site-nav .nav-logout{text-align:left;font-size:15px;padding:18px 0;border-bottom:1px solid var(--line)}}
+@media(max-width:1280px){
+  .site-header .site-nav > a.nav-login,
+  .site-header .site-nav > a.nav-signup{display:flex;align-items:center;justify-content:center;min-height:48px;margin-left:0;padding:14px 16px;border:1px solid #111;border-radius:2px;line-height:1.4;letter-spacing:0;text-align:center;white-space:nowrap}
+  .site-header .site-nav > a.nav-login{margin-top:20px;background:#111;color:#fff;font-weight:600}
+  .site-header .site-nav > a.nav-signup{margin-top:10px;background:#fff;color:#111}
+  .site-header .site-nav > a.nav-login::after,
+  .site-header .site-nav > a.nav-signup::after{display:none}
+  .site-header .site-nav > a.nav-login:focus-visible,
+  .site-header .site-nav > a.nav-signup:focus-visible{outline:2px solid #111;outline-offset:3px}
+}
