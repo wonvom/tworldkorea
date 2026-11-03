@@ -3,6 +3,22 @@
   const origin='https://members.tworldkorea.co.kr';
   let signedIn=false,drawer=null,productFrame=null,cartFrame=null,launcher=null,returnFocus=null;
   const slot=document.querySelector('[data-member-product]');
+  let prices=null,priceFlight=null;
+  function paintPrices(){
+    document.querySelectorAll('[data-member-price]').forEach(node=>{
+      const price=prices?.[node.dataset.memberPrice];node.hidden=!signedIn;
+      node.textContent=Number.isSafeInteger(price)&&price>0?price.toLocaleString('ko-KR')+'원~':'단가 확인 중';
+      node.title='업체 적용 단가 / 부가세 별도';
+    });
+  }
+  function loadPrices(){
+    paintPrices();if(slot||!signedIn||prices||priceFlight)return;
+    const controller=new AbortController();priceFlight=controller;
+    fetch(origin+'/account/shop/api/catalog',{credentials:'include',cache:'no-store',signal:controller.signal}).then(r=>{if(!r.ok)throw Error('Price lookup failed');return r.json();}).then(value=>{
+      if(!signedIn||controller.signal.aborted||!Array.isArray(value.products))return;
+      prices=Object.fromEntries(value.products.filter(p=>typeof p.code==='string'&&(p.minPrice===null||Number.isSafeInteger(p.minPrice)&&p.minPrice>0)).map(p=>[p.code,p.minPrice]));paintPrices();
+    }).catch(()=>{}).finally(()=>{if(priceFlight===controller)priceFlight=null;});
+  }
   function loginUrl(){
     const code=slot?.dataset.memberProduct;
     return origin+'/account/login'+(code?'?next='+encodeURIComponent('https://www.tworldkorea.co.kr/product-detail.html?id='+encodeURIComponent(code)+'#order'):'?next=%2Faccount%2Fcart');
@@ -43,6 +59,8 @@
       else if(!signedIn){options.replaceChildren();productFrame=null;}
     }
     if(!signedIn)close();
+    if(!signedIn){priceFlight?.abort();priceFlight=null;prices=null;}
+    loadPrices();
   }
   window.addEventListener('message',event=>{
     if(event.origin!==origin||!event.data||event.data.channel!=='tworld-shop')return;
@@ -50,11 +68,13 @@
     if(!fromProduct&&!fromCart)return;
     const {type,value}=event.data;
     if(type==='height'&&fromProduct&&Number.isSafeInteger(value)&&value>=120&&value<=2400)productFrame.style.height=value+'px';
+    else if(type==='price'&&fromProduct&&Number.isSafeInteger(value)&&value>=0&&value<=2147483647){prices={[slot.dataset.memberProduct]:value||null};paintPrices();}
     else if(type==='cart'&&Number.isSafeInteger(value)&&value>=0&&value<=999900)launcher.setAttribute('aria-label',`장바구니 열기 / ${value.toLocaleString()}장`);
     else if(type==='open-cart'&&fromProduct)open();
     else if(type==='checkout'&&signedIn)window.location.assign(origin+'/account/checkout');
     else if(type==='login')window.location.assign(loginUrl());
   });
   window.addEventListener('tworld:session',event=>paint(event.detail?.signedIn));
+  window.addEventListener('tworld:products',paintPrices);
   paint(window.TworldMemberSignedIn===true);
 })();

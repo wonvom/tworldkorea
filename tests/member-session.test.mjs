@@ -25,7 +25,7 @@ test('every public navigation hides My Page initially and allows only the fixed 
     const html=readFileSync(new URL('../'+name+'.html',import.meta.url),'utf8');
     const links=html.match(/<a class="nav-mypage"[^>]*>/g)||[];assert(links.length>0,name);assert(links.every(v=>v.includes(' hidden')),name);
     assert(html.includes('js/member-session.js?v=20261102-inline-order'),name);
-    assert(html.includes('js/member-shopping.js?v=20261102-inline-order'),name);
+    assert(html.includes('js/member-shopping.js?v=20261103-company-prices'),name);
     const mapSource=name==='contact'?'https://www.google.com/maps/embed':'https://map.naver.com';
     assert(html.includes('frame-src '+mapSource+' https://members.tworldkorea.co.kr;'),name);
     assert(html.includes("connect-src 'self' https://members.tworldkorea.co.kr;"),name);

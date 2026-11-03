@@ -159,7 +159,7 @@
           ${customOrderBadge}
           <img src="${escapeHtml(assetUrl(product.thumbnail))}" alt="${escapeHtml(product.name)} 대표 이미지" loading="lazy">
         </span>
-        <p class="product-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
+        <p class="product-code"><span>MODEL NO.</span><b>${escapeHtml(product.code)}</b><span class="member-start-price" data-member-price="${escapeHtml(product.code)}" hidden></span></p>
         <h3>${escapeHtml(product.name)}</h3>
         <div class="product-meta">
           <span>${escapeHtml(label.kr)}</span>
@@ -211,6 +211,7 @@
       });
 
       grid.innerHTML = filtered.map(productCard).join("");
+      window.dispatchEvent(new Event('tworld:products'));
       count.textContent = `${filtered.length} Products`;
       syncButtons(categoryButtons, categoryFilter);
       syncButtons(typeButtons, typeFilter);
@@ -343,7 +344,7 @@
           </div>
         </div>
         <aside class="detail-summary">
-          <p class="product-detail-code"><span>MODEL NO.</span>${escapeHtml(product.code)}</p>
+          <p class="product-detail-code"><span>MODEL NO.</span><b>${escapeHtml(product.code)}</b><span class="member-start-price" data-member-price="${escapeHtml(product.code)}" hidden></span></p>
           <h1>${escapeHtml(product.name)}</h1>
           ${product.description ? `<p>${escapeHtml(product.description)}</p>` : ""}
           <dl class="summary-list">
