@@ -245,6 +245,7 @@
   function setLanguage(value) {
     language = value === "en" ? "en" : "ko";
     try { root.localStorage.setItem(storageKey, language); } catch { /* Switching still works without storage. */ }
+    try { const url = new URL(root.location.href); url.searchParams.set('lang', language); root.history.replaceState(root.history.state, '', url.pathname + url.search + url.hash); } catch { /* Language changes still work without history access. */ }
     apply();
     announce();
   }
