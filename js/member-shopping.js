@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   const origin='https://members.tworldkorea.co.kr';
-  let signedIn=false,drawer=null,productFrame=null,cartFrame=null,launcher=null,returnFocus=null;
+  let signedIn=false,canOrder=true,drawer=null,productFrame=null,cartFrame=null,launcher=null,returnFocus=null;
   const slot=document.querySelector('[data-member-product]');
   let prices=null,priceFlight=null;
   function paintPrices(){
@@ -30,6 +30,7 @@
   function close(){if(drawer?.open)drawer.close();}
   function open(){
     if(!signedIn){window.location.assign(loginUrl());return;}
+    if(!canOrder)return;
     if(!drawer){
       drawer=document.createElement('dialog');drawer.className='member-cart-drawer';drawer.setAttribute('aria-label','장바구니');
       const heading=document.createElement('header'),title=document.createElement('h2'),button=document.createElement('button');
@@ -51,14 +52,14 @@
       const icon=document.createElement('img');icon.src='images/icons/shopping-cart.svg';icon.alt='';const label=document.createElement('span');label.textContent='장바구니';launcher.append(icon,label);launcher.addEventListener('click',()=>drawer?.open?close():open());
       document.querySelector('.site-header')?.append(launcher);
     }
-    launcher.hidden=!signedIn;
+    launcher.hidden=!signedIn||!canOrder;
     if(slot){
       slot.querySelector('[data-member-anonymous]').hidden=signedIn;
       const options=slot.querySelector('[data-member-options]');options.hidden=!signedIn;
       if(signedIn&&!productFrame){productFrame=frame('/member-widgets/product/'+encodeURIComponent(slot.dataset.memberProduct),'색상과 사이즈 선택 및 본사 재고');productFrame.dataset.memberProductFrame='';options.replaceChildren(productFrame);}
       else if(!signedIn){options.replaceChildren();productFrame=null;}
     }
-    if(!signedIn)close();
+    if(!signedIn||!canOrder)close();
     if(!signedIn){priceFlight?.abort();priceFlight=null;prices=null;}
     loadPrices();
   }
@@ -71,11 +72,12 @@
     else if(type==='price'&&fromProduct&&Number.isSafeInteger(value)&&value>=0&&value<=2147483647){prices={[slot.dataset.memberProduct]:value||null};paintPrices();}
     else if(type==='cart'&&Number.isSafeInteger(value)&&value>=0&&value<=999900)launcher.setAttribute('aria-label',`장바구니 열기 / ${value.toLocaleString()}장`);
     else if(type==='open-cart'&&fromProduct)open();
-    else if(type==='checkout'&&signedIn)window.location.assign(origin+'/account/checkout');
+    else if(type==='checkout'&&signedIn&&canOrder)window.location.assign(origin+'/account/checkout');
     else if(type==='login')window.location.assign(loginUrl());
     else if(type==='activity')window.TworldMemberActivity?.activity();
   });
-  window.addEventListener('tworld:session',event=>paint(event.detail?.signedIn));
+  window.addEventListener('tworld:session',event=>{canOrder=event.detail?.canOrder!==false;paint(event.detail?.signedIn);});
   window.addEventListener('tworld:products',paintPrices);
+  canOrder=window.TworldMemberCanOrder!==false;
   paint(window.TworldMemberSignedIn===true);
 })();

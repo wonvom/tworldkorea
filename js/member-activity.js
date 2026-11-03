@@ -8,7 +8,7 @@ export function startMemberActivity({endpoint='/account/shop/api/session',onSess
   function paint(value){
     const before=active;active=value.signedIn===true;
     deadline=active&&Number.isFinite(value.expiresAt)?value.expiresAt:0;
-    onSession(active);schedule();
+    onSession(active,active?{displayName:typeof value.displayName==='string'?value.displayName:'',canOrder:value.canOrder!==false}:null);schedule();
     if(before&&!active)onExpire();
   }
   async function check(touch=false,initial=false){

@@ -1,12 +1,18 @@
-import {startMemberActivity} from './member-activity.js?v=20261103-session-delivery';
+import {startMemberActivity} from './member-activity.js?v=20261103-staff-greeting';
 (function () {
 
-  function paint(signedIn) {
+  function paint(signedIn,identity) {
     document.querySelectorAll('.nav-mypage').forEach(link => { link.hidden = !signedIn; });
     document.querySelectorAll('.nav-login, .nav-signup').forEach(link => { link.hidden = signedIn; });
     document.querySelectorAll('.nav-logout').forEach(button=>{button.hidden=!signedIn;});
+    document.querySelectorAll('.nav-greeting').forEach(node=>{
+      const name=typeof identity?.displayName==='string'?identity.displayName.trim().slice(0,80):'';
+      node.textContent=signedIn&&name?`${name}님 반갑습니다.`:'';
+      node.hidden=!signedIn||!name;
+    });
     window.TworldMemberSignedIn = signedIn;
-    window.dispatchEvent(new CustomEvent('tworld:session', { detail: { signedIn } }));
+    window.TworldMemberCanOrder = signedIn&&identity?.canOrder!==false;
+    window.dispatchEvent(new CustomEvent('tworld:session', { detail: { signedIn,canOrder:window.TworldMemberCanOrder } }));
   }
 
   paint(false);
