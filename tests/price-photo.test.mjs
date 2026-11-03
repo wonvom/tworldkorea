@@ -9,7 +9,7 @@ test('catalogue card keeps the approved-member price in the photo and separate f
   const code=source.slice(source.indexOf('  function productCard('),source.indexOf('  function renderFeaturedProducts('));
   const html=vm.runInNewContext(code+';productCard(product)',{
     product:{code:'01OA1',name:'TEST PRODUCT',category:'tee',thumbnail:'test.webp',fit:'Regular',fabric:'Cotton',weight:'230G',colors:[]},
-    categoryLabel:()=>({kr:'반팔'}),isCustomOrderProduct:()=>false,escapeHtml:String,assetUrl:String,encodeURIComponent
+    categoryLabel:()=>({kr:'반팔'}),productOrderBadge:()=>'',escapeHtml:String,assetUrl:String,encodeURIComponent
   });
   assert.match(html,/member-start-price[^>]*hidden><\/span>\s*<\/span>/);
   assert(!html.match(/<p class="product-code">[\s\S]*?member-start-price[\s\S]*?<\/p>/));
@@ -26,6 +26,6 @@ test('photo price uses neutral bottom-right styling and fresh asset versions on 
   for(const name of ['index','products','product-detail','about','lookbook','contact']){
     const html=file(name+'.html');
     assert(html.includes('css/member-shopping.css?v=20261103-monochrome-photo'));
-    assert(html.includes('js/main.js?v=20261103-monochrome-photo'));
+    assert(html.includes('js/main.js?v=20261103-minimum-order'));
   }
 });

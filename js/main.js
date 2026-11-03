@@ -43,6 +43,14 @@
     return product.category === "Pants" || customOrderProductCodes.has(product.code);
   }
 
+  function productOrderBadge(product) {
+    const code = String(product.code || "").trim().toUpperCase();
+    const label = /^(TH|XF)/.test(code) || code === "7111"
+      ? "최소 100장"
+      : isCustomOrderProduct(product) ? "주문제작" : "";
+    return label ? `<span class="custom-order-badge">${label}</span>` : "";
+  }
+
   function escapeHtml(value) {
     return String(value || "").replace(/[&<>"']/g, (char) => ({
       "&": "&amp;",
@@ -152,7 +160,7 @@
   function productCard(product) {
     const label = categoryLabel(product.category);
     const detailHref = `product-detail.html?id=${encodeURIComponent(product.code)}`;
-    const customOrderBadge = isCustomOrderProduct(product) ? `<span class="custom-order-badge">주문제작</span>` : "";
+    const customOrderBadge = productOrderBadge(product);
     return `
       <a class="product-card image-card" href="${escapeHtml(detailHref)}">
         <span class="image-frame" data-label="${escapeHtml(product.code)} Front Image">
@@ -321,7 +329,7 @@
     const slots = product.imageSlots || {};
     const modelImages = slots.model || [];
     const detailImages = slots.detail || [];
-    const customOrderBadge = isCustomOrderProduct(product) ? `<span class="custom-order-badge">주문제작</span>` : "";
+    const customOrderBadge = productOrderBadge(product);
     const slotImages = [
       { label: "Front Image", image: slots.front, alt: `${product.name} 앞면 이미지` },
       { label: "Back Image", image: slots.back, alt: `${product.name} 뒷면 이미지` },
