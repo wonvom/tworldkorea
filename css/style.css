@@ -2016,8 +2016,8 @@ p {
 }
 .member-order-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;min-width:0}.member-order-actions .btn{min-width:0;padding-inline:12px;white-space:normal;text-align:center}
 
-/* Make room for both language options before the desktop navigation crowds the logo. */
-@media (min-width: 768px) and (max-width: 960px) {
+/* Keep the wider navigation clear of the logo and signed-in account controls. */
+@media (min-width: 768px) and (max-width: 1280px) {
   .nav-toggle { display: block; position: relative; z-index: 35; }
   .site-header .site-nav {
     position: fixed;
@@ -2033,7 +2033,7 @@ p {
     overflow-y: auto;
   }
   .site-header .site-nav.is-open { transform: translateY(0); }
-  .site-header .site-nav a { padding: 16px 0; font-size: 13px; border-bottom: 1px solid var(--line); }
+  .site-header .site-nav a { padding: 18px 0; font-size: 15px; border-bottom: 1px solid var(--line); }
   .site-header .site-nav .nav-login { margin-left: 0; padding-left: 0; border-left: 0; }
   .site-header .site-nav .nav-signup { margin-top: 8px; padding: 12px; text-align: center; }
   .language-switch { padding-bottom: 10px; }

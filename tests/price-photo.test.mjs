@@ -25,7 +25,7 @@ test('photo price uses neutral bottom-right styling and fresh asset versions on 
   assert(!css.includes('#286647'));
   for(const name of ['index','products','product-detail','about','lookbook','contact']){
     const html=file(name+'.html');
-    assert(html.includes('css/member-shopping.css?v=20261103-monochrome-photo'));
+    assert(html.includes('css/member-shopping.css?v=20261103-roomy-nav'));
     assert(html.includes('js/main.js?v=20261103-minimum-order'));
   }
 });
