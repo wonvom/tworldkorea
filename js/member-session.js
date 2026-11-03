@@ -1,33 +1,19 @@
+import {startMemberActivity} from './member-activity.js?v=20261103-session-delivery';
 (function () {
-  const endpoint = 'https://members.tworldkorea.co.kr/account/shop/api/session';
-  let flight = null;
-  let lastCheck = 0;
 
   function paint(signedIn) {
     document.querySelectorAll('.nav-mypage').forEach(link => { link.hidden = !signedIn; });
     document.querySelectorAll('.nav-login, .nav-signup').forEach(link => { link.hidden = signedIn; });
+    document.querySelectorAll('.nav-logout').forEach(button=>{button.hidden=!signedIn;});
     window.TworldMemberSignedIn = signedIn;
     window.dispatchEvent(new CustomEvent('tworld:session', { detail: { signedIn } }));
   }
 
-  function refresh() {
-    if (document.hidden || flight || Date.now() - lastCheck < 2000) return flight;
-    lastCheck = Date.now();
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 6000);
-    flight = fetch(endpoint, {
-      method: 'GET', credentials: 'include', cache: 'no-store',
-      signal: controller.signal, referrerPolicy: 'strict-origin-when-cross-origin'
-    }).then(response => response.ok ? response.json() : { signedIn: false })
-      .then(value => paint(value?.signedIn === true))
-      .catch(() => paint(false))
-      .finally(() => { clearTimeout(timer); flight = null; });
-    return flight;
-  }
-
   paint(false);
-  window.addEventListener('pageshow', refresh);
-  window.addEventListener('focus', refresh);
-  document.addEventListener('visibilitychange', refresh);
-  refresh();
+  const session=startMemberActivity({endpoint:'https://members.tworldkorea.co.kr/account/shop/api/session',onSession:paint,onExpire:()=>window.location.assign('https://members.tworldkorea.co.kr/account/login?expired=1')});
+  window.TworldMemberActivity=session;
+  document.querySelectorAll('.nav-logout').forEach(button=>button.addEventListener('click',async()=>{
+    button.disabled=true;try{await session.logout();}catch(error){window.alert(error.message);button.disabled=false;}
+  }));
+  window.addEventListener('pageshow',()=>void session.refresh());
 })();

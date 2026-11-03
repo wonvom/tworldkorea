@@ -5,27 +5,31 @@ import vm from 'node:vm';
 
 const script=readFileSync(new URL('../js/member-session.js',import.meta.url),'utf8');
 const settle=async()=>{for(let i=0;i<8;i++)await Promise.resolve();};
-test('catalog hides My Page until approved login and refreshes after returning without copying cookies',async()=>{
-  const mypage=[{hidden:false},{hidden:false}],login=[{hidden:false}],signup=[{hidden:false}],events={},pageEvents={},calls=[];
-  const document={hidden:false,querySelectorAll:s=>s==='.nav-mypage'?mypage:[...login,...signup],addEventListener:(name,fn)=>{events[name]=fn;}};
-  const window={addEventListener:(name,fn)=>{pageEvents[name]=fn;},dispatchEvent(){}};
-  let now=10000,signedIn=true,fail=false;
-  vm.runInNewContext(script,{document,window,CustomEvent:class{constructor(type,options){this.type=type;this.detail=options.detail;}},Date:{now:()=>now},AbortController,setTimeout:()=>1,clearTimeout(){},fetch:async(url,options)=>{calls.push({url,options});if(fail)throw Error('offline');return {ok:true,json:async()=>({signedIn})};}});
-  assert(mypage.every(n=>n.hidden));pageEvents.pageshow();pageEvents.focus();assert.equal(calls.length,1);
-  await settle();assert(mypage.every(n=>!n.hidden));assert(login[0].hidden&&signup[0].hidden);
-  assert.equal(calls[0].url,'https://members.tworldkorea.co.kr/account/shop/api/session');assert.equal(calls[0].options.credentials,'include');assert.equal(calls[0].options.cache,'no-store');assert(!calls[0].options.headers);
-  signedIn=false;now+=5000;await pageEvents.pageshow();assert(mypage.every(n=>n.hidden));assert(!login[0].hidden&&!signup[0].hidden);
-  signedIn='true';now+=5000;await pageEvents.focus();assert(mypage.every(n=>n.hidden));
-  document.hidden=true;now+=5000;const before=calls.length;await events.visibilitychange();assert.equal(calls.length,before);
-  document.hidden=false;fail=true;now+=5000;await events.visibilitychange();assert(mypage.every(n=>n.hidden));
-  assert(!script.includes('localStorage')&&!script.includes('document.cookie')&&!script.includes('setInterval'));
+test('catalog navigation delegates one shared idle session and exposes explicit logout only after login',async()=>{
+  const mypage=[{hidden:false}],login=[{hidden:false}],signup=[{hidden:false}],events={},navigation=[];
+  const logout={hidden:false,addEventListener:(_name,fn)=>{events.logout=fn;}};
+  const document={querySelectorAll:s=>s==='.nav-mypage'?mypage:s==='.nav-logout'?[logout]:[...login,...signup]};
+  let options,refreshed=0,loggedOut=0;
+  const window={location:{assign:url=>navigation.push(url)},addEventListener:(name,fn)=>{events[name]=fn;},dispatchEvent(){}};
+  vm.runInNewContext(script.replace(/^import[^\n]+\n/,''),{document,window,CustomEvent:class{},startMemberActivity:value=>{options=value;return {refresh(){refreshed++;},async logout(){loggedOut++;options.onSession(false);options.onExpire();}};}});
+  assert(mypage[0].hidden&&logout.hidden);
+  options.onSession(true);assert(!mypage[0].hidden&&!logout.hidden);assert(login[0].hidden&&signup[0].hidden);
+  assert.equal(options.endpoint,'https://members.tworldkorea.co.kr/account/shop/api/session');
+  events.pageshow();assert.equal(refreshed,1);await events.logout();assert.equal(loggedOut,1);assert(logout.hidden&&mypage[0].hidden);
+  assert.equal(navigation.at(-1),'https://members.tworldkorea.co.kr/account/login?expired=1');
+  assert(!script.includes('localStorage')&&!script.includes('document.cookie'));
+  assert.equal(readFileSync(new URL('../js/member-activity.js',import.meta.url),'utf8'),readFileSync(new URL('../../tworld-inventory-api/lib/member-activity.mjs',import.meta.url),'utf8'));
 });
 test('every public navigation hides My Page initially and allows only the fixed member origin',()=>{
   for(const name of ['index','about','products','lookbook','contact','product-detail']){
     const html=readFileSync(new URL('../'+name+'.html',import.meta.url),'utf8');
     const links=html.match(/<a class="nav-mypage"[^>]*>/g)||[];assert(links.length>0,name);assert(links.every(v=>v.includes(' hidden')),name);
-    assert(html.includes('js/member-session.js?v=20261102-inline-order'),name);
-    assert(html.includes('js/member-shopping.js?v=20261103-company-prices'),name);
+    assert(html.includes('type="module" src="js/member-session.js?v=20261103-session-delivery"'),name);
+    assert(html.includes('js/member-shopping.js?v=20261103-session-delivery'),name);
+    const nav=html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)[0];
+    const order=['index.html','products.html','lookbook.html','about.html','contact.html','https://members.tworldkorea.co.kr/account'];
+    assert.deepEqual([...nav.matchAll(/<a(?: class="nav-mypage")? href="([^"]+)"/g)].map(v=>v[1]),order);
+    assert(nav.includes('class="nav-logout" type="button" hidden'));
     const mapSource=name==='contact'?'https://www.google.com/maps/embed':'https://map.naver.com';
     assert(html.includes('frame-src '+mapSource+' https://members.tworldkorea.co.kr;'),name);
     assert(html.includes("connect-src 'self' https://members.tworldkorea.co.kr;"),name);

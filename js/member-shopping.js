@@ -73,6 +73,7 @@
     else if(type==='open-cart'&&fromProduct)open();
     else if(type==='checkout'&&signedIn)window.location.assign(origin+'/account/checkout');
     else if(type==='login')window.location.assign(loginUrl());
+    else if(type==='activity')window.TworldMemberActivity?.activity();
   });
   window.addEventListener('tworld:session',event=>paint(event.detail?.signedIn));
   window.addEventListener('tworld:products',paintPrices);
