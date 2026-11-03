@@ -48,6 +48,6 @@ test("catalog cards and detail photos use the same badge and translate it in bot
   for (const page of ["index", "products", "product-detail", "about", "lookbook", "contact"]) {
     const html = read(`${page}.html`);
     assert.match(html, /js\/main.js\?v=20261103-minimum-order/);
-    assert.match(html, /js\/i18n.js\?v=20261103-about-translation/);
+    assert.match(html, /js\/i18n.js\?v=20261103-bilingual-member/);
   }
 });

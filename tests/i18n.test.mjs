@@ -9,6 +9,22 @@ vm.runInNewContext(readFileSync(new URL("../data/products.js", import.meta.url),
 const products = sandbox.window.products;
 const t = i18n.createTranslator(products);
 
+test('catalog image descriptions and color accessibility labels are English', () => {
+  for (const product of products) {
+    for (const suffix of ['대표 이미지','앞면 이미지','뒷면 이미지','모델 착용 이미지 1','확대 디테일 이미지 2','원단 봉제 디테일 3']) {
+      const source = `${product.name} ${suffix}`;
+      assert.doesNotMatch(t(source, 'en'), /[가-힣]/, source);
+      assert.equal(t(source, 'ko'), source);
+    }
+    for (const color of product.colors || []) {
+      assert.doesNotMatch(t(`${product.name} ${color.nameKr} 컬러 이미지`, 'en'), /[가-힣]/);
+      assert.equal(t(`${color.nameKr} ${color.nameCn} ${color.nameEn}`, 'en'), color.nameEn);
+    }
+  }
+  assert.equal(t('155cm 이하','en'),'155cm or less');
+  assert.equal(t('35kg 이상','en'),'35kg or more');
+});
+
 test("first visit, invalid preference and unavailable storage default to Korean", () => {
   assert.equal(i18n.readLanguage(), "ko");
   assert.equal(i18n.readLanguage({ getItem: () => null }), "ko");
@@ -46,7 +62,7 @@ test("all public catalog pages expose the same language control before Home", ()
     assert.ok(nav.indexOf('data-language="ko"') < nav.indexOf('href="index.html"'), page);
     assert.match(nav, /aria-pressed="true" data-language="ko"/);
     assert.ok(html.indexOf('js/i18n.js') < html.indexOf('js/main.js'), page);
-    assert.ok(html.includes('js/i18n.js?v=20261103-about-translation'), page);
+    assert.ok(html.includes('js/i18n.js?v=20261103-bilingual-member'), page);
     const aboutLabels = [...html.matchAll(/<a href="about\.html">([^<]+)<\/a>/g)].map(match => match[1]);
     assert.ok(aboutLabels.length, page);
     for (const label of aboutLabels) {

@@ -12,6 +12,17 @@
     ["View products", "제품 보기"],
     ["HOME", "홈"], ["ABOUT", "회사 소개"], ["PRODUCTS", "제품"], ["LOOKBOOK", "룩북"], ["CONTACT", "문의"],
     ["Log in", "로그인"], ["Sign up", "회원가입"], ["My Page", "마이페이지"],
+    ["Logout", "로그아웃"], ["Are you sure you want to log out?", "로그아웃하시겠습니까?"],
+    ["Could not log out. Please try again.", "로그아웃을 완료하지 못했습니다. 다시 시도해주세요."],
+    ["Cart", "장바구니"], ["Open cart", "장바구니 열기"], ["Close cart", "장바구니 접기"],
+    ["Cart items and stock", "장바구니 품목과 재고"],
+    ["Choose colors and sizes and check supplier stock", "색상과 사이즈 선택 및 본사 재고"],
+    ["Checking price", "단가 확인 중"], ["Your company price / VAT excluded", "업체 적용 단가 / 부가세 별도"],
+    ["Product filters", "제품 필터"],
+    ["Model wearing everyday apparel", "모델이 기본 의류를 착용한 메인 이미지"],
+    ["Additional model photo", "모델 착용컷 보조 이미지"],
+    ["Enlarge lookbook image", "룩북 이미지 크게 보기"], ["Close image", "이미지 닫기"],
+    ["Selected lookbook image", "선택한 룩북 이미지"],
     ["CATEGORY INDEX", "제품 분류"], ["PRODUCT CATEGORIES", "카테고리별 제품"],
     ["FEATURED LINEUP", "추천 라인업"], ["SELECTED PRODUCTS", "추천 제품"], ["All Products", "전체 제품 보기"],
     ["FABRIC GUIDE", "원단 안내"], ["EXPLORE OUR FABRICS", "원단별로 살펴보기"],
@@ -128,7 +139,7 @@
       word => ({ "DuPont Sorona": "듀폰 소로나", "Cooling Fiber": "냉감 섬유", Polyester: "폴리에스터", Spandex: "스판", Cotton: "면", Rayon: "레이온", Nylon: "나일론", Sorona: "소로나", Span: "스판", "Outer:": "겉감:", "Lining:": "안감:" })[word]);
   }
 
-  function createTranslator(products = []) {
+  function createTranslator(products = [], extraPairs = []) {
     const dictionary = new Map();
     function add(en, ko) {
       if (!en || !ko) return;
@@ -137,25 +148,48 @@
     }
     pairs.forEach(([en, ko]) => add(en, ko));
     dictionary.set("회사소개", { ko: "회사소개", en: "ABOUT" });
+    extraPairs.forEach(([en, ko]) => add(en, ko));
     for (const product of products) {
       add(product.nameEn, product.name);
       add(`${product.nameEn} | T-WORLD KOREA`, `${product.name} | 티월드코리아`);
       add(product.fabric, koreanFabric(product.fabric));
       add(product.descriptionEn, product.description);
+      for (const color of product.colors || []) {
+        add(color.nameEn, color.nameKr);
+        for (const ko of [`${color.nameKr} ${color.nameCn} ${color.nameEn}`, `${color.nameKr} ${color.nameCn} ${color.nameEn} ${color.nameJa || ''}`.trim(), `${color.nameKr} ${color.nameEn}`]) {
+          dictionary.set(ko, {ko, en:color.nameEn});
+        }
+        add(`${product.nameEn} - ${color.nameEn}`, `${product.name} ${color.nameKr} 컬러 이미지`);
+      }
+      for (const [ko, en] of [['대표 이미지','main image'],['앞면 이미지','front view'],['뒷면 이미지','back view']]) {
+        add(`${product.nameEn} - ${en}`, `${product.name} ${ko}`);
+      }
     }
     return function translate(value, language = "ko") {
       const original = String(value);
       const text = original.trim();
       let result = dictionary.get(text)?.[language];
       if (result === undefined) {
+        const price = text.match(/^([\d,]+)원(~)?$/);
+        const cart = text.match(/^장바구니 열기 \/ ([\d,]+)장$/);
         const products = text.match(/^(\d+) Products$/) || text.match(/^제품 (\d+)개$/);
         const colors = text.match(/^(.*?)\s+(\d+) Colors$/) || text.match(/^(.*?)\s+(\d+)색상$/);
         const page = text.match(/^(\d+) Page$/) || text.match(/^(\d+)페이지$/);
         const slot = text.match(/^(Model Fit|Detail Close Up|Detail|Lookbook) (\d+)$/) || text.match(/^(모델 착용컷|확대 디테일|상세|룩북) (\d+)$/);
         const category = text.match(/^(Short Sleeve|Sleeveless|Long Sleeve|Polo Shirt|Sweatshirt|Hoodie|Pants) (\d+) Styles$/) || text.match(/^(반팔|민소매|긴팔|카라티|맨투맨|후드|바지) (\d+)종$/);
-        if (products) result = language === "ko" ? `제품 ${products[1]}개` : `${products[1]} Products`;
+        const image = text.match(/^(.*?) (모델 착용 이미지|확대 디테일 이미지|원단 봉제 디테일) (\d+)$/);
+        const lookbook = text.match(/^룩북 모델 착용컷 (\d+)$/);
+        const categoryImage = text.match(/^(반팔|민소매|긴팔|카라티|맨투맨|후드|바지) 제품 대표 이미지$/);
+        const limit = text.match(/^([\d.]+\s*(?:cm|kg)) (이하|이상)$/);
+        if (price) result = language === "ko" ? text : `KRW ${price[1]}${price[2] ? '+' : ''}`;
+        else if (cart) result = language === "ko" ? text : `Open cart / ${cart[1]} pieces`;
+        else if (products) result = language === "ko" ? `제품 ${products[1]}개` : `${products[1]} Products`;
         else if (colors) result = language === "ko" ? `${colors[1]} ${colors[2]}색상` : `${colors[1]} ${colors[2]} Colors`;
         else if (page) result = language === "ko" ? `${page[1]}페이지` : `${page[1]} Page`;
+        else if (image && dictionary.has(image[1])) result = language === 'ko' ? text : `${dictionary.get(image[1]).en} - ${{'모델 착용 이미지':'model photo','확대 디테일 이미지':'close-up','원단 봉제 디테일':'fabric and stitching detail'}[image[2]]} ${image[3]}`;
+        else if (lookbook) result = language === 'ko' ? text : `Lookbook model photo ${lookbook[1]}`;
+        else if (categoryImage) result = language === 'ko' ? text : `${dictionary.get(categoryImage[1]).en} main image`;
+        else if (limit) result = language === 'ko' ? text : `${limit[1]} or ${limit[2] === '이하' ? 'less' : 'more'}`;
         else if (slot) {
           const names = { "Model Fit": ["모델 착용컷", "Model Fit"], "Detail Close Up": ["확대 디테일", "Detail Close Up"], Detail: ["상세", "Detail"], Lookbook: ["룩북", "Lookbook"] };
           const pair = names[slot[1]] || Object.values(names).find(pair => pair[0] === slot[1]);
@@ -170,7 +204,7 @@
     try { return storage?.getItem(storageKey) === "en" ? "en" : "ko"; } catch { return "ko"; }
   }
   let language = "ko";
-  try { language = readLanguage(root.localStorage); } catch { /* Korean remains the default. */ }
+  try { const requested=new URLSearchParams(root.location?.search||'').get('lang');language=['en','ko'].includes(requested)?requested:readLanguage(root.localStorage);if(requested===language)root.localStorage?.setItem(storageKey,language); } catch { /* Korean remains the default. */ }
   const translate = createTranslator(root.products || []);
   const originals = new WeakMap();
   const attributes = new WeakMap();
@@ -204,15 +238,21 @@
     for (const button of document.querySelectorAll("[data-language]")) {
       button.setAttribute("aria-pressed", String(button.dataset.language === language));
     }
+    for(const link of scope.querySelectorAll('a[href]')){
+      try{const url=new URL(link.getAttribute('href'),root.location.href);if(url.origin==='https://members.tworldkorea.co.kr'&&/^\/account(?:\/|$)/.test(url.pathname)&&!url.pathname.startsWith('/account/actions/')){url.searchParams.set('lang',language);link.href=url.href;}}catch{}
+    }
   }
   function setLanguage(value) {
     language = value === "en" ? "en" : "ko";
     try { root.localStorage.setItem(storageKey, language); } catch { /* Switching still works without storage. */ }
     apply();
+    announce();
   }
+  function announce(){if(typeof root.dispatchEvent==='function'&&typeof root.CustomEvent==='function')root.dispatchEvent(new root.CustomEvent('tworld:language',{detail:{language}}));}
   function init() {
     for (const button of root.document.querySelectorAll("[data-language]")) button.addEventListener("click", () => setLanguage(button.dataset.language));
     apply();
+    announce();
   }
-  return { init, apply, setLanguage, readLanguage, createTranslator, koreanFabric, text: value => translate(value, language), get language() { return language; } };
+  return { init, apply, setLanguage, readLanguage, createTranslator, koreanFabric, text: value => translate(value, language), welcome: name => language==='en'?`Welcome, ${name}`:`${name}님 반갑습니다.`, get language() { return language; } };
 });
