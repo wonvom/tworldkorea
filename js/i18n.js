@@ -19,6 +19,9 @@
     ["16s 250G", "16수 250G"], ["20s 230G", "20수 230G"], ["24s 180G", "24수 180G"], ["20s", "20수"],
     ["COMPANY AND FACTORY", "회사와 생산 시설"], ["OUR FACTORY AND SHOWROOM", "공장과 쇼룸"],
     ["Korea Office", "한국 지사"], ["China Office", "중국 본사"], ["Korea Showroom", "한국 쇼룸"],
+    ["Warehouse at our Korean office", "한국 지사 창고 전경"],
+    ["Factory in China", "중국 본사 공장 전경"],
+    ["Korean showroom", "한국 쇼룸 전경"],
     ["Production Facility", "생산 시설"], ["LOOKBOOK PREVIEW", "룩북 미리보기"], ["MODEL FIT ARCHIVE", "모델 착용컷"],
     ["View Lookbook", "룩북 보기"], ["WHOLESALE CONTACT", "도매 상담"], ["Contact Us", "문의하기"],
     ["ABOUT COMPANY", "회사 안내"], ["T-SHIRTS AND EVERYDAY APPAREL", "티셔츠와 기본 의류를 공급합니다"],
@@ -133,6 +136,7 @@
       if (!dictionary.has(ko)) dictionary.set(ko, { ko, en });
     }
     pairs.forEach(([en, ko]) => add(en, ko));
+    dictionary.set("회사소개", { ko: "회사소개", en: "ABOUT" });
     for (const product of products) {
       add(product.nameEn, product.name);
       add(`${product.nameEn} | T-WORLD KOREA`, `${product.name} | 티월드코리아`);

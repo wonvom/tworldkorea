@@ -46,5 +46,27 @@ test("all public catalog pages expose the same language control before Home", ()
     assert.ok(nav.indexOf('data-language="ko"') < nav.indexOf('href="index.html"'), page);
     assert.match(nav, /aria-pressed="true" data-language="ko"/);
     assert.ok(html.indexOf('js/i18n.js') < html.indexOf('js/main.js'), page);
+    assert.ok(html.includes('js/i18n.js?v=20261103-about-translation'), page);
+    const aboutLabels = [...html.matchAll(/<a href="about\.html">([^<]+)<\/a>/g)].map(match => match[1]);
+    assert.ok(aboutLabels.length, page);
+    for (const label of aboutLabels) {
+      assert.equal(t(label, 'en'), 'ABOUT', page);
+      assert.equal(t(label, 'ko'), label, page);
+    }
   }
+});
+
+test("company overview copy and image descriptions are covered in English without changing Korean", () => {
+  const html = readFileSync(new URL('../about.html', import.meta.url), 'utf8');
+  const main = html.match(/<main>([\s\S]*?)<\/main>/)[1];
+  const copy = [...main.matchAll(/<(?:p|h[1-6])[^>]*>([^<]+)<\//g)].map(match => match[1]);
+  const imageDescriptions = [...main.matchAll(/\balt="([^"]+)"/g)].map(match => match[1]);
+  assert.ok(copy.length >= 20);
+  assert.equal(imageDescriptions.length, 3);
+  for (const source of [...copy, ...imageDescriptions]) {
+    assert.doesNotMatch(t(source, 'en'), /[가-힣]/, source);
+    assert.equal(t(source, 'ko'), source);
+  }
+  assert.equal(t('ABOUT', 'ko'), '회사 소개');
+  assert.equal(t('회사소개', 'en'), 'ABOUT');
 });
