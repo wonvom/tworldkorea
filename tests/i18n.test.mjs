@@ -72,6 +72,18 @@ test("all public catalog pages expose the same language control before Home", ()
   }
 });
 
+test('copyright remains English regardless of the selected page language', () => {
+  for (const page of ['index','about','products','product-detail','lookbook','contact']) {
+    const html = readFileSync(new URL(`../${page}.html`, import.meta.url), 'utf8');
+    const copyright = html.match(/<p class="footer-credit"([^>]*)>([^<]+)<\/p>/);
+    assert.ok(copyright, page);
+    assert.match(copyright[1], /translate="no"/, page);
+    assert.match(copyright[1], /lang="en"/, page);
+    assert.equal(copyright[2], '&copy; 2026 T-WORLD KOREA. All rights reserved. Designed by Wonjong Kim.', page);
+  }
+  assert.ok(readFileSync(new URL('../js/i18n.js', import.meta.url), 'utf8').includes('[translate="no"]'));
+});
+
 test("company overview copy and image descriptions are covered in English without changing Korean", () => {
   const html = readFileSync(new URL('../about.html', import.meta.url), 'utf8');
   const main = html.match(/<main>([\s\S]*?)<\/main>/)[1];
