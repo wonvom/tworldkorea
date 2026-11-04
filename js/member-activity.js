@@ -1,12 +1,14 @@
 export function startMemberActivity({endpoint='/account/shop/api/session',onSession=()=>{},onExpire=()=>window.location.assign('/account/login?expired=1'),onActivity=()=>{}}={}){
-  let active=false,stopped=false,deadline=0,flight=null,timer=0,trailing=0,lastSent=0;
+  let active=false,persistent=false,stopped=false,deadline=0,flight=null,timer=0,trailing=0,lastSent=0;
+  const expired=()=>active&&!persistent&&Date.now()>=deadline;
   const channel=typeof BroadcastChannel==='function'?new BroadcastChannel('tworld-member-session'):null;
   function schedule(){
     clearTimeout(timer);
-    if(active)timer=setTimeout(()=>void check(false),Math.max(1000,deadline-Date.now()+100));
+    if(active&&!persistent)timer=setTimeout(()=>void check(false),Math.max(1000,deadline-Date.now()+100));
   }
   function paint(value){
     const before=active;active=value.signedIn===true;
+    persistent=active&&value.persistent===true;
     deadline=active&&Number.isFinite(value.expiresAt)?value.expiresAt:0;
     onSession(active,active?{displayName:typeof value.displayName==='string'?value.displayName:'',canOrder:value.canOrder!==false}:null);schedule();
     if(before&&!active)onExpire();
@@ -18,12 +20,12 @@ export function startMemberActivity({endpoint='/account/shop/api/session',onSess
     flight=(async()=>{
       try{
         const response=await fetch(endpoint+(touch?'/activity':''),{method:touch?'POST':'GET',credentials:'include',cache:'no-store',signal:AbortSignal.timeout(8000)});
-        if(!response.ok){if(active&&Date.now()>=deadline)paint({signedIn:false});return;}
+        if(!response.ok){if(expired())paint({signedIn:false});return;}
         const value=await response.json();if(stopped)return;
         paint(value);
         if(touch&&active)channel?.postMessage({type:'active',expiresAt:deadline});
-      }catch{if(active&&Date.now()>=deadline)paint({signedIn:false});}
-      finally{flight=null;if(active&&Date.now()>=deadline)timer=setTimeout(()=>void check(),5000);}
+      }catch{if(expired())paint({signedIn:false});}
+      finally{flight=null;if(expired())timer=setTimeout(()=>void check(),5000);}
     })();
     return flight;
   }
@@ -31,7 +33,7 @@ export function startMemberActivity({endpoint='/account/shop/api/session',onSess
     if(!active||stopped)return;
     onActivity();
     clearTimeout(trailing);
-    const remaining=Math.max(0,60000-(Date.now()-lastSent));
+    const remaining=Math.max(0,(persistent?86400000:60000)-(Date.now()-lastSent));
     if(!remaining)void check(true);else trailing=setTimeout(()=>void check(true),remaining);
   }
   const eventActivity=event=>{if(event.isTrusted)activity();};
@@ -43,7 +45,7 @@ export function startMemberActivity({endpoint='/account/shop/api/session',onSess
   window.addEventListener('tworld:unauthorized',visible);
   if(channel)channel.onmessage=event=>{
     if(event.data?.type==='logout')paint({signedIn:false});
-    else if(active&&event.data?.type==='active'&&Number.isFinite(event.data.expiresAt)){deadline=Math.max(deadline,event.data.expiresAt);schedule();}
+    else if(active&&!persistent&&event.data?.type==='active'&&Number.isFinite(event.data.expiresAt)&&event.data.expiresAt>0){deadline=Math.max(deadline,event.data.expiresAt);schedule();}
   };
   void check(true,true);
   return {

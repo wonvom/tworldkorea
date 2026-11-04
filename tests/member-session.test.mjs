@@ -32,7 +32,7 @@ test('every public navigation hides My Page initially and allows only the fixed 
   for(const name of ['index','about','products','lookbook','contact','product-detail']){
     const html=readFileSync(new URL('../'+name+'.html',import.meta.url),'utf8');
     const links=html.match(/<a class="nav-mypage"[^>]*>/g)||[];assert(links.length>0,name);assert(links.every(v=>v.includes(' hidden')),name);
-    assert(html.includes('type="module" src="js/member-session.js?v=20261103-bilingual-member"'),name);
+    assert(html.includes('type="module" src="js/member-session.js?v=20261104-persistent-session"'),name);
     assert(html.includes('js/member-shopping.js?v=20261103-bilingual-member'),name);
     const nav=html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)[0];
     const order=['index.html','products.html','lookbook.html','about.html','contact.html','https://members.tworldkorea.co.kr/account'];

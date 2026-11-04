@@ -1,4 +1,4 @@
-import {startMemberActivity} from './member-activity.js?v=20261103-staff-greeting';
+import {startMemberActivity} from './member-activity.js?v=20261104-persistent-session';
 (function () {
   let signedInNow=false,currentIdentity=null;
   const text=value=>window.TworldI18n?.text(value)||value;
