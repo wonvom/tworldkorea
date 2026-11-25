@@ -1,7 +1,7 @@
 (function(){
   const value=new URLSearchParams(location.search).get('product')||'';
-  const product=(window.products||[]).find(p=>p.code.toLowerCase()===value.toLowerCase()||p.id.toLowerCase()===value.toLowerCase());
+  // The member shop already validates and canonicalizes the product code.
   const target=new URL('https://members.tworldkorea.co.kr/account/shop');
-  if(product)target.searchParams.set('product',product.code);
+  if(/^[a-z0-9가-힣()-]{1,40}$/iu.test(value))target.searchParams.set('product',value);
   location.replace(target.href);
 })();
