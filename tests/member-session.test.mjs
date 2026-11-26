@@ -9,13 +9,13 @@ const settle=async()=>{for(let i=0;i<8;i++)await Promise.resolve();};
 test('catalog navigation delegates one shared idle session and exposes explicit logout only after login',async()=>{
   const mypage=[{hidden:false}],login=[{hidden:false}],signup=[{hidden:false}],greeting={hidden:false,textContent:''},events={},navigation=[];
   const logout={hidden:false,addEventListener:(_name,fn)=>{events.logout=fn;}};
-  const document={querySelectorAll:s=>s==='.nav-mypage'?mypage:s==='.nav-logout'?[logout]:s==='.nav-greeting'?[greeting]:[...login,...signup]};
+  const document={querySelectorAll:s=>s==='.nav-mypage'?mypage:s==='.nav-logout'?[logout]:s==='.nav-greeting'?[greeting]:s==='.nav-login'?login:s==='.nav-signup'?signup:[]};
   let options,refreshed=0,loggedOut=0,confirmation=false;const prompts=[];
   let language='ko';const translate=i18n.createTranslator();
   const window={TworldI18n:{get language(){return language;},text:value=>translate(value,language),welcome:name=>language==='en'?`Welcome, ${name}`:`${name}님 반갑습니다.`},confirm:message=>{prompts.push(message);return confirmation;},location:{assign:url=>navigation.push(url)},addEventListener:(name,fn)=>{events[name]=fn;},dispatchEvent(){}};
   vm.runInNewContext(script.replace(/^import[^\n]+\n/,''),{document,window,CustomEvent:class{},startMemberActivity:value=>{options=value;return {refresh(){refreshed++;},async logout(){loggedOut++;options.onSession(false);options.onExpire();}};}});
   assert(mypage[0].hidden&&logout.hidden);
-  options.onSession(true);assert(!mypage[0].hidden&&!logout.hidden);assert(login[0].hidden&&signup[0].hidden);
+  options.onSession(true);assert(!mypage[0].hidden&&!logout.hidden);assert(login[0].hidden&&!signup[0].hidden);
   options.onSession(true,{displayName:'가상 직원',canOrder:false});assert.equal(greeting.textContent,'가상 직원님 반갑습니다.');assert(!greeting.hidden);assert.equal(window.TworldMemberCanOrder,false);
   options.onSession(true,{displayName:'<img onerror=alert(1)>',canOrder:true});assert.equal(greeting.textContent,'<img onerror=alert(1)>님 반갑습니다.');assert.equal(greeting.innerHTML,undefined);
   assert.equal(options.endpoint,'https://members.tworldkorea.co.kr/account/shop/api/session');
@@ -32,7 +32,7 @@ test('every public navigation hides My Page initially and allows only the fixed 
   for(const name of ['index','about','products','lookbook','contact','product-detail']){
     const html=readFileSync(new URL('../'+name+'.html',import.meta.url),'utf8');
     const links=html.match(/<a class="nav-mypage"[^>]*>/g)||[];assert(links.length>0,name);assert(links.every(v=>v.includes(' hidden')),name);
-    assert(html.includes('type="module" src="js/member-session.js?v=20261104-persistent-session"'),name);
+    assert(html.includes('type="module" src="js/member-session.js?v=20261127-shared-signup"'),name);
     assert(html.includes('js/member-shopping.js?v=20261103-bilingual-member'),name);
     const nav=html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)[0];
     const order=['index.html','products.html','lookbook.html','about.html','contact.html','https://members.tworldkorea.co.kr/account'];

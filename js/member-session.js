@@ -13,7 +13,7 @@ import {startMemberActivity} from './member-activity.js?v=20261104-persistent-se
   function paint(signedIn,identity) {
     signedInNow=signedIn;currentIdentity=identity;
     document.querySelectorAll('.nav-mypage').forEach(link => { link.hidden = !signedIn; });
-    document.querySelectorAll('.nav-login, .nav-signup').forEach(link => { link.hidden = signedIn; });
+    document.querySelectorAll('.nav-login').forEach(link => { link.hidden = signedIn; });
     document.querySelectorAll('.nav-logout').forEach(button=>{button.hidden=!signedIn;});
     paintGreeting();
     window.TworldMemberSignedIn = signedIn;
